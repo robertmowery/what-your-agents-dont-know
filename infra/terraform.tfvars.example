@@ -1,0 +1,6 @@
+# Copy to terraform.tfvars and fill in. No secrets belong in this file.
+project_id = "your-project-id"
+
+# People other than project owners who may run the agents, for example:
+# reader_emails = ["you@example.com"]
+reader_emails = []

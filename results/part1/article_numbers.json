@@ -1,0 +1,593 @@
+{
+ "adk_gemini_flash": {
+  "model": "gemini-3.8-flash",
+  "all_questions": {
+   "runs": 240,
+   "right": 105,
+   "right_pct": 43.8,
+   "confidently_wrong": 20,
+   "confidently_wrong_pct": 8.3,
+   "declined": 115,
+   "declined_pct": 47.9,
+   "no_answer": 0,
+   "no_answer_pct": 0.0
+  },
+  "questions_needing_a_definition": {
+   "runs": 180,
+   "right": 45,
+   "right_pct": 25.0,
+   "confidently_wrong": 20,
+   "confidently_wrong_pct": 11.1,
+   "declined": 115,
+   "declined_pct": 63.9,
+   "no_answer": 0,
+   "no_answer_pct": 0.0
+  },
+  "by_group": {
+   "lookup": {
+    "runs": 60,
+    "right": 60,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "mean_queries": 1.9,
+    "mean_cost_usd": 0.0054
+   },
+   "metric": {
+    "runs": 60,
+    "right": 8,
+    "right_pct": 13.3,
+    "confidently_wrong": 6,
+    "confidently_wrong_pct": 10.0,
+    "declined": 46,
+    "declined_pct": 76.7,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "mean_queries": 8.0,
+    "mean_cost_usd": 0.0408
+   },
+   "entity": {
+    "runs": 60,
+    "right": 13,
+    "right_pct": 21.7,
+    "confidently_wrong": 6,
+    "confidently_wrong_pct": 10.0,
+    "declined": 41,
+    "declined_pct": 68.3,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "mean_queries": 8.0,
+    "mean_cost_usd": 0.0394
+   },
+   "rule": {
+    "runs": 60,
+    "right": 24,
+    "right_pct": 40.0,
+    "confidently_wrong": 8,
+    "confidently_wrong_pct": 13.3,
+    "declined": 28,
+    "declined_pct": 46.7,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "mean_queries": 8.0,
+    "mean_cost_usd": 0.0473
+   }
+  },
+  "mean_queries": 6.48,
+  "mean_model_calls": 8.21,
+  "mean_input_tokens": 25919,
+  "mean_output_tokens": 4021,
+  "mean_seconds": 92.8,
+  "cache_read_share_of_input_pct": 7.3,
+  "runs_that_used_every_query": 179,
+  "runs_refused_a_further_query": 174,
+  "cost_usd": 7.98,
+  "mean_cost_usd_by_outcome": {
+   "right": 0.0236,
+   "confidently_wrong": 0.0519,
+   "declined": 0.0388
+  },
+  "wrong_answers": 20,
+  "wrong_answers_matching_a_named_wrong_reading": 14,
+  "wrong_answers_that_flagged_an_assumption": 0,
+  "discussed_questions": {
+   "M1": {
+    "gold": 87.44,
+    "runs": 10,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 5,
+    "confidently_wrong_pct": 50.0,
+    "declined": 5,
+    "declined_pct": 50.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "91.52": 3,
+     "92.10": 1,
+     "91.54": 1
+    }
+   },
+   "R1": {
+    "gold": 133,
+    "runs": 10,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 7,
+    "confidently_wrong_pct": 70.0,
+    "declined": 3,
+    "declined_pct": 30.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "93": 6,
+     "86": 1
+    }
+   },
+   "R5": {
+    "gold": 91.52,
+    "runs": 10,
+    "right": 10,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "91.52": 10
+    }
+   },
+   "E1": {
+    "gold": "Northgate Foods Group",
+    "runs": 10,
+    "right": 4,
+    "right_pct": 40.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 6,
+    "declined_pct": 60.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "Northgate Foods Group": 4
+    }
+   },
+   "E2": {
+    "gold": 36,
+    "runs": 10,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 10,
+    "declined_pct": 100.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {}
+   },
+   "E4": {
+    "gold": 1170,
+    "runs": 10,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 4,
+    "confidently_wrong_pct": 40.0,
+    "declined": 6,
+    "declined_pct": 60.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "1232": 4
+    }
+   },
+   "M2": {
+    "gold": 10294019.12,
+    "runs": 10,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 10,
+    "declined_pct": 100.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {}
+   },
+   "M3": {
+    "gold": 409.19,
+    "runs": 10,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 10,
+    "declined_pct": 100.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {}
+   },
+   "M5": {
+    "gold": 1097,
+    "runs": 10,
+    "right": 4,
+    "right_pct": 40.0,
+    "confidently_wrong": 1,
+    "confidently_wrong_pct": 10.0,
+    "declined": 5,
+    "declined_pct": 50.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "1097": 4,
+     "1101": 1
+    }
+   }
+  }
+ },
+ "adk_gemini_pro": {
+  "model": "gemini-3.1-pro-preview",
+  "all_questions": {
+   "runs": 240,
+   "right": 134,
+   "right_pct": 55.8,
+   "confidently_wrong": 54,
+   "confidently_wrong_pct": 22.5,
+   "declined": 52,
+   "declined_pct": 21.7,
+   "no_answer": 0,
+   "no_answer_pct": 0.0
+  },
+  "questions_needing_a_definition": {
+   "runs": 180,
+   "right": 74,
+   "right_pct": 41.1,
+   "confidently_wrong": 54,
+   "confidently_wrong_pct": 30.0,
+   "declined": 52,
+   "declined_pct": 28.9,
+   "no_answer": 0,
+   "no_answer_pct": 0.0
+  },
+  "by_group": {
+   "lookup": {
+    "runs": 60,
+    "right": 60,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "mean_queries": 1.1,
+    "mean_cost_usd": 0.0088
+   },
+   "metric": {
+    "runs": 60,
+    "right": 21,
+    "right_pct": 35.0,
+    "confidently_wrong": 13,
+    "confidently_wrong_pct": 21.7,
+    "declined": 26,
+    "declined_pct": 43.3,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "mean_queries": 8.0,
+    "mean_cost_usd": 0.0972
+   },
+   "entity": {
+    "runs": 60,
+    "right": 29,
+    "right_pct": 48.3,
+    "confidently_wrong": 23,
+    "confidently_wrong_pct": 38.3,
+    "declined": 8,
+    "declined_pct": 13.3,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "mean_queries": 7.3,
+    "mean_cost_usd": 0.0846
+   },
+   "rule": {
+    "runs": 60,
+    "right": 24,
+    "right_pct": 40.0,
+    "confidently_wrong": 18,
+    "confidently_wrong_pct": 30.0,
+    "declined": 18,
+    "declined_pct": 30.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "mean_queries": 8.0,
+    "mean_cost_usd": 0.095
+   }
+  },
+  "mean_queries": 6.11,
+  "mean_model_calls": 7.7,
+  "mean_input_tokens": 20159,
+  "mean_output_tokens": 2603,
+  "mean_seconds": 38.9,
+  "cache_read_share_of_input_pct": 0.4,
+  "runs_that_used_every_query": 167,
+  "runs_refused_a_further_query": 164,
+  "cost_usd": 17.14,
+  "mean_cost_usd_by_outcome": {
+   "right": 0.0551,
+   "confidently_wrong": 0.0855,
+   "declined": 0.0989
+  },
+  "wrong_answers": 54,
+  "wrong_answers_matching_a_named_wrong_reading": 38,
+  "wrong_answers_that_flagged_an_assumption": 1,
+  "discussed_questions": {
+   "M1": {
+    "gold": 87.44,
+    "runs": 10,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 8,
+    "confidently_wrong_pct": 80.0,
+    "declined": 2,
+    "declined_pct": 20.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "91.52": 4,
+     "92.1": 3,
+     "92.09558823529412": 1
+    }
+   },
+   "R1": {
+    "gold": 133,
+    "runs": 10,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 9,
+    "confidently_wrong_pct": 90.0,
+    "declined": 1,
+    "declined_pct": 10.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "93": 9
+    }
+   },
+   "R5": {
+    "gold": 91.52,
+    "runs": 10,
+    "right": 8,
+    "right_pct": 80.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 2,
+    "declined_pct": 20.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "91.52": 7,
+     "91.5223336371923": 1
+    }
+   },
+   "E1": {
+    "gold": "Northgate Foods Group",
+    "runs": 10,
+    "right": 8,
+    "right_pct": 80.0,
+    "confidently_wrong": 1,
+    "confidently_wrong_pct": 10.0,
+    "declined": 1,
+    "declined_pct": 10.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "Northgate Foods Group": 8,
+     "Ledgerline Freight Payment Services": 1
+    }
+   },
+   "E2": {
+    "gold": 36,
+    "runs": 10,
+    "right": 1,
+    "right_pct": 10.0,
+    "confidently_wrong": 6,
+    "confidently_wrong_pct": 60.0,
+    "declined": 3,
+    "declined_pct": 30.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "36": 1,
+     "68": 5,
+     "28": 1
+    }
+   },
+   "E4": {
+    "gold": 1170,
+    "runs": 10,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 10,
+    "confidently_wrong_pct": 100.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "1232": 10
+    }
+   },
+   "M2": {
+    "gold": 10294019.12,
+    "runs": 10,
+    "right": 6,
+    "right_pct": 60.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 4,
+    "declined_pct": 40.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "10286594.12": 3,
+     "10389086.71": 3
+    }
+   },
+   "M3": {
+    "gold": 409.19,
+    "runs": 10,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 10,
+    "declined_pct": 100.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {}
+   },
+   "M5": {
+    "gold": 1097,
+    "runs": 10,
+    "right": 6,
+    "right_pct": 60.0,
+    "confidently_wrong": 4,
+    "confidently_wrong_pct": 40.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "1109": 2,
+     "1097": 6,
+     "1101": 2
+    }
+   }
+  }
+ },
+ "stronger_model_minus_base": {
+  "right": 29,
+  "confidently_wrong": 34,
+  "declined": -63
+ },
+ "both_models": {
+  "runs": 480,
+  "lookup": {
+   "runs": 120,
+   "right": 120,
+   "right_pct": 100.0,
+   "confidently_wrong": 0,
+   "confidently_wrong_pct": 0.0,
+   "declined": 0,
+   "declined_pct": 0.0,
+   "no_answer": 0,
+   "no_answer_pct": 0.0
+  },
+  "by_discussed_question": {
+   "M1": {
+    "runs": 20,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 13,
+    "confidently_wrong_pct": 65.0,
+    "declined": 7,
+    "declined_pct": 35.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "R1": {
+    "runs": 20,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 16,
+    "confidently_wrong_pct": 80.0,
+    "declined": 4,
+    "declined_pct": 20.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "R5": {
+    "runs": 20,
+    "right": 18,
+    "right_pct": 90.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 2,
+    "declined_pct": 10.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "E1": {
+    "runs": 20,
+    "right": 12,
+    "right_pct": 60.0,
+    "confidently_wrong": 1,
+    "confidently_wrong_pct": 5.0,
+    "declined": 7,
+    "declined_pct": 35.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "E2": {
+    "runs": 20,
+    "right": 1,
+    "right_pct": 5.0,
+    "confidently_wrong": 6,
+    "confidently_wrong_pct": 30.0,
+    "declined": 13,
+    "declined_pct": 65.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "E4": {
+    "runs": 20,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 14,
+    "confidently_wrong_pct": 70.0,
+    "declined": 6,
+    "declined_pct": 30.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M2": {
+    "runs": 20,
+    "right": 6,
+    "right_pct": 30.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 14,
+    "declined_pct": 70.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M3": {
+    "runs": 20,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 20,
+    "declined_pct": 100.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M5": {
+    "runs": 20,
+    "right": 10,
+    "right_pct": 50.0,
+    "confidently_wrong": 5,
+    "confidently_wrong_pct": 25.0,
+    "declined": 5,
+    "declined_pct": 25.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   }
+  }
+ }
+}

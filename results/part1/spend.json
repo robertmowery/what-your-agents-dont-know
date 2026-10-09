@@ -1,0 +1,17 @@
+{
+ "note": "Estimated from token counts and list prices in tessaway/config.py, and from BigQuery bytes billed at the on-demand rate. Every line ever appended is counted, including smoke tests and runs that were later repeated. The invoice is the authority.",
+ "prices_checked_on": "2026-10-09",
+ "by_config": {
+  "adk_gemini_flash": {
+   "runs": 258,
+   "model_usd": 8.6808,
+   "bigquery_usd": 0.1124
+  },
+  "adk_gemini_pro": {
+   "runs": 247,
+   "model_usd": 17.6163,
+   "bigquery_usd": 0.1116
+  }
+ },
+ "total_usd": 26.5211
+}

@@ -1,0 +1,218 @@
+{
+ "config": "adk_gemini_pro",
+ "runtime": "adk",
+ "runtime_package": "google-adk==2.11.0",
+ "vendor": "google",
+ "model": "gemini-3.1-pro-preview",
+ "model_tier": "strong",
+ "model_reported_by_provider": [
+  "gemini-3.1-pro-preview"
+ ],
+ "model_and_prices_checked_on": "2026-10-09",
+ "usd_per_million_tokens": {
+  "input": 2.0,
+  "output": 12.0,
+  "cache_read": 0.2,
+  "cache_write": 0.0
+ },
+ "first_run_finished_at": "2026-10-09T16:14:07+00:00",
+ "last_run_finished_at": "2026-10-09T16:14:54+00:00",
+ "question_count": 2,
+ "runs_per_question": 1,
+ "runs_expected": 2,
+ "runs_saved": 2,
+ "complete": true,
+ "data_seed": 20261009,
+ "summary": {
+  "overall": {
+   "runs": 2,
+   "right": 1,
+   "right_share": 0.5,
+   "confidently_wrong": 1,
+   "confidently_wrong_share": 0.5,
+   "declined": 0,
+   "declined_share": 0.0,
+   "no_answer": 0,
+   "no_answer_share": 0.0
+  },
+  "by_group": {
+   "lookup": {
+    "runs": 1,
+    "right": 1,
+    "right_share": 1.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": 0.0,
+    "declined": 0,
+    "declined_share": 0.0,
+    "no_answer": 0,
+    "no_answer_share": 0.0
+   },
+   "metric": {
+    "runs": 1,
+    "right": 0,
+    "right_share": 0.0,
+    "confidently_wrong": 1,
+    "confidently_wrong_share": 1.0,
+    "declined": 0,
+    "declined_share": 0.0,
+    "no_answer": 0,
+    "no_answer_share": 0.0
+   }
+  },
+  "by_question": {
+   "L1": {
+    "runs": 1,
+    "right": 1,
+    "right_share": 1.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": 0.0,
+    "declined": 0,
+    "declined_share": 0.0,
+    "no_answer": 0,
+    "no_answer_share": 0.0,
+    "group": "lookup",
+    "mean_input_tokens": 2646.0,
+    "mean_output_tokens": 200.0,
+    "mean_cost_usd": 0.0077,
+    "mean_queries": 1.0,
+    "decoys_matched": {}
+   },
+   "M1": {
+    "runs": 1,
+    "right": 0,
+    "right_share": 0.0,
+    "confidently_wrong": 1,
+    "confidently_wrong_share": 1.0,
+    "declined": 0,
+    "declined_share": 0.0,
+    "no_answer": 0,
+    "no_answer_share": 0.0,
+    "group": "metric",
+    "mean_input_tokens": 29829.0,
+    "mean_output_tokens": 3668.0,
+    "mean_cost_usd": 0.1037,
+    "mean_queries": 8.0,
+    "decoys_matched": {
+     "portal definition: delivered by the requested date": 1
+    }
+   }
+  },
+  "wrong_answers_that_flagged_an_assumption": 0,
+  "wrong_answers": 1,
+  "mean_cost_usd_per_question": 0.0557,
+  "mean_input_tokens_per_question": 16237.5,
+  "mean_output_tokens_per_question": 1934.0,
+  "total_cost_usd": 0.1114
+ },
+ "runs": [
+  {
+   "config": "adk_gemini_pro",
+   "model": "gemini-3.1-pro-preview",
+   "question_id": "L1",
+   "group": "lookup",
+   "trial": 0,
+   "outcome": "right",
+   "extracted": "65",
+   "value": 65.0,
+   "matched_decoy": "",
+   "flagged_assumption": false,
+   "gold": 65,
+   "answer_text": "We have a total of 65 carriers listed in our system.\n\nANSWER: 65",
+   "queries": [
+    {
+     "sql": "SELECT COUNT(*) FROM tms_carr",
+     "row_count": 1,
+     "bytes_billed": 0
+    }
+   ],
+   "query_count": 1,
+   "queries_refused_over_limit": 0,
+   "model_calls": 2,
+   "input_tokens": 2646,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0,
+   "input_tokens_total": 2646,
+   "output_tokens": 200,
+   "cost_usd": 0.007692,
+   "bigquery_bytes_billed": 0,
+   "bigquery_usd": 0.0,
+   "seconds": 6.4,
+   "timed_out": false,
+   "error": "",
+   "model_reported": "gemini-3.1-pro-preview",
+   "finished_at": "2026-10-09T16:14:07+00:00"
+  },
+  {
+   "config": "adk_gemini_pro",
+   "model": "gemini-3.1-pro-preview",
+   "question_id": "M1",
+   "group": "metric",
+   "trial": 0,
+   "outcome": "confidently_wrong",
+   "extracted": "91.52",
+   "value": 91.52,
+   "matched_decoy": "portal definition: delivered by the requested date",
+   "flagged_assumption": false,
+   "gold": 87.44,
+   "answer_text": "To find the on-time delivery rate for September 2026, we look at the shipments that were actually delivered during that month (based on `actl_dlvr_dt` in the `ptl_shpmt` table). \n\nThere were 1,097 total shipments delivered in September 2026. Out of those, 1,004 had an on-time indicator of 'Y' and 93 had 'N'. \n\nCalculating the rate: \n1,004 / 1,097 = 91.5223%\n\nANSWER: 91.52",
+   "queries": [
+    {
+     "sql": "SELECT * FROM ptl_shpmt LIMIT 5",
+     "row_count": 5,
+     "bytes_billed": 0
+    },
+    {
+     "sql": "SELECT on_time_ind, count(*) FROM ptl_shpmt WHERE req_dlvr_dt >= '2026-09-01' AND req_dlvr_dt < '2026-10-01' GROUP BY on_time_ind",
+     "row_count": 3,
+     "bytes_billed": 10485760
+    },
+    {
+     "sql": "SELECT stat_txt, actl_dlvr_dt, on_time_ind, count(*) FROM ptl_shpmt WHERE req_dlvr_dt >= '2026-09-01' AND req_dlvr_dt < '2026-10-01' GROUP BY stat_txt, actl_dlvr_dt, on_time_ind",
+     "row_count": 50,
+     "bytes_billed": 10485760
+    },
+    {
+     "sql": "SELECT on_time_ind, count(*) FROM ptl_shpmt WHERE actl_dlvr_dt >= '2026-09-01' AND actl_dlvr_dt < '2026-10-01' GROUP BY on_time_ind",
+     "row_count": 2,
+     "bytes_billed": 10485760
+    },
+    {
+     "sql": "SELECT COUNT(*) FROM ptl_shpmt",
+     "row_count": 1,
+     "bytes_billed": 0
+    },
+    {
+     "sql": "SELECT COUNT(*) FROM tms_load_hdr",
+     "row_count": 1,
+     "bytes_billed": 0
+    },
+    {
+     "sql": "SELECT COUNT(*) FROM tms_load_hdr WHERE load_stat_cd = 'Delivered'",
+     "row_count": 1,
+     "bytes_billed": 10485760
+    },
+    {
+     "sql": "SELECT load_stat_cd, count(*) FROM tms_load_hdr GROUP BY load_stat_cd",
+     "row_count": 8,
+     "bytes_billed": 0
+    }
+   ],
+   "query_count": 8,
+   "queries_refused_over_limit": 1,
+   "model_calls": 10,
+   "input_tokens": 29829,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0,
+   "input_tokens_total": 29829,
+   "output_tokens": 3668,
+   "cost_usd": 0.103674,
+   "bigquery_bytes_billed": 41943040,
+   "bigquery_usd": 0.000238,
+   "seconds": 53.9,
+   "timed_out": false,
+   "error": "",
+   "model_reported": "gemini-3.1-pro-preview",
+   "finished_at": "2026-10-09T16:14:54+00:00"
+  }
+ ]
+}

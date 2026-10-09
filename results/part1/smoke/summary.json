@@ -1,0 +1,228 @@
+{
+ "written_at": "2026-10-09T16:18:04+00:00",
+ "bins": [
+  "right",
+  "confidently_wrong",
+  "declined",
+  "no_answer"
+ ],
+ "headline": "confidently_wrong_share: share of all runs where the agent gave an answer and it was wrong",
+ "configurations": [
+  {
+   "config": "adk_gemini_flash",
+   "runtime": "adk",
+   "runtime_package": "google-adk==2.11.0",
+   "vendor": "google",
+   "model": "gemini-3.8-flash",
+   "model_tier": "base",
+   "model_reported_by_provider": [
+    "gemini-3.8-flash"
+   ],
+   "model_and_prices_checked_on": "2026-10-09",
+   "usd_per_million_tokens": {
+    "input": 0.75,
+    "output": 3.75,
+    "cache_read": 0.075,
+    "cache_write": 0.0
+   },
+   "first_run_finished_at": "2026-10-09T16:16:30+00:00",
+   "last_run_finished_at": "2026-10-09T16:18:04+00:00",
+   "question_count": 2,
+   "runs_per_question": 1,
+   "runs_expected": 2,
+   "runs_saved": 2,
+   "complete": true,
+   "data_seed": 20261009,
+   "summary": {
+    "overall": {
+     "runs": 2,
+     "right": 1,
+     "right_share": 0.5,
+     "confidently_wrong": 1,
+     "confidently_wrong_share": 0.5,
+     "declined": 0,
+     "declined_share": 0.0,
+     "no_answer": 0,
+     "no_answer_share": 0.0
+    },
+    "by_group": {
+     "lookup": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     },
+     "metric": {
+      "runs": 1,
+      "right": 0,
+      "right_share": 0.0,
+      "confidently_wrong": 1,
+      "confidently_wrong_share": 1.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     }
+    },
+    "by_question": {
+     "L1": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "lookup",
+      "mean_input_tokens": 5970.0,
+      "mean_output_tokens": 503.0,
+      "mean_cost_usd": 0.0064,
+      "mean_queries": 3.0,
+      "decoys_matched": {}
+     },
+     "M1": {
+      "runs": 1,
+      "right": 0,
+      "right_share": 0.0,
+      "confidently_wrong": 1,
+      "confidently_wrong_share": 1.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "metric",
+      "mean_input_tokens": 30403.0,
+      "mean_output_tokens": 10475.0,
+      "mean_cost_usd": 0.0621,
+      "mean_queries": 8.0,
+      "decoys_matched": {}
+     }
+    },
+    "wrong_answers_that_flagged_an_assumption": 0,
+    "wrong_answers": 1,
+    "mean_cost_usd_per_question": 0.0342,
+    "mean_input_tokens_per_question": 18186.5,
+    "mean_output_tokens_per_question": 5489.0,
+    "total_cost_usd": 0.0684
+   }
+  },
+  {
+   "config": "adk_gemini_pro",
+   "runtime": "adk",
+   "runtime_package": "google-adk==2.11.0",
+   "vendor": "google",
+   "model": "gemini-3.1-pro-preview",
+   "model_tier": "strong",
+   "model_reported_by_provider": [
+    "gemini-3.1-pro-preview"
+   ],
+   "model_and_prices_checked_on": "2026-10-09",
+   "usd_per_million_tokens": {
+    "input": 2.0,
+    "output": 12.0,
+    "cache_read": 0.2,
+    "cache_write": 0.0
+   },
+   "first_run_finished_at": "2026-10-09T16:14:07+00:00",
+   "last_run_finished_at": "2026-10-09T16:14:54+00:00",
+   "question_count": 2,
+   "runs_per_question": 1,
+   "runs_expected": 2,
+   "runs_saved": 2,
+   "complete": true,
+   "data_seed": 20261009,
+   "summary": {
+    "overall": {
+     "runs": 2,
+     "right": 1,
+     "right_share": 0.5,
+     "confidently_wrong": 1,
+     "confidently_wrong_share": 0.5,
+     "declined": 0,
+     "declined_share": 0.0,
+     "no_answer": 0,
+     "no_answer_share": 0.0
+    },
+    "by_group": {
+     "lookup": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     },
+     "metric": {
+      "runs": 1,
+      "right": 0,
+      "right_share": 0.0,
+      "confidently_wrong": 1,
+      "confidently_wrong_share": 1.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     }
+    },
+    "by_question": {
+     "L1": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "lookup",
+      "mean_input_tokens": 2646.0,
+      "mean_output_tokens": 200.0,
+      "mean_cost_usd": 0.0077,
+      "mean_queries": 1.0,
+      "decoys_matched": {}
+     },
+     "M1": {
+      "runs": 1,
+      "right": 0,
+      "right_share": 0.0,
+      "confidently_wrong": 1,
+      "confidently_wrong_share": 1.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "metric",
+      "mean_input_tokens": 29829.0,
+      "mean_output_tokens": 3668.0,
+      "mean_cost_usd": 0.1037,
+      "mean_queries": 8.0,
+      "decoys_matched": {
+       "portal definition: delivered by the requested date": 1
+      }
+     }
+    },
+    "wrong_answers_that_flagged_an_assumption": 0,
+    "wrong_answers": 1,
+    "mean_cost_usd_per_question": 0.0557,
+    "mean_input_tokens_per_question": 16237.5,
+    "mean_output_tokens_per_question": 1934.0,
+    "total_cost_usd": 0.1114
+   }
+  }
+ ],
+ "not_run": {
+  "claude_sonnet": "no runs saved",
+  "claude_opus": "no runs saved"
+ }
+}

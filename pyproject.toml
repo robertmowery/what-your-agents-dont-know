@@ -1,0 +1,41 @@
+[project]
+name = "what-your-agents-dont-know"
+version = "0.1.0"
+description = "Reference code for the article series What Your Agents Don't Know."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+authors = [{ name = "Robert H. Mowery III" }]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+# Figure and publishing scripts are working tools kept private, not part of the experiment.
+extend-exclude = ["articles", "tools", "plugins"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "D", "N", "SIM", "C4", "RUF", "BLE"]
+ignore = [
+    "D203", # conflicts with D211
+    "D213", # conflicts with D212
+    "D401", # tool docstrings are sent to the model as written
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["D101", "D102", "D103"] # test names state the claim
+
+[tool.mypy]
+python_version = "3.11"
+files = ["tessaway", "tests", "run_part1.py"]
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+ignore_missing_imports = true

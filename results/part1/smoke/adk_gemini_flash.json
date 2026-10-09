@@ -1,0 +1,226 @@
+{
+ "config": "adk_gemini_flash",
+ "runtime": "adk",
+ "runtime_package": "google-adk==2.11.0",
+ "vendor": "google",
+ "model": "gemini-3.8-flash",
+ "model_tier": "base",
+ "model_reported_by_provider": [
+  "gemini-3.8-flash"
+ ],
+ "model_and_prices_checked_on": "2026-10-09",
+ "usd_per_million_tokens": {
+  "input": 0.75,
+  "output": 3.75,
+  "cache_read": 0.075,
+  "cache_write": 0.0
+ },
+ "first_run_finished_at": "2026-10-09T16:16:30+00:00",
+ "last_run_finished_at": "2026-10-09T16:18:04+00:00",
+ "question_count": 2,
+ "runs_per_question": 1,
+ "runs_expected": 2,
+ "runs_saved": 2,
+ "complete": true,
+ "data_seed": 20261009,
+ "summary": {
+  "overall": {
+   "runs": 2,
+   "right": 1,
+   "right_share": 0.5,
+   "confidently_wrong": 1,
+   "confidently_wrong_share": 0.5,
+   "declined": 0,
+   "declined_share": 0.0,
+   "no_answer": 0,
+   "no_answer_share": 0.0
+  },
+  "by_group": {
+   "lookup": {
+    "runs": 1,
+    "right": 1,
+    "right_share": 1.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": 0.0,
+    "declined": 0,
+    "declined_share": 0.0,
+    "no_answer": 0,
+    "no_answer_share": 0.0
+   },
+   "metric": {
+    "runs": 1,
+    "right": 0,
+    "right_share": 0.0,
+    "confidently_wrong": 1,
+    "confidently_wrong_share": 1.0,
+    "declined": 0,
+    "declined_share": 0.0,
+    "no_answer": 0,
+    "no_answer_share": 0.0
+   }
+  },
+  "by_question": {
+   "L1": {
+    "runs": 1,
+    "right": 1,
+    "right_share": 1.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": 0.0,
+    "declined": 0,
+    "declined_share": 0.0,
+    "no_answer": 0,
+    "no_answer_share": 0.0,
+    "group": "lookup",
+    "mean_input_tokens": 5970.0,
+    "mean_output_tokens": 503.0,
+    "mean_cost_usd": 0.0064,
+    "mean_queries": 3.0,
+    "decoys_matched": {}
+   },
+   "M1": {
+    "runs": 1,
+    "right": 0,
+    "right_share": 0.0,
+    "confidently_wrong": 1,
+    "confidently_wrong_share": 1.0,
+    "declined": 0,
+    "declined_share": 0.0,
+    "no_answer": 0,
+    "no_answer_share": 0.0,
+    "group": "metric",
+    "mean_input_tokens": 30403.0,
+    "mean_output_tokens": 10475.0,
+    "mean_cost_usd": 0.0621,
+    "mean_queries": 8.0,
+    "decoys_matched": {}
+   }
+  },
+  "wrong_answers_that_flagged_an_assumption": 0,
+  "wrong_answers": 1,
+  "mean_cost_usd_per_question": 0.0342,
+  "mean_input_tokens_per_question": 18186.5,
+  "mean_output_tokens_per_question": 5489.0,
+  "total_cost_usd": 0.0684
+ },
+ "runs": [
+  {
+   "config": "adk_gemini_flash",
+   "model": "gemini-3.8-flash",
+   "question_id": "L1",
+   "group": "lookup",
+   "trial": 0,
+   "outcome": "right",
+   "extracted": "65",
+   "value": 65.0,
+   "matched_decoy": "",
+   "flagged_assumption": false,
+   "gold": 65,
+   "answer_text": "There are 65 carriers recorded in the carrier master table (`tms_carr`), all of which are active.\n\nANSWER: 65",
+   "queries": [
+    {
+     "sql": "SELECT count(*) as total_carriers, count(distinct carr_id) as distinct_carr_id, countif(actv_flg) as active_carriers FROM tms_carr",
+     "row_count": 1,
+     "bytes_billed": 10485760
+    },
+    {
+     "sql": "SELECT count(distinct carr_id) FROM tms_load_hdr WHERE carr_id NOT IN (SELECT carr_id FROM tms_carr)",
+     "row_count": 1,
+     "bytes_billed": 20971520
+    },
+    {
+     "sql": "SELECT count(distinct carr_id) FROM bil_carr_pay WHERE carr_id NOT IN (SELECT carr_id FROM tms_carr)",
+     "row_count": 1,
+     "bytes_billed": 20971520
+    }
+   ],
+   "query_count": 3,
+   "queries_refused_over_limit": 0,
+   "model_calls": 4,
+   "input_tokens": 5970,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0,
+   "input_tokens_total": 5970,
+   "output_tokens": 503,
+   "cost_usd": 0.006364,
+   "bigquery_bytes_billed": 52428800,
+   "bigquery_usd": 0.000298,
+   "seconds": 17.8,
+   "timed_out": false,
+   "error": "",
+   "model_reported": "gemini-3.8-flash",
+   "finished_at": "2026-10-09T16:16:30+00:00"
+  },
+  {
+   "config": "adk_gemini_flash",
+   "model": "gemini-3.8-flash",
+   "question_id": "M1",
+   "group": "metric",
+   "trial": 0,
+   "outcome": "confidently_wrong",
+   "extracted": "92.10",
+   "value": 92.1,
+   "matched_decoy": "",
+   "flagged_assumption": false,
+   "gold": 87.44,
+   "answer_text": "In September 2026, out of 1,088 delivered shipments with a requested delivery date in the month, 1,002 were delivered on or before the requested delivery date and 86 were delivered late, resulting in an on-time delivery rate of 92.10% (1,002 / 1,088).\n\nANSWER: 92.10",
+   "queries": [
+    {
+     "sql": "SELECT * FROM ptl_shpmt LIMIT 10",
+     "row_count": 10,
+     "bytes_billed": 0
+    },
+    {
+     "sql": "SELECT \n  COUNT(*) as total_shpmt,\n  COUNT(DISTINCT load_id) as distinct_loads,\n  COUNTIF(req_dlvr_dt BETWEEN '2026-09-01' AND '2026-09-30') as req_sep,\n  COUNTIF(actl_dlvr_dt BETWEEN '2026-09-01' AND '2026-09-30') as actl_sep\nFROM ptl_shpmt",
+     "row_count": 1,
+     "bytes_billed": 10485760
+    },
+    {
+     "sql": "SELECT \n  test_flg, void_flg, load_stat_cd, count(*) \nFROM tms_load_hdr \nGROUP BY 1, 2, 3",
+     "row_count": 10,
+     "bytes_billed": 10485760
+    },
+    {
+     "sql": "SELECT stop_typ_cd, count(*) FROM tms_stop GROUP BY 1",
+     "row_count": 2,
+     "bytes_billed": 10485760
+    },
+    {
+     "sql": "SELECT \n  h.test_flg,\n  h.void_flg,\n  h.load_stat_cd,\n  p.stat_txt,\n  COUNT(*) as cnt\nFROM ptl_shpmt p\nJOIN tms_load_hdr h ON p.load_id = h.load_id\nGROUP BY 1, 2, 3, 4",
+     "row_count": 6,
+     "bytes_billed": 20971520
+    },
+    {
+     "sql": "SELECT on_time_ind, stat_txt, count(*) \nFROM ptl_shpmt \nGROUP BY 1, 2",
+     "row_count": 5,
+     "bytes_billed": 10485760
+    },
+    {
+     "sql": "SELECT \n  on_time_ind,\n  actl_dlvr_dt <= req_dlvr_dt AS le_req,\n  count(*)\nFROM ptl_shpmt\nWHERE stat_txt = 'Delivered'\nGROUP BY 1, 2",
+     "row_count": 2,
+     "bytes_billed": 10485760
+    },
+    {
+     "sql": "SELECT \n  COUNT(*) as total_dlvd,\n  COUNTIF(on_time_ind = 'Y') as on_time_y,\n  COUNTIF(on_time_ind = 'N') as on_time_n,\n  ROUND(100.0 * COUNTIF(on_time_ind = 'Y') / COUNT(*), 4) as pct_by_req\nFROM ptl_shpmt\nWHERE req_dlvr_dt BETWEEN '2026-09-01' AND '2026-09-30'\n  AND stat_txt = 'Delivered'",
+     "row_count": 1,
+     "bytes_billed": 10485760
+    }
+   ],
+   "query_count": 8,
+   "queries_refused_over_limit": 1,
+   "model_calls": 10,
+   "input_tokens": 30403,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0,
+   "input_tokens_total": 30403,
+   "output_tokens": 10475,
+   "cost_usd": 0.062083,
+   "bigquery_bytes_billed": 83886080,
+   "bigquery_usd": 0.000477,
+   "seconds": 111.8,
+   "timed_out": false,
+   "error": "",
+   "model_reported": "gemini-3.8-flash",
+   "finished_at": "2026-10-09T16:18:04+00:00"
+  }
+ ]
+}

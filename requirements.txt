@@ -1,0 +1,6 @@
+google-adk==2.11.0
+claude-agent-sdk==0.2.165
+google-cloud-bigquery==3.46.1
+python-dotenv==1.2.4
+PyYAML==6.0.3
+anthropic[vertex]==1.12.1

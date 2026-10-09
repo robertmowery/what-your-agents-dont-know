@@ -1,0 +1,299 @@
+{
+ "seed": 20261009,
+ "question_count": 24,
+ "answers": {
+  "L1": {
+   "gold": 65,
+   "decoys": []
+  },
+  "L2": {
+   "gold": 11,
+   "decoys": []
+  },
+  "L3": {
+   "gold": "Green Bay",
+   "decoys": []
+  },
+  "L4": {
+   "gold": "BHRI",
+   "decoys": []
+  },
+  "L5": {
+   "gold": 638,
+   "decoys": []
+  },
+  "L6": {
+   "gold": 0.7318,
+   "decoys": []
+  },
+  "M1": {
+   "gold": 87.44,
+   "decoys": [
+    {
+     "label": "operations definition: in the window, shipper-caused lates still counted",
+     "value": 84.41
+    },
+    {
+     "label": "portal definition: delivered by the requested date",
+     "value": 91.52
+    },
+    {
+     "label": "UTC arrival compared with the local appointment as if both were UTC",
+     "value": 3.27
+    }
+   ]
+  },
+  "M2": {
+   "gold": 10294019.12,
+   "decoys": [
+    {
+     "label": "linehaul on every load row created in the quarter",
+     "value": 10754009.93
+    },
+    {
+     "label": "linehaul on delivered load rows, by UTC delivery date, test loads included",
+     "value": 9548146.74
+    },
+    {
+     "label": "invoice totals with Canadian dollars added in as if they were US dollars",
+     "value": 10610385.5
+    }
+   ]
+  },
+  "M3": {
+   "gold": 409.19,
+   "decoys": [
+    {
+     "label": "linehaul revenue minus linehaul cost, averaged over every load row created in the quarter",
+     "value": 437.37
+    },
+    {
+     "label": "linehaul revenue minus linehaul cost on delivered load rows",
+     "value": 436.62
+    },
+    {
+     "label": "invoice total minus carrier linehaul pay",
+     "value": 853.73
+    }
+   ]
+  },
+  "M4": {
+   "gold": 13.24,
+   "decoys": [
+    {
+     "label": "linehaul margin over linehaul revenue on every load row created in the quarter",
+     "value": 15.81
+    },
+    {
+     "label": "invoice total minus carrier linehaul pay, over invoice total",
+     "value": 26.81
+    }
+   ]
+  },
+  "M5": {
+   "gold": 1097,
+   "decoys": [
+    {
+     "label": "delivered status events in the month by UTC date, test loads included",
+     "value": 1109
+    },
+    {
+     "label": "invoices dated in the month",
+     "value": 1065
+    },
+    {
+     "label": "portal shipments shown delivered in the month",
+     "value": 1097
+    }
+   ]
+  },
+  "M6": {
+   "gold": 393,
+   "decoys": [
+    {
+     "label": "fleet load rows created in the quarter, whatever became of them",
+     "value": 425
+    }
+   ]
+  },
+  "E1": {
+   "gold": "Northgate Foods Group",
+   "decoys": [
+    {
+     "label": "largest bill-to party on invoices",
+     "value": "Ledgerline Freight Payment - Client Remit A"
+    },
+    {
+     "label": "largest shipper account row",
+     "value": "Pellam Paper - Savannah Mill"
+    },
+    {
+     "label": "parent of the bill-to party",
+     "value": "Ledgerline Freight Payment Services"
+    }
+   ]
+  },
+  "E2": {
+   "gold": 36,
+   "decoys": [
+    {
+     "label": "distinct shipper account rows",
+     "value": 68
+    },
+    {
+     "label": "distinct bill-to account rows",
+     "value": 30
+    },
+    {
+     "label": "every parent account on file",
+     "value": 39
+    },
+    {
+     "label": "every active account row of any kind",
+     "value": 135
+    }
+   ]
+  },
+  "E3": {
+   "gold": 1299690.26,
+   "decoys": [
+    {
+     "label": "only shipper accounts with Northgate in the name",
+     "value": 882834.71
+    },
+    {
+     "label": "only invoices sent to bill-to parties with Northgate in the name",
+     "value": 1118028.76
+    },
+    {
+     "label": "the whole parent, invoice totals with no currency conversion or credits",
+     "value": 1372144.25
+    },
+    {
+     "label": "linehaul on load rows for shippers with Northgate in the name",
+     "value": 901193.59
+    }
+   ]
+  },
+  "E4": {
+   "gold": 1170,
+   "decoys": [
+    {
+     "label": "every row in the load table",
+     "value": 1280
+    },
+    {
+     "label": "test and voided rows removed, re-tenders still counted twice",
+     "value": 1232
+    }
+   ]
+  },
+  "E5": {
+   "gold": 433,
+   "decoys": [
+    {
+     "label": "only shipper accounts with Northgate in the name",
+     "value": 277
+    },
+    {
+     "label": "only loads billed to parties with Northgate in the name",
+     "value": 361
+    }
+   ]
+  },
+  "E6": {
+   "gold": "Midvale Transport",
+   "decoys": []
+  },
+  "R1": {
+   "gold": 133,
+   "decoys": [
+    {
+     "label": "every load that missed its window, shipper-caused or not",
+     "value": 171
+    },
+    {
+     "label": "portal definition: delivered after the requested date",
+     "value": 93
+    },
+    {
+     "label": "UTC arrival compared with the local appointment as if both were UTC",
+     "value": 1064
+    }
+   ]
+  },
+  "R2": {
+   "gold": 142,
+   "decoys": [
+    {
+     "label": "delivered load rows with no invoice, test loads included",
+     "value": 144
+    },
+    {
+     "label": "no proof of delivery document of any kind, signed or not",
+     "value": 133
+    }
+   ]
+  },
+  "R3": {
+   "gold": 986208.77,
+   "decoys": [
+    {
+     "label": "invoice totals with Canadian dollars added in as if they were US dollars",
+     "value": 1217867.76
+    },
+    {
+     "label": "linehaul on cross-border load rows, unconverted",
+     "value": 1193576.84
+    },
+    {
+     "label": "only the loads rated in Canadian dollars, converted",
+     "value": 578326.22
+    }
+   ]
+  },
+  "R4": {
+   "gold": 30,
+   "decoys": [
+    {
+     "label": "UTC date of the arrival, test loads included",
+     "value": 28
+    },
+    {
+     "label": "UTC date of the arrival at the final stop, real loads only",
+     "value": 29
+    }
+   ]
+  },
+  "R5": {
+   "gold": 91.52,
+   "decoys": [
+    {
+     "label": "operations definition: arrival inside the appointment window",
+     "value": 84.41
+    },
+    {
+     "label": "contract definition: shipper-caused lates left out",
+     "value": 87.44
+    }
+   ]
+  },
+  "R6": {
+   "gold": 3050.0,
+   "decoys": [
+    {
+     "label": "linehaul revenue minus linehaul cost on canceled load rows",
+     "value": 58961.76
+    },
+    {
+     "label": "canceled-load fees billed to customers, with nothing taken off for the carrier",
+     "value": 7425.0
+    },
+    {
+     "label": "zero, on the view that a canceled load has no margin",
+     "value": 0
+    }
+   ]
+  }
+ }
+}
