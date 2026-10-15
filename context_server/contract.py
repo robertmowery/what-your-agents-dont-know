@@ -42,13 +42,18 @@ import pyoxigraph as ox
 import rdflib
 from rdflib.namespace import RDF, SH
 
+from tessaway import registry
 from tessaway.agents import layer_prompt
 from tessaway.layers import graph, ontology, semantic
 
 CONTRACT_NAME = "tessaway-context"
 # Raise the minor version when an operation is added, the major version when one
 # changes what it returns or stops being offered.
-CONTRACT_VERSION = "1.0.0"
+#   1.0.0  Part 3: four operations, each response stamped with version and response ID.
+#   2.0.0  Part 4: every response also lists the definitions it served, each with its
+#          id, version and owner from the definition registry (tessaway/registry.py),
+#          and each definition or rule a lookup returns carries the same three fields.
+CONTRACT_VERSION = "2.0.0"
 
 LOOKUP_DEFINITION = "lookup_definition"
 COMPUTE_METRIC = "compute_metric"
@@ -94,13 +99,63 @@ def description(operation: str) -> str:
     return DESCRIPTIONS[operation]
 
 
-def envelope(operation: str, result: dict[str, Any]) -> dict[str, Any]:
-    """Wrap one operation's result with the contract name, version and a new response ID."""
+def served_definitions(
+    operation: str, arguments: dict[str, Any] | None, result: dict[str, Any]
+) -> list[str]:
+    """Return the ids of the definitions one response served, from what it returned.
+
+    Only what the response hands back as an answer counts: the definitions a
+    lookup matched, the metrics computed, the rules matched, and the kinds of
+    the entities resolved. The full term or rule list a lookup returns when
+    nothing matches is a directory, not a definition, and serves nothing. A
+    response that ended in an error serves nothing.
+    """
+    if not isinstance(result, dict) or "error" in result:
+        return []
+    if operation == LOOKUP_DEFINITION:
+        names = [str(m.get("term", "")) for m in result.get("matches") or []]
+        return registry.served_by("terms", names)
+    if operation == COMPUTE_METRIC:
+        names = [str(m) for m in (arguments or {}).get("metrics") or []]
+        return registry.served_by("metrics", names)
+    if operation == CHECK_RULE:
+        names = [str(m.get("rule", "")) for m in result.get("matches") or []]
+        return registry.served_by("rules", names)
+    if operation == RESOLVE_ENTITY:
+        names = [str(t) for e in result.get("entities") or [] for t in e.get("types") or []]
+        return registry.served_by("terms", names)
+    return []
+
+
+def stamp_matches(operation: str, result: dict[str, Any]) -> dict[str, Any]:
+    """Put the id, version and owner beside each definition or rule a lookup returned."""
+    if not isinstance(result, dict) or operation not in (LOOKUP_DEFINITION, CHECK_RULE):
+        return result
+    kind, key = ("terms", "term") if operation == LOOKUP_DEFINITION else ("rules", "rule")
+    current = registry.definitions()
+    lookup = registry.index()
+    for match in result.get("matches") or []:
+        ident = lookup.get((kind, str(match.get(key, ""))))
+        if ident and ident in current:
+            match["definition"] = current[ident].stamp()
+    return result
+
+
+def envelope(
+    operation: str, result: dict[str, Any], arguments: dict[str, Any] | None = None
+) -> dict[str, Any]:
+    """Wrap one operation's result with the contract name, version and a new response ID.
+
+    From 2.0.0 the envelope also lists the definitions the response served,
+    each with id, version and owner.
+    """
+    result = stamp_matches(operation, result)
     return {
         "contract": CONTRACT_NAME,
         "contract_version": CONTRACT_VERSION,
         "operation": operation,
         "response_id": str(uuid.uuid4()),
+        "definitions": registry.stamps(served_definitions(operation, arguments, result)),
         "result": result,
     }
 

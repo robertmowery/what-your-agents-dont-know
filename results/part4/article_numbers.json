@@ -1,0 +1,880 @@
+{
+ "written_by": "analysis/part4_article_numbers.py",
+ "contract_version": "2.0.0",
+ "model": "gemini-3.8-flash",
+ "outcomes": {
+  "available": {
+   "runs": 72,
+   "right": 72,
+   "right_share": 1.0,
+   "confidently_wrong": 0,
+   "confidently_wrong_share": 0.0,
+   "declined": 0,
+   "declined_share": 0.0,
+   "no_answer": 0,
+   "no_answer_share": 0.0
+  },
+  "routed_holdout": {
+   "runs": 36,
+   "right": 30,
+   "right_share": 0.8333,
+   "confidently_wrong": 3,
+   "confidently_wrong_share": 0.0833,
+   "declined": 3,
+   "declined_share": 0.0833,
+   "no_answer": 0,
+   "no_answer_share": 0.0
+  }
+ },
+ "accuracy_against_part3": {
+  "available": {
+   "part3": {
+    "right": 72,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0
+   },
+   "part4": {
+    "right": 72,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0
+   },
+   "change_in_runs": {
+    "right": 0,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0
+   },
+   "questions_that_changed": {}
+  },
+  "routed_holdout": {
+   "part3": {
+    "right": 31,
+    "confidently_wrong": 2,
+    "declined": 3,
+    "no_answer": 0
+   },
+   "part4": {
+    "right": 30,
+    "confidently_wrong": 3,
+    "declined": 3,
+    "no_answer": 0
+   },
+   "change_in_runs": {
+    "right": -1,
+    "confidently_wrong": 1,
+    "declined": 0,
+    "no_answer": 0
+   },
+   "questions_that_changed": {
+    "H10": {
+     "part3": {
+      "right": 1,
+      "confidently_wrong": 2,
+      "declined": 0,
+      "no_answer": 0
+     },
+     "part4": {
+      "right": 0,
+      "confidently_wrong": 3,
+      "declined": 0,
+      "no_answer": 0
+     }
+    }
+   }
+  }
+ },
+ "traceability": {
+  "available": {
+   "runs": 54,
+   "answered_runs": 54,
+   "traceable": 54,
+   "share_traceable_of_answered": 100.0,
+   "traceable_of_all_runs": 54,
+   "share_traceable_of_all_runs": 100.0,
+   "citing_without_using": 0,
+   "share_citing_without_using": 0.0,
+   "using_without_citing": 0,
+   "share_using_without_citing": 0.0,
+   "statuses_answered": {
+    "traceable": 54,
+    "no_sources_line": 0,
+    "cites_none": 0,
+    "cites_unregistered": 0,
+    "cites_unserved": 0
+   },
+   "misses_answered": {},
+   "statuses_all": {
+    "traceable": 54,
+    "no_sources_line": 0,
+    "cites_none": 0,
+    "cites_unregistered": 0,
+    "cites_unserved": 0
+   },
+   "sources_line_unreadable_as_json": 0,
+   "by_group": {
+    "metric": {
+     "answered": 18,
+     "traceable": 18,
+     "share": 100.0
+    },
+    "entity": {
+     "answered": 18,
+     "traceable": 18,
+     "share": 100.0
+    },
+    "rule": {
+     "answered": 18,
+     "traceable": 18,
+     "share": 100.0
+    }
+   }
+  },
+  "routed_holdout": {
+   "runs": 36,
+   "answered_runs": 33,
+   "traceable": 33,
+   "share_traceable_of_answered": 100.0,
+   "traceable_of_all_runs": 36,
+   "share_traceable_of_all_runs": 100.0,
+   "citing_without_using": 0,
+   "share_citing_without_using": 0.0,
+   "using_without_citing": 0,
+   "share_using_without_citing": 0.0,
+   "statuses_answered": {
+    "traceable": 33,
+    "no_sources_line": 0,
+    "cites_none": 0,
+    "cites_unregistered": 0,
+    "cites_unserved": 0
+   },
+   "misses_answered": {},
+   "statuses_all": {
+    "traceable": 36,
+    "no_sources_line": 0,
+    "cites_none": 0,
+    "cites_unregistered": 0,
+    "cites_unserved": 0
+   },
+   "sources_line_unreadable_as_json": 0,
+   "by_group": {
+    "metric": {
+     "answered": 12,
+     "traceable": 12,
+     "share": 100.0
+    },
+    "entity": {
+     "answered": 12,
+     "traceable": 12,
+     "share": 100.0
+    },
+    "rule": {
+     "answered": 9,
+     "traceable": 9,
+     "share": 100.0
+    }
+   }
+  }
+ },
+ "lookups": {
+  "runs": 18,
+  "cite_nothing": 11,
+  "no_sources_line": 0,
+  "cite_something": 7,
+  "cite_something_served": 7,
+  "served_something": 12
+ },
+ "cited_against_served": {
+  "available": {
+   "runs": 54,
+   "mean_cited": 1.2,
+   "mean_served": 3.06,
+   "cited_counts": {
+    "1": 43,
+    "2": 11
+   },
+   "served_counts": {
+    "1": 10,
+    "2": 7,
+    "3": 20,
+    "4": 7,
+    "5": 7,
+    "6": 3
+   },
+   "runs_served_something_not_cited": 43,
+   "runs_cited_exactly_what_was_served": 11
+  },
+  "routed_holdout": {
+   "runs": 33,
+   "mean_cited": 1.45,
+   "mean_served": 3.7,
+   "cited_counts": {
+    "1": 18,
+    "2": 15
+   },
+   "served_counts": {
+    "1": 1,
+    "2": 6,
+    "3": 8,
+    "4": 7,
+    "5": 9,
+    "6": 2
+   },
+   "runs_served_something_not_cited": 29,
+   "runs_cited_exactly_what_was_served": 4
+  }
+ },
+ "answer_source": {
+  "part4_available": {
+   "contract": 21,
+   "sql": 18,
+   "both": 33,
+   "neither": 0,
+   "no_answer_value": 0
+  },
+  "part3_available": {
+   "contract": 15,
+   "sql": 18,
+   "both": 39,
+   "neither": 0,
+   "no_answer_value": 0
+  }
+ },
+ "contract": {
+  "available": {
+   "contract_responses": 287,
+   "with_version_and_response_id": 287,
+   "versions_seen": {
+    "2.0.0": 287
+   },
+   "all_stamped": true
+  },
+  "routed_holdout": {
+   "contract_responses": 276,
+   "with_version_and_response_id": 276,
+   "versions_seen": {
+    "2.0.0": 276
+   },
+   "all_stamped": true
+  }
+ },
+ "server_log_check": {
+  "runs": 108,
+  "runs_agreeing": 108,
+  "agent_calls": 563,
+  "server_lines": 563,
+  "agreeing_calls": 563,
+  "agent_calls_missing_from_server_log": 0,
+  "agent_calls_without_response": 0,
+  "calls_refused_before_the_contract_ran": 0,
+  "server_lines_missing_from_agent_record": 0,
+  "calls_that_differ": 0,
+  "runs_with_a_problem": 0,
+  "runs_cut_off_with_a_problem": 0,
+  "callers_in_log": {
+   "tw-p3-agent-available": 287,
+   "tw-p3-agent-routed": 276
+  },
+  "problems": []
+ },
+ "server_log_lines_saved": 576,
+ "h10": {
+  "part4": {
+   "runs": [
+    {
+     "trial": 0,
+     "run_id": "9d3148bf-5090-4369-a872-f20f9b275de7",
+     "scored": true,
+     "outcome": "confidently_wrong",
+     "answer": "0",
+     "timed_out": false,
+     "model_calls": 8,
+     "cited": [
+      "on_time@1"
+     ],
+     "served_by_log": [
+      "delivered_load@1",
+      "on_time@1",
+      "portal_on_time@1"
+     ],
+     "status": "traceable",
+     "reply_names_139": true,
+     "reply_end": "Consequently, under the official metric `late_deliveries`, exactly **0** late deliveries in Q3 2026 were the shipper's fault. (Note that while 139 delivered loads physically arrived after the appointment window end due to shipper delays in Q3 2026, none of them are counted as late deliveries under the company's business rules.)\n\nSOURCES: [{\"id\": \"on_time\", \"version\": 1}]\nANSWER: 0",
+     "tools_in_order": [
+      "lookup_definition",
+      "lookup_definition",
+      "compute_metric",
+      "check_rule",
+      "lookup_definition",
+      "compute_metric",
+      "compute_metric",
+      "lookup_definition"
+     ]
+    },
+    {
+     "trial": 1,
+     "run_id": "b413f11a-9346-49a4-bef6-44a1ef8be0c5",
+     "scored": true,
+     "outcome": "confidently_wrong",
+     "answer": "0",
+     "timed_out": false,
+     "model_calls": 7,
+     "cited": [
+      "on_time@1"
+     ],
+     "served_by_log": [
+      "delivered_load@1",
+      "on_time@1"
+     ],
+     "status": "traceable",
+     "reply_names_139": true,
+     "reply_end": "Consequently, none of the official late deliveries were the shipper's fault. (While 139 delivered loads in Q3 2026 arrived after their appointment window with a shipper-caused delay, these are explicitly excluded from being counted as late deliveries.)\n\nSOURCES: [{\"id\": \"on_time\", \"version\": 1}]\nANSWER: 0",
+     "tools_in_order": [
+      "lookup_definition",
+      "lookup_definition",
+      "compute_metric",
+      "check_rule",
+      "lookup_definition",
+      "compute_metric",
+      "compute_metric"
+     ]
+    },
+    {
+     "trial": 2,
+     "run_id": "53e93fb2-9fe1-4952-bf3b-b731d2a1be9b",
+     "scored": false,
+     "outcome": "no_answer",
+     "answer": "",
+     "timed_out": true,
+     "model_calls": 13,
+     "cited": [],
+     "served_by_log": null,
+     "status": null,
+     "reply_names_139": false,
+     "reply_end": "",
+     "tools_in_order": [
+      "lookup_definition",
+      "compute_metric",
+      "compute_metric",
+      "check_rule",
+      "check_rule",
+      "lookup_definition",
+      "lookup_definition",
+      "compute_metric",
+      "compute_metric",
+      "compute_metric",
+      "lookup_definition",
+      "resolve_entity",
+      "lookup_definition"
+     ]
+    },
+    {
+     "trial": 2,
+     "run_id": "e9f57b2a-e8d3-4630-ba88-4c01856a4a0b",
+     "scored": true,
+     "outcome": "confidently_wrong",
+     "answer": "0",
+     "timed_out": false,
+     "model_calls": 8,
+     "cited": [
+      "on_time@1"
+     ],
+     "served_by_log": [
+      "delivered_load@1",
+      "on_time@1"
+     ],
+     "status": "traceable",
+     "reply_names_139": true,
+     "reply_end": "Under Tessaway Freight's official on-time delivery rule, any delivered load that arrived after its appointment window but had a shipper-caused delay is excluded from the official on-time measure entirely\u2014it is classified as neither on time nor late. Consequently, by definition, 0 late deliveries were the shipper's fault (though 139 delivered loads in Q3 2026 arrived after their appointment window with a shipper-caused delay).\n\nSOURCES: [{\"id\": \"on_time\", \"version\": 1}]\nANSWER: 0",
+     "tools_in_order": [
+      "lookup_definition",
+      "lookup_definition",
+      "compute_metric",
+      "compute_metric",
+      "check_rule",
+      "lookup_definition",
+      "compute_metric",
+      "compute_metric",
+      "lookup_definition"
+     ]
+    }
+   ],
+   "gold": 139
+  },
+  "part3_routed_holdout": [
+   {
+    "trial": 0,
+    "outcome": "confidently_wrong",
+    "answer": "0",
+    "reply_names_139": true
+   },
+   {
+    "trial": 1,
+    "outcome": "confidently_wrong",
+    "answer": "0",
+    "reply_names_139": true
+   },
+   {
+    "trial": 2,
+    "outcome": "right",
+    "answer": "139",
+    "reply_names_139": true
+   }
+  ],
+  "part2_holdout": {
+   "baseline": {
+    "files": [
+     "results/holdout/runs/baseline.jsonl"
+    ],
+    "outcomes": {
+     "declined": 2,
+     "confidently_wrong": 1
+    },
+    "answers": [
+     "NEEDS_CLARIFICATION",
+     "40",
+     "NEEDS_CLARIFICATION"
+    ]
+   },
+   "flash_semantic": {
+    "files": [
+     "results/holdout/runs/flash_semantic.jsonl"
+    ],
+    "outcomes": {
+     "right": 3
+    },
+    "answers": [
+     "139",
+     "139",
+     "139"
+    ]
+   }
+  }
+ },
+ "registry": {
+  "definitions": 10,
+  "owners": 4,
+  "by_owner": {
+   "VP Operations": [
+    "load",
+    "delivered_load",
+    "on_time",
+    "local_time"
+   ],
+   "Controller": [
+    "billable",
+    "revenue",
+    "margin",
+    "currency"
+   ],
+   "Director of Customer Experience": [
+    "portal_on_time"
+   ],
+   "VP Account Management": [
+    "customer"
+   ]
+  },
+  "versions": {
+   "1": 10
+  },
+  "served_names": {
+   "terms": 44,
+   "metrics": 18,
+   "rules": 11
+  },
+  "on_time": {
+   "title": "On-time delivery (official)",
+   "owner": "VP Operations",
+   "version": 1,
+   "where": "data/DEFINITIONS.md#on_time",
+   "history": [
+    {
+     "version": 1,
+     "effective": "2026-10-09",
+     "written_by": "VP Operations",
+     "change": "First version: on time at or before the end of the appointment window, local clock; a late load with a shipper-caused delay is left out, neither on time nor late. Names the operations meaning and the portal meaning as not official.",
+     "source_commit": "dea695c"
+    }
+   ],
+   "serves": {
+    "terms": [
+     "tw:OnTime",
+     "tw:ShipperCausedDelay"
+    ],
+    "metrics": [
+     "on_time_rate",
+     "on_time_loads",
+     "on_time_measured_loads",
+     "late_deliveries",
+     "operations_on_time_rate"
+    ],
+    "rules": []
+   },
+   "owner_role": "Runs dispatch, carrier relations and the delivery floor. Decides what counts as a load, a delivery and an on-time delivery, because the customer contracts it signs are measured on them."
+  }
+ },
+ "audit": {
+  "from": "part4",
+  "config": "routed_holdout",
+  "question_id": "H10",
+  "trial": 0,
+  "run_id": "9d3148bf-5090-4369-a872-f20f9b275de7",
+  "status": "traceable",
+  "steps": [
+   {
+    "step": "The answer",
+    "ms": 0.0
+   },
+   {
+    "step": "What the answer cites",
+    "ms": 0.01
+   },
+   {
+    "step": "The server's record of the run",
+    "ms": 0.13
+   },
+   {
+    "step": "The three checks",
+    "ms": 0.02
+   },
+   {
+    "step": "The registry entries and owners",
+    "ms": 0.41
+   }
+  ],
+  "total_ms": 0.6,
+  "calls": [
+   {
+    "seq": 1,
+    "operation": "lookup_definition",
+    "arguments": {
+     "term": "late delivery"
+    },
+    "definitions": [
+     "on_time@1"
+    ],
+    "owners": [
+     "VP Operations"
+    ],
+    "rows": null,
+    "columns": null,
+    "in_server_log": true,
+    "log_time": "2026-10-13T18:39:11.381Z"
+   },
+   {
+    "seq": 2,
+    "operation": "lookup_definition",
+    "arguments": {
+     "term": "shipper delay"
+    },
+    "definitions": [
+     "on_time@1"
+    ],
+    "owners": [
+     "VP Operations"
+    ],
+    "rows": null,
+    "columns": null,
+    "in_server_log": true,
+    "log_time": "2026-10-13T18:39:11.374Z"
+   },
+   {
+    "seq": 3,
+    "operation": "compute_metric",
+    "arguments": {
+     "end_date": "2026-09-30",
+     "start_date": "2026-07-01",
+     "group_by": [
+      "delivery__arrived_on_time",
+      "delivery__shipper_delayed"
+     ],
+     "metrics": [
+      "delivered_loads",
+      "late_deliveries",
+      "on_time_loads",
+      "on_time_measured_loads"
+     ]
+    },
+    "definitions": [
+     "delivered_load@1",
+     "on_time@1"
+    ],
+    "owners": [
+     "VP Operations"
+    ],
+    "rows": [
+     [
+      true,
+      false,
+      2744,
+      0,
+      2744,
+      2744
+     ],
+     [
+      false,
+      true,
+      139,
+      0,
+      0,
+      0
+     ],
+     [
+      false,
+      false,
+      409,
+      409,
+      0,
+      409
+     ],
+     [
+      true,
+      true,
+      142,
+      0,
+      142,
+      142
+     ]
+    ],
+    "columns": [
+     "delivery__arrived_on_time",
+     "delivery__shipper_delayed",
+     "delivered_loads",
+     "late_deliveries",
+     "on_time_loads",
+     "on_time_measured_loads"
+    ],
+    "in_server_log": true,
+    "log_time": "2026-10-13T18:39:17.545Z"
+   },
+   {
+    "seq": 4,
+    "operation": "check_rule",
+    "arguments": {},
+    "definitions": [],
+    "owners": [],
+    "rows": null,
+    "columns": null,
+    "in_server_log": true,
+    "log_time": "2026-10-13T18:39:23.239Z"
+   },
+   {
+    "seq": 5,
+    "operation": "lookup_definition",
+    "arguments": {},
+    "definitions": [],
+    "owners": [],
+    "rows": null,
+    "columns": null,
+    "in_server_log": true,
+    "log_time": "2026-10-13T18:39:30.024Z"
+   },
+   {
+    "seq": 6,
+    "operation": "compute_metric",
+    "arguments": {
+     "end_date": "2026-09-30",
+     "where": [
+      "delivery__arrived_on_time = false",
+      "delivery__shipper_delayed = true"
+     ],
+     "start_date": "2026-07-01",
+     "metrics": [
+      "delivered_loads"
+     ]
+    },
+    "definitions": [
+     "delivered_load@1"
+    ],
+    "owners": [
+     "VP Operations"
+    ],
+    "rows": [
+     [
+      139
+     ]
+    ],
+    "columns": [
+     "delivered_loads"
+    ],
+    "in_server_log": true,
+    "log_time": "2026-10-13T18:39:55.336Z"
+   },
+   {
+    "seq": 7,
+    "operation": "compute_metric",
+    "arguments": {
+     "where": [
+      "delivery__shipper_delayed = true"
+     ],
+     "end_date": "2026-09-30",
+     "metrics": [
+      "late_deliveries"
+     ],
+     "start_date": "2026-07-01"
+    },
+    "definitions": [
+     "on_time@1"
+    ],
+    "owners": [
+     "VP Operations"
+    ],
+    "rows": [
+     [
+      0
+     ]
+    ],
+    "columns": [
+     "late_deliveries"
+    ],
+    "in_server_log": true,
+    "log_time": "2026-10-13T18:40:01.287Z"
+   },
+   {
+    "seq": 8,
+    "operation": "lookup_definition",
+    "arguments": {
+     "term": "portal"
+    },
+    "definitions": [
+     "portal_on_time@1"
+    ],
+    "owners": [
+     "Director of Customer Experience"
+    ],
+    "rows": null,
+    "columns": null,
+    "in_server_log": true,
+    "log_time": "2026-10-13T18:41:23.748Z"
+   }
+  ]
+ },
+ "effort": {
+  "available": {
+   "mean_input_tokens": 44742,
+   "mean_output_tokens": 3129,
+   "cache_read_share_of_input": 0.2539,
+   "runs_with_a_cache_read": 48,
+   "mean_model_calls": 7.53,
+   "mean_sql_queries": 2.75,
+   "mean_seconds": 67.0,
+   "mean_cost_usd": 0.0376,
+   "total_cost_usd": 2.7089
+  },
+  "routed_holdout": {
+   "mean_input_tokens": 49792,
+   "mean_output_tokens": 8187,
+   "cache_read_share_of_input": 0.3124,
+   "runs_with_a_cache_read": 26,
+   "mean_model_calls": 7.5,
+   "mean_sql_queries": 0.0,
+   "mean_seconds": 89.1,
+   "mean_cost_usd": 0.0575,
+   "total_cost_usd": 2.0716
+  }
+ },
+ "effort_part3": {
+  "available": {
+   "mean_input_tokens": 45595,
+   "mean_output_tokens": 2532,
+   "cache_read_share_of_input": 0.243,
+   "runs_with_a_cache_read": 45,
+   "mean_model_calls": 7.81,
+   "mean_sql_queries": 2.99,
+   "mean_seconds": 79.3,
+   "mean_cost_usd": 0.0362,
+   "total_cost_usd": 2.6073
+  },
+  "routed_holdout": {
+   "mean_input_tokens": 39942,
+   "mean_output_tokens": 4830,
+   "cache_read_share_of_input": 0.209,
+   "runs_with_a_cache_read": 21,
+   "mean_model_calls": 7.19,
+   "mean_sql_queries": 0.0,
+   "mean_seconds": 58.7,
+   "mean_cost_usd": 0.0424,
+   "total_cost_usd": 1.5276
+  }
+ },
+ "predictions": [
+  {
+   "prediction": "P1",
+   "held": true,
+   "numbers": "right 72 of 72, confidently wrong 0 (Part 3: 72 and 0)"
+  },
+  {
+   "prediction": "P2",
+   "held": true,
+   "numbers": "right 30 of 36, confidently wrong 3, H11 right 0 (Part 3: 31, 2, 0)"
+  },
+  {
+   "prediction": "P3",
+   "held": true,
+   "numbers": "traceable 54 of 54 answered (100.0%)"
+  },
+  {
+   "prediction": "P4",
+   "held": true,
+   "numbers": "traceable 33 of 33 answered (100.0%)"
+  },
+  {
+   "prediction": "P5",
+   "held": false,
+   "numbers": "citing without using 0; using without citing 0 (answered, non-lookup, both configurations)"
+  },
+  {
+   "prediction": "P6",
+   "held": false,
+   "numbers": "11 of 18 lookup runs cite nothing; 7 cite something; 0 have no SOURCES line"
+  },
+  {
+   "prediction": "P7",
+   "held": true,
+   "numbers": "563 of 563 responses stamped; versions {'2.0.0': 563}; responses without a definitions field 0; names not in the registry 0"
+  },
+  {
+   "prediction": "P8",
+   "held": true,
+   "numbers": "563 of 563 calls agree (0 refused before the contract ran); 0 server lines not in an agent record; served sets agree in 108 of 108 runs"
+  },
+  {
+   "prediction": "P9",
+   "held": true,
+   "numbers": "H10 confidently wrong in 3 of 3; 3 of those cite on_time@1; answers ['0', '0', '0']"
+  },
+  {
+   "prediction": "P10",
+   "held": true,
+   "numbers": "cost per question $0.0376 (Part 3 available $0.0362; the line is $0.0434)"
+  }
+ ],
+ "spend": {
+  "part4": {
+   "what": "Provenance: available with citations, 24 questions (Part 5's baseline); routed with citations, 12 held-out.",
+   "line_usd": 2.4,
+   "planned_usd": 4.6,
+   "stop_line_usd": 7.0,
+   "spent_usd": 5.2497,
+   "model_usd": 5.1854,
+   "bigquery_usd": 0.0643,
+   "by_folder": {
+    "full run": {
+     "runs": 109,
+     "model_usd": 4.9249,
+     "bigquery_usd": 0.0172
+    },
+    "smoke": {
+     "runs": 4,
+     "model_usd": 0.2605,
+     "bigquery_usd": 0.0002
+    }
+   },
+   "cloud_run_usd_estimate": 0.21
+  },
+  "series_total_usd": 27.114,
+  "approved_usd": 35.0,
+  "hard_cap_usd": 45.0
+ }
+}

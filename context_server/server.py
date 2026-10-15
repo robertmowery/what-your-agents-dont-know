@@ -23,7 +23,8 @@ public by mistake still answers nobody.
 
 Observable. Every operation writes one JSON line to standard output, which
 Cloud Logging stores as a structured entry: caller, operation, contract
-version, time, response ID, and the run ID the caller sent.
+version, time, response ID, the run ID the caller sent, and (from contract
+2.0.0) the definitions the response served, as ``id@version``.
 
 Usage (inside the container; see Dockerfile):
     python -m context_server.server            # listens on $PORT, default 8080
@@ -125,16 +126,23 @@ class RequireCaller:
 
 
 def _respond(
-    ctx: Context | None, operation: str, work: Callable[[dict[str, Any]], dict[str, Any]]
+    ctx: Context | None,
+    operation: str,
+    work: Callable[[dict[str, Any]], dict[str, Any]],
+    arguments: dict[str, Any] | None = None,
 ) -> str:
-    """Run one operation, stamp the response, and write the log line."""
+    """Run one operation, stamp the response, and write the log line.
+
+    The log line names each definition the response served, as ``id@version``,
+    so the server's own record says which definitions reached which run.
+    """
     started = time.perf_counter()
     record: dict[str, Any] = {}
     try:
         result = work(record)
     except Exception as exc:  # noqa: BLE001 - an operation's failure is returned to the caller
         result = {"error": f"{type(exc).__name__}: {exc}"[:1500]}
-    reply = contract.envelope(operation, result)
+    reply = contract.envelope(operation, result, arguments)
     headers = None
     if ctx is not None:
         try:
@@ -150,6 +158,7 @@ def _respond(
             "operation": operation,
             "contract_version": reply["contract_version"],
             "response_id": reply["response_id"],
+            "definitions": [f"{d['id']}@{d['version']}" for d in reply["definitions"]],
             "run_id": (headers or {}).get(RUN_HEADER, "") if headers else "",
             "time": datetime.now(UTC).isoformat(timespec="milliseconds"),
             "ok": "error" not in result,
@@ -166,8 +175,8 @@ def build_server(state: contract.State) -> MCPServer:
         name=contract.CONTRACT_NAME,
         version=contract.CONTRACT_VERSION,
         instructions=(
-            "Tessaway Freight's context contract. Every response carries the contract version"
-            " and a response ID."
+            "Tessaway Freight's context contract. Every response carries the contract version,"
+            " a response ID, and the definitions it served with their id, version and owner."
         ),
     )
 
@@ -191,7 +200,9 @@ def build_server(state: contract.State) -> MCPServer:
                 metrics, group_by, where, start_date, end_date, order_by, limit, record
             )
 
-        return await anyio.to_thread.run_sync(_respond, ctx, contract.COMPUTE_METRIC, work)
+        return await anyio.to_thread.run_sync(
+            _respond, ctx, contract.COMPUTE_METRIC, work, {"metrics": list(metrics or [])}
+        )
 
     async def check_rule(ctx: Context, rule: str = "") -> str:
         return await anyio.to_thread.run_sync(

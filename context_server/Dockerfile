@@ -25,6 +25,8 @@ COPY tessaway /app/tessaway
 COPY ontology /app/ontology
 COPY semantic_layer /app/semantic_layer
 COPY context_server /app/context_server
+# Part 4: the definition registry the contract stamps on every response.
+COPY data/definition_registry.json /app/data/definition_registry.json
 
 RUN useradd --uid 10001 --no-create-home server && chown -R server /app/semantic_layer
 USER server

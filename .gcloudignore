@@ -7,6 +7,9 @@
 !/semantic_layer/
 !/context_server/
 !/requirements-semantic.txt
+!/data/
+/data/*
+!/data/definition_registry.json
 __pycache__/
 *.pyc
 .env

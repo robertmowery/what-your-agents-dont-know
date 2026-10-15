@@ -1,0 +1,1404 @@
+{
+ "written_at": "2026-10-13T18:14:43+00:00",
+ "model": "gemini-3.8-flash",
+ "contract_version": "2.0.0",
+ "configs": {
+  "available": {
+   "config": "available",
+   "configuration": "available",
+   "question_set": "part1",
+   "tools": [
+    "run_sql",
+    "lookup_definition",
+    "compute_metric",
+    "check_rule",
+    "resolve_entity"
+   ],
+   "runtime_package": "google-adk==2.11.0",
+   "mcp_package": "mcp==2.3.0",
+   "model": "gemini-3.8-flash",
+   "model_reported_by_provider": [
+    "gemini-3.8-flash"
+   ],
+   "contract_version": "2.0.0",
+   "question_count": 24,
+   "runs_per_question": 3,
+   "runs_expected": 72,
+   "runs_saved": 2,
+   "complete": false,
+   "runs_repeated_after_a_failure": 0,
+   "first_run_finished_at": "2026-10-13T18:07:14+00:00",
+   "last_run_finished_at": "2026-10-13T18:08:57+00:00",
+   "sql_query_limit": 8,
+   "contract_call_limit_per_operation": 8,
+   "model_call_ceiling": 48,
+   "summary": {
+    "overall": {
+     "runs": 2,
+     "right": 1,
+     "right_share": 0.5,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": 0.0,
+     "declined": 0,
+     "declined_share": 0.0,
+     "no_answer": 1,
+     "no_answer_share": 0.5
+    },
+    "by_group": {
+     "lookup": {
+      "runs": 1,
+      "right": 0,
+      "right_share": 0.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 1,
+      "no_answer_share": 1.0
+     },
+     "metric": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     }
+    },
+    "by_question": {
+     "L1": {
+      "runs": 1,
+      "right": 0,
+      "right_share": 0.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 1,
+      "no_answer_share": 1.0,
+      "group": "lookup",
+      "mean_input_tokens": 43784.0,
+      "mean_output_tokens": 789.0,
+      "mean_cost_usd": 0.0294,
+      "mean_queries": 4.0,
+      "decoys_matched": {}
+     },
+     "M1": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "metric",
+      "mean_input_tokens": 24886.0,
+      "mean_output_tokens": 3127.0,
+      "mean_cost_usd": 0.0304,
+      "mean_queries": 0.0,
+      "decoys_matched": {}
+     }
+    },
+    "wrong_answers_that_flagged_an_assumption": 0,
+    "wrong_answers": 0,
+    "declines": 0,
+    "declines_that_mention_the_query_limit": 0,
+    "runs_that_used_every_query": 0,
+    "mean_cost_usd_per_question": 0.0299,
+    "mean_input_tokens_per_question": 34335.0,
+    "mean_output_tokens_per_question": 1958.0,
+    "total_cost_usd": 0.0598
+   },
+   "effort": {
+    "mean_input_tokens": 34335,
+    "mean_output_tokens": 1958,
+    "cache_read_share_of_input": 0.1382,
+    "runs_with_a_cache_read": 1,
+    "mean_model_calls": 6.5,
+    "mean_sql_queries": 2.0,
+    "mean_seconds": 94.5,
+    "mean_cost_usd": 0.0299,
+    "total_cost_usd": 0.0598
+   },
+   "answer_source": {
+    "runs": 2,
+    "contract": {
+     "runs": 1,
+     "right": 1,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "sql": {
+     "runs": 0,
+     "right": 0,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "both": {
+     "runs": 0,
+     "right": 0,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "neither": {
+     "runs": 0,
+     "right": 0,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "no_answer_value": {
+     "runs": 1,
+     "right": 0,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 1
+    }
+   },
+   "answer_source_by_group": {
+    "lookup": {
+     "runs": 1,
+     "contract": {
+      "runs": 0,
+      "right": 0,
+      "confidently_wrong": 0,
+      "declined": 0,
+      "no_answer": 0
+     },
+     "sql": {
+      "runs": 0,
+      "right": 0,
+      "confidently_wrong": 0,
+      "declined": 0,
+      "no_answer": 0
+     },
+     "both": {
+      "runs": 0,
+      "right": 0,
+      "confidently_wrong": 0,
+      "declined": 0,
+      "no_answer": 0
+     },
+     "neither": {
+      "runs": 0,
+      "right": 0,
+      "confidently_wrong": 0,
+      "declined": 0,
+      "no_answer": 0
+     },
+     "no_answer_value": {
+      "runs": 1,
+      "right": 0,
+      "confidently_wrong": 0,
+      "declined": 0,
+      "no_answer": 1
+     }
+    },
+    "metric": {
+     "runs": 1,
+     "contract": {
+      "runs": 1,
+      "right": 1,
+      "confidently_wrong": 0,
+      "declined": 0,
+      "no_answer": 0
+     },
+     "sql": {
+      "runs": 0,
+      "right": 0,
+      "confidently_wrong": 0,
+      "declined": 0,
+      "no_answer": 0
+     },
+     "both": {
+      "runs": 0,
+      "right": 0,
+      "confidently_wrong": 0,
+      "declined": 0,
+      "no_answer": 0
+     },
+     "neither": {
+      "runs": 0,
+      "right": 0,
+      "confidently_wrong": 0,
+      "declined": 0,
+      "no_answer": 0
+     },
+     "no_answer_value": {
+      "runs": 0,
+      "right": 0,
+      "confidently_wrong": 0,
+      "declined": 0,
+      "no_answer": 0
+     }
+    }
+   },
+   "tool_use": {
+    "runs": 2,
+    "mean_calls_per_run": {
+     "run_sql": 2.0,
+     "lookup_definition": 2.5,
+     "compute_metric": 1.0,
+     "check_rule": 0.5,
+     "resolve_entity": 0.0
+    },
+    "runs_that_called": {
+     "run_sql": 1,
+     "lookup_definition": 2,
+     "compute_metric": 1,
+     "check_rule": 1,
+     "resolve_entity": 0
+    },
+    "runs_with_no_contract_call": 0,
+    "runs_with_no_sql_call": 1,
+    "runs_whose_first_call_was_sql": 0,
+    "runs_whose_first_call_was_the_contract": 2,
+    "where_one_metric_answers": {
+     "what": "Runs on the 18 Part 1 questions one metric query answers (run_part2.applies_to).",
+     "runs": 1,
+     "called_compute_metric": 1,
+     "ran_sql": 0,
+     "called_both": 0,
+     "sql_only": 0,
+     "contract_only": 1
+    }
+   },
+   "versions": {
+    "contract_responses": 8,
+    "with_version_and_response_id": 8,
+    "versions_seen": {
+     "2.0.0": 8
+    },
+    "all_stamped": true
+   },
+   "limits": {
+    "runs_refused_a_further_sql_query": 0,
+    "runs_refused_a_further_contract_call": 0,
+    "runs_that_hit_the_model_call_ceiling": 0,
+    "runs_that_timed_out": 0,
+    "runs_that_ended_in_an_error": 1
+   },
+   "traceability": {
+    "runs": 2,
+    "needs_definition": {
+     "runs": 1,
+     "answered_runs": 1,
+     "traceable": 1,
+     "share_traceable_of_answered": 100.0,
+     "traceable_of_all_runs": 1,
+     "share_traceable_of_all_runs": 100.0,
+     "citing_without_using": 0,
+     "share_citing_without_using": 0.0,
+     "using_without_citing": 0,
+     "share_using_without_citing": 0.0,
+     "statuses_answered": {
+      "traceable": 1,
+      "no_sources_line": 0,
+      "cites_none": 0,
+      "cites_unregistered": 0,
+      "cites_unserved": 0
+     },
+     "misses_answered": {},
+     "statuses_all": {
+      "traceable": 1,
+      "no_sources_line": 0,
+      "cites_none": 0,
+      "cites_unregistered": 0,
+      "cites_unserved": 0
+     },
+     "sources_line_unreadable_as_json": 0,
+     "by_group": {
+      "metric": {
+       "answered": 1,
+       "traceable": 1,
+       "share": 100.0
+      }
+     },
+     "by_question": {
+      "M1": {
+       "answered": 1,
+       "traceable": 1,
+       "statuses": [
+        "traceable"
+       ],
+       "cited": [
+        "on_time@1"
+       ]
+      }
+     }
+    },
+    "lookups": {
+     "runs": 1,
+     "cite_nothing": 0,
+     "no_sources_line": 1,
+     "cite_something": 0,
+     "cite_something_served": 0,
+     "served_something": 1
+    },
+    "record_and_log_agree_on_served": 2,
+    "definition_versions_per_run": {
+     "81fabe5c-fbe9-410a-85b8-4f0644a9d58d": {
+      "question_id": "L1",
+      "trial": 0,
+      "cited": [],
+      "served": [
+       "delivered_load@1",
+       "load@1",
+       "margin@1"
+      ],
+      "status": "no_sources_line"
+     },
+     "21eb9072-3d3e-41ac-a079-7ce0f59ed03c": {
+      "question_id": "M1",
+      "trial": 0,
+      "cited": [
+       "on_time@1"
+      ],
+      "served": [
+       "delivered_load@1",
+       "on_time@1",
+       "portal_on_time@1"
+      ],
+      "status": "traceable"
+     }
+    }
+   },
+   "unmapped": {
+    "names_not_in_registry": {},
+    "count": 0
+   },
+   "accuracy_against_part3": {
+    "part3_runs": 72,
+    "part4_runs": 2,
+    "part3": {
+     "right": 72,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "part4": {
+     "right": 1,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 1
+    },
+    "change_in_runs": {
+     "right": -71,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 1
+    },
+    "by_question": {
+     "L1": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 1
+      }
+     },
+     "L2": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     },
+     "L3": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     },
+     "L4": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     },
+     "L5": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     },
+     "L6": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     },
+     "M1": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 1,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     },
+     "M2": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     },
+     "M3": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     },
+     "M4": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     },
+     "M5": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     },
+     "M6": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     },
+     "E1": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     },
+     "E2": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     },
+     "E3": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     },
+     "E4": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     },
+     "E5": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     },
+     "E6": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     },
+     "R1": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     },
+     "R2": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     },
+     "R3": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     },
+     "R4": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     },
+     "R5": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     },
+     "R6": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     }
+    }
+   }
+  },
+  "routed_holdout": {
+   "config": "routed_holdout",
+   "configuration": "routed",
+   "question_set": "holdout",
+   "tools": [
+    "lookup_definition",
+    "compute_metric",
+    "check_rule",
+    "resolve_entity"
+   ],
+   "runtime_package": "google-adk==2.11.0",
+   "mcp_package": "mcp==2.3.0",
+   "model": "gemini-3.8-flash",
+   "model_reported_by_provider": [
+    "gemini-3.8-flash"
+   ],
+   "contract_version": "2.0.0",
+   "question_count": 12,
+   "runs_per_question": 3,
+   "runs_expected": 36,
+   "runs_saved": 2,
+   "complete": false,
+   "runs_repeated_after_a_failure": 0,
+   "first_run_finished_at": "2026-10-13T18:10:21+00:00",
+   "last_run_finished_at": "2026-10-13T18:13:59+00:00",
+   "sql_query_limit": 8,
+   "contract_call_limit_per_operation": 8,
+   "model_call_ceiling": 48,
+   "summary": {
+    "overall": {
+     "runs": 2,
+     "right": 1,
+     "right_share": 0.5,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": 0.0,
+     "declined": 0,
+     "declined_share": 0.0,
+     "no_answer": 1,
+     "no_answer_share": 0.5
+    },
+    "by_group": {
+     "metric": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     },
+     "rule": {
+      "runs": 1,
+      "right": 0,
+      "right_share": 0.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 1,
+      "no_answer_share": 1.0
+     }
+    },
+    "by_question": {
+     "H1": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "metric",
+      "mean_input_tokens": 48226.0,
+      "mean_output_tokens": 5446.0,
+      "mean_cost_usd": 0.0489,
+      "mean_queries": 0.0,
+      "decoys_matched": {}
+     },
+     "H10": {
+      "runs": 1,
+      "right": 0,
+      "right_share": 0.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 1,
+      "no_answer_share": 1.0,
+      "group": "rule",
+      "mean_input_tokens": 160911.0,
+      "mean_output_tokens": 23335.0,
+      "mean_cost_usd": 0.1519,
+      "mean_queries": 0.0,
+      "decoys_matched": {}
+     }
+    },
+    "wrong_answers_that_flagged_an_assumption": 0,
+    "wrong_answers": 0,
+    "declines": 0,
+    "declines_that_mention_the_query_limit": 0,
+    "runs_that_used_every_query": 0,
+    "mean_cost_usd_per_question": 0.1004,
+    "mean_input_tokens_per_question": 104568.5,
+    "mean_output_tokens_per_question": 14390.5,
+    "total_cost_usd": 0.2007
+   },
+   "effort": {
+    "mean_input_tokens": 104568,
+    "mean_output_tokens": 14390,
+    "cache_read_share_of_input": 0.4536,
+    "runs_with_a_cache_read": 2,
+    "mean_model_calls": 11.0,
+    "mean_sql_queries": 0.0,
+    "mean_seconds": 192.0,
+    "mean_cost_usd": 0.1004,
+    "total_cost_usd": 0.2007
+   },
+   "answer_source": {
+    "runs": 2,
+    "contract": {
+     "runs": 1,
+     "right": 1,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "sql": {
+     "runs": 0,
+     "right": 0,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "both": {
+     "runs": 0,
+     "right": 0,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "neither": {
+     "runs": 0,
+     "right": 0,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "no_answer_value": {
+     "runs": 1,
+     "right": 0,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 1
+    }
+   },
+   "answer_source_by_group": {
+    "metric": {
+     "runs": 1,
+     "contract": {
+      "runs": 1,
+      "right": 1,
+      "confidently_wrong": 0,
+      "declined": 0,
+      "no_answer": 0
+     },
+     "sql": {
+      "runs": 0,
+      "right": 0,
+      "confidently_wrong": 0,
+      "declined": 0,
+      "no_answer": 0
+     },
+     "both": {
+      "runs": 0,
+      "right": 0,
+      "confidently_wrong": 0,
+      "declined": 0,
+      "no_answer": 0
+     },
+     "neither": {
+      "runs": 0,
+      "right": 0,
+      "confidently_wrong": 0,
+      "declined": 0,
+      "no_answer": 0
+     },
+     "no_answer_value": {
+      "runs": 0,
+      "right": 0,
+      "confidently_wrong": 0,
+      "declined": 0,
+      "no_answer": 0
+     }
+    },
+    "rule": {
+     "runs": 1,
+     "contract": {
+      "runs": 0,
+      "right": 0,
+      "confidently_wrong": 0,
+      "declined": 0,
+      "no_answer": 0
+     },
+     "sql": {
+      "runs": 0,
+      "right": 0,
+      "confidently_wrong": 0,
+      "declined": 0,
+      "no_answer": 0
+     },
+     "both": {
+      "runs": 0,
+      "right": 0,
+      "confidently_wrong": 0,
+      "declined": 0,
+      "no_answer": 0
+     },
+     "neither": {
+      "runs": 0,
+      "right": 0,
+      "confidently_wrong": 0,
+      "declined": 0,
+      "no_answer": 0
+     },
+     "no_answer_value": {
+      "runs": 1,
+      "right": 0,
+      "confidently_wrong": 0,
+      "declined": 0,
+      "no_answer": 1
+     }
+    }
+   },
+   "tool_use": {
+    "runs": 2,
+    "mean_calls_per_run": {
+     "run_sql": 0.0,
+     "lookup_definition": 4.0,
+     "compute_metric": 5.0,
+     "check_rule": 1.5,
+     "resolve_entity": 1.0
+    },
+    "runs_that_called": {
+     "run_sql": 0,
+     "lookup_definition": 2,
+     "compute_metric": 2,
+     "check_rule": 2,
+     "resolve_entity": 1
+    },
+    "runs_with_no_contract_call": 0,
+    "runs_with_no_sql_call": 2,
+    "runs_whose_first_call_was_sql": 0,
+    "runs_whose_first_call_was_the_contract": 2
+   },
+   "versions": {
+    "contract_responses": 23,
+    "with_version_and_response_id": 23,
+    "versions_seen": {
+     "2.0.0": 23
+    },
+    "all_stamped": true
+   },
+   "limits": {
+    "runs_refused_a_further_sql_query": 0,
+    "runs_refused_a_further_contract_call": 0,
+    "runs_that_hit_the_model_call_ceiling": 0,
+    "runs_that_timed_out": 1,
+    "runs_that_ended_in_an_error": 0
+   },
+   "traceability": {
+    "runs": 2,
+    "needs_definition": {
+     "runs": 2,
+     "answered_runs": 1,
+     "traceable": 1,
+     "share_traceable_of_answered": 100.0,
+     "traceable_of_all_runs": 1,
+     "share_traceable_of_all_runs": 50.0,
+     "citing_without_using": 0,
+     "share_citing_without_using": 0.0,
+     "using_without_citing": 0,
+     "share_using_without_citing": 0.0,
+     "statuses_answered": {
+      "traceable": 1,
+      "no_sources_line": 0,
+      "cites_none": 0,
+      "cites_unregistered": 0,
+      "cites_unserved": 0
+     },
+     "misses_answered": {},
+     "statuses_all": {
+      "traceable": 1,
+      "no_sources_line": 1,
+      "cites_none": 0,
+      "cites_unregistered": 0,
+      "cites_unserved": 0
+     },
+     "sources_line_unreadable_as_json": 0,
+     "by_group": {
+      "metric": {
+       "answered": 1,
+       "traceable": 1,
+       "share": 100.0
+      }
+     },
+     "by_question": {
+      "H1": {
+       "answered": 1,
+       "traceable": 1,
+       "statuses": [
+        "traceable"
+       ],
+       "cited": [
+        "delivered_load@1",
+        "load@1",
+        "on_time@1"
+       ]
+      }
+     }
+    },
+    "lookups": {
+     "runs": 0,
+     "cite_nothing": 0,
+     "no_sources_line": 0,
+     "cite_something": 0,
+     "cite_something_served": 0,
+     "served_something": 0
+    },
+    "record_and_log_agree_on_served": 2,
+    "definition_versions_per_run": {
+     "25e201da-e8a5-4dbc-abdc-1103178a67dd": {
+      "question_id": "H1",
+      "trial": 0,
+      "cited": [
+       "delivered_load@1",
+       "load@1",
+       "on_time@1"
+      ],
+      "served": [
+       "billable@1",
+       "customer@1",
+       "delivered_load@1",
+       "load@1",
+       "margin@1",
+       "on_time@1"
+      ],
+      "status": "traceable"
+     },
+     "19a7868d-05bd-44fa-932f-8b1d422f5b52": {
+      "question_id": "H10",
+      "trial": 0,
+      "cited": [],
+      "served": [
+       "billable@1",
+       "customer@1",
+       "delivered_load@1",
+       "load@1",
+       "local_time@1",
+       "on_time@1",
+       "portal_on_time@1"
+      ],
+      "status": "no_sources_line"
+     }
+    }
+   },
+   "unmapped": {
+    "names_not_in_registry": {},
+    "count": 0
+   },
+   "accuracy_against_part3": {
+    "part3_runs": 36,
+    "part4_runs": 2,
+    "part3": {
+     "right": 31,
+     "confidently_wrong": 2,
+     "declined": 3,
+     "no_answer": 0
+    },
+    "part4": {
+     "right": 1,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 1
+    },
+    "change_in_runs": {
+     "right": -30,
+     "confidently_wrong": -2,
+     "declined": -3,
+     "no_answer": 1
+    },
+    "by_question": {
+     "H1": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 1,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     },
+     "H2": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     },
+     "H3": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     },
+     "H4": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     },
+     "H5": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     },
+     "H6": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     },
+     "H7": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     },
+     "H8": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     },
+     "H9": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     },
+     "H10": {
+      "part3": {
+       "right": 1,
+       "confidently_wrong": 2,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 1
+      }
+     },
+     "H11": {
+      "part3": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 3,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     },
+     "H12": {
+      "part3": {
+       "right": 3,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      },
+      "part4": {
+       "right": 0,
+       "confidently_wrong": 0,
+       "declined": 0,
+       "no_answer": 0
+      }
+     }
+    }
+   }
+  }
+ },
+ "server_log_check": {
+  "runs": 4,
+  "runs_agreeing": 4,
+  "agent_calls": 31,
+  "server_lines": 31,
+  "agreeing_calls": 31,
+  "agent_calls_missing_from_server_log": 0,
+  "agent_calls_without_response": 0,
+  "calls_refused_before_the_contract_ran": 0,
+  "server_lines_missing_from_agent_record": 0,
+  "calls_that_differ": 0,
+  "runs_with_a_problem": 0,
+  "runs_cut_off_with_a_problem": 0,
+  "callers_in_log": {
+   "tw-p3-agent-available": 8,
+   "tw-p3-agent-routed": 23
+  },
+  "problems": []
+ },
+ "predictions": [
+  {
+   "prediction": "P1",
+   "held": false,
+   "numbers": "right 1 of 2, confidently wrong 0 (Part 3: 72 and 0)"
+  },
+  {
+   "prediction": "P2",
+   "held": false,
+   "numbers": "right 1 of 2, confidently wrong 0, H11 right 0 (Part 3: 31, 2, 0)"
+  },
+  {
+   "prediction": "P3",
+   "held": true,
+   "numbers": "traceable 1 of 1 answered (100.0%)"
+  },
+  {
+   "prediction": "P4",
+   "held": true,
+   "numbers": "traceable 1 of 1 answered (100.0%)"
+  },
+  {
+   "prediction": "P5",
+   "held": false,
+   "numbers": "citing without using 0; using without citing 0 (answered, non-lookup, both configurations)"
+  },
+  {
+   "prediction": "P6",
+   "held": false,
+   "numbers": "0 of 1 lookup runs cite nothing; 0 cite something; 1 have no SOURCES line"
+  },
+  {
+   "prediction": "P7",
+   "held": true,
+   "numbers": "31 of 31 responses stamped; versions {'2.0.0': 31}; responses without a definitions field 0; names not in the registry 0"
+  },
+  {
+   "prediction": "P8",
+   "held": true,
+   "numbers": "31 of 31 calls agree (0 refused before the contract ran); 0 server lines not in an agent record; served sets agree in 4 of 4 runs"
+  },
+  {
+   "prediction": "P9",
+   "held": false,
+   "numbers": "H10 confidently wrong in 0 of 1; 0 of those cite on_time@1; answers ['']"
+  },
+  {
+   "prediction": "P10",
+   "held": true,
+   "numbers": "cost per question $0.0299 (Part 3 available $0.0362; the line is $0.0434)"
+  }
+ ],
+ "audit": {
+  "from": "part3",
+  "config": "routed_holdout",
+  "question_id": "H10",
+  "trial": 0,
+  "run_id": "64ba29ee-0dc9-4e75-a4cb-16c660459bd7",
+  "status": "no_sources_line"
+ },
+ "spend": {
+  "note": "Estimated from token counts and list prices in tessaway/config.py, and BigQuery bytes billed at the on-demand rate (the SQL tool's from each run, the contract's from the server log). Every run ever saved under results/part3 is counted. The invoices are the authority.",
+  "prices_checked_on": "2026-10-09",
+  "gemini_by_folder": {
+   "full run": {
+    "runs": 4,
+    "model_usd": 0.2605,
+    "bigquery_usd": 0.0002
+   }
+  },
+  "gemini_model_usd": 0.2605,
+  "bigquery_usd": 0.0044,
+  "contract_bigquery_usd": 0.004172,
+  "gemini_total_usd": 0.2649,
+  "anthropic": {
+   "runs": 0,
+   "usd": 0.0
+  }
+ }
+}

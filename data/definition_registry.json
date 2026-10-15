@@ -1,0 +1,151 @@
+{
+ "about": "Tessaway Freight's definition registry, added in Part 4. Tessaway Freight is a fictional company and every owner is a fictional role there, not a real person. Each definition keeps the stable id it has in data/DEFINITIONS.md; the version goes up when its meaning changes, and every version stays in its history. 'serves' lists what the context contract hands out under each definition: ontology terms (lookup_definition, resolve_entity), metrics (compute_metric) and rules (check_rule). Every term, metric and rule the contract can serve belongs to exactly one definition (tests/test_registry.py). Written on 2026-10-13, before any Part 4 agent ran.",
+ "owners": {
+  "VP Operations": "Runs dispatch, carrier relations and the delivery floor. Decides what counts as a load, a delivery and an on-time delivery, because the customer contracts it signs are measured on them.",
+  "Controller": "Runs billing, carrier pay and the books. Decides when a load can be billed and what counts as revenue, margin and the reporting currency.",
+  "VP Account Management": "Runs the account managers. Decides who the customer is when sites, parents and paying offices differ.",
+  "Director of Customer Experience": "Runs the customer portal. Decides what the portal shows customers, including its own on-time flag."
+ },
+ "definitions": {
+  "load": {
+   "title": "Load",
+   "owner": "VP Operations",
+   "version": 1,
+   "where": "data/DEFINITIONS.md#load",
+   "serves": {
+    "terms": ["tw:Load", "tw:Tender", "tw:TestRow", "tw:VoidedRow", "tw:CanceledLoad", "tw:Carrier", "tw:firstTender", "tw:finalTender", "tw:replaces", "tw:carrier", "tw:isTest", "tw:isVoid", "tw:loadId", "tw:tenderId", "tw:carrierId"],
+    "metrics": ["loads_booked"],
+    "rules": ["tw:LoadBookedOnFirstTenderShape", "tw:LoadCountedOnceShape", "tw:RetenderShape", "tw:TestOrVoidIsNotALoadShape"]
+   },
+   "history": [
+    {"version": 1, "effective": "2026-10-09", "written_by": "VP Operations", "change": "First version: a load is one shipment counted once; re-tenders, test and voided rows are not loads; booked on the first tender.", "source_commit": "dea695c"}
+   ]
+  },
+  "delivered_load": {
+   "title": "Delivered load",
+   "owner": "VP Operations",
+   "version": 1,
+   "where": "data/DEFINITIONS.md#delivered_load",
+   "serves": {
+    "terms": ["tw:DeliveredLoad", "tw:FinalDeliveryStop", "tw:status"],
+    "metrics": ["delivered_loads"],
+    "rules": ["tw:DeliveredLoadShape"]
+   },
+   "history": [
+    {"version": 1, "effective": "2026-10-09", "written_by": "VP Operations", "change": "First version: delivered is status DLVD on the final row, dated by arrival at the last stop on the local clock.", "source_commit": "dea695c"}
+   ]
+  },
+  "billable": {
+   "title": "Billable load",
+   "owner": "Controller",
+   "version": 1,
+   "where": "data/DEFINITIONS.md#billable",
+   "serves": {
+    "terms": ["tw:BillableLoad", "tw:ProofOfDelivery", "tw:Invoice", "tw:FinancialDocument", "tw:proofFor", "tw:forTender", "tw:signed"],
+    "metrics": ["invoiced_loads", "delivered_loads_not_billable"],
+    "rules": ["tw:InvoiceNeedsSignedProofShape", "tw:TestLoadsAreNeverBilledShape"]
+   },
+   "history": [
+    {"version": 1, "effective": "2026-10-09", "written_by": "Controller", "change": "First version: billable only with a signed proof of delivery on file; test loads are never billed.", "source_commit": "dea695c"}
+   ]
+  },
+  "on_time": {
+   "title": "On-time delivery (official)",
+   "owner": "VP Operations",
+   "version": 1,
+   "where": "data/DEFINITIONS.md#on_time",
+   "serves": {
+    "terms": ["tw:OnTime", "tw:ShipperCausedDelay"],
+    "metrics": ["on_time_rate", "on_time_loads", "on_time_measured_loads", "late_deliveries", "operations_on_time_rate"],
+    "rules": []
+   },
+   "history": [
+    {"version": 1, "effective": "2026-10-09", "written_by": "VP Operations", "change": "First version: on time at or before the end of the appointment window, local clock; a late load with a shipper-caused delay is left out, neither on time nor late. Names the operations meaning and the portal meaning as not official.", "source_commit": "dea695c"}
+   ]
+  },
+  "portal_on_time": {
+   "title": "Portal on-time",
+   "owner": "Director of Customer Experience",
+   "version": 1,
+   "where": "data/DEFINITIONS.md#portal_on_time",
+   "serves": {
+    "terms": ["tw:PortalOnTime"],
+    "metrics": ["portal_on_time_rate", "portal_on_time_shipments", "portal_shipments"],
+    "rules": []
+   },
+   "history": [
+    {"version": 1, "effective": "2026-10-09", "written_by": "Director of Customer Experience", "change": "First version: the portal's flag compares delivery date with the requested date; right only for what customers see in the portal.", "source_commit": "dea695c"}
+   ]
+  },
+  "customer": {
+   "title": "Customer",
+   "owner": "VP Account Management",
+   "version": 1,
+   "where": "data/DEFINITIONS.md#customer",
+   "serves": {
+    "terms": ["tw:Customer", "tw:Account", "tw:ShipperSite", "tw:BillToParty", "tw:rollsUpTo", "tw:shipperSite", "tw:customer", "tw:billTo", "tw:accountId"],
+    "metrics": ["customers_shipped"],
+    "rules": ["tw:CustomerIsAParentShape", "tw:LoadBelongsToParentShape", "tw:SiteRollsUpToOneCustomerShape", "tw:TenderAccountsShape"]
+   },
+   "history": [
+    {"version": 1, "effective": "2026-10-09", "written_by": "VP Account Management", "change": "First version: a customer is a parent account; sites roll up to it; a bill-to party is not the customer.", "source_commit": "dea695c"}
+   ]
+  },
+  "revenue": {
+   "title": "Revenue",
+   "owner": "Controller",
+   "version": 1,
+   "where": "data/DEFINITIONS.md#revenue",
+   "serves": {
+    "terms": ["tw:Revenue", "tw:CreditMemo", "tw:CanceledLoadFee"],
+    "metrics": ["revenue"],
+    "rules": []
+   },
+   "history": [
+    {"version": 1, "effective": "2026-10-09", "written_by": "Controller", "change": "First version: invoice totals less credit memos plus customer cancel fees, in US dollars, by document date.", "source_commit": "dea695c"}
+   ]
+  },
+  "margin": {
+   "title": "Margin",
+   "owner": "Controller",
+   "version": 1,
+   "where": "data/DEFINITIONS.md#margin",
+   "serves": {
+    "terms": ["tw:Margin"],
+    "metrics": ["margin", "margin_per_load", "margin_percentage", "carrier_cost"],
+    "rules": []
+   },
+   "history": [
+    {"version": 1, "effective": "2026-10-09", "written_by": "Controller", "change": "First version: revenue less carrier linehaul, fuel and accessorial pay for the same invoiced loads, plus the carrier's share of cancel fees.", "source_commit": "dea695c"}
+   ]
+  },
+  "currency": {
+   "title": "Currency",
+   "owner": "Controller",
+   "version": 1,
+   "where": "data/DEFINITIONS.md#currency",
+   "serves": {
+    "terms": ["tw:Currency", "tw:currency"],
+    "metrics": [],
+    "rules": []
+   },
+   "history": [
+    {"version": 1, "effective": "2026-10-09", "written_by": "Controller", "change": "First version: report in US dollars; convert Canadian amounts at the monthly rate of the document date.", "source_commit": "dea695c"}
+   ]
+  },
+  "local_time": {
+   "title": "Local time",
+   "owner": "VP Operations",
+   "version": 1,
+   "where": "data/DEFINITIONS.md#local_time",
+   "serves": {
+    "terms": ["tw:LocalTime"],
+    "metrics": [],
+    "rules": []
+   },
+   "history": [
+    {"version": 1, "effective": "2026-10-09", "written_by": "VP Operations", "change": "First version: operational dates are local at the facility; compare appointment and arrival on one clock.", "source_commit": "dea695c"}
+   ]
+  }
+ }
+}

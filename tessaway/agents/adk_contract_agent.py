@@ -96,8 +96,13 @@ def build(
     log: query.QueryLog,
     tools: ToolLog,
     toolset: McpToolset,
+    instruction: str | None = None,
 ) -> Agent:
-    """Return a fresh agent for one configuration, recording every tool call."""
+    """Return a fresh agent for one configuration, recording every tool call.
+
+    ``instruction`` replaces the configuration's Part 3 instruction (Part 4 adds
+    the citation paragraph, ``tessaway/agents/provenance_prompt.py``).
+    """
     pending: dict[str, dict[str, Any]] = {}
 
     async def run_sql(sql: str) -> dict[str, Any]:
@@ -137,6 +142,8 @@ def build(
             return None
         entry["response_id"] = envelope.get("response_id", "")
         entry["contract_version"] = envelope.get("contract_version", "")
+        if "definitions" in envelope:
+            entry["definitions"] = envelope["definitions"]
         entry["result"] = envelope["result"]
         if isinstance(envelope["result"], dict) and "error" in envelope["result"]:
             entry["error"] = str(envelope["result"]["error"])[:500]
@@ -148,7 +155,7 @@ def build(
     return Agent(
         name="analyst",
         model=model,
-        instruction=contract_prompt.build_instruction(configuration),
+        instruction=instruction or contract_prompt.build_instruction(configuration),
         tools=chosen,
         generate_content_config=adk_agent.RETRY,
         before_tool_callback=before,
@@ -170,7 +177,12 @@ def toolset_for(endpoint: str, token: str, run_id: str) -> McpToolset:
 
 
 async def ask(
-    model: str, question: str, configuration: str, endpoint: str, token: str
+    model: str,
+    question: str,
+    configuration: str,
+    endpoint: str,
+    token: str,
+    instruction: str | None = None,
 ) -> ContractAgentRun:
     """Ask one question in a fresh session and record what happened."""
     config.project()
@@ -179,7 +191,7 @@ async def ask(
     tools = ToolLog()
     run = ContractAgentRun(run_id=run_id, configuration=configuration)
     toolset = toolset_for(endpoint, token, run_id)
-    agent = build(model, configuration, log, tools, toolset)
+    agent = build(model, configuration, log, tools, toolset, instruction)
     runner = InMemoryRunner(agent=agent, app_name="tessaway_part3")
     session = await runner.session_service.create_session(
         app_name=runner.app_name, user_id=adk_agent.USER_ID
