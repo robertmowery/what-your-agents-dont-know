@@ -12,15 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Agent two: the Claude Agent SDK with a Claude model through Vertex AI.
+"""Agent two: the Claude Agent SDK with a Claude model.
 
 The same task and the same tool surface as the ADK agent: the shared
 instruction, and one tool that runs a read-only query. The SDK's built-in
 tools (files, shell, web) are switched off, and no settings, memory or skills
 are loaded from the machine, so the model has nothing but the warehouse tool.
 
-Claude is reached through Vertex AI in the same Google Cloud project, with
-Application Default Credentials. There is no API key.
+Claude is reached through Anthropic's API by default, with a key read at run
+time by :mod:`tessaway.credentials` (never stored in the repo). Set
+``CLAUDE_ROUTE=vertex`` to reach Claude through Vertex AI in your Google Cloud
+project instead, with Application Default Credentials and no key.
 """
 
 from __future__ import annotations
@@ -41,7 +43,7 @@ from claude_agent_sdk import (
 )
 from claude_agent_sdk import query as sdk_query
 
-from tessaway import config
+from tessaway import config, credentials
 from tessaway.agents import prompt
 from tessaway.warehouse import query
 
@@ -60,11 +62,20 @@ def vertex_env() -> dict[str, str]:
         "CLOUD_ML_REGION": config.CLAUDE_VERTEX_REGION,
         "GOOGLE_CLOUD_PROJECT": project,
         "GOOGLE_CLOUD_QUOTA_PROJECT": project,
+    }
+
+
+def sdk_env() -> dict[str, str]:
+    """Environment for the SDK: the chosen route, and no background traffic."""
+    quiet = {
         # Keep the run to model calls and the one tool: no telemetry, updates or
         # background requests.
         "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
         "DISABLE_AUTOUPDATER": "1",
     }
+    if config.CLAUDE_ROUTE == "vertex":
+        return {**vertex_env(), **quiet}
+    return {"ANTHROPIC_API_KEY": credentials.anthropic_api_key(), **quiet}
 
 
 def options(model: str, log: query.QueryLog, workdir: str) -> ClaudeAgentOptions:
@@ -87,7 +98,7 @@ def options(model: str, log: query.QueryLog, workdir: str) -> ClaudeAgentOptions
         setting_sources=[],  # nothing loaded from user or project settings
         max_turns=prompt.MAX_MODEL_CALLS,
         cwd=workdir,
-        env=vertex_env(),
+        env=sdk_env(),
     )
 
 
@@ -126,6 +137,8 @@ async def ask(model: str, question: str) -> prompt.AgentRun:
             run.timed_out = True
         except Exception as exc:  # noqa: BLE001 - a failed run is a finding, so record it
             run.error = f"{type(exc).__name__}: {exc}"[:600]
+    if run.error and config.CLAUDE_ROUTE != "vertex":
+        run.error = credentials.redact(run.error, credentials.anthropic_api_key())
     run.seconds = time.perf_counter() - started
     run.queries = log.queries
     run.queries_refused_over_limit = log.refused_over_limit
@@ -134,22 +147,34 @@ async def ask(model: str, question: str) -> prompt.AgentRun:
 
 
 async def available(model: str) -> tuple[bool, str]:
-    """Make one tiny call to see whether the model can be reached on Vertex AI.
+    """Make one tiny call to see whether the model can be reached on the chosen route.
 
     Returns:
         ``(True, "")`` when the model answers, otherwise ``(False, reason)``.
         Nothing here tries another route when the call is refused.
     """
-    from anthropic import AsyncAnthropicVertex
+    key = None
+    if config.CLAUDE_ROUTE == "vertex":
+        from anthropic import AsyncAnthropicVertex
 
-    client = AsyncAnthropicVertex(
-        project_id=config.project(), region=config.CLAUDE_VERTEX_REGION, max_retries=0
-    )
+        client = AsyncAnthropicVertex(
+            project_id=config.project(), region=config.CLAUDE_VERTEX_REGION, max_retries=0
+        )
+    else:
+        from anthropic import AsyncAnthropic
+
+        try:
+            key = credentials.anthropic_api_key()
+        except RuntimeError as exc:
+            return False, str(exc)
+        client = AsyncAnthropic(api_key=key, max_retries=0)
     try:
         await client.messages.create(
             model=model, max_tokens=8, messages=[{"role": "user", "content": "Reply: ok"}]
         )
     except Exception as exc:  # noqa: BLE001 - any refusal means "not available", with its reason
-        reason = f"{type(exc).__name__}: {exc}".replace(config.project(), "PROJECT")
-        return False, reason[:300]
+        reason = f"{type(exc).__name__}: {exc}"
+        if config.CLAUDE_ROUTE == "vertex":
+            reason = reason.replace(config.project(), "PROJECT")
+        return False, credentials.redact(reason, key)[:300]
     return True, ""

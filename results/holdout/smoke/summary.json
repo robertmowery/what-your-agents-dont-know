@@ -1,0 +1,690 @@
+{
+ "written_at": "2026-10-09T22:33:41+00:00",
+ "bins": [
+  "right",
+  "confidently_wrong",
+  "declined",
+  "no_answer"
+ ],
+ "note": "Twelve held-out questions, three runs each: 36 runs a configuration. One run is 2.8 points of an overall share and 8.3 points within a question group of four. Small differences are not findings.",
+ "coverage_checked_at": "2026-10-09T22:28:25+00:00",
+ "coverage_counts": {
+  "one_metric_query": 0,
+  "metric_plus_filter": 8,
+  "several_or_arithmetic": 3,
+  "not_answerable": 1
+ },
+ "coverage_class_of_question": {
+  "H1": "metric_plus_filter",
+  "H2": "metric_plus_filter",
+  "H3": "several_or_arithmetic",
+  "H4": "metric_plus_filter",
+  "H5": "metric_plus_filter",
+  "H6": "several_or_arithmetic",
+  "H7": "several_or_arithmetic",
+  "H8": "metric_plus_filter",
+  "H9": "metric_plus_filter",
+  "H10": "metric_plus_filter",
+  "H11": "not_answerable",
+  "H12": "metric_plus_filter"
+ },
+ "configurations": [
+  {
+   "config": "baseline",
+   "what": "The Part 1 Flash agent: the schema and the SQL tool only.",
+   "layers": [],
+   "tools": [
+    "run_sql"
+   ],
+   "runtime": "adk",
+   "runtime_package": "google-adk==2.11.0",
+   "model": "gemini-3.8-flash",
+   "model_reported_by_provider": [
+    "gemini-3.8-flash"
+   ],
+   "model_and_prices_checked_on": "2026-10-09",
+   "usd_per_million_tokens": {
+    "input": 0.75,
+    "output": 3.75,
+    "cache_read": 0.075
+   },
+   "first_run_finished_at": "2026-10-09T22:32:46+00:00",
+   "last_run_finished_at": "2026-10-09T22:32:51+00:00",
+   "question_file": "questions/holdout.yaml",
+   "question_count": 2,
+   "runs_per_question": 1,
+   "runs_expected": 2,
+   "runs_saved": 2,
+   "complete": true,
+   "runs_repeated_after_a_failure": 0,
+   "sql_query_limit": 8,
+   "layer_call_limit_per_tool": null,
+   "model_call_ceiling": 16,
+   "data_seed": 20261009,
+   "summary": {
+    "overall": {
+     "runs": 2,
+     "right": 0,
+     "right_share": 0.0,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": 0.0,
+     "declined": 2,
+     "declined_share": 1.0,
+     "no_answer": 0,
+     "no_answer_share": 0.0
+    },
+    "by_group": {
+     "metric": {
+      "runs": 1,
+      "right": 0,
+      "right_share": 0.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 1,
+      "declined_share": 1.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     },
+     "entity": {
+      "runs": 1,
+      "right": 0,
+      "right_share": 0.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 1,
+      "declined_share": 1.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     }
+    },
+    "by_question": {
+     "H1": {
+      "runs": 1,
+      "right": 0,
+      "right_share": 0.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 1,
+      "declined_share": 1.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "metric",
+      "mean_input_tokens": 29813.0,
+      "mean_output_tokens": 3898.0,
+      "mean_cost_usd": 0.037,
+      "mean_queries": 8.0,
+      "decoys_matched": {}
+     },
+     "H5": {
+      "runs": 1,
+      "right": 0,
+      "right_share": 0.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 1,
+      "declined_share": 1.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "entity",
+      "mean_input_tokens": 23261.0,
+      "mean_output_tokens": 2691.0,
+      "mean_cost_usd": 0.0275,
+      "mean_queries": 8.0,
+      "decoys_matched": {}
+     }
+    },
+    "wrong_answers_that_flagged_an_assumption": 0,
+    "wrong_answers": 0,
+    "declines": 2,
+    "declines_that_mention_the_query_limit": 0,
+    "runs_that_used_every_query": 2,
+    "mean_cost_usd_per_question": 0.0323,
+    "mean_input_tokens_per_question": 26537.0,
+    "mean_output_tokens_per_question": 3294.5,
+    "total_cost_usd": 0.0645
+   },
+   "by_coverage_class": {
+    "metric_plus_filter": {
+     "runs": 2,
+     "right": 0,
+     "right_share": 0.0,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": 0.0,
+     "declined": 2,
+     "declined_share": 1.0,
+     "no_answer": 0,
+     "no_answer_share": 0.0,
+     "questions": [
+      "H1",
+      "H5"
+     ]
+    }
+   },
+   "answers_given": {
+    "H1": [
+     {
+      "trial": 0,
+      "outcome": "declined",
+      "answer": "NEEDS_CLARIFICATION",
+      "matched_decoy": ""
+     }
+    ],
+    "H5": [
+     {
+      "trial": 0,
+      "outcome": "declined",
+      "answer": "NEEDS_CLARIFICATION",
+      "matched_decoy": ""
+     }
+    ]
+   },
+   "effort": {
+    "mean_input_tokens": 26537,
+    "mean_output_tokens": 3294,
+    "cache_read_share_of_input": 0.0,
+    "runs_with_a_cache_read": 0,
+    "mean_model_calls": 10.0,
+    "mean_sql_queries": 8.0,
+    "mean_seconds": 42.3,
+    "mean_cost_usd": 0.0323,
+    "total_cost_usd": 0.0645
+   },
+   "tool_use": {
+    "runs": 2,
+    "mean_calls_per_run": {
+     "run_sql": 8.0,
+     "query_metrics": 0.0
+    },
+    "total_calls": {
+     "run_sql": 16,
+     "query_metrics": 0
+    },
+    "runs_that_called": {
+     "run_sql": 2,
+     "query_metrics": 0
+    },
+    "runs_whose_first_call_was_sql": 2,
+    "metric_calls_that_returned_an_error": 0,
+    "all_runs": {
+     "runs": 2,
+     "metric_tool_only": 0,
+     "both_tools": 0,
+     "sql_only": 2,
+     "no_tool_call": 0,
+     "outcomes_metric_tool_only": {
+      "runs": 0,
+      "right": 0,
+      "right_share": null,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": null,
+      "declined": 0,
+      "declined_share": null,
+      "no_answer": 0,
+      "no_answer_share": null
+     },
+     "outcomes_both_tools": {
+      "runs": 0,
+      "right": 0,
+      "right_share": null,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": null,
+      "declined": 0,
+      "declined_share": null,
+      "no_answer": 0,
+      "no_answer_share": null
+     },
+     "outcomes_sql_only": {
+      "runs": 2,
+      "right": 0,
+      "right_share": 0.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 2,
+      "declined_share": 1.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     }
+    },
+    "by_coverage_class": {
+     "metric_plus_filter": {
+      "runs": 2,
+      "metric_tool_only": 0,
+      "both_tools": 0,
+      "sql_only": 2,
+      "no_tool_call": 0,
+      "outcomes_metric_tool_only": {
+       "runs": 0,
+       "right": 0,
+       "right_share": null,
+       "confidently_wrong": 0,
+       "confidently_wrong_share": null,
+       "declined": 0,
+       "declined_share": null,
+       "no_answer": 0,
+       "no_answer_share": null
+      },
+      "outcomes_both_tools": {
+       "runs": 0,
+       "right": 0,
+       "right_share": null,
+       "confidently_wrong": 0,
+       "confidently_wrong_share": null,
+       "declined": 0,
+       "declined_share": null,
+       "no_answer": 0,
+       "no_answer_share": null
+      },
+      "outcomes_sql_only": {
+       "runs": 2,
+       "right": 0,
+       "right_share": 0.0,
+       "confidently_wrong": 0,
+       "confidently_wrong_share": 0.0,
+       "declined": 2,
+       "declined_share": 1.0,
+       "no_answer": 0,
+       "no_answer_share": 0.0
+      }
+     }
+    },
+    "went_around_the_semantic_layer": {
+     "what": "Runs on a question that one metric query answers (coverage classes one_metric_query and metric_plus_filter), in which the agent ran at least one SQL query.",
+     "runs_on_such_questions": 2,
+     "runs_that_ran_sql": 2,
+     "of_which_never_called_the_metric_tool": 2,
+     "of_which_called_both": 0,
+     "outcomes_when_sql_was_run": {
+      "runs": 2,
+      "right": 0,
+      "right_share": 0.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 2,
+      "declined_share": 1.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     },
+     "runs_answered_from_metrics_alone": 0,
+     "outcomes_from_metrics_alone": {
+      "runs": 0,
+      "right": 0,
+      "right_share": null,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": null,
+      "declined": 0,
+      "declined_share": null,
+      "no_answer": 0,
+      "no_answer_share": null
+     }
+    }
+   },
+   "limits": {
+    "runs_refused_a_further_sql_query": 2,
+    "runs_refused_a_further_layer_call": 0,
+    "runs_that_hit_the_model_call_ceiling": 0,
+    "runs_that_timed_out": 0,
+    "runs_that_ended_in_an_error": 0
+   }
+  },
+  {
+   "config": "flash_semantic",
+   "what": "The Part 2 semantic configuration: the same agent with the query_metrics tool.",
+   "layers": [
+    "semantic"
+   ],
+   "tools": [
+    "run_sql",
+    "query_metrics"
+   ],
+   "runtime": "adk",
+   "runtime_package": "google-adk==2.11.0",
+   "model": "gemini-3.8-flash",
+   "model_reported_by_provider": [
+    "gemini-3.8-flash"
+   ],
+   "model_and_prices_checked_on": "2026-10-09",
+   "usd_per_million_tokens": {
+    "input": 0.75,
+    "output": 3.75,
+    "cache_read": 0.075
+   },
+   "first_run_finished_at": "2026-10-09T22:33:08+00:00",
+   "last_run_finished_at": "2026-10-09T22:33:41+00:00",
+   "question_file": "questions/holdout.yaml",
+   "question_count": 2,
+   "runs_per_question": 1,
+   "runs_expected": 2,
+   "runs_saved": 2,
+   "complete": true,
+   "runs_repeated_after_a_failure": 0,
+   "sql_query_limit": 8,
+   "layer_call_limit_per_tool": 8,
+   "model_call_ceiling": 24,
+   "data_seed": 20261009,
+   "summary": {
+    "overall": {
+     "runs": 2,
+     "right": 2,
+     "right_share": 1.0,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": 0.0,
+     "declined": 0,
+     "declined_share": 0.0,
+     "no_answer": 0,
+     "no_answer_share": 0.0
+    },
+    "by_group": {
+     "metric": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     },
+     "entity": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     }
+    },
+    "by_question": {
+     "H1": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "metric",
+      "mean_input_tokens": 36647.0,
+      "mean_output_tokens": 4632.0,
+      "mean_cost_usd": 0.0449,
+      "mean_queries": 3.0,
+      "decoys_matched": {}
+     },
+     "H5": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "entity",
+      "mean_input_tokens": 11086.0,
+      "mean_output_tokens": 950.0,
+      "mean_cost_usd": 0.0119,
+      "mean_queries": 1.0,
+      "decoys_matched": {}
+     }
+    },
+    "wrong_answers_that_flagged_an_assumption": 0,
+    "wrong_answers": 0,
+    "declines": 0,
+    "declines_that_mention_the_query_limit": 0,
+    "runs_that_used_every_query": 0,
+    "mean_cost_usd_per_question": 0.0284,
+    "mean_input_tokens_per_question": 23866.5,
+    "mean_output_tokens_per_question": 2791.0,
+    "total_cost_usd": 0.0567
+   },
+   "by_coverage_class": {
+    "metric_plus_filter": {
+     "runs": 2,
+     "right": 2,
+     "right_share": 1.0,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": 0.0,
+     "declined": 0,
+     "declined_share": 0.0,
+     "no_answer": 0,
+     "no_answer_share": 0.0,
+     "questions": [
+      "H1",
+      "H5"
+     ]
+    }
+   },
+   "answers_given": {
+    "H1": [
+     {
+      "trial": 0,
+      "outcome": "right",
+      "answer": "88.1656804733728",
+      "matched_decoy": ""
+     }
+    ],
+    "H5": [
+     {
+      "trial": 0,
+      "outcome": "right",
+      "answer": "Northgate Foods Group",
+      "matched_decoy": ""
+     }
+    ]
+   },
+   "effort": {
+    "mean_input_tokens": 23866,
+    "mean_output_tokens": 2791,
+    "cache_read_share_of_input": 0.0,
+    "runs_with_a_cache_read": 0,
+    "mean_model_calls": 5.5,
+    "mean_sql_queries": 2.0,
+    "mean_seconds": 29.7,
+    "mean_cost_usd": 0.0284,
+    "total_cost_usd": 0.0567
+   },
+   "tool_use": {
+    "runs": 2,
+    "mean_calls_per_run": {
+     "run_sql": 2.0,
+     "query_metrics": 2.5
+    },
+    "total_calls": {
+     "run_sql": 4,
+     "query_metrics": 5
+    },
+    "runs_that_called": {
+     "run_sql": 2,
+     "query_metrics": 2
+    },
+    "runs_whose_first_call_was_sql": 1,
+    "metric_calls_that_returned_an_error": 0,
+    "all_runs": {
+     "runs": 2,
+     "metric_tool_only": 0,
+     "both_tools": 2,
+     "sql_only": 0,
+     "no_tool_call": 0,
+     "outcomes_metric_tool_only": {
+      "runs": 0,
+      "right": 0,
+      "right_share": null,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": null,
+      "declined": 0,
+      "declined_share": null,
+      "no_answer": 0,
+      "no_answer_share": null
+     },
+     "outcomes_both_tools": {
+      "runs": 2,
+      "right": 2,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     },
+     "outcomes_sql_only": {
+      "runs": 0,
+      "right": 0,
+      "right_share": null,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": null,
+      "declined": 0,
+      "declined_share": null,
+      "no_answer": 0,
+      "no_answer_share": null
+     }
+    },
+    "by_coverage_class": {
+     "metric_plus_filter": {
+      "runs": 2,
+      "metric_tool_only": 0,
+      "both_tools": 2,
+      "sql_only": 0,
+      "no_tool_call": 0,
+      "outcomes_metric_tool_only": {
+       "runs": 0,
+       "right": 0,
+       "right_share": null,
+       "confidently_wrong": 0,
+       "confidently_wrong_share": null,
+       "declined": 0,
+       "declined_share": null,
+       "no_answer": 0,
+       "no_answer_share": null
+      },
+      "outcomes_both_tools": {
+       "runs": 2,
+       "right": 2,
+       "right_share": 1.0,
+       "confidently_wrong": 0,
+       "confidently_wrong_share": 0.0,
+       "declined": 0,
+       "declined_share": 0.0,
+       "no_answer": 0,
+       "no_answer_share": 0.0
+      },
+      "outcomes_sql_only": {
+       "runs": 0,
+       "right": 0,
+       "right_share": null,
+       "confidently_wrong": 0,
+       "confidently_wrong_share": null,
+       "declined": 0,
+       "declined_share": null,
+       "no_answer": 0,
+       "no_answer_share": null
+      }
+     }
+    },
+    "went_around_the_semantic_layer": {
+     "what": "Runs on a question that one metric query answers (coverage classes one_metric_query and metric_plus_filter), in which the agent ran at least one SQL query.",
+     "runs_on_such_questions": 2,
+     "runs_that_ran_sql": 2,
+     "of_which_never_called_the_metric_tool": 0,
+     "of_which_called_both": 2,
+     "outcomes_when_sql_was_run": {
+      "runs": 2,
+      "right": 2,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     },
+     "runs_answered_from_metrics_alone": 0,
+     "outcomes_from_metrics_alone": {
+      "runs": 0,
+      "right": 0,
+      "right_share": null,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": null,
+      "declined": 0,
+      "declined_share": null,
+      "no_answer": 0,
+      "no_answer_share": null
+     }
+    }
+   },
+   "limits": {
+    "runs_refused_a_further_sql_query": 0,
+    "runs_refused_a_further_layer_call": 0,
+    "runs_that_hit_the_model_call_ceiling": 0,
+    "runs_that_timed_out": 0,
+    "runs_that_ended_in_an_error": 0
+   }
+  }
+ ],
+ "change_semantic_vs_baseline_points": {
+  "overall": {
+   "right": 100.0,
+   "confidently_wrong": 0.0,
+   "declined": -100.0
+  },
+  "by_group": {
+   "metric": {
+    "right": 100.0,
+    "confidently_wrong": 0.0,
+    "declined": -100.0
+   },
+   "entity": {
+    "right": 100.0,
+    "confidently_wrong": 0.0,
+    "declined": -100.0
+   }
+  },
+  "by_coverage_class": {
+   "metric_plus_filter": {
+    "right": 100.0,
+    "confidently_wrong": 0.0,
+    "declined": -100.0
+   }
+  }
+ },
+ "on_the_24_part_1_questions": {
+  "source": "results/part2/summary.json",
+  "questions": 24,
+  "baseline": {
+   "runs": 240,
+   "right": 105,
+   "right_share": 0.4375,
+   "confidently_wrong": 20,
+   "confidently_wrong_share": 0.0833,
+   "declined": 115,
+   "declined_share": 0.4792,
+   "no_answer": 0,
+   "no_answer_share": 0.0,
+   "runs_per_question": 10
+  },
+  "flash_semantic": {
+   "runs": 72,
+   "right": 72,
+   "right_share": 1.0,
+   "confidently_wrong": 0,
+   "confidently_wrong_share": 0.0,
+   "declined": 0,
+   "declined_share": 0.0,
+   "no_answer": 0,
+   "no_answer_share": 0.0,
+   "runs_per_question": 3
+  },
+  "change_points": {
+   "right": 56.2,
+   "confidently_wrong": -8.3,
+   "declined": -47.9
+  }
+ },
+ "not_run": []
+}

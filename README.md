@@ -155,6 +155,133 @@ Two things to know when reading the results:
 - No trap is tuned and no question is dropped after seeing agent results. If the agents do well, that is the result.
 - Nothing is scored by a model.
 
+## Part 2: one dataset, three context layers
+
+Part 2 asks the Part 1 questions again, of the same agent on the same warehouse, with a context layer added. Three layers are built, each from [data/DEFINITIONS.md](data/DEFINITIONS.md) and from nothing else, and each answers a different question:
+
+| Layer | The question it answers | What is built | Built with |
+| --- | --- | --- | --- |
+| Semantic layer | What does this number mean? | 18 named metrics in YAML, on six dbt views | `dbt-metricflow==0.15.0` (MetricFlow 0.213.0), `dbt-core==1.12.5`, `dbt-bigquery==1.12.1` |
+| Ontology | What exists, and which rules bind it? | 19 classes, 19 properties and 6 business terms in OWL; 11 rules in SHACL | `rdflib==7.6.0`, `pyshacl==0.40.1` |
+| Knowledge graph | How do these particular things connect? | The actual accounts, carriers, tenders and loads: about 216,000 triples | Oxigraph, through `pyoxigraph==0.5.11` |
+
+Nothing is added to the warehouse tables, and no question, correct answer, trap or scoring rule is changed.
+
+### What is in the repo for Part 2
+
+| Piece | Where | Needs a model |
+| --- | --- | --- |
+| The metrics, in YAML | `semantic_layer/models/semantic.yml` | No |
+| The dbt views the metrics sit on | `semantic_layer/models/*.sql` | No |
+| The MetricFlow worker: a metric request in, generated SQL out | `semantic_layer/mf_worker.py` | No |
+| The harness side of the semantic layer, and the gold check | `tessaway/layers/semantic.py` | No |
+| The ontology's classes and terms (OWL) | `ontology/tessaway.ttl` | No |
+| The rules data can be checked against (SHACL) | `ontology/shapes.ttl` | No |
+| Loading, looking up and validating the ontology | `tessaway/layers/ontology.py` | No |
+| The graph loader and the SPARQL tool | `tessaway/layers/graph.py` | No |
+| What a Part 2 agent is told | `tessaway/agents/layer_prompt.py` | No |
+| The Part 2 agent: Part 1's, with one extra tool per layer | `tessaway/agents/adk_layer_agent.py` | Yes |
+| The run script | `run_part2.py` | Yes |
+
+### Where each definition's logic lives
+
+MetricFlow writes the SQL for every metric query; nothing here imitates it with templates. What MetricFlow cannot say is done in a dbt view the metric sits on, which is the ordinary way to use it.
+
+| Definition | In a dbt view (`semantic_layer/models`) | In the metric YAML |
+| --- | --- | --- |
+| `load` | `loads.sql`: one row per first tender, never a test or voided row; booked on the UTC date | `loads_booked` counts the rows |
+| `delivered_load` | `deliveries.sql`: status `DLVD`, real loads only, the last delivery stop | `delivered_loads` counts the rows and is dated by `delivered_date` |
+| `local_time` | `deliveries.sql`: the delivery date and the on-time comparison are made on the clock at the stop | Nothing: MetricFlow has no way to pick the last stop or apply a row's own time zone |
+| `on_time` | `deliveries.sql`: two row flags, `arrived_on_time` and `shipper_delayed` | The rule itself: which rows are on time, which rows are measured, and the ratio (`on_time_rate`) |
+| `portal_on_time` | `portal_shipments.sql`: the portal's own flag and date | `portal_on_time_rate`, labeled as not the official rate |
+| `billable` | `deliveries.sql`: one row flag, `has_signed_pod` | `delivered_loads_not_billable` |
+| `customer` | `tenders.sql` and `deliveries.sql`: the parent the shipping site rolls up to | The `tender__customer_name` dimension; `customers_shipped` counts distinct parents with a delivery |
+| `revenue`, `margin` | `financial_documents.sql`: invoices, credit memos and canceled-load fees as one row each, with revenue and carrier cost | `revenue`, `carrier_cost`, `margin`, `invoiced_loads`, `margin_per_load`, `margin_percentage` |
+| `currency` | `financial_documents.sql`: every amount in US dollars at the document month's rate | Nothing |
+
+The ontology states every one of these definitions in words and computes nothing. Its SHACL shapes cover the rules that data can be checked against (a load is counted once, a test or voided row is not a load, a site rolls up to one customer, an invoice needs a signed proof of delivery, and so on). Rules that say how a number is worked out are `tw:rule` notes on the term they belong to, because they describe a calculation, not a shape the graph must have.
+
+The knowledge graph uses the ontology's identifiers. It holds which site rolls up to which customer, the bill-to party and carrier on every tender, which tender replaced which, and one node per load. It holds no dates and no amounts.
+
+### How a layer reaches the agent
+
+In this part each layer is handed to the agent inside the test harness, as one extra tool beside the same read-only SQL tool. There is no server and no MCP; that is Part 3.
+
+| Tool | Layer | What it does |
+| --- | --- | --- |
+| `run_sql` | none | Part 1's tool, unchanged: one read-only `SELECT`, at most 50 rows, at most 8 queries per question |
+| `query_metrics` | Semantic | Takes metric names, group-by names, filters and a date range. MetricFlow writes the SQL, BigQuery runs it, the rows come back. The agent never sees the SQL |
+| `lookup_ontology` | Ontology | Takes a term and returns its definition, its rules and where the warehouse holds it |
+| `query_graph` | Knowledge graph | Runs one read-only SPARQL query against the Oxigraph store, at most 50 rows |
+
+Each layer tool may be called at most 8 times per question, and the agent is told so. The instruction is Part 1's with one paragraph added per tool; a test holds that taking those paragraphs out gives the Part 1 text exactly. The agent is free to use a layer or ignore it, and every tool call is saved in order.
+
+| Configuration | Tools | Runs |
+| --- | --- | --- |
+| baseline | `run_sql` | Part 1's `adk_gemini_flash` result, 10 runs per question. Not run again |
+| `flash_semantic` | `run_sql`, `query_metrics` | 24 questions x 3 |
+| `flash_ontology` | `run_sql`, `lookup_ontology` | 24 questions x 3 |
+| `flash_graph` | `run_sql`, `query_graph` | 24 questions x 3 |
+| `flash_all_three` | all four | 24 questions x 3 |
+
+All four run on Google ADK with `gemini-3.8-flash`. With three runs per question the shares are rougher than Part 1's: one run is 1.4 points of an overall share and 5.6 points within a question group. Small differences are not findings.
+
+### Set up and run
+
+```bash
+.venv/bin/pip install -r requirements-dev.txt          # adds rdflib, pyshacl and pyoxigraph
+
+# dbt and MetricFlow live in their own environment: dbt-bigquery and google-adk
+# need versions of google-genai that cannot be installed together.
+python3 -m venv .venv-dbt
+.venv-dbt/bin/pip install -r requirements-semantic.txt
+
+cd infra && terraform apply && cd ..                   # adds the tessaway_sem dataset for the views
+
+set -a && source .env && set +a                        # dbt reads the project from the environment
+(cd semantic_layer && DBT_PROFILES_DIR=. ../.venv-dbt/bin/dbt run)   # build the six views
+
+.venv/bin/python -m pytest -q                          # no model, no cloud: every SHACL rule, the graph counts, the tool descriptions
+.venv/bin/python -m pytest -q -m cloud                 # BigQuery: every metric against the Part 1 gold SQL
+.venv/bin/python -m tessaway.layers.semantic --check-gold   # the same check, saved to results/part2
+
+.venv/bin/python run_part2.py --runs 1 --questions L1,M1 --out smoke   # a smoke test, kept apart
+.venv/bin/python run_part2.py                          # the experiment: 4 configurations x 24 questions x 3 runs
+.venv/bin/python analysis/part2_article_numbers.py     # the figures the articles quote
+```
+
+### Results files
+
+| File | Holds |
+| --- | --- |
+| `results/part2/predictions.md` | What the brief predicted and how each prediction is read against the runs, written before any run |
+| `results/part2/semantic_gold_check.json` | Every metric's MetricFlow SQL, run on BigQuery, beside the Part 1 gold SQL |
+| `results/part2/<config>.json`, `runs/<config>.jsonl` | Every run: the reply, the bin, every tool call in order, the SQL MetricFlow generated, tokens and estimated cost |
+| `results/part2/summary.md`, `summary.json` | Each configuration beside the baseline: right, confidently wrong and declined overall, by group and by question; the change against the baseline; tool calls and the bypass count; tokens and cost; limits |
+| `results/part2/article_numbers.json` | Everything the Part 2 articles quote |
+| `results/part2/caching_note.md` | How prompt caching works for this model today, and why nothing was switched on |
+| `results/part2/ossie_note.md` | What Apache Ossie tooling exists today and what was tried |
+| `results/part2/spend.json`, `results/series_spend.json` | Estimated spend for Part 2, and for Parts 2 to 7 against the approved budget |
+
+The SQL MetricFlow generates names the Google Cloud project. Wherever it is saved (the runs, the gold check, `semantic_layer/exports/osi_document.json`), the project ID is replaced with `PROJECT`; your own runs are saved the same way.
+
+### Where the Part 2 runs stand
+
+All four configurations are complete: 24 questions, three runs each, 288 runs. `results/part2/summary.md` is the authority for every number, and `results/part2/run_log.md` says what was run in what order.
+
+Three things to know when reading the results:
+
+- After a two-question smoke test and before the full run, the harness's ceiling on model calls was raised from Part 1's 16 to 16 plus 8 for each layer tool. The agent is never told that number, and nothing it sees changed. Without the change an agent could stay inside every limit it was told about and be cut off before it could answer. The run log has the detail.
+- Four runs ended in a timeout or a harness error with nothing to score and were run once more, by the Part 1 rule. Both attempts are in `results/part2/runs/`.
+- The semantic layer was built by someone who knew the 24 questions, and one metric query reproduces the correct answer to all 18 that need a definition (`semantic_layer/gold_checks.yaml`). The runs measure whether the agent finds and uses the right metric. They do not measure how a semantic layer written without sight of the questions would do.
+
+### Rules this experiment keeps
+
+- The layers, the tool descriptions and the instruction paragraphs were committed before any Part 2 agent ran.
+- No definition, description or instruction is added or reworded after seeing which questions fail. A configuration with a real bug is discarded and run again in full, and that is recorded.
+- No layer answers a question. Each states a definition, a rule or a relationship, and tests check that no description holds an answer.
+- The layers were written by the person who wrote the questions, from the definitions file. That is a limit of the experiment.
+
 ## License
 
 Apache License 2.0. See [LICENSE](LICENSE) and [NOTICE](NOTICE).

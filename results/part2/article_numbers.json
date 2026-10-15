@@ -1,0 +1,4070 @@
+{
+ "note": "The baseline is Part 1's Flash configuration at ten runs per question. Part 2 ran each question three times per configuration: one run is 1.4 points of an overall share and 5.6 points within a question group. Small differences are not findings.",
+ "baseline": {
+  "what": "Part 1, adk_gemini_flash, ten runs per question. Not run again.",
+  "layers": [],
+  "tools": [
+   "run_sql"
+  ],
+  "model": "gemini-3.8-flash",
+  "runs_per_question": 10,
+  "all_questions": {
+   "runs": 240,
+   "right": 105,
+   "right_pct": 43.8,
+   "confidently_wrong": 20,
+   "confidently_wrong_pct": 8.3,
+   "declined": 115,
+   "declined_pct": 47.9,
+   "no_answer": 0,
+   "no_answer_pct": 0.0
+  },
+  "questions_needing_a_definition": {
+   "runs": 180,
+   "right": 45,
+   "right_pct": 25.0,
+   "confidently_wrong": 20,
+   "confidently_wrong_pct": 11.1,
+   "declined": 115,
+   "declined_pct": 63.9,
+   "no_answer": 0,
+   "no_answer_pct": 0.0
+  },
+  "by_group": {
+   "lookup": {
+    "runs": 60,
+    "right": 60,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "metric": {
+    "runs": 60,
+    "right": 8,
+    "right_pct": 13.3,
+    "confidently_wrong": 6,
+    "confidently_wrong_pct": 10.0,
+    "declined": 46,
+    "declined_pct": 76.7,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "entity": {
+    "runs": 60,
+    "right": 13,
+    "right_pct": 21.7,
+    "confidently_wrong": 6,
+    "confidently_wrong_pct": 10.0,
+    "declined": 41,
+    "declined_pct": 68.3,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "rule": {
+    "runs": 60,
+    "right": 24,
+    "right_pct": 40.0,
+    "confidently_wrong": 8,
+    "confidently_wrong_pct": 13.3,
+    "declined": 28,
+    "declined_pct": 46.7,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   }
+  },
+  "by_question": {
+   "E1": {
+    "runs": 10,
+    "right": 4,
+    "right_pct": 40.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 6,
+    "declined_pct": 60.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "E2": {
+    "runs": 10,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 10,
+    "declined_pct": 100.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "E3": {
+    "runs": 10,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 1,
+    "confidently_wrong_pct": 10.0,
+    "declined": 9,
+    "declined_pct": 90.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "E4": {
+    "runs": 10,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 4,
+    "confidently_wrong_pct": 40.0,
+    "declined": 6,
+    "declined_pct": 60.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "E5": {
+    "runs": 10,
+    "right": 1,
+    "right_pct": 10.0,
+    "confidently_wrong": 1,
+    "confidently_wrong_pct": 10.0,
+    "declined": 8,
+    "declined_pct": 80.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "E6": {
+    "runs": 10,
+    "right": 8,
+    "right_pct": 80.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 2,
+    "declined_pct": 20.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "L1": {
+    "runs": 10,
+    "right": 10,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "L2": {
+    "runs": 10,
+    "right": 10,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "L3": {
+    "runs": 10,
+    "right": 10,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "L4": {
+    "runs": 10,
+    "right": 10,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "L5": {
+    "runs": 10,
+    "right": 10,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "L6": {
+    "runs": 10,
+    "right": 10,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M1": {
+    "runs": 10,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 5,
+    "confidently_wrong_pct": 50.0,
+    "declined": 5,
+    "declined_pct": 50.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M2": {
+    "runs": 10,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 10,
+    "declined_pct": 100.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M3": {
+    "runs": 10,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 10,
+    "declined_pct": 100.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M4": {
+    "runs": 10,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 10,
+    "declined_pct": 100.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M5": {
+    "runs": 10,
+    "right": 4,
+    "right_pct": 40.0,
+    "confidently_wrong": 1,
+    "confidently_wrong_pct": 10.0,
+    "declined": 5,
+    "declined_pct": 50.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M6": {
+    "runs": 10,
+    "right": 4,
+    "right_pct": 40.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 6,
+    "declined_pct": 60.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "R1": {
+    "runs": 10,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 7,
+    "confidently_wrong_pct": 70.0,
+    "declined": 3,
+    "declined_pct": 30.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "R2": {
+    "runs": 10,
+    "right": 1,
+    "right_pct": 10.0,
+    "confidently_wrong": 1,
+    "confidently_wrong_pct": 10.0,
+    "declined": 8,
+    "declined_pct": 80.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "R3": {
+    "runs": 10,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 10,
+    "declined_pct": 100.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "R4": {
+    "runs": 10,
+    "right": 8,
+    "right_pct": 80.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 2,
+    "declined_pct": 20.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "R5": {
+    "runs": 10,
+    "right": 10,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "R6": {
+    "runs": 10,
+    "right": 5,
+    "right_pct": 50.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 5,
+    "declined_pct": 50.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   }
+  },
+  "discussed_questions": {
+   "M1": {
+    "gold": 87.44,
+    "runs": 10,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 5,
+    "confidently_wrong_pct": 50.0,
+    "declined": 5,
+    "declined_pct": 50.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "91.52": 3,
+     "92.10": 1,
+     "91.54": 1
+    },
+    "wrong_readings_matched": {
+     "portal definition: delivered by the requested date": 4
+    }
+   },
+   "E4": {
+    "gold": 1170,
+    "runs": 10,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 4,
+    "confidently_wrong_pct": 40.0,
+    "declined": 6,
+    "declined_pct": 60.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "1232": 4
+    },
+    "wrong_readings_matched": {
+     "test and voided rows removed, re-tenders still counted twice": 4
+    }
+   },
+   "E2": {
+    "gold": 36,
+    "runs": 10,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 10,
+    "declined_pct": 100.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {},
+    "wrong_readings_matched": {}
+   },
+   "E1": {
+    "gold": "Northgate Foods Group",
+    "runs": 10,
+    "right": 4,
+    "right_pct": 40.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 6,
+    "declined_pct": 60.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "Northgate Foods Group": 4
+    },
+    "wrong_readings_matched": {}
+   },
+   "M3": {
+    "gold": 409.19,
+    "runs": 10,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 10,
+    "declined_pct": 100.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {},
+    "wrong_readings_matched": {}
+   },
+   "M2": {
+    "gold": 10294019.12,
+    "runs": 10,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 10,
+    "declined_pct": 100.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {},
+    "wrong_readings_matched": {}
+   },
+   "R1": {
+    "gold": 133,
+    "runs": 10,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 7,
+    "confidently_wrong_pct": 70.0,
+    "declined": 3,
+    "declined_pct": 30.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "93": 6,
+     "86": 1
+    },
+    "wrong_readings_matched": {
+     "portal definition: delivered after the requested date": 6
+    }
+   }
+  },
+  "effort": {
+   "mean_sql_queries": 6.48,
+   "mean_model_calls": 8.21,
+   "mean_input_tokens": 25919,
+   "mean_output_tokens": 4021,
+   "cache_read_share_of_input_pct": 7.3,
+   "mean_seconds": 92.8,
+   "mean_cost_usd": 0.0332,
+   "cost_usd": 7.98,
+   "mean_cost_usd_by_group": {
+    "lookup": 0.0054,
+    "metric": 0.0408,
+    "entity": 0.0394,
+    "rule": 0.0473
+   },
+   "cost_usd_per_right_answer": 0.076
+  },
+  "wrong_answers": 20
+ },
+ "flash_semantic": {
+  "layers": [
+   "semantic"
+  ],
+  "tools": [
+   "run_sql",
+   "query_metrics"
+  ],
+  "model": "gemini-3.8-flash",
+  "runs_per_question": 3,
+  "complete": true,
+  "all_questions": {
+   "runs": 72,
+   "right": 72,
+   "right_pct": 100.0,
+   "confidently_wrong": 0,
+   "confidently_wrong_pct": 0.0,
+   "declined": 0,
+   "declined_pct": 0.0,
+   "no_answer": 0,
+   "no_answer_pct": 0.0
+  },
+  "questions_needing_a_definition": {
+   "runs": 54,
+   "right": 54,
+   "right_pct": 100.0,
+   "confidently_wrong": 0,
+   "confidently_wrong_pct": 0.0,
+   "declined": 0,
+   "declined_pct": 0.0,
+   "no_answer": 0,
+   "no_answer_pct": 0.0
+  },
+  "by_group": {
+   "lookup": {
+    "runs": 18,
+    "right": 18,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "metric": {
+    "runs": 18,
+    "right": 18,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "entity": {
+    "runs": 18,
+    "right": 18,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "rule": {
+    "runs": 18,
+    "right": 18,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   }
+  },
+  "change_vs_baseline_points": {
+   "all_questions": {
+    "right": 56.2,
+    "confidently_wrong": -8.3,
+    "declined": -47.9
+   },
+   "questions_needing_a_definition": {
+    "right": 75.0,
+    "confidently_wrong": -11.1,
+    "declined": -63.9
+   },
+   "lookup": {
+    "right": 0.0,
+    "confidently_wrong": 0.0,
+    "declined": 0.0
+   },
+   "metric": {
+    "right": 86.7,
+    "confidently_wrong": -10.0,
+    "declined": -76.7
+   },
+   "entity": {
+    "right": 78.3,
+    "confidently_wrong": -10.0,
+    "declined": -68.3
+   },
+   "rule": {
+    "right": 60.0,
+    "confidently_wrong": -13.3,
+    "declined": -46.7
+   }
+  },
+  "by_question": {
+   "E1": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "E2": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "E3": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "E4": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "E5": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "E6": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "L1": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "L2": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "L3": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "L4": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "L5": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "L6": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M1": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M2": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M3": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M4": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M5": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M6": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "R1": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "R2": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "R3": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "R4": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "R5": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "R6": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   }
+  },
+  "questions_right_in_every_run": [
+   "E1",
+   "E2",
+   "E3",
+   "E4",
+   "E5",
+   "E6",
+   "L1",
+   "L2",
+   "L3",
+   "L4",
+   "L5",
+   "L6",
+   "M1",
+   "M2",
+   "M3",
+   "M4",
+   "M5",
+   "M6",
+   "R1",
+   "R2",
+   "R3",
+   "R4",
+   "R5",
+   "R6"
+  ],
+  "questions_never_right": [],
+  "discussed_questions": {
+   "M1": {
+    "gold": 87.44,
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "87.4409820585458": 2,
+     "87.44": 1
+    },
+    "wrong_readings_matched": {}
+   },
+   "E4": {
+    "gold": 1170,
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "1170": 3
+    },
+    "wrong_readings_matched": {}
+   },
+   "E2": {
+    "gold": 36,
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "36": 3
+    },
+    "wrong_readings_matched": {}
+   },
+   "E1": {
+    "gold": "Northgate Foods Group",
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "Northgate Foods Group": 3
+    },
+    "wrong_readings_matched": {}
+   },
+   "M3": {
+    "gold": 409.19,
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "409.19": 2,
+     "409.186793016": 1
+    },
+    "wrong_readings_matched": {}
+   },
+   "M2": {
+    "gold": 10294019.12,
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "10294019.12": 1,
+     "10294019.115413": 2
+    },
+    "wrong_readings_matched": {}
+   },
+   "R1": {
+    "gold": 133,
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "133": 3
+    },
+    "wrong_readings_matched": {}
+   }
+  },
+  "effort": {
+   "mean_sql_queries": 2.49,
+   "mean_model_calls": 4.81,
+   "mean_input_tokens": 19376,
+   "mean_output_tokens": 2308,
+   "cache_read_share_of_input_pct": 3.0,
+   "mean_seconds": 35.8,
+   "mean_cost_usd": 0.0228,
+   "cost_usd": 1.64,
+   "mean_cost_usd_by_group": {
+    "lookup": 0.0108,
+    "metric": 0.0327,
+    "entity": 0.0201,
+    "rule": 0.0276
+   },
+   "cost_usd_per_right_answer": 0.0228
+  },
+  "tool_use": {
+   "runs": 72,
+   "mean_calls_per_run": {
+    "run_sql": 2.49,
+    "query_metrics": 1.32
+   },
+   "total_calls": {
+    "run_sql": 179,
+    "query_metrics": 95
+   },
+   "runs_that_called": {
+    "run_sql": 66,
+    "query_metrics": 54
+   },
+   "runs_with_no_layer_call": 18,
+   "runs_with_no_sql_call": 6,
+   "runs_whose_first_call_was_sql": 25,
+   "where_a_layer_applies": {
+    "semantic": {
+     "questions": 18,
+     "runs": 54,
+     "runs_that_used_the_layer": 54,
+     "runs_that_ignored_the_layer": 0
+    }
+   },
+   "went_around_the_semantic_layer": {
+    "what": "Runs on a question that one metric query answers, in which the agent ran at least one SQL query.",
+    "runs_on_such_questions": 54,
+    "runs_that_ran_sql": 48,
+    "of_which_never_called_the_metric_tool": 0,
+    "of_which_called_both": 48,
+    "outcomes_when_sql_was_run": {
+     "runs": 48,
+     "right": 48,
+     "right_share": 1.0,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": 0.0,
+     "declined": 0,
+     "declined_share": 0.0,
+     "no_answer": 0,
+     "no_answer_share": 0.0
+    },
+    "runs_answered_from_metrics_alone": 6,
+    "outcomes_from_metrics_alone": {
+     "runs": 6,
+     "right": 6,
+     "right_share": 1.0,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": 0.0,
+     "declined": 0,
+     "declined_share": 0.0,
+     "no_answer": 0,
+     "no_answer_share": 0.0
+    }
+   }
+  },
+  "tool_use_by_group": {
+   "lookup": {
+    "runs": 18,
+    "mean_calls_per_run": {
+     "run_sql": 2.33,
+     "query_metrics": 0.0
+    },
+    "total_calls": {
+     "run_sql": 42,
+     "query_metrics": 0
+    },
+    "runs_that_called": {
+     "run_sql": 18,
+     "query_metrics": 0
+    },
+    "runs_with_no_layer_call": 18,
+    "runs_with_no_sql_call": 0,
+    "runs_whose_first_call_was_sql": 18,
+    "where_a_layer_applies": {
+     "semantic": {
+      "questions": 0,
+      "runs": 0,
+      "runs_that_used_the_layer": 0,
+      "runs_that_ignored_the_layer": 0
+     }
+    },
+    "went_around_the_semantic_layer": {
+     "what": "Runs on a question that one metric query answers, in which the agent ran at least one SQL query.",
+     "runs_on_such_questions": 0,
+     "runs_that_ran_sql": 0,
+     "of_which_never_called_the_metric_tool": 0,
+     "of_which_called_both": 0,
+     "outcomes_when_sql_was_run": {
+      "runs": 0,
+      "right": 0,
+      "right_share": null,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": null,
+      "declined": 0,
+      "declined_share": null,
+      "no_answer": 0,
+      "no_answer_share": null
+     },
+     "runs_answered_from_metrics_alone": 0,
+     "outcomes_from_metrics_alone": {
+      "runs": 0,
+      "right": 0,
+      "right_share": null,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": null,
+      "declined": 0,
+      "declined_share": null,
+      "no_answer": 0,
+      "no_answer_share": null
+     }
+    }
+   },
+   "metric": {
+    "runs": 18,
+    "mean_calls_per_run": {
+     "run_sql": 2.56,
+     "query_metrics": 1.83
+    },
+    "total_calls": {
+     "run_sql": 46,
+     "query_metrics": 33
+    },
+    "runs_that_called": {
+     "run_sql": 16,
+     "query_metrics": 18
+    },
+    "runs_with_no_layer_call": 0,
+    "runs_with_no_sql_call": 2,
+    "runs_whose_first_call_was_sql": 3,
+    "where_a_layer_applies": {
+     "semantic": {
+      "questions": 6,
+      "runs": 18,
+      "runs_that_used_the_layer": 18,
+      "runs_that_ignored_the_layer": 0
+     }
+    },
+    "went_around_the_semantic_layer": {
+     "what": "Runs on a question that one metric query answers, in which the agent ran at least one SQL query.",
+     "runs_on_such_questions": 18,
+     "runs_that_ran_sql": 16,
+     "of_which_never_called_the_metric_tool": 0,
+     "of_which_called_both": 16,
+     "outcomes_when_sql_was_run": {
+      "runs": 16,
+      "right": 16,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     },
+     "runs_answered_from_metrics_alone": 2,
+     "outcomes_from_metrics_alone": {
+      "runs": 2,
+      "right": 2,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     }
+    }
+   },
+   "entity": {
+    "runs": 18,
+    "mean_calls_per_run": {
+     "run_sql": 2.11,
+     "query_metrics": 1.78
+    },
+    "total_calls": {
+     "run_sql": 38,
+     "query_metrics": 32
+    },
+    "runs_that_called": {
+     "run_sql": 18,
+     "query_metrics": 18
+    },
+    "runs_with_no_layer_call": 0,
+    "runs_with_no_sql_call": 0,
+    "runs_whose_first_call_was_sql": 4,
+    "where_a_layer_applies": {
+     "semantic": {
+      "questions": 6,
+      "runs": 18,
+      "runs_that_used_the_layer": 18,
+      "runs_that_ignored_the_layer": 0
+     }
+    },
+    "went_around_the_semantic_layer": {
+     "what": "Runs on a question that one metric query answers, in which the agent ran at least one SQL query.",
+     "runs_on_such_questions": 18,
+     "runs_that_ran_sql": 18,
+     "of_which_never_called_the_metric_tool": 0,
+     "of_which_called_both": 18,
+     "outcomes_when_sql_was_run": {
+      "runs": 18,
+      "right": 18,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     },
+     "runs_answered_from_metrics_alone": 0,
+     "outcomes_from_metrics_alone": {
+      "runs": 0,
+      "right": 0,
+      "right_share": null,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": null,
+      "declined": 0,
+      "declined_share": null,
+      "no_answer": 0,
+      "no_answer_share": null
+     }
+    }
+   },
+   "rule": {
+    "runs": 18,
+    "mean_calls_per_run": {
+     "run_sql": 2.94,
+     "query_metrics": 1.67
+    },
+    "total_calls": {
+     "run_sql": 53,
+     "query_metrics": 30
+    },
+    "runs_that_called": {
+     "run_sql": 14,
+     "query_metrics": 18
+    },
+    "runs_with_no_layer_call": 0,
+    "runs_with_no_sql_call": 4,
+    "runs_whose_first_call_was_sql": 0,
+    "where_a_layer_applies": {
+     "semantic": {
+      "questions": 6,
+      "runs": 18,
+      "runs_that_used_the_layer": 18,
+      "runs_that_ignored_the_layer": 0
+     }
+    },
+    "went_around_the_semantic_layer": {
+     "what": "Runs on a question that one metric query answers, in which the agent ran at least one SQL query.",
+     "runs_on_such_questions": 18,
+     "runs_that_ran_sql": 14,
+     "of_which_never_called_the_metric_tool": 0,
+     "of_which_called_both": 14,
+     "outcomes_when_sql_was_run": {
+      "runs": 14,
+      "right": 14,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     },
+     "runs_answered_from_metrics_alone": 4,
+     "outcomes_from_metrics_alone": {
+      "runs": 4,
+      "right": 4,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     }
+    }
+   }
+  },
+  "limits": {
+   "runs_refused_a_further_sql_query": 0,
+   "runs_refused_a_further_layer_call": 0,
+   "runs_that_hit_the_model_call_ceiling": 0,
+   "runs_that_timed_out": 0,
+   "runs_that_ended_in_an_error": 0
+  },
+  "wrong_answers": 0,
+  "wrong_answers_matching_a_named_wrong_reading": 0,
+  "wrong_answers_that_flagged_an_assumption": 0,
+  "wrong_answers_after_calling_a_layer_tool": 0,
+  "sql_that_read_the_semantic_layer_views": 0,
+  "three_most_instructive_wrong_answers": []
+ },
+ "flash_ontology": {
+  "layers": [
+   "ontology"
+  ],
+  "tools": [
+   "run_sql",
+   "lookup_ontology"
+  ],
+  "model": "gemini-3.8-flash",
+  "runs_per_question": 3,
+  "complete": true,
+  "all_questions": {
+   "runs": 72,
+   "right": 36,
+   "right_pct": 50.0,
+   "confidently_wrong": 4,
+   "confidently_wrong_pct": 5.6,
+   "declined": 32,
+   "declined_pct": 44.4,
+   "no_answer": 0,
+   "no_answer_pct": 0.0
+  },
+  "questions_needing_a_definition": {
+   "runs": 54,
+   "right": 18,
+   "right_pct": 33.3,
+   "confidently_wrong": 4,
+   "confidently_wrong_pct": 7.4,
+   "declined": 32,
+   "declined_pct": 59.3,
+   "no_answer": 0,
+   "no_answer_pct": 0.0
+  },
+  "by_group": {
+   "lookup": {
+    "runs": 18,
+    "right": 18,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "metric": {
+    "runs": 18,
+    "right": 5,
+    "right_pct": 27.8,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 13,
+    "declined_pct": 72.2,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "entity": {
+    "runs": 18,
+    "right": 6,
+    "right_pct": 33.3,
+    "confidently_wrong": 3,
+    "confidently_wrong_pct": 16.7,
+    "declined": 9,
+    "declined_pct": 50.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "rule": {
+    "runs": 18,
+    "right": 7,
+    "right_pct": 38.9,
+    "confidently_wrong": 1,
+    "confidently_wrong_pct": 5.6,
+    "declined": 10,
+    "declined_pct": 55.6,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   }
+  },
+  "change_vs_baseline_points": {
+   "all_questions": {
+    "right": 6.2,
+    "confidently_wrong": -2.8,
+    "declined": -3.5
+   },
+   "questions_needing_a_definition": {
+    "right": 8.3,
+    "confidently_wrong": -3.7,
+    "declined": -4.6
+   },
+   "lookup": {
+    "right": 0.0,
+    "confidently_wrong": 0.0,
+    "declined": 0.0
+   },
+   "metric": {
+    "right": 14.4,
+    "confidently_wrong": -10.0,
+    "declined": -4.4
+   },
+   "entity": {
+    "right": 11.7,
+    "confidently_wrong": 6.7,
+    "declined": -18.3
+   },
+   "rule": {
+    "right": -1.1,
+    "confidently_wrong": -7.8,
+    "declined": 8.9
+   }
+  },
+  "by_question": {
+   "E1": {
+    "runs": 3,
+    "right": 1,
+    "right_pct": 33.3,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 2,
+    "declined_pct": 66.7,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "E2": {
+    "runs": 3,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 3,
+    "confidently_wrong_pct": 100.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "E3": {
+    "runs": 3,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 3,
+    "declined_pct": 100.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "E4": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "E5": {
+    "runs": 3,
+    "right": 1,
+    "right_pct": 33.3,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 2,
+    "declined_pct": 66.7,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "E6": {
+    "runs": 3,
+    "right": 1,
+    "right_pct": 33.3,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 2,
+    "declined_pct": 66.7,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "L1": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "L2": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "L3": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "L4": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "L5": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "L6": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M1": {
+    "runs": 3,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 3,
+    "declined_pct": 100.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M2": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M3": {
+    "runs": 3,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 3,
+    "declined_pct": 100.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M4": {
+    "runs": 3,
+    "right": 1,
+    "right_pct": 33.3,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 2,
+    "declined_pct": 66.7,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M5": {
+    "runs": 3,
+    "right": 1,
+    "right_pct": 33.3,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 2,
+    "declined_pct": 66.7,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M6": {
+    "runs": 3,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 3,
+    "declined_pct": 100.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "R1": {
+    "runs": 3,
+    "right": 1,
+    "right_pct": 33.3,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 2,
+    "declined_pct": 66.7,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "R2": {
+    "runs": 3,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 1,
+    "confidently_wrong_pct": 33.3,
+    "declined": 2,
+    "declined_pct": 66.7,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "R3": {
+    "runs": 3,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 3,
+    "declined_pct": 100.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "R4": {
+    "runs": 3,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 3,
+    "declined_pct": 100.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "R5": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "R6": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   }
+  },
+  "questions_right_in_every_run": [
+   "E4",
+   "L1",
+   "L2",
+   "L3",
+   "L4",
+   "L5",
+   "L6",
+   "M2",
+   "R5",
+   "R6"
+  ],
+  "questions_never_right": [
+   "E2",
+   "E3",
+   "M1",
+   "M3",
+   "M6",
+   "R2",
+   "R3",
+   "R4"
+  ],
+  "discussed_questions": {
+   "M1": {
+    "gold": 87.44,
+    "runs": 3,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 3,
+    "declined_pct": 100.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {},
+    "wrong_readings_matched": {}
+   },
+   "E4": {
+    "gold": 1170,
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "1170": 3
+    },
+    "wrong_readings_matched": {}
+   },
+   "E2": {
+    "gold": 36,
+    "runs": 3,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 3,
+    "confidently_wrong_pct": 100.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "39": 3
+    },
+    "wrong_readings_matched": {
+     "every parent account on file": 3
+    }
+   },
+   "E1": {
+    "gold": "Northgate Foods Group",
+    "runs": 3,
+    "right": 1,
+    "right_pct": 33.3,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 2,
+    "declined_pct": 66.7,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "Northgate Foods Group": 1
+    },
+    "wrong_readings_matched": {}
+   },
+   "M3": {
+    "gold": 409.19,
+    "runs": 3,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 3,
+    "declined_pct": 100.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {},
+    "wrong_readings_matched": {}
+   },
+   "M2": {
+    "gold": 10294019.12,
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "10294019.12": 3
+    },
+    "wrong_readings_matched": {}
+   },
+   "R1": {
+    "gold": 133,
+    "runs": 3,
+    "right": 1,
+    "right_pct": 33.3,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 2,
+    "declined_pct": 66.7,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "133": 1
+    },
+    "wrong_readings_matched": {}
+   }
+  },
+  "effort": {
+   "mean_sql_queries": 6.54,
+   "mean_model_calls": 13.4,
+   "mean_input_tokens": 61862,
+   "mean_output_tokens": 4091,
+   "cache_read_share_of_input_pct": 31.2,
+   "mean_seconds": 71.1,
+   "mean_cost_usd": 0.0487,
+   "cost_usd": 3.51,
+   "mean_cost_usd_by_group": {
+    "lookup": 0.0102,
+    "metric": 0.0625,
+    "entity": 0.0611,
+    "rule": 0.061
+   },
+   "cost_usd_per_right_answer": 0.0974
+  },
+  "tool_use": {
+   "runs": 72,
+   "mean_calls_per_run": {
+    "run_sql": 6.54,
+    "lookup_ontology": 5.07
+   },
+   "total_calls": {
+    "run_sql": 471,
+    "lookup_ontology": 365
+   },
+   "runs_that_called": {
+    "run_sql": 72,
+    "lookup_ontology": 68
+   },
+   "runs_with_no_layer_call": 4,
+   "runs_with_no_sql_call": 0,
+   "runs_whose_first_call_was_sql": 13,
+   "where_a_layer_applies": {
+    "ontology": {
+     "questions": 18,
+     "runs": 54,
+     "runs_that_used_the_layer": 54,
+     "runs_that_ignored_the_layer": 0
+    }
+   }
+  },
+  "tool_use_by_group": {
+   "lookup": {
+    "runs": 18,
+    "mean_calls_per_run": {
+     "run_sql": 2.28,
+     "lookup_ontology": 1.44
+    },
+    "total_calls": {
+     "run_sql": 41,
+     "lookup_ontology": 26
+    },
+    "runs_that_called": {
+     "run_sql": 18,
+     "lookup_ontology": 14
+    },
+    "runs_with_no_layer_call": 4,
+    "runs_with_no_sql_call": 0,
+    "runs_whose_first_call_was_sql": 13,
+    "where_a_layer_applies": {
+     "ontology": {
+      "questions": 0,
+      "runs": 0,
+      "runs_that_used_the_layer": 0,
+      "runs_that_ignored_the_layer": 0
+     }
+    }
+   },
+   "metric": {
+    "runs": 18,
+    "mean_calls_per_run": {
+     "run_sql": 8.0,
+     "lookup_ontology": 6.89
+    },
+    "total_calls": {
+     "run_sql": 144,
+     "lookup_ontology": 124
+    },
+    "runs_that_called": {
+     "run_sql": 18,
+     "lookup_ontology": 18
+    },
+    "runs_with_no_layer_call": 0,
+    "runs_with_no_sql_call": 0,
+    "runs_whose_first_call_was_sql": 0,
+    "where_a_layer_applies": {
+     "ontology": {
+      "questions": 6,
+      "runs": 18,
+      "runs_that_used_the_layer": 18,
+      "runs_that_ignored_the_layer": 0
+     }
+    }
+   },
+   "entity": {
+    "runs": 18,
+    "mean_calls_per_run": {
+     "run_sql": 7.89,
+     "lookup_ontology": 6.33
+    },
+    "total_calls": {
+     "run_sql": 142,
+     "lookup_ontology": 114
+    },
+    "runs_that_called": {
+     "run_sql": 18,
+     "lookup_ontology": 18
+    },
+    "runs_with_no_layer_call": 0,
+    "runs_with_no_sql_call": 0,
+    "runs_whose_first_call_was_sql": 0,
+    "where_a_layer_applies": {
+     "ontology": {
+      "questions": 6,
+      "runs": 18,
+      "runs_that_used_the_layer": 18,
+      "runs_that_ignored_the_layer": 0
+     }
+    }
+   },
+   "rule": {
+    "runs": 18,
+    "mean_calls_per_run": {
+     "run_sql": 8.0,
+     "lookup_ontology": 5.61
+    },
+    "total_calls": {
+     "run_sql": 144,
+     "lookup_ontology": 101
+    },
+    "runs_that_called": {
+     "run_sql": 18,
+     "lookup_ontology": 18
+    },
+    "runs_with_no_layer_call": 0,
+    "runs_with_no_sql_call": 0,
+    "runs_whose_first_call_was_sql": 0,
+    "where_a_layer_applies": {
+     "ontology": {
+      "questions": 6,
+      "runs": 18,
+      "runs_that_used_the_layer": 18,
+      "runs_that_ignored_the_layer": 0
+     }
+    }
+   }
+  },
+  "limits": {
+   "runs_refused_a_further_sql_query": 51,
+   "runs_refused_a_further_layer_call": 8,
+   "runs_that_hit_the_model_call_ceiling": 0,
+   "runs_that_timed_out": 0,
+   "runs_that_ended_in_an_error": 0
+  },
+  "wrong_answers": 4,
+  "wrong_answers_matching_a_named_wrong_reading": 3,
+  "wrong_answers_that_flagged_an_assumption": 3,
+  "wrong_answers_after_calling_a_layer_tool": 4,
+  "sql_that_read_the_semantic_layer_views": 0,
+  "three_most_instructive_wrong_answers": [
+   {
+    "question_id": "E2",
+    "trial": 0,
+    "answered": "39",
+    "gold": 36,
+    "wrong_reading_matched": "every parent account on file",
+    "said_it_was_assuming": true,
+    "tools_in_order": [
+     "lookup_ontology",
+     "lookup_ontology",
+     "lookup_ontology",
+     "lookup_ontology",
+     "run_sql",
+     "run_sql",
+     "run_sql",
+     "run_sql",
+     "run_sql",
+     "run_sql",
+     "run_sql",
+     "run_sql",
+     "lookup_ontology",
+     "lookup_ontology",
+     "lookup_ontology"
+    ],
+    "tool_call_counts": {
+     "lookup_ontology": 7,
+     "run_sql": 8
+    },
+    "ontology_terms_matched": [
+     [
+      "tw:Customer",
+      "tw:customer",
+      "tw:PortalOnTime"
+     ],
+     [
+      "tw:DeliveredLoad"
+     ],
+     [
+      "tw:Load",
+      "tw:BillableLoad",
+      "tw:CanceledLoad",
+      "tw:CanceledLoadFee",
+      "tw:DeliveredLoad",
+      "tw:Tender"
+     ],
+     [
+      "tw:FinalDeliveryStop"
+     ],
+     [
+      "tw:ShipperSite",
+      "tw:shipperSite"
+     ],
+     [],
+     [
+      "tw:Account",
+      "tw:Customer",
+      "tw:accountId"
+     ]
+    ],
+    "metrics_asked_for": [],
+    "where": "results/part2/runs/flash_ontology.jsonl"
+   },
+   {
+    "question_id": "R2",
+    "trial": 0,
+    "answered": "177",
+    "gold": 142,
+    "wrong_reading_matched": "",
+    "said_it_was_assuming": false,
+    "tools_in_order": [
+     "lookup_ontology",
+     "lookup_ontology",
+     "lookup_ontology",
+     "lookup_ontology",
+     "lookup_ontology",
+     "lookup_ontology",
+     "run_sql",
+     "run_sql",
+     "run_sql",
+     "run_sql",
+     "run_sql",
+     "run_sql",
+     "run_sql",
+     "run_sql"
+    ],
+    "tool_call_counts": {
+     "lookup_ontology": 6,
+     "run_sql": 8
+    },
+    "ontology_terms_matched": [
+     [
+      "tw:BillToParty",
+      "tw:BillableLoad",
+      "tw:billTo"
+     ],
+     [
+      "tw:DeliveredLoad"
+     ],
+     [
+      "tw:Tender",
+      "tw:replaces"
+     ],
+     [
+      "tw:ProofOfDelivery",
+      "tw:proofFor"
+     ],
+     [
+      "tw:FinalDeliveryStop"
+     ],
+     [
+      "tw:FinalDeliveryStop"
+     ]
+    ],
+    "metrics_asked_for": [],
+    "where": "results/part2/runs/flash_ontology.jsonl"
+   }
+  ]
+ },
+ "flash_graph": {
+  "layers": [
+   "graph"
+  ],
+  "tools": [
+   "run_sql",
+   "query_graph"
+  ],
+  "model": "gemini-3.8-flash",
+  "runs_per_question": 3,
+  "complete": true,
+  "all_questions": {
+   "runs": 72,
+   "right": 33,
+   "right_pct": 45.8,
+   "confidently_wrong": 4,
+   "confidently_wrong_pct": 5.6,
+   "declined": 35,
+   "declined_pct": 48.6,
+   "no_answer": 0,
+   "no_answer_pct": 0.0
+  },
+  "questions_needing_a_definition": {
+   "runs": 54,
+   "right": 15,
+   "right_pct": 27.8,
+   "confidently_wrong": 4,
+   "confidently_wrong_pct": 7.4,
+   "declined": 35,
+   "declined_pct": 64.8,
+   "no_answer": 0,
+   "no_answer_pct": 0.0
+  },
+  "by_group": {
+   "lookup": {
+    "runs": 18,
+    "right": 18,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "metric": {
+    "runs": 18,
+    "right": 2,
+    "right_pct": 11.1,
+    "confidently_wrong": 1,
+    "confidently_wrong_pct": 5.6,
+    "declined": 15,
+    "declined_pct": 83.3,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "entity": {
+    "runs": 18,
+    "right": 8,
+    "right_pct": 44.4,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 10,
+    "declined_pct": 55.6,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "rule": {
+    "runs": 18,
+    "right": 5,
+    "right_pct": 27.8,
+    "confidently_wrong": 3,
+    "confidently_wrong_pct": 16.7,
+    "declined": 10,
+    "declined_pct": 55.6,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   }
+  },
+  "change_vs_baseline_points": {
+   "all_questions": {
+    "right": 2.1,
+    "confidently_wrong": -2.8,
+    "declined": 0.7
+   },
+   "questions_needing_a_definition": {
+    "right": 2.8,
+    "confidently_wrong": -3.7,
+    "declined": 0.9
+   },
+   "lookup": {
+    "right": 0.0,
+    "confidently_wrong": 0.0,
+    "declined": 0.0
+   },
+   "metric": {
+    "right": -2.2,
+    "confidently_wrong": -4.4,
+    "declined": 6.7
+   },
+   "entity": {
+    "right": 22.8,
+    "confidently_wrong": -10.0,
+    "declined": -12.8
+   },
+   "rule": {
+    "right": -12.2,
+    "confidently_wrong": 3.3,
+    "declined": 8.9
+   }
+  },
+  "by_question": {
+   "E1": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "E2": {
+    "runs": 3,
+    "right": 2,
+    "right_pct": 66.7,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 1,
+    "declined_pct": 33.3,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "E3": {
+    "runs": 3,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 3,
+    "declined_pct": 100.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "E4": {
+    "runs": 3,
+    "right": 1,
+    "right_pct": 33.3,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 2,
+    "declined_pct": 66.7,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "E5": {
+    "runs": 3,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 3,
+    "declined_pct": 100.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "E6": {
+    "runs": 3,
+    "right": 2,
+    "right_pct": 66.7,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 1,
+    "declined_pct": 33.3,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "L1": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "L2": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "L3": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "L4": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "L5": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "L6": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M1": {
+    "runs": 3,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 1,
+    "confidently_wrong_pct": 33.3,
+    "declined": 2,
+    "declined_pct": 66.7,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M2": {
+    "runs": 3,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 3,
+    "declined_pct": 100.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M3": {
+    "runs": 3,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 3,
+    "declined_pct": 100.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M4": {
+    "runs": 3,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 3,
+    "declined_pct": 100.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M5": {
+    "runs": 3,
+    "right": 2,
+    "right_pct": 66.7,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 1,
+    "declined_pct": 33.3,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M6": {
+    "runs": 3,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 3,
+    "declined_pct": 100.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "R1": {
+    "runs": 3,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 1,
+    "confidently_wrong_pct": 33.3,
+    "declined": 2,
+    "declined_pct": 66.7,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "R2": {
+    "runs": 3,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 1,
+    "confidently_wrong_pct": 33.3,
+    "declined": 2,
+    "declined_pct": 66.7,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "R3": {
+    "runs": 3,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 3,
+    "declined_pct": 100.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "R4": {
+    "runs": 3,
+    "right": 2,
+    "right_pct": 66.7,
+    "confidently_wrong": 1,
+    "confidently_wrong_pct": 33.3,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "R5": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "R6": {
+    "runs": 3,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 3,
+    "declined_pct": 100.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   }
+  },
+  "questions_right_in_every_run": [
+   "E1",
+   "L1",
+   "L2",
+   "L3",
+   "L4",
+   "L5",
+   "L6",
+   "R5"
+  ],
+  "questions_never_right": [
+   "E3",
+   "E5",
+   "M1",
+   "M2",
+   "M3",
+   "M4",
+   "M6",
+   "R1",
+   "R2",
+   "R3",
+   "R6"
+  ],
+  "discussed_questions": {
+   "M1": {
+    "gold": 87.44,
+    "runs": 3,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 1,
+    "confidently_wrong_pct": 33.3,
+    "declined": 2,
+    "declined_pct": 66.7,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "92.10": 1
+    },
+    "wrong_readings_matched": {}
+   },
+   "E4": {
+    "gold": 1170,
+    "runs": 3,
+    "right": 1,
+    "right_pct": 33.3,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 2,
+    "declined_pct": 66.7,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "1174": 1
+    },
+    "wrong_readings_matched": {}
+   },
+   "E2": {
+    "gold": 36,
+    "runs": 3,
+    "right": 2,
+    "right_pct": 66.7,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 1,
+    "declined_pct": 33.3,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "36": 2
+    },
+    "wrong_readings_matched": {}
+   },
+   "E1": {
+    "gold": "Northgate Foods Group",
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "Northgate Foods Group": 3
+    },
+    "wrong_readings_matched": {}
+   },
+   "M3": {
+    "gold": 409.19,
+    "runs": 3,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 3,
+    "declined_pct": 100.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {},
+    "wrong_readings_matched": {}
+   },
+   "M2": {
+    "gold": 10294019.12,
+    "runs": 3,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 3,
+    "declined_pct": 100.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {},
+    "wrong_readings_matched": {}
+   },
+   "R1": {
+    "gold": 133,
+    "runs": 3,
+    "right": 0,
+    "right_pct": 0.0,
+    "confidently_wrong": 1,
+    "confidently_wrong_pct": 33.3,
+    "declined": 2,
+    "declined_pct": 66.7,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "93": 1
+    },
+    "wrong_readings_matched": {
+     "portal definition: delivered after the requested date": 1
+    }
+   }
+  },
+  "effort": {
+   "mean_sql_queries": 6.46,
+   "mean_model_calls": 12.46,
+   "mean_input_tokens": 58589,
+   "mean_output_tokens": 5141,
+   "cache_read_share_of_input_pct": 25.9,
+   "mean_seconds": 86.6,
+   "mean_cost_usd": 0.053,
+   "cost_usd": 3.81,
+   "mean_cost_usd_by_group": {
+    "lookup": 0.007,
+    "metric": 0.0606,
+    "entity": 0.0765,
+    "rule": 0.0678
+   },
+   "cost_usd_per_right_answer": 0.1156
+  },
+  "tool_use": {
+   "runs": 72,
+   "mean_calls_per_run": {
+    "run_sql": 6.46,
+    "query_graph": 4.03
+   },
+   "total_calls": {
+    "run_sql": 465,
+    "query_graph": 290
+   },
+   "runs_that_called": {
+    "run_sql": 72,
+    "query_graph": 58
+   },
+   "runs_with_no_layer_call": 14,
+   "runs_with_no_sql_call": 0,
+   "runs_whose_first_call_was_sql": 72,
+   "where_a_layer_applies": {
+    "graph": {
+     "questions": 13,
+     "runs": 39,
+     "runs_that_used_the_layer": 39,
+     "runs_that_ignored_the_layer": 0
+    }
+   }
+  },
+  "tool_use_by_group": {
+   "lookup": {
+    "runs": 18,
+    "mean_calls_per_run": {
+     "run_sql": 1.94,
+     "query_graph": 0.33
+    },
+    "total_calls": {
+     "run_sql": 35,
+     "query_graph": 6
+    },
+    "runs_that_called": {
+     "run_sql": 18,
+     "query_graph": 5
+    },
+    "runs_with_no_layer_call": 13,
+    "runs_with_no_sql_call": 0,
+    "runs_whose_first_call_was_sql": 18,
+    "where_a_layer_applies": {
+     "graph": {
+      "questions": 0,
+      "runs": 0,
+      "runs_that_used_the_layer": 0,
+      "runs_that_ignored_the_layer": 0
+     }
+    }
+   },
+   "metric": {
+    "runs": 18,
+    "mean_calls_per_run": {
+     "run_sql": 7.89,
+     "query_graph": 3.94
+    },
+    "total_calls": {
+     "run_sql": 142,
+     "query_graph": 71
+    },
+    "runs_that_called": {
+     "run_sql": 18,
+     "query_graph": 18
+    },
+    "runs_with_no_layer_call": 0,
+    "runs_with_no_sql_call": 0,
+    "runs_whose_first_call_was_sql": 18,
+    "where_a_layer_applies": {
+     "graph": {
+      "questions": 3,
+      "runs": 9,
+      "runs_that_used_the_layer": 9,
+      "runs_that_ignored_the_layer": 0
+     }
+    }
+   },
+   "entity": {
+    "runs": 18,
+    "mean_calls_per_run": {
+     "run_sql": 8.0,
+     "query_graph": 7.44
+    },
+    "total_calls": {
+     "run_sql": 144,
+     "query_graph": 134
+    },
+    "runs_that_called": {
+     "run_sql": 18,
+     "query_graph": 18
+    },
+    "runs_with_no_layer_call": 0,
+    "runs_with_no_sql_call": 0,
+    "runs_whose_first_call_was_sql": 18,
+    "where_a_layer_applies": {
+     "graph": {
+      "questions": 6,
+      "runs": 18,
+      "runs_that_used_the_layer": 18,
+      "runs_that_ignored_the_layer": 0
+     }
+    }
+   },
+   "rule": {
+    "runs": 18,
+    "mean_calls_per_run": {
+     "run_sql": 8.0,
+     "query_graph": 4.39
+    },
+    "total_calls": {
+     "run_sql": 144,
+     "query_graph": 79
+    },
+    "runs_that_called": {
+     "run_sql": 18,
+     "query_graph": 17
+    },
+    "runs_with_no_layer_call": 1,
+    "runs_with_no_sql_call": 0,
+    "runs_whose_first_call_was_sql": 18,
+    "where_a_layer_applies": {
+     "graph": {
+      "questions": 4,
+      "runs": 12,
+      "runs_that_used_the_layer": 12,
+      "runs_that_ignored_the_layer": 0
+     }
+    }
+   }
+  },
+  "limits": {
+   "runs_refused_a_further_sql_query": 51,
+   "runs_refused_a_further_layer_call": 19,
+   "runs_that_hit_the_model_call_ceiling": 0,
+   "runs_that_timed_out": 0,
+   "runs_that_ended_in_an_error": 0
+  },
+  "wrong_answers": 4,
+  "wrong_answers_matching_a_named_wrong_reading": 2,
+  "wrong_answers_that_flagged_an_assumption": 0,
+  "wrong_answers_after_calling_a_layer_tool": 4,
+  "sql_that_read_the_semantic_layer_views": 0,
+  "three_most_instructive_wrong_answers": [
+   {
+    "question_id": "R1",
+    "trial": 2,
+    "answered": "93",
+    "gold": 133,
+    "wrong_reading_matched": "portal definition: delivered after the requested date",
+    "said_it_was_assuming": false,
+    "tools_in_order": [
+     "run_sql",
+     "run_sql",
+     "run_sql",
+     "run_sql",
+     "query_graph",
+     "run_sql",
+     "run_sql",
+     "run_sql",
+     "run_sql"
+    ],
+    "tool_call_counts": {
+     "run_sql": 8,
+     "query_graph": 1
+    },
+    "ontology_terms_matched": [],
+    "metrics_asked_for": [],
+    "where": "results/part2/runs/flash_graph.jsonl"
+   },
+   {
+    "question_id": "R4",
+    "trial": 0,
+    "answered": "29",
+    "gold": 30,
+    "wrong_reading_matched": "UTC date of the arrival at the final stop, real loads only",
+    "said_it_was_assuming": false,
+    "tools_in_order": [
+     "run_sql",
+     "query_graph",
+     "query_graph",
+     "run_sql",
+     "run_sql",
+     "run_sql",
+     "run_sql",
+     "run_sql",
+     "run_sql",
+     "query_graph",
+     "run_sql",
+     "query_graph",
+     "query_graph",
+     "query_graph",
+     "query_graph",
+     "query_graph"
+    ],
+    "tool_call_counts": {
+     "run_sql": 8,
+     "query_graph": 8
+    },
+    "ontology_terms_matched": [],
+    "metrics_asked_for": [],
+    "where": "results/part2/runs/flash_graph.jsonl"
+   },
+   {
+    "question_id": "M1",
+    "trial": 0,
+    "answered": "92.10",
+    "gold": 87.44,
+    "wrong_reading_matched": "",
+    "said_it_was_assuming": false,
+    "tools_in_order": [
+     "run_sql",
+     "run_sql",
+     "run_sql",
+     "run_sql",
+     "run_sql",
+     "run_sql",
+     "run_sql",
+     "run_sql",
+     "query_graph"
+    ],
+    "tool_call_counts": {
+     "run_sql": 8,
+     "query_graph": 1
+    },
+    "ontology_terms_matched": [],
+    "metrics_asked_for": [],
+    "where": "results/part2/runs/flash_graph.jsonl"
+   }
+  ]
+ },
+ "flash_all_three": {
+  "layers": [
+   "semantic",
+   "ontology",
+   "graph"
+  ],
+  "tools": [
+   "run_sql",
+   "query_metrics",
+   "lookup_ontology",
+   "query_graph"
+  ],
+  "model": "gemini-3.8-flash",
+  "runs_per_question": 3,
+  "complete": true,
+  "all_questions": {
+   "runs": 72,
+   "right": 72,
+   "right_pct": 100.0,
+   "confidently_wrong": 0,
+   "confidently_wrong_pct": 0.0,
+   "declined": 0,
+   "declined_pct": 0.0,
+   "no_answer": 0,
+   "no_answer_pct": 0.0
+  },
+  "questions_needing_a_definition": {
+   "runs": 54,
+   "right": 54,
+   "right_pct": 100.0,
+   "confidently_wrong": 0,
+   "confidently_wrong_pct": 0.0,
+   "declined": 0,
+   "declined_pct": 0.0,
+   "no_answer": 0,
+   "no_answer_pct": 0.0
+  },
+  "by_group": {
+   "lookup": {
+    "runs": 18,
+    "right": 18,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "metric": {
+    "runs": 18,
+    "right": 18,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "entity": {
+    "runs": 18,
+    "right": 18,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "rule": {
+    "runs": 18,
+    "right": 18,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   }
+  },
+  "change_vs_baseline_points": {
+   "all_questions": {
+    "right": 56.2,
+    "confidently_wrong": -8.3,
+    "declined": -47.9
+   },
+   "questions_needing_a_definition": {
+    "right": 75.0,
+    "confidently_wrong": -11.1,
+    "declined": -63.9
+   },
+   "lookup": {
+    "right": 0.0,
+    "confidently_wrong": 0.0,
+    "declined": 0.0
+   },
+   "metric": {
+    "right": 86.7,
+    "confidently_wrong": -10.0,
+    "declined": -76.7
+   },
+   "entity": {
+    "right": 78.3,
+    "confidently_wrong": -10.0,
+    "declined": -68.3
+   },
+   "rule": {
+    "right": 60.0,
+    "confidently_wrong": -13.3,
+    "declined": -46.7
+   }
+  },
+  "by_question": {
+   "E1": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "E2": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "E3": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "E4": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "E5": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "E6": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "L1": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "L2": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "L3": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "L4": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "L5": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "L6": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M1": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M2": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M3": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M4": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M5": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "M6": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "R1": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "R2": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "R3": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "R4": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "R5": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "R6": {
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   }
+  },
+  "questions_right_in_every_run": [
+   "E1",
+   "E2",
+   "E3",
+   "E4",
+   "E5",
+   "E6",
+   "L1",
+   "L2",
+   "L3",
+   "L4",
+   "L5",
+   "L6",
+   "M1",
+   "M2",
+   "M3",
+   "M4",
+   "M5",
+   "M6",
+   "R1",
+   "R2",
+   "R3",
+   "R4",
+   "R5",
+   "R6"
+  ],
+  "questions_never_right": [],
+  "discussed_questions": {
+   "M1": {
+    "gold": 87.44,
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "87.4409820585458": 1,
+     "87.44": 2
+    },
+    "wrong_readings_matched": {}
+   },
+   "E4": {
+    "gold": 1170,
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "1170": 3
+    },
+    "wrong_readings_matched": {}
+   },
+   "E2": {
+    "gold": 36,
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "36": 3
+    },
+    "wrong_readings_matched": {}
+   },
+   "E1": {
+    "gold": "Northgate Foods Group",
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "Northgate Foods Group": 3
+    },
+    "wrong_readings_matched": {}
+   },
+   "M3": {
+    "gold": 409.19,
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "409.19": 3
+    },
+    "wrong_readings_matched": {}
+   },
+   "M2": {
+    "gold": 10294019.12,
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "10294019.12": 1,
+     "10294019.115413": 2
+    },
+    "wrong_readings_matched": {}
+   },
+   "R1": {
+    "gold": 133,
+    "runs": 3,
+    "right": 3,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "answers_given": {
+     "133": 3
+    },
+    "wrong_readings_matched": {}
+   }
+  },
+  "effort": {
+   "mean_sql_queries": 2.72,
+   "mean_model_calls": 6.54,
+   "mean_input_tokens": 33543,
+   "mean_output_tokens": 2096,
+   "cache_read_share_of_input_pct": 16.0,
+   "mean_seconds": 38.5,
+   "mean_cost_usd": 0.0294,
+   "cost_usd": 2.12,
+   "mean_cost_usd_by_group": {
+    "lookup": 0.0153,
+    "metric": 0.0349,
+    "entity": 0.0334,
+    "rule": 0.0339
+   },
+   "cost_usd_per_right_answer": 0.0294
+  },
+  "tool_use": {
+   "runs": 72,
+   "mean_calls_per_run": {
+    "run_sql": 2.72,
+    "query_metrics": 1.19,
+    "lookup_ontology": 1.61,
+    "query_graph": 0.04
+   },
+   "total_calls": {
+    "run_sql": 196,
+    "query_metrics": 86,
+    "lookup_ontology": 116,
+    "query_graph": 3
+   },
+   "runs_that_called": {
+    "run_sql": 66,
+    "query_metrics": 54,
+    "lookup_ontology": 65,
+    "query_graph": 3
+   },
+   "runs_with_no_layer_call": 7,
+   "runs_with_no_sql_call": 6,
+   "runs_whose_first_call_was_sql": 15,
+   "where_a_layer_applies": {
+    "semantic": {
+     "questions": 18,
+     "runs": 54,
+     "runs_that_used_the_layer": 54,
+     "runs_that_ignored_the_layer": 0
+    },
+    "ontology": {
+     "questions": 18,
+     "runs": 54,
+     "runs_that_used_the_layer": 54,
+     "runs_that_ignored_the_layer": 0
+    },
+    "graph": {
+     "questions": 13,
+     "runs": 39,
+     "runs_that_used_the_layer": 0,
+     "runs_that_ignored_the_layer": 39
+    }
+   },
+   "went_around_the_semantic_layer": {
+    "what": "Runs on a question that one metric query answers, in which the agent ran at least one SQL query.",
+    "runs_on_such_questions": 54,
+    "runs_that_ran_sql": 48,
+    "of_which_never_called_the_metric_tool": 0,
+    "of_which_called_both": 48,
+    "outcomes_when_sql_was_run": {
+     "runs": 48,
+     "right": 48,
+     "right_share": 1.0,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": 0.0,
+     "declined": 0,
+     "declined_share": 0.0,
+     "no_answer": 0,
+     "no_answer_share": 0.0
+    },
+    "runs_answered_from_metrics_alone": 6,
+    "outcomes_from_metrics_alone": {
+     "runs": 6,
+     "right": 6,
+     "right_share": 1.0,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": 0.0,
+     "declined": 0,
+     "declined_share": 0.0,
+     "no_answer": 0,
+     "no_answer_share": 0.0
+    }
+   }
+  },
+  "tool_use_by_group": {
+   "lookup": {
+    "runs": 18,
+    "mean_calls_per_run": {
+     "run_sql": 2.22,
+     "query_metrics": 0.0,
+     "lookup_ontology": 0.78,
+     "query_graph": 0.17
+    },
+    "total_calls": {
+     "run_sql": 40,
+     "query_metrics": 0,
+     "lookup_ontology": 14,
+     "query_graph": 3
+    },
+    "runs_that_called": {
+     "run_sql": 18,
+     "query_metrics": 0,
+     "lookup_ontology": 11,
+     "query_graph": 3
+    },
+    "runs_with_no_layer_call": 7,
+    "runs_with_no_sql_call": 0,
+    "runs_whose_first_call_was_sql": 15,
+    "where_a_layer_applies": {
+     "semantic": {
+      "questions": 0,
+      "runs": 0,
+      "runs_that_used_the_layer": 0,
+      "runs_that_ignored_the_layer": 0
+     },
+     "ontology": {
+      "questions": 0,
+      "runs": 0,
+      "runs_that_used_the_layer": 0,
+      "runs_that_ignored_the_layer": 0
+     },
+     "graph": {
+      "questions": 0,
+      "runs": 0,
+      "runs_that_used_the_layer": 0,
+      "runs_that_ignored_the_layer": 0
+     }
+    },
+    "went_around_the_semantic_layer": {
+     "what": "Runs on a question that one metric query answers, in which the agent ran at least one SQL query.",
+     "runs_on_such_questions": 0,
+     "runs_that_ran_sql": 0,
+     "of_which_never_called_the_metric_tool": 0,
+     "of_which_called_both": 0,
+     "outcomes_when_sql_was_run": {
+      "runs": 0,
+      "right": 0,
+      "right_share": null,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": null,
+      "declined": 0,
+      "declined_share": null,
+      "no_answer": 0,
+      "no_answer_share": null
+     },
+     "runs_answered_from_metrics_alone": 0,
+     "outcomes_from_metrics_alone": {
+      "runs": 0,
+      "right": 0,
+      "right_share": null,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": null,
+      "declined": 0,
+      "declined_share": null,
+      "no_answer": 0,
+      "no_answer_share": null
+     }
+    }
+   },
+   "metric": {
+    "runs": 18,
+    "mean_calls_per_run": {
+     "run_sql": 2.44,
+     "query_metrics": 1.72,
+     "lookup_ontology": 2.0,
+     "query_graph": 0.0
+    },
+    "total_calls": {
+     "run_sql": 44,
+     "query_metrics": 31,
+     "lookup_ontology": 36,
+     "query_graph": 0
+    },
+    "runs_that_called": {
+     "run_sql": 16,
+     "query_metrics": 18,
+     "lookup_ontology": 18,
+     "query_graph": 0
+    },
+    "runs_with_no_layer_call": 0,
+    "runs_with_no_sql_call": 2,
+    "runs_whose_first_call_was_sql": 0,
+    "where_a_layer_applies": {
+     "semantic": {
+      "questions": 6,
+      "runs": 18,
+      "runs_that_used_the_layer": 18,
+      "runs_that_ignored_the_layer": 0
+     },
+     "ontology": {
+      "questions": 6,
+      "runs": 18,
+      "runs_that_used_the_layer": 18,
+      "runs_that_ignored_the_layer": 0
+     },
+     "graph": {
+      "questions": 3,
+      "runs": 9,
+      "runs_that_used_the_layer": 0,
+      "runs_that_ignored_the_layer": 9
+     }
+    },
+    "went_around_the_semantic_layer": {
+     "what": "Runs on a question that one metric query answers, in which the agent ran at least one SQL query.",
+     "runs_on_such_questions": 18,
+     "runs_that_ran_sql": 16,
+     "of_which_never_called_the_metric_tool": 0,
+     "of_which_called_both": 16,
+     "outcomes_when_sql_was_run": {
+      "runs": 16,
+      "right": 16,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     },
+     "runs_answered_from_metrics_alone": 2,
+     "outcomes_from_metrics_alone": {
+      "runs": 2,
+      "right": 2,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     }
+    }
+   },
+   "entity": {
+    "runs": 18,
+    "mean_calls_per_run": {
+     "run_sql": 3.17,
+     "query_metrics": 1.67,
+     "lookup_ontology": 2.0,
+     "query_graph": 0.0
+    },
+    "total_calls": {
+     "run_sql": 57,
+     "query_metrics": 30,
+     "lookup_ontology": 36,
+     "query_graph": 0
+    },
+    "runs_that_called": {
+     "run_sql": 17,
+     "query_metrics": 18,
+     "lookup_ontology": 18,
+     "query_graph": 0
+    },
+    "runs_with_no_layer_call": 0,
+    "runs_with_no_sql_call": 1,
+    "runs_whose_first_call_was_sql": 0,
+    "where_a_layer_applies": {
+     "semantic": {
+      "questions": 6,
+      "runs": 18,
+      "runs_that_used_the_layer": 18,
+      "runs_that_ignored_the_layer": 0
+     },
+     "ontology": {
+      "questions": 6,
+      "runs": 18,
+      "runs_that_used_the_layer": 18,
+      "runs_that_ignored_the_layer": 0
+     },
+     "graph": {
+      "questions": 6,
+      "runs": 18,
+      "runs_that_used_the_layer": 0,
+      "runs_that_ignored_the_layer": 18
+     }
+    },
+    "went_around_the_semantic_layer": {
+     "what": "Runs on a question that one metric query answers, in which the agent ran at least one SQL query.",
+     "runs_on_such_questions": 18,
+     "runs_that_ran_sql": 17,
+     "of_which_never_called_the_metric_tool": 0,
+     "of_which_called_both": 17,
+     "outcomes_when_sql_was_run": {
+      "runs": 17,
+      "right": 17,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     },
+     "runs_answered_from_metrics_alone": 1,
+     "outcomes_from_metrics_alone": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     }
+    }
+   },
+   "rule": {
+    "runs": 18,
+    "mean_calls_per_run": {
+     "run_sql": 3.06,
+     "query_metrics": 1.39,
+     "lookup_ontology": 1.67,
+     "query_graph": 0.0
+    },
+    "total_calls": {
+     "run_sql": 55,
+     "query_metrics": 25,
+     "lookup_ontology": 30,
+     "query_graph": 0
+    },
+    "runs_that_called": {
+     "run_sql": 15,
+     "query_metrics": 18,
+     "lookup_ontology": 18,
+     "query_graph": 0
+    },
+    "runs_with_no_layer_call": 0,
+    "runs_with_no_sql_call": 3,
+    "runs_whose_first_call_was_sql": 0,
+    "where_a_layer_applies": {
+     "semantic": {
+      "questions": 6,
+      "runs": 18,
+      "runs_that_used_the_layer": 18,
+      "runs_that_ignored_the_layer": 0
+     },
+     "ontology": {
+      "questions": 6,
+      "runs": 18,
+      "runs_that_used_the_layer": 18,
+      "runs_that_ignored_the_layer": 0
+     },
+     "graph": {
+      "questions": 4,
+      "runs": 12,
+      "runs_that_used_the_layer": 0,
+      "runs_that_ignored_the_layer": 12
+     }
+    },
+    "went_around_the_semantic_layer": {
+     "what": "Runs on a question that one metric query answers, in which the agent ran at least one SQL query.",
+     "runs_on_such_questions": 18,
+     "runs_that_ran_sql": 15,
+     "of_which_never_called_the_metric_tool": 0,
+     "of_which_called_both": 15,
+     "outcomes_when_sql_was_run": {
+      "runs": 15,
+      "right": 15,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     },
+     "runs_answered_from_metrics_alone": 3,
+     "outcomes_from_metrics_alone": {
+      "runs": 3,
+      "right": 3,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     }
+    }
+   }
+  },
+  "limits": {
+   "runs_refused_a_further_sql_query": 1,
+   "runs_refused_a_further_layer_call": 0,
+   "runs_that_hit_the_model_call_ceiling": 0,
+   "runs_that_timed_out": 0,
+   "runs_that_ended_in_an_error": 0
+  },
+  "wrong_answers": 0,
+  "wrong_answers_matching_a_named_wrong_reading": 0,
+  "wrong_answers_that_flagged_an_assumption": 0,
+  "wrong_answers_after_calling_a_layer_tool": 0,
+  "sql_that_read_the_semantic_layer_views": 0,
+  "three_most_instructive_wrong_answers": []
+ },
+ "not_run": [],
+ "predictions": {
+  "rules": "results/part2/predictions.md, written before any run",
+  "two_runs_in_a_group_points": 11.1,
+  "two_runs_overall_points": 2.8,
+  "flash_semantic_moves_the_metric_group": {
+   "right_change_points_by_group": {
+    "metric": 86.7,
+    "entity": 78.3,
+    "rule": 60.0
+   },
+   "confidently_wrong_change_points_by_group": {
+    "metric": -10.0,
+    "entity": -10.0,
+    "rule": -13.3
+   },
+   "predicted_group": "metric",
+   "predicted_group_gain_points": 86.7,
+   "group_raised_most": [
+    "metric"
+   ],
+   "groups_raised_by_more_than_two_runs": [
+    "entity",
+    "metric",
+    "rule"
+   ],
+   "holds": true
+  },
+  "flash_ontology_moves_the_rule_group": {
+   "right_change_points_by_group": {
+    "metric": 14.4,
+    "entity": 11.7,
+    "rule": -1.1
+   },
+   "confidently_wrong_change_points_by_group": {
+    "metric": -10.0,
+    "entity": 6.7,
+    "rule": -7.8
+   },
+   "predicted_group": "rule",
+   "predicted_group_gain_points": -1.1,
+   "group_raised_most": [
+    "metric"
+   ],
+   "groups_raised_by_more_than_two_runs": [
+    "entity",
+    "metric"
+   ],
+   "holds": false
+  },
+  "flash_graph_moves_the_entity_group": {
+   "right_change_points_by_group": {
+    "metric": -2.2,
+    "entity": 22.8,
+    "rule": -12.2
+   },
+   "confidently_wrong_change_points_by_group": {
+    "metric": -4.4,
+    "entity": -10.0,
+    "rule": 3.3
+   },
+   "predicted_group": "entity",
+   "predicted_group_gain_points": 22.8,
+   "group_raised_most": [
+    "entity"
+   ],
+   "groups_raised_by_more_than_two_runs": [
+    "entity"
+   ],
+   "holds": true
+  },
+  "lookups_stay_where_they_are": {
+   "right_of_18_by_configuration": {
+    "flash_semantic": 18,
+    "flash_ontology": 18,
+    "flash_graph": 18,
+    "flash_all_three": 18
+   },
+   "holds": true
+  },
+  "each_layer_fixes_a_different_kind_of_wrong_answer": {
+   "group_raised_most_by_configuration": {
+    "flash_semantic": [
+     "metric"
+    ],
+    "flash_ontology": [
+     "metric"
+    ],
+    "flash_graph": [
+     "entity"
+    ]
+   },
+   "holds": false
+  },
+  "no_single_layer_closes_all_of_the_gap": {
+   "right_of_54_outside_lookups": {
+    "flash_semantic": 54,
+    "flash_ontology": 18,
+    "flash_graph": 15
+   },
+   "holds": false
+  },
+  "all_three_beat_the_best_single_layer": {
+   "best_single_layer": "flash_semantic",
+   "best_single_layer_right_pct": 100.0,
+   "all_three_right_pct": 100.0,
+   "difference_points": 0.0,
+   "best_single_layer_confidently_wrong_pct": 0.0,
+   "all_three_confidently_wrong_pct": 0.0,
+   "holds": false
+  }
+ },
+ "all_new_runs": {
+  "runs": 288,
+  "cost_usd": 11.08
+ },
+ "quoted_runs": {
+  "ontology_read_the_definition_and_declined": {
+   "where": "results/part2/runs/flash_ontology.jsonl",
+   "question_id": "M1",
+   "trial": 2,
+   "outcome": "declined",
+   "answered": "NEEDS_CLARIFICATION",
+   "gold": 87.44,
+   "tool_call_counts": {
+    "lookup_ontology": 7,
+    "run_sql": 8
+   },
+   "queries_refused_over_limit": 1,
+   "mentions_query_limit": true
+  },
+  "semantic_layer_answered": {
+   "where": "results/part2/runs/flash_semantic.jsonl",
+   "question_id": "M1",
+   "trial": 2,
+   "outcome": "right",
+   "answered": "87.44",
+   "gold": 87.44,
+   "tool_call_counts": {
+    "query_metrics": 1,
+    "run_sql": 2
+   },
+   "queries_refused_over_limit": 0,
+   "mentions_query_limit": false
+  }
+ },
+ "ontology_declines": {
+  "declines": 32,
+  "declines_after_reading_the_ontology": 32,
+  "declines_that_mention_the_query_limit": 23,
+  "declines_refused_a_ninth_query": 32,
+  "m1_runs": 3,
+  "m1_declines": 3,
+  "m1_declines_that_state_the_official_definition": 3
+ },
+ "semantic_layer_against_baseline_cost_cents": {
+  "baseline": 3.32,
+  "flash_semantic": 2.28
+ },
+ "fairness_test": {
+  "source": "results/holdout/article_numbers.json (side_by_side)",
+  "held_out_12_questions": {
+   "baseline": {
+    "runs": 36,
+    "right": 5,
+    "right_pct": 13.9,
+    "confidently_wrong": 5,
+    "confidently_wrong_pct": 13.9,
+    "declined": 26,
+    "declined_pct": 72.2,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "flash_semantic": {
+    "runs": 36,
+    "right": 36,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "change_points": {
+    "right": 86.1,
+    "confidently_wrong": -13.9,
+    "declined": -72.2
+   }
+  },
+  "all_24_questions": {
+   "baseline": {
+    "runs": 240,
+    "right": 105,
+    "right_pct": 43.8,
+    "confidently_wrong": 20,
+    "confidently_wrong_pct": 8.3,
+    "declined": 115,
+    "declined_pct": 47.9,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "runs_per_question": 10
+   },
+   "flash_semantic": {
+    "runs": 72,
+    "right": 72,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "runs_per_question": 3
+   },
+   "change_points": {
+    "right": 56.2,
+    "confidently_wrong": -8.3,
+    "declined": -47.9
+   }
+  }
+ },
+ "spend": {
+  "note": "Estimated spend on agent runs for Parts 2 to 7, smoke tests and discarded runs included. Part 1 was spent before this budget was approved and is listed apart; it does not count toward the cap.",
+  "updated_at": "2026-10-09T22:50:23+00:00",
+  "part1_spent_usd_not_counted_toward_cap": 26.52,
+  "approved_usd_parts_2_to_7": 35.0,
+  "hard_cap_usd_parts_2_to_7": 45.0,
+  "parts": {
+   "2": {
+    "line_usd": 9.6,
+    "spent_usd": 11.7682,
+    "model_usd": 11.6473,
+    "bigquery_usd": 0.1209,
+    "by_folder": {
+     "full run": {
+      "runs": 292,
+      "model_usd": 11.2738,
+      "bigquery_usd": 0.117
+     },
+     "smoke": {
+      "runs": 8,
+      "model_usd": 0.3157,
+      "bigquery_usd": 0.0034
+     },
+     "smoke2": {
+      "runs": 1,
+      "model_usd": 0.0578,
+      "bigquery_usd": 0.0005
+     }
+    }
+   },
+   "holdout": {
+    "what": "Held-out fairness test for Part 2: 12 questions, baseline and semantic layer.",
+    "line_usd": 4.0,
+    "spent_usd": 3.2654,
+    "model_usd": 3.212,
+    "bigquery_usd": 0.0534,
+    "by_folder": {
+     "full run": {
+      "runs": 72,
+      "model_usd": 3.0908,
+      "bigquery_usd": 0.0508
+     },
+     "smoke": {
+      "runs": 4,
+      "model_usd": 0.1212,
+      "bigquery_usd": 0.0026
+     }
+    }
+   }
+  },
+  "spent_usd_parts_2_to_7": 15.0336,
+  "remaining_to_approved_usd": 19.9664,
+  "remaining_to_hard_cap_usd": 29.9664
+ }
+}

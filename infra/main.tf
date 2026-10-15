@@ -3,13 +3,15 @@
 # What this creates:
 #   - the two APIs the code uses, switched on: BigQuery and Vertex AI
 #   - one BigQuery dataset, private to the project's owners
+#   - from Part 2, a second private dataset that holds the semantic layer's views
 #   - optionally, read-only access for the people named in reader_emails
 #
 # What it leaves to scripts in the repo, because they need the code:
 #   - generating and loading the data: python -m tessaway.warehouse.load
+#   - building the semantic layer's views: dbt run, in semantic_layer/
 #
 # Nothing here is public, and nothing here is a key, a password or a token.
-# `terraform destroy` removes the dataset and everything in it.
+# `terraform destroy` removes both datasets and everything in them.
 
 locals {
   services = [
@@ -58,6 +60,39 @@ resource "google_bigquery_dataset" "warehouse" {
   }
 
   # Readers can query the tables. They cannot change or delete them.
+  dynamic "access" {
+    for_each = toset(var.reader_emails)
+    content {
+      role          = "READER"
+      user_by_email = access.value
+    }
+  }
+
+  labels = {
+    series = "what-your-agents-dont-know"
+    data   = "synthetic"
+  }
+
+  depends_on = [google_project_service.enabled]
+}
+
+# Part 2: the semantic layer's views. dbt builds them here, apart from the
+# warehouse, so the tables the agents are shown stay exactly as Part 1 left them.
+resource "google_bigquery_dataset" "semantic" {
+  project       = var.project_id
+  dataset_id    = var.semantic_dataset_id
+  location      = var.bq_location
+  friendly_name = "Tessaway Freight semantic layer views (fictional)"
+  description   = "Views built by dbt for the MetricFlow semantic layer in Part 2 of What Your Agents Don't Know. They read the synthetic warehouse and hold no data of their own."
+
+  # Views only, rebuilt by dbt, so destroy may remove them.
+  delete_contents_on_destroy = true
+
+  access {
+    role          = "OWNER"
+    special_group = "projectOwners"
+  }
+
   dynamic "access" {
     for_each = toset(var.reader_emails)
     content {

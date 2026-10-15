@@ -1,0 +1,545 @@
+{
+ "written_at": "2026-10-13T15:53:29+00:00",
+ "note": "Three runs per question: one run is 1.4 points of a 72-run share, 2.8 points of a 36-run share and 5.6 points within a question group of six. Small differences are not findings.",
+ "contract_version": "1.0.0",
+ "configurations": {
+  "available": {
+   "config": "available",
+   "configuration": "available",
+   "question_set": "part1",
+   "tools": [
+    "run_sql",
+    "lookup_definition",
+    "compute_metric",
+    "check_rule",
+    "resolve_entity"
+   ],
+   "runtime_package": "google-adk==2.11.0",
+   "mcp_package": "mcp==2.3.0",
+   "model": "gemini-3.8-flash",
+   "model_reported_by_provider": [
+    "gemini-3.8-flash"
+   ],
+   "contract_version": "1.0.0",
+   "question_count": 1,
+   "runs_per_question": 1,
+   "runs_expected": 1,
+   "runs_saved": 1,
+   "complete": true,
+   "runs_repeated_after_a_failure": 0,
+   "first_run_finished_at": "2026-10-13T15:43:46+00:00",
+   "last_run_finished_at": "2026-10-13T15:43:46+00:00",
+   "sql_query_limit": 8,
+   "contract_call_limit_per_operation": 8,
+   "model_call_ceiling": 48,
+   "summary": {
+    "overall": {
+     "runs": 1,
+     "right": 1,
+     "right_share": 1.0,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": 0.0,
+     "declined": 0,
+     "declined_share": 0.0,
+     "no_answer": 0,
+     "no_answer_share": 0.0
+    },
+    "by_group": {
+     "metric": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     }
+    },
+    "by_question": {
+     "M1": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "metric",
+      "mean_input_tokens": 32956.0,
+      "mean_output_tokens": 3565.0,
+      "mean_cost_usd": 0.0355,
+      "mean_queries": 1.0,
+      "decoys_matched": {}
+     }
+    },
+    "wrong_answers_that_flagged_an_assumption": 0,
+    "wrong_answers": 0,
+    "declines": 0,
+    "declines_that_mention_the_query_limit": 0,
+    "runs_that_used_every_query": 0,
+    "mean_cost_usd_per_question": 0.0355,
+    "mean_input_tokens_per_question": 32956.0,
+    "mean_output_tokens_per_question": 3565.0,
+    "total_cost_usd": 0.0355
+   },
+   "effort": {
+    "mean_input_tokens": 32956,
+    "mean_output_tokens": 3565,
+    "cache_read_share_of_input": 0.1174,
+    "runs_with_a_cache_read": 1,
+    "mean_model_calls": 6.0,
+    "mean_sql_queries": 1.0,
+    "mean_seconds": 43.8,
+    "mean_cost_usd": 0.0355,
+    "total_cost_usd": 0.0355
+   },
+   "answer_source": {
+    "runs": 1,
+    "contract": {
+     "runs": 0,
+     "right": 0,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "sql": {
+     "runs": 0,
+     "right": 0,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "both": {
+     "runs": 1,
+     "right": 1,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "neither": {
+     "runs": 0,
+     "right": 0,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "no_answer_value": {
+     "runs": 0,
+     "right": 0,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    }
+   },
+   "answer_source_by_group": {
+    "metric": {
+     "runs": 1,
+     "contract": {
+      "runs": 0,
+      "right": 0,
+      "confidently_wrong": 0,
+      "declined": 0,
+      "no_answer": 0
+     },
+     "sql": {
+      "runs": 0,
+      "right": 0,
+      "confidently_wrong": 0,
+      "declined": 0,
+      "no_answer": 0
+     },
+     "both": {
+      "runs": 1,
+      "right": 1,
+      "confidently_wrong": 0,
+      "declined": 0,
+      "no_answer": 0
+     },
+     "neither": {
+      "runs": 0,
+      "right": 0,
+      "confidently_wrong": 0,
+      "declined": 0,
+      "no_answer": 0
+     },
+     "no_answer_value": {
+      "runs": 0,
+      "right": 0,
+      "confidently_wrong": 0,
+      "declined": 0,
+      "no_answer": 0
+     }
+    }
+   },
+   "tool_use": {
+    "runs": 1,
+    "mean_calls_per_run": {
+     "run_sql": 1.0,
+     "lookup_definition": 2.0,
+     "compute_metric": 1.0,
+     "check_rule": 1.0,
+     "resolve_entity": 0.0
+    },
+    "runs_that_called": {
+     "run_sql": 1,
+     "lookup_definition": 1,
+     "compute_metric": 1,
+     "check_rule": 1,
+     "resolve_entity": 0
+    },
+    "runs_with_no_contract_call": 0,
+    "runs_with_no_sql_call": 0,
+    "runs_whose_first_call_was_sql": 0,
+    "runs_whose_first_call_was_the_contract": 1,
+    "where_one_metric_answers": {
+     "what": "Runs on the 18 Part 1 questions one metric query answers (run_part2.applies_to).",
+     "runs": 1,
+     "called_compute_metric": 1,
+     "ran_sql": 1,
+     "called_both": 1,
+     "sql_only": 0,
+     "contract_only": 0
+    }
+   },
+   "versions": {
+    "contract_responses": 4,
+    "with_version_and_response_id": 4,
+    "versions_seen": {
+     "1.0.0": 4
+    },
+    "all_stamped": true
+   },
+   "limits": {
+    "runs_refused_a_further_sql_query": 0,
+    "runs_refused_a_further_contract_call": 0,
+    "runs_that_hit_the_model_call_ceiling": 0,
+    "runs_that_timed_out": 0,
+    "runs_that_ended_in_an_error": 0
+   }
+  },
+  "routed": {
+   "config": "routed",
+   "configuration": "routed",
+   "question_set": "part1",
+   "tools": [
+    "lookup_definition",
+    "compute_metric",
+    "check_rule",
+    "resolve_entity"
+   ],
+   "runtime_package": "google-adk==2.11.0",
+   "mcp_package": "mcp==2.3.0",
+   "model": "gemini-3.8-flash",
+   "model_reported_by_provider": [
+    "gemini-3.8-flash"
+   ],
+   "contract_version": "1.0.0",
+   "question_count": 1,
+   "runs_per_question": 1,
+   "runs_expected": 1,
+   "runs_saved": 1,
+   "complete": true,
+   "runs_repeated_after_a_failure": 0,
+   "first_run_finished_at": "2026-10-13T15:45:15+00:00",
+   "last_run_finished_at": "2026-10-13T15:45:15+00:00",
+   "sql_query_limit": 8,
+   "contract_call_limit_per_operation": 8,
+   "model_call_ceiling": 48,
+   "summary": {
+    "overall": {
+     "runs": 1,
+     "right": 1,
+     "right_share": 1.0,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": 0.0,
+     "declined": 0,
+     "declined_share": 0.0,
+     "no_answer": 0,
+     "no_answer_share": 0.0
+    },
+    "by_group": {
+     "metric": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     }
+    },
+    "by_question": {
+     "M1": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "metric",
+      "mean_input_tokens": 32955.0,
+      "mean_output_tokens": 2229.0,
+      "mean_cost_usd": 0.0305,
+      "mean_queries": 0.0,
+      "decoys_matched": {}
+     }
+    },
+    "wrong_answers_that_flagged_an_assumption": 0,
+    "wrong_answers": 0,
+    "declines": 0,
+    "declines_that_mention_the_query_limit": 0,
+    "runs_that_used_every_query": 0,
+    "mean_cost_usd_per_question": 0.0305,
+    "mean_input_tokens_per_question": 32955.0,
+    "mean_output_tokens_per_question": 2229.0,
+    "total_cost_usd": 0.0305
+   },
+   "effort": {
+    "mean_input_tokens": 32955,
+    "mean_output_tokens": 2229,
+    "cache_read_share_of_input": 0.1169,
+    "runs_with_a_cache_read": 1,
+    "mean_model_calls": 7.0,
+    "mean_sql_queries": 0.0,
+    "mean_seconds": 88.9,
+    "mean_cost_usd": 0.0305,
+    "total_cost_usd": 0.0305
+   },
+   "answer_source": {
+    "runs": 1,
+    "contract": {
+     "runs": 1,
+     "right": 1,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "sql": {
+     "runs": 0,
+     "right": 0,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "both": {
+     "runs": 0,
+     "right": 0,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "neither": {
+     "runs": 0,
+     "right": 0,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "no_answer_value": {
+     "runs": 0,
+     "right": 0,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    }
+   },
+   "answer_source_by_group": {
+    "metric": {
+     "runs": 1,
+     "contract": {
+      "runs": 1,
+      "right": 1,
+      "confidently_wrong": 0,
+      "declined": 0,
+      "no_answer": 0
+     },
+     "sql": {
+      "runs": 0,
+      "right": 0,
+      "confidently_wrong": 0,
+      "declined": 0,
+      "no_answer": 0
+     },
+     "both": {
+      "runs": 0,
+      "right": 0,
+      "confidently_wrong": 0,
+      "declined": 0,
+      "no_answer": 0
+     },
+     "neither": {
+      "runs": 0,
+      "right": 0,
+      "confidently_wrong": 0,
+      "declined": 0,
+      "no_answer": 0
+     },
+     "no_answer_value": {
+      "runs": 0,
+      "right": 0,
+      "confidently_wrong": 0,
+      "declined": 0,
+      "no_answer": 0
+     }
+    }
+   },
+   "tool_use": {
+    "runs": 1,
+    "mean_calls_per_run": {
+     "run_sql": 0.0,
+     "lookup_definition": 3.0,
+     "compute_metric": 1.0,
+     "check_rule": 2.0,
+     "resolve_entity": 0.0
+    },
+    "runs_that_called": {
+     "run_sql": 0,
+     "lookup_definition": 1,
+     "compute_metric": 1,
+     "check_rule": 1,
+     "resolve_entity": 0
+    },
+    "runs_with_no_contract_call": 0,
+    "runs_with_no_sql_call": 1,
+    "runs_whose_first_call_was_sql": 0,
+    "runs_whose_first_call_was_the_contract": 1,
+    "where_one_metric_answers": {
+     "what": "Runs on the 18 Part 1 questions one metric query answers (run_part2.applies_to).",
+     "runs": 1,
+     "called_compute_metric": 1,
+     "ran_sql": 0,
+     "called_both": 0,
+     "sql_only": 0,
+     "contract_only": 1
+    }
+   },
+   "versions": {
+    "contract_responses": 6,
+    "with_version_and_response_id": 6,
+    "versions_seen": {
+     "1.0.0": 6
+    },
+    "all_stamped": true
+   },
+   "limits": {
+    "runs_refused_a_further_sql_query": 0,
+    "runs_refused_a_further_contract_call": 0,
+    "runs_that_hit_the_model_call_ceiling": 0,
+    "runs_that_timed_out": 0,
+    "runs_that_ended_in_an_error": 0
+   }
+  }
+ },
+ "where_routing_breaks": {
+  "lookups": [],
+  "h11": []
+ },
+ "cost_per_question": [
+  {
+   "question_id": "M1",
+   "group": "metric",
+   "available": {
+    "mean_input_tokens": 32956,
+    "mean_output_tokens": 3565,
+    "cache_read_share_of_input": 0.1174,
+    "runs_with_a_cache_read": 1,
+    "mean_model_calls": 6.0,
+    "mean_sql_queries": 1.0,
+    "mean_seconds": 43.8,
+    "mean_cost_usd": 0.0355,
+    "total_cost_usd": 0.0355
+   },
+   "routed": {
+    "mean_input_tokens": 32955,
+    "mean_output_tokens": 2229,
+    "cache_read_share_of_input": 0.1169,
+    "runs_with_a_cache_read": 1,
+    "mean_model_calls": 7.0,
+    "mean_sql_queries": 0.0,
+    "mean_seconds": 88.9,
+    "mean_cost_usd": 0.0305,
+    "total_cost_usd": 0.0305
+   }
+  }
+ ],
+ "server_log_check": {
+  "runs": 2,
+  "runs_agreeing": 2,
+  "agent_calls": 10,
+  "server_lines": 10,
+  "agreeing_calls": 10,
+  "agent_calls_missing_from_server_log": 0,
+  "agent_calls_without_response": 0,
+  "server_lines_missing_from_agent_record": 0,
+  "calls_that_differ": 0,
+  "runs_with_a_problem": 0,
+  "runs_cut_off_with_a_problem": 0,
+  "callers_in_log": {
+   "tw-p3-agent-available@PROJECT.iam.gserviceaccount.com": 4,
+   "tw-p3-agent-routed@PROJECT.iam.gserviceaccount.com": 6
+  },
+  "problems": []
+ },
+ "auth_check": {
+  "checked_at": "2026-10-13T15:40:26+00:00",
+  "endpoint": "CONTRACT_URL/mcp",
+  "results": [
+   {
+    "call": "no token",
+    "http_status": 403,
+    "outcome": "refused",
+    "expected": "refused",
+    "as_expected": true
+   },
+   {
+    "call": "a token with a forged signature",
+    "http_status": 401,
+    "outcome": "refused",
+    "expected": "refused",
+    "as_expected": true
+   },
+   {
+    "call": "the routed agent's ID token",
+    "http_status": 200,
+    "outcome": "accepted",
+    "expected": "accepted",
+    "as_expected": true
+   }
+  ],
+  "all_as_expected": true
+ },
+ "predictions": [],
+ "spend": {
+  "note": "Estimated from token counts and list prices in tessaway/config.py, and BigQuery bytes billed at the on-demand rate (the SQL tool's from each run, the contract's from the server log). Every run ever saved under results/part3 is counted. The invoices are the authority.",
+  "prices_checked_on": "2026-10-09",
+  "gemini_by_folder": {
+   "full run": {
+    "runs": 4,
+    "model_usd": 0.05,
+    "bigquery_usd": 0.0003
+   },
+   "smoke": {
+    "runs": 6,
+    "model_usd": 0.2556,
+    "bigquery_usd": 0.0005
+   }
+  },
+  "gemini_model_usd": 0.3056,
+  "bigquery_usd": 0.0042,
+  "contract_bigquery_usd": 0.003397,
+  "gemini_total_usd": 0.3098,
+  "anthropic": {
+   "runs": 1,
+   "usd": 0.0215
+  }
+ }
+}

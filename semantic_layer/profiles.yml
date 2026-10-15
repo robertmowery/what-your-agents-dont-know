@@ -1,0 +1,17 @@
+# No secrets here. dbt signs in with Application Default Credentials
+# (gcloud auth application-default login), the same as the rest of the repo.
+# The project always comes from the environment, never from a machine default.
+tessaway:
+  target: bigquery
+  outputs:
+    bigquery:
+      type: bigquery
+      method: oauth
+      project: "{{ env_var('GOOGLE_CLOUD_PROJECT') }}"
+      execution_project: "{{ env_var('GOOGLE_CLOUD_PROJECT') }}"
+      quota_project: "{{ env_var('GOOGLE_CLOUD_PROJECT') }}"
+      dataset: "{{ env_var('BQ_SEMANTIC_DATASET', 'tessaway_sem') }}"
+      location: "{{ env_var('BQ_LOCATION', 'US') }}"
+      threads: 4
+      priority: interactive
+      maximum_bytes_billed: 209715200

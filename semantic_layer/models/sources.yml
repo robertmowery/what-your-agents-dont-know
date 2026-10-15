@@ -1,0 +1,20 @@
+# The Part 1 warehouse, read and never written.
+sources:
+  - name: warehouse
+    database: "{{ env_var('GOOGLE_CLOUD_PROJECT') }}"
+    schema: "{{ env_var('BQ_DATASET', 'tessaway_wh') }}"
+    tables:
+      - name: tms_load_hdr
+      - name: tms_stop
+      - name: tms_stat_evt
+      - name: tms_carr
+      - name: mdm_cust_acct
+      - name: bil_cust_inv
+      - name: bil_pod_doc
+      - name: bil_carr_pay
+      - name: bil_fuel_schg
+      - name: bil_accsrl_chrg
+      - name: bil_cr_memo
+      - name: bil_canc_fee
+      - name: ref_fx_rate
+      - name: ptl_shpmt

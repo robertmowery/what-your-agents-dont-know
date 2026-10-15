@@ -1,6 +1,7 @@
 __pycache__/
 *.pyc
 .venv/
+.venv-dbt/
 .env
 .env.*
 *.egg-info/
@@ -20,3 +21,9 @@ logs/
 
 # Generated warehouse files: rebuilt from the fixed seed
 data/generated/
+
+# dbt: compiled output and logs
+semantic_layer/target/
+semantic_layer/logs/
+semantic_layer/dbt_packages/
+semantic_layer/.user.yml

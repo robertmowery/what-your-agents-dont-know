@@ -1,0 +1,1753 @@
+{
+ "written_at": "2026-10-09T22:50:23+00:00",
+ "bins": [
+  "right",
+  "confidently_wrong",
+  "declined",
+  "no_answer"
+ ],
+ "note": "Twelve held-out questions, three runs each: 36 runs a configuration. One run is 2.8 points of an overall share and 8.3 points within a question group of four. Small differences are not findings.",
+ "coverage_checked_at": "2026-10-09T22:28:25+00:00",
+ "coverage_counts": {
+  "one_metric_query": 0,
+  "metric_plus_filter": 8,
+  "several_or_arithmetic": 3,
+  "not_answerable": 1
+ },
+ "coverage_class_of_question": {
+  "H1": "metric_plus_filter",
+  "H2": "metric_plus_filter",
+  "H3": "several_or_arithmetic",
+  "H4": "metric_plus_filter",
+  "H5": "metric_plus_filter",
+  "H6": "several_or_arithmetic",
+  "H7": "several_or_arithmetic",
+  "H8": "metric_plus_filter",
+  "H9": "metric_plus_filter",
+  "H10": "metric_plus_filter",
+  "H11": "not_answerable",
+  "H12": "metric_plus_filter"
+ },
+ "configurations": [
+  {
+   "config": "baseline",
+   "what": "The Part 1 Flash agent: the schema and the SQL tool only.",
+   "layers": [],
+   "tools": [
+    "run_sql"
+   ],
+   "runtime": "adk",
+   "runtime_package": "google-adk==2.11.0",
+   "model": "gemini-3.8-flash",
+   "model_reported_by_provider": [
+    "gemini-3.8-flash"
+   ],
+   "model_and_prices_checked_on": "2026-10-09",
+   "usd_per_million_tokens": {
+    "input": 0.75,
+    "output": 3.75,
+    "cache_read": 0.075
+   },
+   "first_run_finished_at": "2026-10-09T22:34:32+00:00",
+   "last_run_finished_at": "2026-10-09T22:42:56+00:00",
+   "question_file": "questions/holdout.yaml",
+   "question_count": 12,
+   "runs_per_question": 3,
+   "runs_expected": 36,
+   "runs_saved": 36,
+   "complete": true,
+   "runs_repeated_after_a_failure": 0,
+   "sql_query_limit": 8,
+   "layer_call_limit_per_tool": null,
+   "model_call_ceiling": 16,
+   "data_seed": 20261009,
+   "summary": {
+    "overall": {
+     "runs": 36,
+     "right": 5,
+     "right_share": 0.1389,
+     "confidently_wrong": 5,
+     "confidently_wrong_share": 0.1389,
+     "declined": 26,
+     "declined_share": 0.7222,
+     "no_answer": 0,
+     "no_answer_share": 0.0
+    },
+    "by_group": {
+     "metric": {
+      "runs": 12,
+      "right": 0,
+      "right_share": 0.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 12,
+      "declined_share": 1.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     },
+     "rule": {
+      "runs": 12,
+      "right": 3,
+      "right_share": 0.25,
+      "confidently_wrong": 1,
+      "confidently_wrong_share": 0.0833,
+      "declined": 8,
+      "declined_share": 0.6667,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     },
+     "entity": {
+      "runs": 12,
+      "right": 2,
+      "right_share": 0.1667,
+      "confidently_wrong": 4,
+      "confidently_wrong_share": 0.3333,
+      "declined": 6,
+      "declined_share": 0.5,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     }
+    },
+    "by_question": {
+     "H1": {
+      "runs": 3,
+      "right": 0,
+      "right_share": 0.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 3,
+      "declined_share": 1.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "metric",
+      "mean_input_tokens": 29921.6667,
+      "mean_output_tokens": 3976.6667,
+      "mean_cost_usd": 0.0374,
+      "mean_queries": 8.0,
+      "decoys_matched": {}
+     },
+     "H10": {
+      "runs": 3,
+      "right": 0,
+      "right_share": 0.0,
+      "confidently_wrong": 1,
+      "confidently_wrong_share": 0.3333,
+      "declined": 2,
+      "declined_share": 0.6667,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "rule",
+      "mean_input_tokens": 29270.0,
+      "mean_output_tokens": 4005.6667,
+      "mean_cost_usd": 0.037,
+      "mean_queries": 8.0,
+      "decoys_matched": {
+       "shipper-delayed loads the portal shows as late": 1
+      }
+     },
+     "H11": {
+      "runs": 3,
+      "right": 1,
+      "right_share": 0.3333,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 2,
+      "declined_share": 0.6667,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "rule",
+      "mean_input_tokens": 27056.6667,
+      "mean_output_tokens": 7135.3333,
+      "mean_cost_usd": 0.0466,
+      "mean_queries": 8.0,
+      "decoys_matched": {}
+     },
+     "H12": {
+      "runs": 3,
+      "right": 2,
+      "right_share": 0.6667,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 1,
+      "declined_share": 0.3333,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "rule",
+      "mean_input_tokens": 37408.3333,
+      "mean_output_tokens": 9136.0,
+      "mean_cost_usd": 0.0578,
+      "mean_queries": 8.0,
+      "decoys_matched": {}
+     },
+     "H2": {
+      "runs": 3,
+      "right": 0,
+      "right_share": 0.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 3,
+      "declined_share": 1.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "metric",
+      "mean_input_tokens": 29753.3333,
+      "mean_output_tokens": 4258.0,
+      "mean_cost_usd": 0.0383,
+      "mean_queries": 8.0,
+      "decoys_matched": {}
+     },
+     "H3": {
+      "runs": 3,
+      "right": 0,
+      "right_share": 0.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 3,
+      "declined_share": 1.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "metric",
+      "mean_input_tokens": 30943.3333,
+      "mean_output_tokens": 3674.3333,
+      "mean_cost_usd": 0.0364,
+      "mean_queries": 8.0,
+      "decoys_matched": {}
+     },
+     "H4": {
+      "runs": 3,
+      "right": 0,
+      "right_share": 0.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 3,
+      "declined_share": 1.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "metric",
+      "mean_input_tokens": 33198.0,
+      "mean_output_tokens": 3996.0,
+      "mean_cost_usd": 0.0375,
+      "mean_queries": 8.0,
+      "decoys_matched": {}
+     },
+     "H5": {
+      "runs": 3,
+      "right": 2,
+      "right_share": 0.6667,
+      "confidently_wrong": 1,
+      "confidently_wrong_share": 0.3333,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "entity",
+      "mean_input_tokens": 29972.3333,
+      "mean_output_tokens": 8135.0,
+      "mean_cost_usd": 0.053,
+      "mean_queries": 8.0,
+      "decoys_matched": {}
+     },
+     "H6": {
+      "runs": 3,
+      "right": 0,
+      "right_share": 0.0,
+      "confidently_wrong": 1,
+      "confidently_wrong_share": 0.3333,
+      "declined": 2,
+      "declined_share": 0.6667,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "entity",
+      "mean_input_tokens": 29998.6667,
+      "mean_output_tokens": 5761.3333,
+      "mean_cost_usd": 0.0441,
+      "mean_queries": 8.0,
+      "decoys_matched": {
+       "shipper account rows over the line, on linehaul from the load table": 1
+      }
+     },
+     "H7": {
+      "runs": 3,
+      "right": 0,
+      "right_share": 0.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 3,
+      "declined_share": 1.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "entity",
+      "mean_input_tokens": 34082.0,
+      "mean_output_tokens": 3753.0,
+      "mean_cost_usd": 0.0369,
+      "mean_queries": 8.0,
+      "decoys_matched": {}
+     },
+     "H8": {
+      "runs": 3,
+      "right": 0,
+      "right_share": 0.0,
+      "confidently_wrong": 2,
+      "confidently_wrong_share": 0.6667,
+      "declined": 1,
+      "declined_share": 0.3333,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "entity",
+      "mean_input_tokens": 44427.3333,
+      "mean_output_tokens": 7297.0,
+      "mean_cost_usd": 0.0532,
+      "mean_queries": 8.0,
+      "decoys_matched": {
+       "test and voided rows removed, re-tenders still counted twice": 2
+      }
+     },
+     "H9": {
+      "runs": 3,
+      "right": 0,
+      "right_share": 0.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 3,
+      "declined_share": 1.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "rule",
+      "mean_input_tokens": 31663.3333,
+      "mean_output_tokens": 3310.0,
+      "mean_cost_usd": 0.0354,
+      "mean_queries": 8.0,
+      "decoys_matched": {}
+     }
+    },
+    "wrong_answers_that_flagged_an_assumption": 0,
+    "wrong_answers": 5,
+    "declines": 26,
+    "declines_that_mention_the_query_limit": 2,
+    "runs_that_used_every_query": 36,
+    "mean_cost_usd_per_question": 0.0428,
+    "mean_input_tokens_per_question": 32307.9167,
+    "mean_output_tokens_per_question": 5369.8611,
+    "total_cost_usd": 1.5406
+   },
+   "by_coverage_class": {
+    "metric_plus_filter": {
+     "runs": 24,
+     "right": 4,
+     "right_share": 0.1667,
+     "confidently_wrong": 4,
+     "confidently_wrong_share": 0.1667,
+     "declined": 16,
+     "declined_share": 0.6667,
+     "no_answer": 0,
+     "no_answer_share": 0.0,
+     "questions": [
+      "H1",
+      "H2",
+      "H4",
+      "H5",
+      "H8",
+      "H9",
+      "H10",
+      "H12"
+     ]
+    },
+    "several_or_arithmetic": {
+     "runs": 9,
+     "right": 0,
+     "right_share": 0.0,
+     "confidently_wrong": 1,
+     "confidently_wrong_share": 0.1111,
+     "declined": 8,
+     "declined_share": 0.8889,
+     "no_answer": 0,
+     "no_answer_share": 0.0,
+     "questions": [
+      "H3",
+      "H6",
+      "H7"
+     ]
+    },
+    "not_answerable": {
+     "runs": 3,
+     "right": 1,
+     "right_share": 0.3333,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": 0.0,
+     "declined": 2,
+     "declined_share": 0.6667,
+     "no_answer": 0,
+     "no_answer_share": 0.0,
+     "questions": [
+      "H11"
+     ]
+    }
+   },
+   "answers_given": {
+    "H1": [
+     {
+      "trial": 0,
+      "outcome": "declined",
+      "answer": "NEEDS_CLARIFICATION",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 1,
+      "outcome": "declined",
+      "answer": "NEEDS_CLARIFICATION",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 2,
+      "outcome": "declined",
+      "answer": "NEEDS_CLARIFICATION",
+      "matched_decoy": ""
+     }
+    ],
+    "H2": [
+     {
+      "trial": 0,
+      "outcome": "declined",
+      "answer": "NEEDS_CLARIFICATION",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 1,
+      "outcome": "declined",
+      "answer": "NEEDS_CLARIFICATION",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 2,
+      "outcome": "declined",
+      "answer": "NEEDS_CLARIFICATION",
+      "matched_decoy": ""
+     }
+    ],
+    "H3": [
+     {
+      "trial": 0,
+      "outcome": "declined",
+      "answer": "NEEDS_CLARIFICATION",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 1,
+      "outcome": "declined",
+      "answer": "NEEDS_CLARIFICATION",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 2,
+      "outcome": "declined",
+      "answer": "NEEDS_CLARIFICATION",
+      "matched_decoy": ""
+     }
+    ],
+    "H4": [
+     {
+      "trial": 0,
+      "outcome": "declined",
+      "answer": "NEEDS_CLARIFICATION",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 1,
+      "outcome": "declined",
+      "answer": "NEEDS_CLARIFICATION",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 2,
+      "outcome": "declined",
+      "answer": "NEEDS_CLARIFICATION",
+      "matched_decoy": ""
+     }
+    ],
+    "H5": [
+     {
+      "trial": 0,
+      "outcome": "confidently_wrong",
+      "answer": "Pellam Paper Corp",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 1,
+      "outcome": "right",
+      "answer": "Northgate Foods Group",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 2,
+      "outcome": "right",
+      "answer": "Northgate Foods Group",
+      "matched_decoy": ""
+     }
+    ],
+    "H6": [
+     {
+      "trial": 0,
+      "outcome": "confidently_wrong",
+      "answer": "13",
+      "matched_decoy": "shipper account rows over the line, on linehaul from the load table"
+     },
+     {
+      "trial": 1,
+      "outcome": "declined",
+      "answer": "NEEDS_CLARIFICATION",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 2,
+      "outcome": "declined",
+      "answer": "NEEDS_CLARIFICATION",
+      "matched_decoy": ""
+     }
+    ],
+    "H7": [
+     {
+      "trial": 0,
+      "outcome": "declined",
+      "answer": "NEEDS_CLARIFICATION",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 1,
+      "outcome": "declined",
+      "answer": "NEEDS_CLARIFICATION",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 2,
+      "outcome": "declined",
+      "answer": "NEEDS_CLARIFICATION",
+      "matched_decoy": ""
+     }
+    ],
+    "H8": [
+     {
+      "trial": 0,
+      "outcome": "confidently_wrong",
+      "answer": "225",
+      "matched_decoy": "test and voided rows removed, re-tenders still counted twice"
+     },
+     {
+      "trial": 1,
+      "outcome": "declined",
+      "answer": "NEEDS_CLARIFICATION",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 2,
+      "outcome": "confidently_wrong",
+      "answer": "225",
+      "matched_decoy": "test and voided rows removed, re-tenders still counted twice"
+     }
+    ],
+    "H9": [
+     {
+      "trial": 0,
+      "outcome": "declined",
+      "answer": "NEEDS_CLARIFICATION",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 1,
+      "outcome": "declined",
+      "answer": "NEEDS_CLARIFICATION",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 2,
+      "outcome": "declined",
+      "answer": "NEEDS_CLARIFICATION",
+      "matched_decoy": ""
+     }
+    ],
+    "H10": [
+     {
+      "trial": 0,
+      "outcome": "declined",
+      "answer": "NEEDS_CLARIFICATION",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 1,
+      "outcome": "confidently_wrong",
+      "answer": "40",
+      "matched_decoy": "shipper-delayed loads the portal shows as late"
+     },
+     {
+      "trial": 2,
+      "outcome": "declined",
+      "answer": "NEEDS_CLARIFICATION",
+      "matched_decoy": ""
+     }
+    ],
+    "H11": [
+     {
+      "trial": 0,
+      "outcome": "right",
+      "answer": "27",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 1,
+      "outcome": "declined",
+      "answer": "NEEDS_CLARIFICATION",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 2,
+      "outcome": "declined",
+      "answer": "NEEDS_CLARIFICATION",
+      "matched_decoy": ""
+     }
+    ],
+    "H12": [
+     {
+      "trial": 0,
+      "outcome": "right",
+      "answer": "89.53",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 1,
+      "outcome": "right",
+      "answer": "89.53",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 2,
+      "outcome": "declined",
+      "answer": "NEEDS_CLARIFICATION",
+      "matched_decoy": ""
+     }
+    ]
+   },
+   "effort": {
+    "mean_input_tokens": 32308,
+    "mean_output_tokens": 5370,
+    "cache_read_share_of_input": 0.0722,
+    "runs_with_a_cache_read": 12,
+    "mean_model_calls": 10.0,
+    "mean_sql_queries": 8.0,
+    "mean_seconds": 82.9,
+    "mean_cost_usd": 0.0428,
+    "total_cost_usd": 1.5406
+   },
+   "tool_use": {
+    "runs": 36,
+    "mean_calls_per_run": {
+     "run_sql": 8.0,
+     "query_metrics": 0.0
+    },
+    "total_calls": {
+     "run_sql": 288,
+     "query_metrics": 0
+    },
+    "runs_that_called": {
+     "run_sql": 36,
+     "query_metrics": 0
+    },
+    "runs_whose_first_call_was_sql": 36,
+    "metric_calls_that_returned_an_error": 0,
+    "all_runs": {
+     "runs": 36,
+     "metric_tool_only": 0,
+     "both_tools": 0,
+     "sql_only": 36,
+     "no_tool_call": 0,
+     "outcomes_metric_tool_only": {
+      "runs": 0,
+      "right": 0,
+      "right_share": null,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": null,
+      "declined": 0,
+      "declined_share": null,
+      "no_answer": 0,
+      "no_answer_share": null
+     },
+     "outcomes_both_tools": {
+      "runs": 0,
+      "right": 0,
+      "right_share": null,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": null,
+      "declined": 0,
+      "declined_share": null,
+      "no_answer": 0,
+      "no_answer_share": null
+     },
+     "outcomes_sql_only": {
+      "runs": 36,
+      "right": 5,
+      "right_share": 0.1389,
+      "confidently_wrong": 5,
+      "confidently_wrong_share": 0.1389,
+      "declined": 26,
+      "declined_share": 0.7222,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     }
+    },
+    "by_coverage_class": {
+     "metric_plus_filter": {
+      "runs": 24,
+      "metric_tool_only": 0,
+      "both_tools": 0,
+      "sql_only": 24,
+      "no_tool_call": 0,
+      "outcomes_metric_tool_only": {
+       "runs": 0,
+       "right": 0,
+       "right_share": null,
+       "confidently_wrong": 0,
+       "confidently_wrong_share": null,
+       "declined": 0,
+       "declined_share": null,
+       "no_answer": 0,
+       "no_answer_share": null
+      },
+      "outcomes_both_tools": {
+       "runs": 0,
+       "right": 0,
+       "right_share": null,
+       "confidently_wrong": 0,
+       "confidently_wrong_share": null,
+       "declined": 0,
+       "declined_share": null,
+       "no_answer": 0,
+       "no_answer_share": null
+      },
+      "outcomes_sql_only": {
+       "runs": 24,
+       "right": 4,
+       "right_share": 0.1667,
+       "confidently_wrong": 4,
+       "confidently_wrong_share": 0.1667,
+       "declined": 16,
+       "declined_share": 0.6667,
+       "no_answer": 0,
+       "no_answer_share": 0.0
+      }
+     },
+     "several_or_arithmetic": {
+      "runs": 9,
+      "metric_tool_only": 0,
+      "both_tools": 0,
+      "sql_only": 9,
+      "no_tool_call": 0,
+      "outcomes_metric_tool_only": {
+       "runs": 0,
+       "right": 0,
+       "right_share": null,
+       "confidently_wrong": 0,
+       "confidently_wrong_share": null,
+       "declined": 0,
+       "declined_share": null,
+       "no_answer": 0,
+       "no_answer_share": null
+      },
+      "outcomes_both_tools": {
+       "runs": 0,
+       "right": 0,
+       "right_share": null,
+       "confidently_wrong": 0,
+       "confidently_wrong_share": null,
+       "declined": 0,
+       "declined_share": null,
+       "no_answer": 0,
+       "no_answer_share": null
+      },
+      "outcomes_sql_only": {
+       "runs": 9,
+       "right": 0,
+       "right_share": 0.0,
+       "confidently_wrong": 1,
+       "confidently_wrong_share": 0.1111,
+       "declined": 8,
+       "declined_share": 0.8889,
+       "no_answer": 0,
+       "no_answer_share": 0.0
+      }
+     },
+     "not_answerable": {
+      "runs": 3,
+      "metric_tool_only": 0,
+      "both_tools": 0,
+      "sql_only": 3,
+      "no_tool_call": 0,
+      "outcomes_metric_tool_only": {
+       "runs": 0,
+       "right": 0,
+       "right_share": null,
+       "confidently_wrong": 0,
+       "confidently_wrong_share": null,
+       "declined": 0,
+       "declined_share": null,
+       "no_answer": 0,
+       "no_answer_share": null
+      },
+      "outcomes_both_tools": {
+       "runs": 0,
+       "right": 0,
+       "right_share": null,
+       "confidently_wrong": 0,
+       "confidently_wrong_share": null,
+       "declined": 0,
+       "declined_share": null,
+       "no_answer": 0,
+       "no_answer_share": null
+      },
+      "outcomes_sql_only": {
+       "runs": 3,
+       "right": 1,
+       "right_share": 0.3333,
+       "confidently_wrong": 0,
+       "confidently_wrong_share": 0.0,
+       "declined": 2,
+       "declined_share": 0.6667,
+       "no_answer": 0,
+       "no_answer_share": 0.0
+      }
+     }
+    },
+    "went_around_the_semantic_layer": {
+     "what": "Runs on a question that one metric query answers (coverage classes one_metric_query and metric_plus_filter), in which the agent ran at least one SQL query.",
+     "runs_on_such_questions": 24,
+     "runs_that_ran_sql": 24,
+     "of_which_never_called_the_metric_tool": 24,
+     "of_which_called_both": 0,
+     "outcomes_when_sql_was_run": {
+      "runs": 24,
+      "right": 4,
+      "right_share": 0.1667,
+      "confidently_wrong": 4,
+      "confidently_wrong_share": 0.1667,
+      "declined": 16,
+      "declined_share": 0.6667,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     },
+     "runs_answered_from_metrics_alone": 0,
+     "outcomes_from_metrics_alone": {
+      "runs": 0,
+      "right": 0,
+      "right_share": null,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": null,
+      "declined": 0,
+      "declined_share": null,
+      "no_answer": 0,
+      "no_answer_share": null
+     }
+    }
+   },
+   "limits": {
+    "runs_refused_a_further_sql_query": 36,
+    "runs_refused_a_further_layer_call": 0,
+    "runs_that_hit_the_model_call_ceiling": 0,
+    "runs_that_timed_out": 0,
+    "runs_that_ended_in_an_error": 0
+   }
+  },
+  {
+   "config": "flash_semantic",
+   "what": "The Part 2 semantic configuration: the same agent with the query_metrics tool.",
+   "layers": [
+    "semantic"
+   ],
+   "tools": [
+    "run_sql",
+    "query_metrics"
+   ],
+   "runtime": "adk",
+   "runtime_package": "google-adk==2.11.0",
+   "model": "gemini-3.8-flash",
+   "model_reported_by_provider": [
+    "gemini-3.8-flash"
+   ],
+   "model_and_prices_checked_on": "2026-10-09",
+   "usd_per_million_tokens": {
+    "input": 0.75,
+    "output": 3.75,
+    "cache_read": 0.075
+   },
+   "first_run_finished_at": "2026-10-09T22:43:31+00:00",
+   "last_run_finished_at": "2026-10-09T22:50:23+00:00",
+   "question_file": "questions/holdout.yaml",
+   "question_count": 12,
+   "runs_per_question": 3,
+   "runs_expected": 36,
+   "runs_saved": 36,
+   "complete": true,
+   "runs_repeated_after_a_failure": 0,
+   "sql_query_limit": 8,
+   "layer_call_limit_per_tool": 8,
+   "model_call_ceiling": 24,
+   "data_seed": 20261009,
+   "summary": {
+    "overall": {
+     "runs": 36,
+     "right": 36,
+     "right_share": 1.0,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": 0.0,
+     "declined": 0,
+     "declined_share": 0.0,
+     "no_answer": 0,
+     "no_answer_share": 0.0
+    },
+    "by_group": {
+     "metric": {
+      "runs": 12,
+      "right": 12,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     },
+     "rule": {
+      "runs": 12,
+      "right": 12,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     },
+     "entity": {
+      "runs": 12,
+      "right": 12,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     }
+    },
+    "by_question": {
+     "H1": {
+      "runs": 3,
+      "right": 3,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "metric",
+      "mean_input_tokens": 35650.3333,
+      "mean_output_tokens": 7779.6667,
+      "mean_cost_usd": 0.0543,
+      "mean_queries": 4.3333,
+      "decoys_matched": {}
+     },
+     "H10": {
+      "runs": 3,
+      "right": 3,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "rule",
+      "mean_input_tokens": 56818.0,
+      "mean_output_tokens": 7944.0,
+      "mean_cost_usd": 0.0674,
+      "mean_queries": 6.0,
+      "decoys_matched": {}
+     },
+     "H11": {
+      "runs": 3,
+      "right": 3,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "rule",
+      "mean_input_tokens": 57437.0,
+      "mean_output_tokens": 4996.3333,
+      "mean_cost_usd": 0.0576,
+      "mean_queries": 8.0,
+      "decoys_matched": {}
+     },
+     "H12": {
+      "runs": 3,
+      "right": 3,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "rule",
+      "mean_input_tokens": 32732.0,
+      "mean_output_tokens": 6854.3333,
+      "mean_cost_usd": 0.0503,
+      "mean_queries": 5.0,
+      "decoys_matched": {}
+     },
+     "H2": {
+      "runs": 3,
+      "right": 3,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "metric",
+      "mean_input_tokens": 30537.0,
+      "mean_output_tokens": 5586.6667,
+      "mean_cost_usd": 0.0439,
+      "mean_queries": 3.0,
+      "decoys_matched": {}
+     },
+     "H3": {
+      "runs": 3,
+      "right": 3,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "metric",
+      "mean_input_tokens": 20977.0,
+      "mean_output_tokens": 2522.6667,
+      "mean_cost_usd": 0.024,
+      "mean_queries": 1.3333,
+      "decoys_matched": {}
+     },
+     "H4": {
+      "runs": 3,
+      "right": 3,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "metric",
+      "mean_input_tokens": 28715.3333,
+      "mean_output_tokens": 6010.6667,
+      "mean_cost_usd": 0.0441,
+      "mean_queries": 3.0,
+      "decoys_matched": {}
+     },
+     "H5": {
+      "runs": 3,
+      "right": 3,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "entity",
+      "mean_input_tokens": 13724.6667,
+      "mean_output_tokens": 1171.3333,
+      "mean_cost_usd": 0.0147,
+      "mean_queries": 1.6667,
+      "decoys_matched": {}
+     },
+     "H6": {
+      "runs": 3,
+      "right": 3,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "entity",
+      "mean_input_tokens": 27693.6667,
+      "mean_output_tokens": 3270.6667,
+      "mean_cost_usd": 0.0322,
+      "mean_queries": 2.6667,
+      "decoys_matched": {}
+     },
+     "H7": {
+      "runs": 3,
+      "right": 3,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "entity",
+      "mean_input_tokens": 45047.6667,
+      "mean_output_tokens": 5625.0,
+      "mean_cost_usd": 0.048,
+      "mean_queries": 2.0,
+      "decoys_matched": {}
+     },
+     "H8": {
+      "runs": 3,
+      "right": 3,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "entity",
+      "mean_input_tokens": 17306.0,
+      "mean_output_tokens": 1166.3333,
+      "mean_cost_usd": 0.0174,
+      "mean_queries": 2.6667,
+      "decoys_matched": {}
+     },
+     "H9": {
+      "runs": 3,
+      "right": 3,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "rule",
+      "mean_input_tokens": 74273.0,
+      "mean_output_tokens": 6319.3333,
+      "mean_cost_usd": 0.063,
+      "mean_queries": 5.6667,
+      "decoys_matched": {}
+     }
+    },
+    "wrong_answers_that_flagged_an_assumption": 0,
+    "wrong_answers": 0,
+    "declines": 0,
+    "declines_that_mention_the_query_limit": 0,
+    "runs_that_used_every_query": 3,
+    "mean_cost_usd_per_question": 0.0431,
+    "mean_input_tokens_per_question": 36742.6389,
+    "mean_output_tokens_per_question": 4937.25,
+    "total_cost_usd": 1.5502
+   },
+   "by_coverage_class": {
+    "metric_plus_filter": {
+     "runs": 24,
+     "right": 24,
+     "right_share": 1.0,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": 0.0,
+     "declined": 0,
+     "declined_share": 0.0,
+     "no_answer": 0,
+     "no_answer_share": 0.0,
+     "questions": [
+      "H1",
+      "H2",
+      "H4",
+      "H5",
+      "H8",
+      "H9",
+      "H10",
+      "H12"
+     ]
+    },
+    "several_or_arithmetic": {
+     "runs": 9,
+     "right": 9,
+     "right_share": 1.0,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": 0.0,
+     "declined": 0,
+     "declined_share": 0.0,
+     "no_answer": 0,
+     "no_answer_share": 0.0,
+     "questions": [
+      "H3",
+      "H6",
+      "H7"
+     ]
+    },
+    "not_answerable": {
+     "runs": 3,
+     "right": 3,
+     "right_share": 1.0,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": 0.0,
+     "declined": 0,
+     "declined_share": 0.0,
+     "no_answer": 0,
+     "no_answer_share": 0.0,
+     "questions": [
+      "H11"
+     ]
+    }
+   },
+   "answers_given": {
+    "H1": [
+     {
+      "trial": 0,
+      "outcome": "right",
+      "answer": "88.1656804733728",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 1,
+      "outcome": "right",
+      "answer": "88.1656804733728",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 2,
+      "outcome": "right",
+      "answer": "88.1656804733728",
+      "matched_decoy": ""
+     }
+    ],
+    "H2": [
+     {
+      "trial": 0,
+      "outcome": "right",
+      "answer": "12.359558455",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 1,
+      "outcome": "right",
+      "answer": "12.359558455",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 2,
+      "outcome": "right",
+      "answer": "12.359558455",
+      "matched_decoy": ""
+     }
+    ],
+    "H3": [
+     {
+      "trial": 0,
+      "outcome": "right",
+      "answer": "9.58",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 1,
+      "outcome": "right",
+      "answer": "9.58",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 2,
+      "outcome": "right",
+      "answer": "9.58",
+      "matched_decoy": ""
+     }
+    ],
+    "H4": [
+     {
+      "trial": 0,
+      "outcome": "right",
+      "answer": "408.74",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 1,
+      "outcome": "right",
+      "answer": "408.74",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 2,
+      "outcome": "right",
+      "answer": "408.74",
+      "matched_decoy": ""
+     }
+    ],
+    "H5": [
+     {
+      "trial": 0,
+      "outcome": "right",
+      "answer": "Northgate Foods Group",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 1,
+      "outcome": "right",
+      "answer": "Northgate Foods Group",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 2,
+      "outcome": "right",
+      "answer": "Northgate Foods Group",
+      "matched_decoy": ""
+     }
+    ],
+    "H6": [
+     {
+      "trial": 0,
+      "outcome": "right",
+      "answer": "17",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 1,
+      "outcome": "right",
+      "answer": "17",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 2,
+      "outcome": "right",
+      "answer": "17",
+      "matched_decoy": ""
+     }
+    ],
+    "H7": [
+     {
+      "trial": 0,
+      "outcome": "right",
+      "answer": "30.93",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 1,
+      "outcome": "right",
+      "answer": "30.93",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 2,
+      "outcome": "right",
+      "answer": "30.93",
+      "matched_decoy": ""
+     }
+    ],
+    "H8": [
+     {
+      "trial": 0,
+      "outcome": "right",
+      "answer": "216",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 1,
+      "outcome": "right",
+      "answer": "216",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 2,
+      "outcome": "right",
+      "answer": "216",
+      "matched_decoy": ""
+     }
+    ],
+    "H9": [
+     {
+      "trial": 0,
+      "outcome": "right",
+      "answer": "1119",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 1,
+      "outcome": "right",
+      "answer": "1119",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 2,
+      "outcome": "right",
+      "answer": "1119",
+      "matched_decoy": ""
+     }
+    ],
+    "H10": [
+     {
+      "trial": 0,
+      "outcome": "right",
+      "answer": "139",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 1,
+      "outcome": "right",
+      "answer": "139",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 2,
+      "outcome": "right",
+      "answer": "139",
+      "matched_decoy": ""
+     }
+    ],
+    "H11": [
+     {
+      "trial": 0,
+      "outcome": "right",
+      "answer": "27",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 1,
+      "outcome": "right",
+      "answer": "27",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 2,
+      "outcome": "right",
+      "answer": "27",
+      "matched_decoy": ""
+     }
+    ],
+    "H12": [
+     {
+      "trial": 0,
+      "outcome": "right",
+      "answer": "89.3764434180139",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 1,
+      "outcome": "right",
+      "answer": "89.38",
+      "matched_decoy": ""
+     },
+     {
+      "trial": 2,
+      "outcome": "right",
+      "answer": "89.3764434180139",
+      "matched_decoy": ""
+     }
+    ]
+   },
+   "effort": {
+    "mean_input_tokens": 36743,
+    "mean_output_tokens": 4937,
+    "cache_read_share_of_input": 0.1214,
+    "runs_with_a_cache_read": 15,
+    "mean_model_calls": 7.44,
+    "mean_sql_queries": 3.78,
+    "mean_seconds": 60.9,
+    "mean_cost_usd": 0.0431,
+    "total_cost_usd": 1.5502
+   },
+   "tool_use": {
+    "runs": 36,
+    "mean_calls_per_run": {
+     "run_sql": 3.78,
+     "query_metrics": 2.58
+    },
+    "total_calls": {
+     "run_sql": 136,
+     "query_metrics": 93
+    },
+    "runs_that_called": {
+     "run_sql": 35,
+     "query_metrics": 36
+    },
+    "runs_whose_first_call_was_sql": 12,
+    "metric_calls_that_returned_an_error": 0,
+    "all_runs": {
+     "runs": 36,
+     "metric_tool_only": 1,
+     "both_tools": 35,
+     "sql_only": 0,
+     "no_tool_call": 0,
+     "outcomes_metric_tool_only": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     },
+     "outcomes_both_tools": {
+      "runs": 35,
+      "right": 35,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     },
+     "outcomes_sql_only": {
+      "runs": 0,
+      "right": 0,
+      "right_share": null,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": null,
+      "declined": 0,
+      "declined_share": null,
+      "no_answer": 0,
+      "no_answer_share": null
+     }
+    },
+    "by_coverage_class": {
+     "metric_plus_filter": {
+      "runs": 24,
+      "metric_tool_only": 1,
+      "both_tools": 23,
+      "sql_only": 0,
+      "no_tool_call": 0,
+      "outcomes_metric_tool_only": {
+       "runs": 1,
+       "right": 1,
+       "right_share": 1.0,
+       "confidently_wrong": 0,
+       "confidently_wrong_share": 0.0,
+       "declined": 0,
+       "declined_share": 0.0,
+       "no_answer": 0,
+       "no_answer_share": 0.0
+      },
+      "outcomes_both_tools": {
+       "runs": 23,
+       "right": 23,
+       "right_share": 1.0,
+       "confidently_wrong": 0,
+       "confidently_wrong_share": 0.0,
+       "declined": 0,
+       "declined_share": 0.0,
+       "no_answer": 0,
+       "no_answer_share": 0.0
+      },
+      "outcomes_sql_only": {
+       "runs": 0,
+       "right": 0,
+       "right_share": null,
+       "confidently_wrong": 0,
+       "confidently_wrong_share": null,
+       "declined": 0,
+       "declined_share": null,
+       "no_answer": 0,
+       "no_answer_share": null
+      }
+     },
+     "several_or_arithmetic": {
+      "runs": 9,
+      "metric_tool_only": 0,
+      "both_tools": 9,
+      "sql_only": 0,
+      "no_tool_call": 0,
+      "outcomes_metric_tool_only": {
+       "runs": 0,
+       "right": 0,
+       "right_share": null,
+       "confidently_wrong": 0,
+       "confidently_wrong_share": null,
+       "declined": 0,
+       "declined_share": null,
+       "no_answer": 0,
+       "no_answer_share": null
+      },
+      "outcomes_both_tools": {
+       "runs": 9,
+       "right": 9,
+       "right_share": 1.0,
+       "confidently_wrong": 0,
+       "confidently_wrong_share": 0.0,
+       "declined": 0,
+       "declined_share": 0.0,
+       "no_answer": 0,
+       "no_answer_share": 0.0
+      },
+      "outcomes_sql_only": {
+       "runs": 0,
+       "right": 0,
+       "right_share": null,
+       "confidently_wrong": 0,
+       "confidently_wrong_share": null,
+       "declined": 0,
+       "declined_share": null,
+       "no_answer": 0,
+       "no_answer_share": null
+      }
+     },
+     "not_answerable": {
+      "runs": 3,
+      "metric_tool_only": 0,
+      "both_tools": 3,
+      "sql_only": 0,
+      "no_tool_call": 0,
+      "outcomes_metric_tool_only": {
+       "runs": 0,
+       "right": 0,
+       "right_share": null,
+       "confidently_wrong": 0,
+       "confidently_wrong_share": null,
+       "declined": 0,
+       "declined_share": null,
+       "no_answer": 0,
+       "no_answer_share": null
+      },
+      "outcomes_both_tools": {
+       "runs": 3,
+       "right": 3,
+       "right_share": 1.0,
+       "confidently_wrong": 0,
+       "confidently_wrong_share": 0.0,
+       "declined": 0,
+       "declined_share": 0.0,
+       "no_answer": 0,
+       "no_answer_share": 0.0
+      },
+      "outcomes_sql_only": {
+       "runs": 0,
+       "right": 0,
+       "right_share": null,
+       "confidently_wrong": 0,
+       "confidently_wrong_share": null,
+       "declined": 0,
+       "declined_share": null,
+       "no_answer": 0,
+       "no_answer_share": null
+      }
+     }
+    },
+    "went_around_the_semantic_layer": {
+     "what": "Runs on a question that one metric query answers (coverage classes one_metric_query and metric_plus_filter), in which the agent ran at least one SQL query.",
+     "runs_on_such_questions": 24,
+     "runs_that_ran_sql": 23,
+     "of_which_never_called_the_metric_tool": 0,
+     "of_which_called_both": 23,
+     "outcomes_when_sql_was_run": {
+      "runs": 23,
+      "right": 23,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     },
+     "runs_answered_from_metrics_alone": 1,
+     "outcomes_from_metrics_alone": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     }
+    }
+   },
+   "limits": {
+    "runs_refused_a_further_sql_query": 3,
+    "runs_refused_a_further_layer_call": 0,
+    "runs_that_hit_the_model_call_ceiling": 0,
+    "runs_that_timed_out": 0,
+    "runs_that_ended_in_an_error": 0
+   }
+  }
+ ],
+ "change_semantic_vs_baseline_points": {
+  "overall": {
+   "right": 86.1,
+   "confidently_wrong": -13.9,
+   "declined": -72.2
+  },
+  "by_group": {
+   "metric": {
+    "right": 100.0,
+    "confidently_wrong": 0.0,
+    "declined": -100.0
+   },
+   "rule": {
+    "right": 75.0,
+    "confidently_wrong": -8.3,
+    "declined": -66.7
+   },
+   "entity": {
+    "right": 83.3,
+    "confidently_wrong": -33.3,
+    "declined": -50.0
+   }
+  },
+  "by_coverage_class": {
+   "metric_plus_filter": {
+    "right": 83.3,
+    "confidently_wrong": -16.7,
+    "declined": -66.7
+   },
+   "several_or_arithmetic": {
+    "right": 100.0,
+    "confidently_wrong": -11.1,
+    "declined": -88.9
+   },
+   "not_answerable": {
+    "right": 66.7,
+    "confidently_wrong": 0.0,
+    "declined": -66.7
+   }
+  }
+ },
+ "on_the_24_part_1_questions": {
+  "source": "results/part2/summary.json",
+  "questions": 24,
+  "baseline": {
+   "runs": 240,
+   "right": 105,
+   "right_share": 0.4375,
+   "confidently_wrong": 20,
+   "confidently_wrong_share": 0.0833,
+   "declined": 115,
+   "declined_share": 0.4792,
+   "no_answer": 0,
+   "no_answer_share": 0.0,
+   "runs_per_question": 10
+  },
+  "flash_semantic": {
+   "runs": 72,
+   "right": 72,
+   "right_share": 1.0,
+   "confidently_wrong": 0,
+   "confidently_wrong_share": 0.0,
+   "declined": 0,
+   "declined_share": 0.0,
+   "no_answer": 0,
+   "no_answer_share": 0.0,
+   "runs_per_question": 3
+  },
+  "change_points": {
+   "right": 56.2,
+   "confidently_wrong": -8.3,
+   "declined": -47.9
+  }
+ },
+ "not_run": []
+}

@@ -1,0 +1,456 @@
+{
+ "metrics": [
+  {
+   "name": "carrier_cost",
+   "label": "Carrier cost (US dollars)",
+   "type": "simple",
+   "description": "What was paid to carriers, in US dollars: for an invoiced load, linehaul pay plus the carrier's fuel surcharge plus accessorials paid to the carrier, in the period the load's invoice was cut; and the carrier's share of a canceled-load fee, in the period of the fee date. Loads hauled by Tessaway's own fleet are treated the same way.",
+   "dimensions": [
+    "document__document_currency",
+    "document__document_date",
+    "document__document_type",
+    "metric_time__day",
+    "tender__bill_to_party_name",
+    "tender__carrier_name",
+    "tender__carrier_type",
+    "tender__customer_name",
+    "tender__equipment_type",
+    "tender__is_cross_border",
+    "tender__rated_currency",
+    "tender__shipper_site_name"
+   ]
+  },
+  {
+   "name": "customers_shipped",
+   "label": "Customers that shipped",
+   "type": "simple",
+   "description": "Customers that shipped with us: parent accounts with at least one load delivered in the period. A shipping site is not a customer and a bill-to party is not a customer.",
+   "dimensions": [
+    "delivery__arrived_on_time",
+    "delivery__delivered_date",
+    "delivery__has_signed_pod",
+    "delivery__shipper_delayed",
+    "metric_time__day",
+    "tender__bill_to_party_name",
+    "tender__carrier_name",
+    "tender__carrier_type",
+    "tender__customer_name",
+    "tender__equipment_type",
+    "tender__is_cross_border",
+    "tender__rated_currency",
+    "tender__shipper_site_name"
+   ]
+  },
+  {
+   "name": "delivered_loads",
+   "label": "Delivered loads",
+   "type": "simple",
+   "description": "Loads delivered: the carrier reported the final delivery. Only real loads count, never test rows or voided rows, and a re-tendered load is delivered once, by the carrier that hauled it. Dated by the calendar day of arrival at the final delivery stop, on the clock at that stop.",
+   "dimensions": [
+    "delivery__arrived_on_time",
+    "delivery__delivered_date",
+    "delivery__has_signed_pod",
+    "delivery__shipper_delayed",
+    "metric_time__day",
+    "tender__bill_to_party_name",
+    "tender__carrier_name",
+    "tender__carrier_type",
+    "tender__customer_name",
+    "tender__equipment_type",
+    "tender__is_cross_border",
+    "tender__rated_currency",
+    "tender__shipper_site_name"
+   ]
+  },
+  {
+   "name": "delivered_loads_not_billable",
+   "label": "Delivered loads that cannot be billed yet",
+   "type": "simple",
+   "description": "Delivered loads that cannot be invoiced, because no signed proof of delivery is on file. For billing, delivered is not enough: an unsigned document does not count. Test loads are never billed and are not waiting on anything.",
+   "dimensions": [
+    "delivery__arrived_on_time",
+    "delivery__delivered_date",
+    "delivery__has_signed_pod",
+    "delivery__shipper_delayed",
+    "metric_time__day",
+    "tender__bill_to_party_name",
+    "tender__carrier_name",
+    "tender__carrier_type",
+    "tender__customer_name",
+    "tender__equipment_type",
+    "tender__is_cross_border",
+    "tender__rated_currency",
+    "tender__shipper_site_name"
+   ]
+  },
+  {
+   "name": "invoiced_loads",
+   "label": "Loads invoiced",
+   "type": "simple",
+   "description": "The number of loads invoiced, in the period of the invoice date.",
+   "dimensions": [
+    "document__document_currency",
+    "document__document_date",
+    "document__document_type",
+    "metric_time__day",
+    "tender__bill_to_party_name",
+    "tender__carrier_name",
+    "tender__carrier_type",
+    "tender__customer_name",
+    "tender__equipment_type",
+    "tender__is_cross_border",
+    "tender__rated_currency",
+    "tender__shipper_site_name"
+   ]
+  },
+  {
+   "name": "late_deliveries",
+   "label": "Late deliveries (official)",
+   "type": "simple",
+   "description": "Delivered loads that were late under the official on-time rule: arrival at the final delivery stop after the end of the appointment window, on the facility's local clock. A late load with a delay the shipper caused is left out; it is neither on time nor late.",
+   "dimensions": [
+    "delivery__arrived_on_time",
+    "delivery__delivered_date",
+    "delivery__has_signed_pod",
+    "delivery__shipper_delayed",
+    "metric_time__day",
+    "tender__bill_to_party_name",
+    "tender__carrier_name",
+    "tender__carrier_type",
+    "tender__customer_name",
+    "tender__equipment_type",
+    "tender__is_cross_border",
+    "tender__rated_currency",
+    "tender__shipper_site_name"
+   ]
+  },
+  {
+   "name": "loads_booked",
+   "label": "Loads booked",
+   "type": "simple",
+   "description": "Loads booked. A load is one shipment moved for a customer, counted once from its first tender. A re-tender is not a second load, and test rows and voided rows are not loads. A canceled load was a load and counts as booked. Dated by the UTC date of the first tender.",
+   "dimensions": [
+    "load__booked_date",
+    "metric_time__day",
+    "tender__bill_to_party_name",
+    "tender__carrier_name",
+    "tender__carrier_type",
+    "tender__customer_name",
+    "tender__equipment_type",
+    "tender__is_cross_border",
+    "tender__rated_currency",
+    "tender__shipper_site_name"
+   ]
+  },
+  {
+   "name": "margin",
+   "label": "Margin (US dollars)",
+   "type": "derived",
+   "description": "Margin in US dollars: revenue less what was paid to carriers for the same loads.",
+   "dimensions": [
+    "document__document_currency",
+    "document__document_date",
+    "document__document_type",
+    "metric_time__day",
+    "tender__bill_to_party_name",
+    "tender__carrier_name",
+    "tender__carrier_type",
+    "tender__customer_name",
+    "tender__equipment_type",
+    "tender__is_cross_border",
+    "tender__rated_currency",
+    "tender__shipper_site_name"
+   ]
+  },
+  {
+   "name": "margin_per_load",
+   "label": "Margin per load (US dollars)",
+   "type": "derived",
+   "description": "Margin for the period divided by the number of loads invoiced in the period, in US dollars.",
+   "dimensions": [
+    "document__document_currency",
+    "document__document_date",
+    "document__document_type",
+    "metric_time__day",
+    "tender__bill_to_party_name",
+    "tender__carrier_name",
+    "tender__carrier_type",
+    "tender__customer_name",
+    "tender__equipment_type",
+    "tender__is_cross_border",
+    "tender__rated_currency",
+    "tender__shipper_site_name"
+   ]
+  },
+  {
+   "name": "margin_percentage",
+   "label": "Margin percentage",
+   "type": "derived",
+   "description": "Margin divided by revenue, as a percentage from 0 to 100.",
+   "dimensions": [
+    "document__document_currency",
+    "document__document_date",
+    "document__document_type",
+    "metric_time__day",
+    "tender__bill_to_party_name",
+    "tender__carrier_name",
+    "tender__carrier_type",
+    "tender__customer_name",
+    "tender__equipment_type",
+    "tender__is_cross_border",
+    "tender__rated_currency",
+    "tender__shipper_site_name"
+   ]
+  },
+  {
+   "name": "on_time_loads",
+   "label": "On-time loads",
+   "type": "simple",
+   "description": "Delivered loads that arrived at the final delivery stop at or before the end of the appointment window, on the facility's local clock. Arriving early is on time. The top of the official on-time rate.",
+   "dimensions": [
+    "delivery__arrived_on_time",
+    "delivery__delivered_date",
+    "delivery__has_signed_pod",
+    "delivery__shipper_delayed",
+    "metric_time__day",
+    "tender__bill_to_party_name",
+    "tender__carrier_name",
+    "tender__carrier_type",
+    "tender__customer_name",
+    "tender__equipment_type",
+    "tender__is_cross_border",
+    "tender__rated_currency",
+    "tender__shipper_site_name"
+   ]
+  },
+  {
+   "name": "on_time_measured_loads",
+   "label": "Loads measured for on-time",
+   "type": "simple",
+   "description": "Delivered loads that count in the official on-time rate. A load that arrived late and has a delay the shipper caused is left out. The bottom of the official on-time rate.",
+   "dimensions": [
+    "delivery__arrived_on_time",
+    "delivery__delivered_date",
+    "delivery__has_signed_pod",
+    "delivery__shipper_delayed",
+    "metric_time__day",
+    "tender__bill_to_party_name",
+    "tender__carrier_name",
+    "tender__carrier_type",
+    "tender__customer_name",
+    "tender__equipment_type",
+    "tender__is_cross_border",
+    "tender__rated_currency",
+    "tender__shipper_site_name"
+   ]
+  },
+  {
+   "name": "on_time_rate",
+   "label": "On-time delivery rate (official)",
+   "type": "derived",
+   "description": "Tessaway's official on-time delivery rate, the one its customer contracts define, as a percentage from 0 to 100: on-time loads divided by measured loads, over delivered loads. A load that arrived late and has a delay the shipper caused is left out of the measure, top and bottom; it is neither on time nor late.",
+   "dimensions": [
+    "delivery__arrived_on_time",
+    "delivery__delivered_date",
+    "delivery__has_signed_pod",
+    "delivery__shipper_delayed",
+    "metric_time__day",
+    "tender__bill_to_party_name",
+    "tender__carrier_name",
+    "tender__carrier_type",
+    "tender__customer_name",
+    "tender__equipment_type",
+    "tender__is_cross_border",
+    "tender__rated_currency",
+    "tender__shipper_site_name"
+   ]
+  },
+  {
+   "name": "operations_on_time_rate",
+   "label": "On-time rate as operations watches it (not official)",
+   "type": "derived",
+   "description": "Not the official rate. What operations watches, as a percentage from 0 to 100: arrival inside the appointment window for every delivered load, shipper-caused or not.",
+   "dimensions": [
+    "delivery__arrived_on_time",
+    "delivery__delivered_date",
+    "delivery__has_signed_pod",
+    "delivery__shipper_delayed",
+    "metric_time__day",
+    "tender__bill_to_party_name",
+    "tender__carrier_name",
+    "tender__carrier_type",
+    "tender__customer_name",
+    "tender__equipment_type",
+    "tender__is_cross_border",
+    "tender__rated_currency",
+    "tender__shipper_site_name"
+   ]
+  },
+  {
+   "name": "portal_on_time_rate",
+   "label": "On-time rate as the customer portal shows it (not official)",
+   "type": "derived",
+   "description": "Not the official rate. What customers see in the customer portal, as a percentage from 0 to 100: shipments delivered on or before the date the customer requested. It compares dates, not appointment times, and knows nothing about who caused a delay. It is the right answer only when the question is about what customers see in the portal. Dated by the delivery date the portal shows.",
+   "dimensions": [
+    "metric_time__day",
+    "shipment__portal_delivered_date",
+    "tender__bill_to_party_name",
+    "tender__carrier_name",
+    "tender__carrier_type",
+    "tender__customer_name",
+    "tender__equipment_type",
+    "tender__is_cross_border",
+    "tender__rated_currency",
+    "tender__shipper_site_name"
+   ]
+  },
+  {
+   "name": "portal_on_time_shipments",
+   "label": "Shipments the customer portal shows as on time",
+   "type": "simple",
+   "description": "Shipments the customer portal shows as delivered on or before the date the customer requested.",
+   "dimensions": [
+    "metric_time__day",
+    "shipment__portal_delivered_date",
+    "tender__bill_to_party_name",
+    "tender__carrier_name",
+    "tender__carrier_type",
+    "tender__customer_name",
+    "tender__equipment_type",
+    "tender__is_cross_border",
+    "tender__rated_currency",
+    "tender__shipper_site_name"
+   ]
+  },
+  {
+   "name": "portal_shipments",
+   "label": "Shipments shown delivered in the customer portal",
+   "type": "simple",
+   "description": "Shipments the customer portal shows as delivered. Dated by the delivery date the portal shows.",
+   "dimensions": [
+    "metric_time__day",
+    "shipment__portal_delivered_date",
+    "tender__bill_to_party_name",
+    "tender__carrier_name",
+    "tender__carrier_type",
+    "tender__customer_name",
+    "tender__equipment_type",
+    "tender__is_cross_border",
+    "tender__rated_currency",
+    "tender__shipper_site_name"
+   ]
+  },
+  {
+   "name": "revenue",
+   "label": "Revenue (US dollars)",
+   "type": "simple",
+   "description": "Revenue in US dollars, recognized when it is invoiced: invoice totals (which already include linehaul, fuel surcharge and accessorial charges billed to the customer) in the period of the invoice date, less credit memos in the period of the credit date, plus canceled-load fees billed to the customer in the period of the fee date. Canadian-dollar amounts are converted at the monthly rate for the month of the document. The rated linehaul on a tender is not revenue.",
+   "dimensions": [
+    "document__document_currency",
+    "document__document_date",
+    "document__document_type",
+    "metric_time__day",
+    "tender__bill_to_party_name",
+    "tender__carrier_name",
+    "tender__carrier_type",
+    "tender__customer_name",
+    "tender__equipment_type",
+    "tender__is_cross_border",
+    "tender__rated_currency",
+    "tender__shipper_site_name"
+   ]
+  }
+ ],
+ "dimensions": [
+  {
+   "name": "delivery__arrived_on_time",
+   "type": "categorical",
+   "description": "True when the truck arrived at the final delivery stop at or before the end of the appointment window, both on the facility's local clock."
+  },
+  {
+   "name": "delivery__delivered_date",
+   "type": "time",
+   "description": "The calendar day the load arrived at its final delivery stop, on the local clock at that stop."
+  },
+  {
+   "name": "delivery__has_signed_pod",
+   "type": "categorical",
+   "description": "True when a signed proof of delivery is on file for the load."
+  },
+  {
+   "name": "delivery__shipper_delayed",
+   "type": "categorical",
+   "description": "True when the load has a delay the shipper caused."
+  },
+  {
+   "name": "document__document_currency",
+   "type": "categorical",
+   "description": "The currency code the document was issued in. Amounts in every metric are already converted to US dollars."
+  },
+  {
+   "name": "document__document_date",
+   "type": "time",
+   "description": "The invoice date, the credit date or the fee date."
+  },
+  {
+   "name": "document__document_type",
+   "type": "categorical",
+   "description": "One of: invoice, credit_memo, canceled_load_fee."
+  },
+  {
+   "name": "load__booked_date",
+   "type": "time",
+   "description": "The UTC date the load's first tender was created."
+  },
+  {
+   "name": "metric_time__day",
+   "type": "time",
+   "description": "Event time for metrics."
+  },
+  {
+   "name": "shipment__portal_delivered_date",
+   "type": "time",
+   "description": "The delivery date the customer portal shows."
+  },
+  {
+   "name": "tender__bill_to_party_name",
+   "type": "categorical",
+   "description": "Whoever pays the invoice. It may be a shared accounts payable office or a freight payment firm paying for several customers. A bill-to party is not the customer."
+  },
+  {
+   "name": "tender__carrier_name",
+   "type": "categorical",
+   "description": "The carrier on the tender."
+  },
+  {
+   "name": "tender__carrier_type",
+   "type": "categorical",
+   "description": "The carrier type code on the carrier record."
+  },
+  {
+   "name": "tender__customer_name",
+   "type": "categorical",
+   "description": "The customer: the parent account that the shipping site on the tender rolls up to. Revenue and loads belong to this account."
+  },
+  {
+   "name": "tender__equipment_type",
+   "type": "categorical",
+   "description": "The equipment type code on the tender."
+  },
+  {
+   "name": "tender__is_cross_border",
+   "type": "categorical",
+   "description": "The cross-border flag on the tender."
+  },
+  {
+   "name": "tender__rated_currency",
+   "type": "categorical",
+   "description": "The currency code the tender was rated in."
+  },
+  {
+   "name": "tender__shipper_site_name",
+   "type": "categorical",
+   "description": "The shipping site on the tender. A site is not the customer; several sites roll up to one customer and a site does not always carry the customer's name."
+  }
+ ]
+}

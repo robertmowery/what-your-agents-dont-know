@@ -74,15 +74,50 @@ class QueryLog:
     refused_over_limit: int = 0
 
 
+def _interval(value: Any) -> str:
+    """Write a BigQuery ``INTERVAL`` in BigQuery's own canonical form, ``Y-M D H:M:S[.F]``.
+
+    The BigQuery client returns an ``INTERVAL`` cell as a ``relativedelta``.
+    Part 3 added this: before it, a query whose result held an interval ended
+    the run, because the result could not be turned into JSON (results/part2/run_log.md).
+    """
+    parts = [
+        int(getattr(value, name, 0) or 0)
+        for name in ("years", "months", "days", "hours", "minutes", "seconds", "microseconds")
+    ]
+    years, months, days, hours, minutes, seconds, micros = parts
+    clock = f"{hours}:{abs(minutes):02d}:{abs(seconds):02d}"
+    if micros:
+        clock += f".{abs(micros):06d}".rstrip("0")
+    return f"{years}-{abs(months)} {days} {clock}"
+
+
 def _plain(value: Any) -> Any:
-    """Turn a BigQuery cell into something JSON can carry."""
+    """Turn a BigQuery cell into something JSON can carry.
+
+    Anything not handled by name is written as text, so no cell type can stop a
+    run. Part 3 added intervals and that fallback; every other case is as Part 1 had it.
+    """
+    if value is None or isinstance(value, bool | int | float | str):
+        return value
     if isinstance(value, decimal.Decimal):
         return float(value)
     if isinstance(value, dt.datetime | dt.date | dt.time):
         return value.isoformat()
     if isinstance(value, bytes):
         return value.hex()
-    return value
+    if isinstance(value, dt.timedelta):
+        total = int(value.total_seconds())
+        days, rest = divmod(abs(total), 86400)
+        sign = "-" if total < 0 else ""
+        return f"0-0 {sign}{days} {sign}{rest // 3600}:{rest % 3600 // 60:02d}:{rest % 60:02d}"
+    if type(value).__name__ == "relativedelta":
+        return _interval(value)
+    if isinstance(value, list | tuple):
+        return [_plain(item) for item in value]
+    if isinstance(value, dict):
+        return {str(key): _plain(item) for key, item in value.items()}
+    return str(value)
 
 
 def _job_config(*, dry_run: bool) -> bigquery.QueryJobConfig:

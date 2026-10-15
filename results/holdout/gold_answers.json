@@ -1,0 +1,202 @@
+{
+ "seed": 20261009,
+ "question_count": 12,
+ "answers": {
+  "H1": {
+   "gold": 88.17,
+   "decoys": [
+    {
+     "label": "operations definition: in the window, shipper-caused lates still counted",
+     "value": 84.18
+    },
+    {
+     "label": "portal definition: delivered by the requested date",
+     "value": 90.11
+    },
+    {
+     "label": "UTC arrival compared with the local appointment as if both were UTC",
+     "value": 3.11
+    }
+   ]
+  },
+  "H2": {
+   "gold": 12.36,
+   "decoys": [
+    {
+     "label": "linehaul margin over linehaul revenue on every outside-carrier load row created in the period",
+     "value": 14.71
+    },
+    {
+     "label": "invoice total minus carrier linehaul pay, over invoice total",
+     "value": 25.95
+    },
+    {
+     "label": "the whole company, own fleet included",
+     "value": 13.23
+    }
+   ]
+  },
+  "H3": {
+   "gold": 9.58,
+   "decoys": [
+    {
+     "label": "invoice totals with Canadian dollars added in as if they were US dollars",
+     "value": 11.48
+    },
+    {
+     "label": "linehaul on every load row created in the quarter, unconverted",
+     "value": 11.1
+    },
+    {
+     "label": "share of load rows, not of revenue",
+     "value": 7.77
+    }
+   ]
+  },
+  "H4": {
+   "gold": 408.74,
+   "decoys": [
+    {
+     "label": "linehaul revenue minus linehaul cost, averaged over every reefer load row created in the quarter",
+     "value": 427.4
+    },
+    {
+     "label": "linehaul revenue minus linehaul cost on delivered reefer load rows",
+     "value": 424.75
+    },
+    {
+     "label": "invoice total minus carrier linehaul pay",
+     "value": 840.13
+    }
+   ]
+  },
+  "H5": {
+   "gold": "Northgate Foods Group",
+   "decoys": [
+    {
+     "label": "busiest shipper account row",
+     "value": "Pellam Paper - Savannah Mill"
+    },
+    {
+     "label": "busiest bill-to party",
+     "value": "Ledgerline Freight Payment - Client Remit A"
+    }
+   ]
+  },
+  "H6": {
+   "gold": 17,
+   "decoys": [
+    {
+     "label": "bill-to parties over the line",
+     "value": 16
+    },
+    {
+     "label": "shipper account rows over the line",
+     "value": 12
+    },
+    {
+     "label": "shipper account rows over the line, on linehaul from the load table",
+     "value": 13
+    }
+   ]
+  },
+  "H7": {
+   "gold": 30.93,
+   "decoys": [
+    {
+     "label": "five largest bill-to parties",
+     "value": 43.53
+    },
+    {
+     "label": "five largest shipper account rows",
+     "value": 21.33
+    },
+    {
+     "label": "five largest shipper account rows, on linehaul from the load table",
+     "value": 21.07
+    }
+   ]
+  },
+  "H8": {
+   "gold": 216,
+   "decoys": [
+    {
+     "label": "every load row for the customer's sites",
+     "value": 233
+    },
+    {
+     "label": "test and voided rows removed, re-tenders still counted twice",
+     "value": 225
+    }
+   ]
+  },
+  "H9": {
+   "gold": 1119,
+   "decoys": [
+    {
+     "label": "UTC day of the delivered event, test loads included",
+     "value": 1110
+    },
+    {
+     "label": "UTC day of the arrival at the final stop, real loads only",
+     "value": 1098
+    }
+   ]
+  },
+  "H10": {
+   "gold": 139,
+   "decoys": [
+    {
+     "label": "every delivered load with a shipper delay, late or not",
+     "value": 281
+    },
+    {
+     "label": "shipper delay events logged in the quarter",
+     "value": 285
+    },
+    {
+     "label": "shipper-delayed loads the portal shows as late",
+     "value": 40
+    },
+    {
+     "label": "UTC arrival compared with the local appointment as if both were UTC",
+     "value": 273
+    }
+   ]
+  },
+  "H11": {
+   "gold": 27,
+   "decoys": [
+    {
+     "label": "every load with an unsigned document, even if a signed one followed",
+     "value": 164
+    },
+    {
+     "label": "unsigned document rows received in the quarter",
+     "value": 171
+    },
+    {
+     "label": "every delivered load that cannot be billed, paperwork or not",
+     "value": 197
+    }
+   ]
+  },
+  "H12": {
+   "gold": 89.38,
+   "decoys": [
+    {
+     "label": "contract definition for the whole parent",
+     "value": 86.65
+    },
+    {
+     "label": "operations definition for the whole parent",
+     "value": 82.45
+    },
+    {
+     "label": "portal rule, every customer",
+     "value": 91.88
+    }
+   ]
+  }
+ }
+}

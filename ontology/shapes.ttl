@@ -1,0 +1,162 @@
+# The Tessaway Freight rules that data can be checked against, in SHACL.
+#
+# Tessaway Freight is a fictional company. Every rule below is written from
+# data/DEFINITIONS.md and from nothing else. Each shape carries its rule in
+# plain words (sh:message), and tests/test_ontology.py shows that every shape
+# passes on the generated data and fails on a violation built to break it.
+#
+# Rules that say how a number is worked out (on-time, revenue, margin, currency,
+# local time) are tw:rule notes in tessaway.ttl. They describe a calculation,
+# not a shape the knowledge graph must have.
+
+@prefix tw:   <https://tessaway.example/ontology#> .
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+tw:LoadCountedOnceShape a sh:NodeShape ;
+    rdfs:label "a load is counted once" ;
+    sh:targetClass tw:Load ;
+    sh:message "A load is one shipment, counted once: it has exactly one first tender." ;
+    sh:property [
+        sh:path tw:firstTender ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class tw:Tender ;
+    ] .
+
+tw:TestOrVoidIsNotALoadShape a sh:NodeShape ;
+    rdfs:label "a test or voided row is not a load" ;
+    sh:targetClass tw:Load ;
+    sh:message "A test load or a voided load is not a load." ;
+    sh:property [
+        sh:path ( tw:firstTender tw:isTest ) ;
+        sh:minCount 1 ;
+        sh:in ( false ) ;
+    ] ;
+    sh:property [
+        sh:path ( tw:firstTender tw:isVoid ) ;
+        sh:minCount 1 ;
+        sh:in ( false ) ;
+    ] .
+
+tw:LoadBookedOnFirstTenderShape a sh:NodeShape ;
+    rdfs:label "a load is booked on its first tender" ;
+    sh:targetClass tw:Load ;
+    sh:message "A load is booked on its first tender: the row that does not point to an earlier row. A re-tender is not a second load." ;
+    sh:property [
+        sh:path ( tw:firstTender tw:replaces ) ;
+        sh:maxCount 0 ;
+    ] .
+
+tw:RetenderShape a sh:NodeShape ;
+    rdfs:label "a re-tender replaces one tender, which keeps status RTND" ;
+    sh:targetSubjectsOf tw:replaces ;
+    sh:message "A re-tender points to exactly one earlier tender. That first row keeps status RTND and is never deleted." ;
+    sh:property [
+        sh:path tw:replaces ;
+        sh:maxCount 1 ;
+        sh:class tw:Tender ;
+    ] ;
+    sh:property [
+        sh:path ( tw:replaces tw:status ) ;
+        sh:minCount 1 ;
+        sh:in ( "RTND" ) ;
+    ] .
+
+tw:CustomerIsAParentShape a sh:NodeShape ;
+    rdfs:label "a customer is a parent account" ;
+    sh:targetClass tw:Customer ;
+    sh:message "A customer is a parent account. It rolls up to nothing, and it is neither a shipping site nor a bill-to party." ;
+    sh:property [
+        sh:path tw:rollsUpTo ;
+        sh:maxCount 0 ;
+    ] ;
+    sh:not [ sh:class tw:ShipperSite ] ;
+    sh:not [ sh:class tw:BillToParty ] .
+
+tw:SiteRollsUpToOneCustomerShape a sh:NodeShape ;
+    rdfs:label "a shipping site rolls up to one customer" ;
+    sh:targetClass tw:ShipperSite ;
+    sh:message "A shipping site rolls up to exactly one parent account, which is its customer." ;
+    sh:property [
+        sh:path tw:rollsUpTo ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class tw:Customer ;
+    ] .
+
+tw:TenderAccountsShape a sh:NodeShape ;
+    rdfs:label "the accounts on a tender are a shipping site and a bill-to party" ;
+    sh:targetClass tw:Tender ;
+    sh:message "The account on a load is a shipping site, and the account that pays is a bill-to party. Neither is the customer." ;
+    sh:property [
+        sh:path tw:shipperSite ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class tw:ShipperSite ;
+    ] ;
+    sh:property [
+        sh:path tw:billTo ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class tw:BillToParty ;
+    ] .
+
+tw:LoadBelongsToParentShape a sh:NodeShape ;
+    rdfs:label "a load belongs to the parent of the site that shipped" ;
+    sh:targetClass tw:Load ;
+    sh:message "Revenue and loads belong to the parent of the site that shipped." ;
+    sh:sparql [
+        sh:select """
+            PREFIX tw: <https://tessaway.example/ontology#>
+            SELECT $this WHERE {
+                $this tw:firstTender ?tender .
+                ?tender tw:shipperSite ?site .
+                ?site tw:rollsUpTo ?parent .
+                FILTER NOT EXISTS { $this tw:customer ?parent }
+            }
+        """ ;
+    ] ;
+    sh:property [
+        sh:path tw:customer ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class tw:Customer ;
+    ] .
+
+tw:InvoiceNeedsSignedProofShape a sh:NodeShape ;
+    rdfs:label "an invoice needs a signed proof of delivery" ;
+    sh:targetClass tw:Invoice ;
+    sh:message "A load can be invoiced only when a signed proof of delivery is on file. An unsigned document does not count." ;
+    sh:property [
+        sh:path ( tw:forTender [ sh:inversePath tw:proofFor ] ) ;
+        sh:qualifiedMinCount 1 ;
+        sh:qualifiedValueShape [
+            sh:property [
+                sh:path tw:signed ;
+                sh:hasValue true ;
+            ] ;
+        ] ;
+    ] .
+
+tw:TestLoadsAreNeverBilledShape a sh:NodeShape ;
+    rdfs:label "test loads are never billed" ;
+    sh:targetClass tw:Invoice ;
+    sh:message "Test loads are never billed." ;
+    sh:property [
+        sh:path ( tw:forTender tw:isTest ) ;
+        sh:minCount 1 ;
+        sh:in ( false ) ;
+    ] .
+
+tw:DeliveredLoadShape a sh:NodeShape ;
+    rdfs:label "a delivered load has status DLVD on its final row" ;
+    sh:targetClass tw:DeliveredLoad ;
+    sh:message "A load is delivered when the carrier on its final row reports the final delivery: status DLVD. A canceled load does not count as delivered." ;
+    sh:property [
+        sh:path ( tw:finalTender tw:status ) ;
+        sh:minCount 1 ;
+        sh:in ( "DLVD" ) ;
+    ] ;
+    sh:not [ sh:class tw:CanceledLoad ] .

@@ -1,0 +1,389 @@
+# The Tessaway Freight ontology: what exists in the business, in OWL.
+#
+# Tessaway Freight is a fictional company. Every class, property and term
+# below is written from data/DEFINITIONS.md and from nothing else. No question
+# from questions/part1.yaml, no answer and no particular account or load
+# appears here; the particular things are in the knowledge graph.
+#
+# The rules that can be checked against data are in shapes.ttl (SHACL). Rules
+# that say how a number is worked out are written here as tw:rule notes on the
+# term they belong to, because they describe a calculation, not a shape the
+# data must have.
+
+@prefix tw:   <https://tessaway.example/ontology#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+<https://tessaway.example/ontology> a owl:Ontology ;
+    rdfs:label "Tessaway Freight ontology" ;
+    rdfs:comment "What exists at Tessaway Freight, a fictional freight broker, and how each thing is defined. Written from the company's official definitions." .
+
+# --- annotation properties -----------------------------------------------------
+
+tw:rule a owl:AnnotationProperty ;
+    rdfs:label "rule" ;
+    rdfs:comment "A business rule that binds the term, in plain words." .
+
+tw:warehouseSource a owl:AnnotationProperty ;
+    rdfs:label "warehouse source" ;
+    rdfs:comment "The table and columns in the warehouse that hold this." .
+
+tw:notTheSameAs a owl:AnnotationProperty ;
+    rdfs:label "not the same as" ;
+    rdfs:comment "A term this one is often mistaken for." .
+
+# --- loads and tenders -----------------------------------------------------------
+
+tw:Tender a owl:Class ;
+    rdfs:label "tender" ;
+    skos:altLabel "load row", "re-tender" ;
+    skos:definition "A row in the load table. A row there is a tender, not a load." ;
+    tw:rule "When the first carrier accepts a load and then falls off, the load is tendered again and a second row is written. The second row points to the first through orig_load_id. The first row keeps status RTND and is never deleted. Both rows carry the same linehaul revenue." ;
+    tw:warehouseSource "tms_load_hdr: one row per tender. load_id identifies the row; orig_load_id is filled on a re-tender." ;
+    tw:notTheSameAs tw:Load .
+
+tw:TestRow a owl:Class ;
+    rdfs:subClassOf tw:Tender ;
+    rdfs:label "test load" ;
+    skos:altLabel "test row" ;
+    skos:definition "A row entered by the systems team to check integrations. Test loads move through every status, including delivered. They are not loads." ;
+    tw:rule "A test load is not a load." ,
+            "Test loads are never billed. They are not waiting on anything." ;
+    tw:warehouseSource "tms_load_hdr.test_flg" .
+
+tw:VoidedRow a owl:Class ;
+    rdfs:subClassOf tw:Tender ;
+    rdfs:label "voided load" ;
+    skos:altLabel "voided row", "void" ;
+    skos:definition "A row entered in error. Voided loads are not loads." ;
+    tw:rule "A voided load is not a load." ;
+    tw:warehouseSource "tms_load_hdr.void_flg" .
+
+tw:Load a owl:Class ;
+    rdfs:label "load" ;
+    skos:altLabel "shipment", "booked load", "booking" ;
+    skos:definition "One shipment moved for a customer, counted once." ;
+    tw:rule "A row in the load table is a tender, not a load. A re-tendered load has two rows and is still one load." ,
+            "A test load or a voided load is not a load." ,
+            "A load is booked on the date of its first tender: the row where orig_load_id is empty. Booking dates use the UTC date of crt_ts." ,
+            "A canceled load was a load, and counts as booked. It does not count as delivered." ,
+            "A load belongs to the customer: the parent account of the site that shipped it." ;
+    tw:warehouseSource "tms_load_hdr, leaving out rows with test_flg or void_flg and counting a re-tendered load once." ;
+    tw:notTheSameAs tw:Tender .
+
+tw:CanceledLoad a owl:Class ;
+    rdfs:subClassOf tw:Load ;
+    owl:disjointWith tw:DeliveredLoad ;
+    rdfs:label "canceled load" ;
+    skos:definition "A load that was canceled. It was a load and counts as booked. It does not count as delivered." ;
+    tw:rule "Canceled-load fees billed to the customer are revenue, in the period of the fee date. The carrier's share of a canceled-load fee is a cost in the period of the fee date." ,
+            "The rated linehaul on a canceled row of the load table was never billed." ;
+    tw:warehouseSource "bil_canc_fee: cust_fee_amt, carr_fee_amt, fee_dt, curr_cd" .
+
+tw:DeliveredLoad a owl:Class ;
+    rdfs:subClassOf tw:Load ;
+    rdfs:label "delivered load" ;
+    skos:altLabel "delivery", "delivered" ;
+    skos:definition "For operations, a load is delivered when the carrier reports the final delivery: status DLVD. Delivered counts and service measures use this meaning." ;
+    tw:rule "Only real loads count: not test rows, not voided rows. A re-tendered load is delivered once, by the carrier on its final row." ,
+            "A delivered load belongs to the calendar day, month and quarter of its arrival at the final delivery stop, on the clock at that stop." ,
+            "A load with two delivery stops is delivered once, at the last one." ,
+            "Delivered is not the same as billable. Billing waits for a signed proof of delivery." ;
+    tw:warehouseSource "tms_load_hdr.load_stat_cd = 'DLVD'; arrival at the last delivery stop in tms_stop (arr_ts, tz_nm)." ;
+    tw:notTheSameAs tw:BillableLoad .
+
+tw:BillableLoad a owl:Class ;
+    rdfs:subClassOf tw:DeliveredLoad ;
+    rdfs:label "billable load" ;
+    skos:altLabel "billable", "able to bill", "invoiceable" ;
+    skos:definition "A delivered load with a signed proof of delivery on file. For billing, delivered is not enough." ;
+    tw:rule "A load can be invoiced only when a signed proof of delivery is on file. An unsigned document does not count." ,
+            "The invoice is cut the day the signed proof of delivery is received. A delivered load without one has no invoice and no revenue yet." ,
+            "Test loads are never billed. They are not waiting on anything." ;
+    tw:warehouseSource "bil_pod_doc: a row for the load with signed_flg true" .
+
+tw:ProofOfDelivery a owl:Class ;
+    rdfs:label "proof of delivery" ;
+    skos:altLabel "POD" ;
+    skos:definition "The delivery document billing waits for. Only a signed one makes a load billable." ;
+    tw:warehouseSource "bil_pod_doc: signed_flg says whether the document is signed" .
+
+tw:FinalDeliveryStop a owl:Class ;
+    rdfs:label "final delivery stop" ;
+    skos:altLabel "last delivery stop", "destination" ;
+    skos:definition "The last delivery stop of a load. A load with two delivery stops is delivered once, at the last one." ;
+    tw:rule "Delivery dates and on-time are both judged at the final delivery stop, on the local clock at that stop." ;
+    tw:warehouseSource "tms_stop: the last delivery stop of the load; tz_nm holds its time zone" .
+
+tw:ShipperCausedDelay a owl:Class ;
+    rdfs:label "shipper-caused delay" ;
+    skos:altLabel "shipper delay" ;
+    skos:definition "A delay the shipper caused." ;
+    tw:rule "A load that arrived late and has a shipper-caused delay is left out of the official on-time measure, top and bottom. It is neither on time nor late." ,
+            "A load the shipper delayed that still arrived inside its window counts as on time." ;
+    tw:warehouseSource "tms_stat_evt: a DLAY status event with reason SHPR" .
+
+# --- accounts ----------------------------------------------------------------------
+
+tw:Account a owl:Class ;
+    rdfs:label "account" ;
+    skos:definition "A row in the customer master. A customer, a shipping site and a bill-to party are three different kinds of account." ;
+    tw:warehouseSource "mdm_cust_acct" .
+
+tw:Customer a owl:Class ;
+    rdfs:subClassOf tw:Account ;
+    owl:disjointWith tw:ShipperSite, tw:BillToParty ;
+    rdfs:label "customer" ;
+    skos:altLabel "parent account", "parent" ;
+    skos:definition "A customer is a parent account." ;
+    tw:rule "Revenue and loads belong to the parent of the site that shipped." ,
+            "A customer shipped with us in a period if at least one of its loads was delivered in that period." ,
+            "The account on a load is a shipping site and the account on an invoice is a bill-to party. Neither is the customer." ;
+    tw:warehouseSource "mdm_cust_acct rows with acct_typ_cd = 'PRNT'" ;
+    tw:notTheSameAs tw:ShipperSite, tw:BillToParty .
+
+tw:ShipperSite a owl:Class ;
+    rdfs:subClassOf tw:Account ;
+    owl:disjointWith tw:BillToParty ;
+    rdfs:label "shipper site" ;
+    skos:altLabel "shipping site", "shipper", "site" ;
+    skos:definition "The account on a load: a site that ships. Several sites roll up to one parent, and a site does not always carry the parent's name." ;
+    tw:rule "A shipping site is not the customer. Its customer is the parent account it rolls up to." ;
+    tw:warehouseSource "tms_load_hdr.shpr_acct_id; the site's parent is mdm_cust_acct.prnt_acct_id" ;
+    tw:notTheSameAs tw:Customer .
+
+tw:BillToParty a owl:Class ;
+    rdfs:subClassOf tw:Account ;
+    rdfs:label "bill-to party" ;
+    skos:altLabel "bill-to", "payer" ;
+    skos:definition "The account on an invoice: whoever pays. It may be a shared accounts payable office or a freight payment firm that pays on behalf of several customers." ;
+    tw:rule "A bill-to party is not the customer." ;
+    tw:warehouseSource "tms_load_hdr.bill_to_acct_id, bil_cust_inv.bill_to_acct_id" ;
+    tw:notTheSameAs tw:Customer .
+
+tw:Carrier a owl:Class ;
+    rdfs:label "carrier" ;
+    skos:definition "The carrier on a tender. A re-tendered load is delivered by the carrier on its final row." ;
+    tw:rule "Loads hauled by Tessaway's own fleet are settled through the same tables and are treated the same way." ;
+    tw:warehouseSource "tms_carr; tms_load_hdr.carr_id" .
+
+# --- money documents ---------------------------------------------------------------
+
+tw:FinancialDocument a owl:Class ;
+    rdfs:label "financial document" ;
+    skos:definition "An invoice, a credit memo or a canceled-load fee. Each has a date and carries the currency it was issued in." ;
+    tw:rule "Financial dates (inv_dt, cr_dt, fee_dt) are plain dates and need no conversion." .
+
+tw:Invoice a owl:Class ;
+    rdfs:subClassOf tw:FinancialDocument ;
+    rdfs:label "invoice" ;
+    skos:definition "The bill to the customer for a load. Its total already includes linehaul, fuel surcharge and accessorial charges billed to the customer." ;
+    tw:rule "A load can be invoiced only when a signed proof of delivery is on file. The invoice is cut the day it is received." ;
+    tw:warehouseSource "bil_cust_inv: inv_tot_amt, inv_dt, curr_cd" .
+
+tw:CreditMemo a owl:Class ;
+    rdfs:subClassOf tw:FinancialDocument ;
+    rdfs:label "credit memo" ;
+    skos:altLabel "credit" ;
+    skos:definition "A credit that comes off revenue, in the period of the credit date." ;
+    tw:warehouseSource "bil_cr_memo: cr_amt, cr_dt, curr_cd" .
+
+tw:CanceledLoadFee a owl:Class ;
+    rdfs:subClassOf tw:FinancialDocument ;
+    rdfs:label "canceled-load fee" ;
+    skos:altLabel "cancellation fee", "canceled load fee" ;
+    skos:definition "The fee on a canceled load. The fee billed to the customer is revenue and the carrier's share is a cost, both in the period of the fee date." ;
+    tw:warehouseSource "bil_canc_fee: cust_fee_amt, carr_fee_amt, fee_dt, curr_cd" .
+
+# --- relationships -----------------------------------------------------------------
+
+tw:rollsUpTo a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:domain tw:ShipperSite ;
+    rdfs:range tw:Customer ;
+    rdfs:label "rolls up to" ;
+    skos:definition "Links a shipping site to its customer, the parent account." ;
+    tw:warehouseSource "mdm_cust_acct.prnt_acct_id" .
+
+tw:shipperSite a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:domain tw:Tender ;
+    rdfs:range tw:ShipperSite ;
+    rdfs:label "shipper site of" ;
+    skos:definition "The shipping site on a tender." ;
+    tw:warehouseSource "tms_load_hdr.shpr_acct_id" .
+
+tw:billTo a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:domain tw:Tender ;
+    rdfs:range tw:BillToParty ;
+    rdfs:label "bill-to of" ;
+    skos:definition "The bill-to party on a tender." ;
+    tw:warehouseSource "tms_load_hdr.bill_to_acct_id" .
+
+tw:carrier a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:domain tw:Tender ;
+    rdfs:range tw:Carrier ;
+    rdfs:label "carrier of" ;
+    skos:definition "The carrier on a tender." ;
+    tw:warehouseSource "tms_load_hdr.carr_id" .
+
+tw:replaces a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:domain tw:Tender ;
+    rdfs:range tw:Tender ;
+    rdfs:label "replaces" ;
+    skos:altLabel "re-tender of" ;
+    skos:definition "Links the second tender of a re-tendered load to the first, which keeps status RTND." ;
+    tw:warehouseSource "tms_load_hdr.orig_load_id" .
+
+tw:firstTender a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:domain tw:Load ;
+    rdfs:range tw:Tender ;
+    rdfs:label "first tender" ;
+    skos:definition "The tender a load is booked on: the row where orig_load_id is empty." .
+
+tw:finalTender a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:domain tw:Load ;
+    rdfs:range tw:Tender ;
+    rdfs:label "final tender" ;
+    skos:definition "The final row of a load: the re-tender when there is one, otherwise the first tender." .
+
+tw:customer a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:domain tw:Load ;
+    rdfs:range tw:Customer ;
+    rdfs:label "customer of" ;
+    skos:definition "The customer a load belongs to: the parent of the site that shipped it." .
+
+tw:proofFor a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:domain tw:ProofOfDelivery ;
+    rdfs:range tw:Tender ;
+    rdfs:label "proof of delivery for" ;
+    tw:warehouseSource "bil_pod_doc.load_id" .
+
+tw:forTender a owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:domain tw:FinancialDocument ;
+    rdfs:range tw:Tender ;
+    rdfs:label "document for" ;
+    tw:warehouseSource "bil_cust_inv.load_id, bil_cr_memo.load_id, bil_canc_fee.load_id" .
+
+tw:status a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain tw:Tender ;
+    rdfs:range xsd:string ;
+    rdfs:label "status" ;
+    tw:warehouseSource "tms_load_hdr.load_stat_cd" .
+
+tw:isTest a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain tw:Tender ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "is test" ;
+    tw:warehouseSource "tms_load_hdr.test_flg" .
+
+tw:isVoid a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain tw:Tender ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "is void" ;
+    tw:warehouseSource "tms_load_hdr.void_flg" .
+
+tw:signed a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain tw:ProofOfDelivery ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "signed" ;
+    tw:warehouseSource "bil_pod_doc.signed_flg" .
+
+tw:currency a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain tw:FinancialDocument ;
+    rdfs:range xsd:string ;
+    rdfs:label "document currency" ;
+    tw:warehouseSource "curr_cd on the document" .
+
+tw:accountId a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain tw:Account ;
+    rdfs:range xsd:string ;
+    rdfs:label "account id" ;
+    tw:warehouseSource "mdm_cust_acct.acct_id" .
+
+tw:tenderId a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain tw:Tender ;
+    rdfs:range xsd:string ;
+    rdfs:label "tender id" ;
+    tw:warehouseSource "tms_load_hdr.load_id" .
+
+tw:loadId a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain tw:Load ;
+    rdfs:range xsd:string ;
+    rdfs:label "load id" ;
+    skos:definition "The load_id of the load's first tender." ;
+    tw:warehouseSource "tms_load_hdr.load_id of the first tender" .
+
+tw:carrierId a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain tw:Carrier ;
+    rdfs:range xsd:string ;
+    rdfs:label "carrier id" ;
+    tw:warehouseSource "tms_carr.carr_id" .
+
+# --- business terms: how a number is worked out --------------------------------------
+
+tw:BusinessTerm a owl:Class ;
+    rdfs:label "business term" ;
+    skos:definition "A measure or a convention Tessaway uses, with the rules for working it out." .
+
+tw:OnTime a tw:BusinessTerm ;
+    rdfs:label "on-time" ;
+    skos:altLabel "on time", "on-time delivery rate", "on-time rate", "late", "late delivery" ;
+    skos:definition "Tessaway's official on-time delivery rate is the one its customer contracts define." ;
+    tw:rule "A load is on time when the truck arrives at the final delivery stop at or before the end of the appointment window. Arriving early is on time." ,
+            "Arrival and appointment are compared on the same clock: local time at the facility." ,
+            "A load that arrived late and has a delay the shipper caused (a DLAY status event with reason SHPR) is left out of the measure, top and bottom. It is neither on time nor late." ,
+            "A load the shipper delayed that still arrived inside its window counts as on time." ,
+            "The rate is on-time loads divided by measured loads, over delivered loads." ,
+            "Two other meanings are in use and are not the official rate: operations watches arrival inside the appointment window for every delivered load, shipper-caused or not; and the customer portal uses its own rule." ;
+    tw:warehouseSource "tms_stop: arr_ts, appt_end_lcl, tz_nm at the final delivery stop; tms_stat_evt: evt_cd = 'DLAY' with rsn_cd = 'SHPR'" ;
+    tw:notTheSameAs tw:PortalOnTime .
+
+tw:PortalOnTime a tw:BusinessTerm ;
+    rdfs:label "portal on-time" ;
+    skos:altLabel "customer portal on-time", "portal" ;
+    skos:definition "The customer portal shows a shipment as on time when it was delivered on or before the date the customer requested." ;
+    tw:rule "The portal compares dates, not appointment times, and knows nothing about who caused a delay." ,
+            "It is the right answer only when the question is about what customers see in the portal. It is not the official on-time rate." ;
+    tw:warehouseSource "ptl_shpmt.on_time_ind" ;
+    tw:notTheSameAs tw:OnTime .
+
+tw:Revenue a tw:BusinessTerm ;
+    rdfs:label "revenue" ;
+    skos:definition "Revenue is recognized when it is invoiced, in the period of the invoice date." ;
+    tw:rule "Revenue is the invoice total, which already includes linehaul, fuel surcharge and accessorial charges billed to the customer, less credit memos in the period of the credit date, plus canceled-load fees billed to the customer in the period of the fee date, all in US dollars." ,
+            "The rated linehaul on a tender (tms_load_hdr.lh_rev_amt) is not revenue: it leaves out fuel and accessorials, and it sits on canceled, test, voided and re-tendered rows that were never billed." ,
+            "Revenue belongs to the customer: the parent of the site that shipped." ;
+    tw:warehouseSource "bil_cust_inv.inv_tot_amt by inv_dt; bil_cr_memo.cr_amt by cr_dt; bil_canc_fee.cust_fee_amt by fee_dt" .
+
+tw:Margin a tw:BusinessTerm ;
+    rdfs:label "margin" ;
+    skos:altLabel "margin per load", "margin percentage", "carrier cost" ;
+    skos:definition "Margin is revenue less what was paid to carriers for the same loads." ;
+    tw:rule "Carrier cost for an invoiced load is linehaul pay plus the carrier's fuel surcharge plus accessorials paid to the carrier. Cost follows the load into the period its invoice was cut." ,
+            "The carrier's share of a canceled-load fee is a cost in the period of the fee date." ,
+            "Margin per load is margin for the period divided by the number of loads invoiced in the period." ,
+            "Margin percentage is margin divided by revenue." ,
+            "Loads hauled by Tessaway's own fleet are settled through the same tables and are treated the same way." ;
+    tw:warehouseSource "bil_carr_pay.lh_pay_amt; bil_fuel_schg.carr_fsc_amt; bil_accsrl_chrg.carr_pay_amt; bil_canc_fee.carr_fee_amt" .
+
+tw:Currency a tw:BusinessTerm ;
+    rdfs:label "currency" ;
+    skos:altLabel "US dollars", "Canadian dollars", "exchange rate", "cross-border" ;
+    skos:definition "Tessaway reports in US dollars." ;
+    tw:rule "Most cross-border loads are rated, invoiced and paid in Canadian dollars. Every amount on such a load carries curr_cd = 'CAD' and is stored unconverted." ,
+            "Convert at the monthly rate in ref_fx_rate for the month of the document date: the invoice date, the credit date or the fee date." ,
+            "Costs on an invoiced load convert at the invoice month's rate." ;
+    tw:warehouseSource "curr_cd on every amount; ref_fx_rate holds the monthly rate" .
+
+tw:LocalTime a tw:BusinessTerm ;
+    rdfs:label "local time" ;
+    skos:altLabel "time zone", "UTC", "delivery date", "calendar day" ;
+    skos:definition "Operational dates are local: a delivery happened on the calendar day it was at the destination." ;
+    tw:rule "Every *_ts column is an instant stored in UTC." ,
+            "Every *_lcl column is a wall-clock time at the facility, with no zone attached. The zone is in tz_nm on the stop and on the facility." ,
+            "A truck that arrives in the evening at its destination arrived on that local calendar day, although the stored UTC instant may fall on the next day." ,
+            "Appointment times are compared with arrival times only after putting both on the same clock." ,
+            "Booking dates use the UTC date of crt_ts. Financial dates (inv_dt, cr_dt, fee_dt) are plain dates and need no conversion." ;
+    tw:warehouseSource "*_ts columns (UTC); *_lcl columns with tz_nm" .

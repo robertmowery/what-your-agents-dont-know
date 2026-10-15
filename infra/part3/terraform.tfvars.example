@@ -1,0 +1,6 @@
+# Copy to terraform.tfvars and fill in. No secrets belong in this file.
+project_id     = "your-project-id"
+operator_email = "you@example.com"
+
+# Leave empty for the first apply; set it to the built image for the second.
+image = ""

@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import os
 from dataclasses import dataclass
+from typing import Any
 
 from dotenv import load_dotenv
 
@@ -33,6 +34,9 @@ DATASET = os.environ.get("BQ_DATASET", "tessaway_wh")
 BQ_LOCATION = os.environ.get("BQ_LOCATION", "US")
 GEMINI_LOCATION = os.environ.get("GOOGLE_CLOUD_LOCATION", "global")
 CLAUDE_VERTEX_REGION = os.environ.get("CLAUDE_VERTEX_REGION", "global")
+# How the Claude agent reaches Claude: "anthropic" (Anthropic's API, key read at
+# run time, see tessaway/credentials.py) or "vertex" (Vertex AI, no key).
+CLAUDE_ROUTE = os.environ.get("CLAUDE_ROUTE", "anthropic").strip().lower()
 
 # The date the model names and prices below were checked against the provider
 # listings for the project. Recorded in every results file.
@@ -50,6 +54,36 @@ def project() -> str:
     # User credentials carry their own quota project. Pin it to this project so
     # no request is ever attributed to whatever the machine default happens to be.
     os.environ["GOOGLE_CLOUD_QUOTA_PROJECT"] = value
+    return value
+
+
+# What a saved results file or export says in place of the Google Cloud project.
+PROJECT_PLACEHOLDER = "PROJECT"
+
+
+def redact_project(value: Any, project_id: str | None = None) -> Any:
+    """Return ``value`` with the Google Cloud project ID replaced by ``PROJECT_PLACEHOLDER``.
+
+    MetricFlow and dbt write fully qualified table names, so the project ID ends
+    up in generated SQL and in exports. Results files and exports are published
+    with the code, and the project is the reader's own, so it is never saved.
+    Strings are rewritten anywhere inside dicts and lists; other values are
+    returned unchanged. With no project set there is nothing to replace.
+
+    Args:
+        value: A string, or a dict or list holding strings anywhere inside it.
+        project_id: The ID to replace. Defaults to ``GOOGLE_CLOUD_PROJECT``.
+    """
+    if project_id is None:
+        project_id = os.environ.get("GOOGLE_CLOUD_PROJECT", "").strip()
+    if not project_id or project_id == PROJECT_PLACEHOLDER:
+        return value
+    if isinstance(value, str):
+        return value.replace(project_id, PROJECT_PLACEHOLDER)
+    if isinstance(value, list):
+        return [redact_project(item, project_id) for item in value]
+    if isinstance(value, dict):
+        return {key: redact_project(item, project_id) for key, item in value.items()}
     return value
 
 

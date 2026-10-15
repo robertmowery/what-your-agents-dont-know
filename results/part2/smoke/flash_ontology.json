@@ -1,0 +1,711 @@
+{
+ "config": "flash_ontology",
+ "layers": [
+  "ontology"
+ ],
+ "tools": [
+  "run_sql",
+  "lookup_ontology"
+ ],
+ "runtime": "adk",
+ "runtime_package": "google-adk==2.11.0",
+ "layer_packages": {
+  "rdflib": "7.6.0",
+  "pyshacl": "0.40.1",
+  "pyoxigraph": "0.5.11",
+  "dbt-metricflow": "0.15.0",
+  "metricflow": "0.213.0",
+  "dbt-core": "1.12.5",
+  "dbt-bigquery": "1.12.1"
+ },
+ "model": "gemini-3.8-flash",
+ "model_reported_by_provider": [
+  "gemini-3.8-flash"
+ ],
+ "model_and_prices_checked_on": "2026-10-09",
+ "usd_per_million_tokens": {
+  "input": 0.75,
+  "output": 3.75,
+  "cache_read": 0.075
+ },
+ "first_run_finished_at": "2026-10-09T20:19:34+00:00",
+ "last_run_finished_at": "2026-10-09T20:20:13+00:00",
+ "question_count": 2,
+ "runs_per_question": 1,
+ "runs_expected": 2,
+ "runs_saved": 2,
+ "complete": true,
+ "runs_repeated_after_a_failure": 0,
+ "sql_query_limit": 8,
+ "layer_call_limit_per_tool": 8,
+ "model_call_ceiling": 16,
+ "data_seed": 20261009,
+ "summary": {
+  "overall": {
+   "runs": 2,
+   "right": 1,
+   "right_share": 0.5,
+   "confidently_wrong": 0,
+   "confidently_wrong_share": 0.0,
+   "declined": 0,
+   "declined_share": 0.0,
+   "no_answer": 1,
+   "no_answer_share": 0.5
+  },
+  "by_group": {
+   "lookup": {
+    "runs": 1,
+    "right": 1,
+    "right_share": 1.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": 0.0,
+    "declined": 0,
+    "declined_share": 0.0,
+    "no_answer": 0,
+    "no_answer_share": 0.0
+   },
+   "metric": {
+    "runs": 1,
+    "right": 0,
+    "right_share": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": 0.0,
+    "declined": 0,
+    "declined_share": 0.0,
+    "no_answer": 1,
+    "no_answer_share": 1.0
+   }
+  },
+  "by_question": {
+   "L1": {
+    "runs": 1,
+    "right": 1,
+    "right_share": 1.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": 0.0,
+    "declined": 0,
+    "declined_share": 0.0,
+    "no_answer": 0,
+    "no_answer_share": 0.0,
+    "group": "lookup",
+    "mean_input_tokens": 19341.0,
+    "mean_output_tokens": 989.0,
+    "mean_cost_usd": 0.0182,
+    "mean_queries": 5.0,
+    "decoys_matched": {}
+   },
+   "M1": {
+    "runs": 1,
+    "right": 0,
+    "right_share": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": 0.0,
+    "declined": 0,
+    "declined_share": 0.0,
+    "no_answer": 1,
+    "no_answer_share": 1.0,
+    "group": "metric",
+    "mean_input_tokens": 84707.0,
+    "mean_output_tokens": 3379.0,
+    "mean_cost_usd": 0.06,
+    "mean_queries": 8.0,
+    "decoys_matched": {}
+   }
+  },
+  "wrong_answers_that_flagged_an_assumption": 0,
+  "wrong_answers": 0,
+  "declines": 0,
+  "declines_that_mention_the_query_limit": 0,
+  "runs_that_used_every_query": 1,
+  "mean_cost_usd_per_question": 0.0391,
+  "mean_input_tokens_per_question": 52024.0,
+  "mean_output_tokens_per_question": 2184.0,
+  "total_cost_usd": 0.0782
+ },
+ "effort": {
+  "mean_input_tokens": 52024,
+  "mean_output_tokens": 2184,
+  "cache_read_share_of_input": 0.2311,
+  "runs_with_a_cache_read": 1,
+  "mean_model_calls": 12.0,
+  "mean_sql_queries": 6.5,
+  "mean_seconds": 46.2,
+  "mean_cost_usd": 0.0391,
+  "total_cost_usd": 0.0782
+ },
+ "tool_use": {
+  "runs": 2,
+  "mean_calls_per_run": {
+   "run_sql": 6.5,
+   "lookup_ontology": 4.5
+  },
+  "total_calls": {
+   "run_sql": 13,
+   "lookup_ontology": 9
+  },
+  "runs_that_called": {
+   "run_sql": 2,
+   "lookup_ontology": 2
+  },
+  "runs_with_no_layer_call": 0,
+  "runs_with_no_sql_call": 0,
+  "runs_whose_first_call_was_sql": 0,
+  "where_a_layer_applies": {
+   "ontology": {
+    "questions": 1,
+    "runs": 1,
+    "runs_that_used_the_layer": 1,
+    "runs_that_ignored_the_layer": 0
+   }
+  }
+ },
+ "tool_use_by_group": {
+  "lookup": {
+   "runs": 1,
+   "mean_calls_per_run": {
+    "run_sql": 5.0,
+    "lookup_ontology": 2.0
+   },
+   "total_calls": {
+    "run_sql": 5,
+    "lookup_ontology": 2
+   },
+   "runs_that_called": {
+    "run_sql": 1,
+    "lookup_ontology": 1
+   },
+   "runs_with_no_layer_call": 0,
+   "runs_with_no_sql_call": 0,
+   "runs_whose_first_call_was_sql": 0,
+   "where_a_layer_applies": {
+    "ontology": {
+     "questions": 0,
+     "runs": 0,
+     "runs_that_used_the_layer": 0,
+     "runs_that_ignored_the_layer": 0
+    }
+   }
+  },
+  "metric": {
+   "runs": 1,
+   "mean_calls_per_run": {
+    "run_sql": 8.0,
+    "lookup_ontology": 7.0
+   },
+   "total_calls": {
+    "run_sql": 8,
+    "lookup_ontology": 7
+   },
+   "runs_that_called": {
+    "run_sql": 1,
+    "lookup_ontology": 1
+   },
+   "runs_with_no_layer_call": 0,
+   "runs_with_no_sql_call": 0,
+   "runs_whose_first_call_was_sql": 0,
+   "where_a_layer_applies": {
+    "ontology": {
+     "questions": 1,
+     "runs": 1,
+     "runs_that_used_the_layer": 1,
+     "runs_that_ignored_the_layer": 0
+    }
+   }
+  }
+ },
+ "limits": {
+  "runs_refused_a_further_sql_query": 1,
+  "runs_refused_a_further_layer_call": 0,
+  "runs_that_hit_the_model_call_ceiling": 1,
+  "runs_that_timed_out": 0,
+  "runs_that_ended_in_an_error": 1
+ },
+ "runs": [
+  {
+   "config": "flash_ontology",
+   "layers": [
+    "ontology"
+   ],
+   "model": "gemini-3.8-flash",
+   "question_id": "L1",
+   "group": "lookup",
+   "trial": 0,
+   "outcome": "right",
+   "extracted": "65",
+   "value": 65.0,
+   "matched_decoy": "",
+   "flagged_assumption": false,
+   "mentions_query_limit": false,
+   "gold": 65,
+   "answer_text": "There are 65 carriers on file in the carrier master table (`tms_carr`), all of which are currently active (64 third-party carriers and 1 internal fleet).\n\nANSWER: 65",
+   "queries": [
+    {
+     "sql": "SELECT * FROM tms_carr LIMIT 20",
+     "row_count": 20,
+     "bytes_billed": 0
+    },
+    {
+     "sql": "SELECT \n  count(*) as total_rows,\n  count(distinct carr_id) as distinct_carr_id,\n  countif(actv_flg = true) as active_count,\n  countif(actv_flg = false) as inactive_count,\n  countif(actv_flg is null) as null_actv_count\nFROM tms_carr",
+     "row_count": 1,
+     "bytes_billed": 10485760
+    },
+    {
+     "sql": "SELECT \n  count(distinct carr_id) as load_carr_count,\n  countif(carr_id NOT IN (SELECT carr_id FROM tms_carr)) as missing_carr\nFROM tms_load_hdr",
+     "row_count": 1,
+     "bytes_billed": 20971520
+    },
+    {
+     "sql": "SELECT \n  count(distinct carr_id) as pay_carr_count,\n  countif(carr_id NOT IN (SELECT carr_id FROM tms_carr)) as missing_carr\nFROM bil_carr_pay",
+     "row_count": 1,
+     "bytes_billed": 20971520
+    },
+    {
+     "sql": "SELECT carr_typ_cd, count(*) FROM tms_carr GROUP BY carr_typ_cd",
+     "row_count": 2,
+     "bytes_billed": 0
+    }
+   ],
+   "query_count": 5,
+   "queries_refused_over_limit": 0,
+   "tool_calls": [
+    {
+     "seq": 1,
+     "tool": "lookup_ontology",
+     "arguments": {
+      "term": "carrier"
+     },
+     "matches": [
+      "tw:Carrier",
+      "tw:carrier",
+      "tw:carrierId",
+      "tw:Margin"
+     ]
+    },
+    {
+     "seq": 2,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT * FROM tms_carr LIMIT 20"
+     },
+     "row_count": 20
+    },
+    {
+     "seq": 3,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT \n  count(*) as total_rows,\n  count(distinct carr_id) as distinct_carr_id,\n  countif(actv_flg = true) as active_count,\n  countif(actv_flg = false) as inactive_count,\n  countif(actv_flg is null) as null_actv_count\nFROM tms_carr"
+     },
+     "row_count": 1
+    },
+    {
+     "seq": 4,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT \n  count(distinct carr_id) as load_carr_count,\n  countif(carr_id NOT IN (SELECT carr_id FROM tms_carr)) as missing_carr\nFROM tms_load_hdr"
+     },
+     "row_count": 1
+    },
+    {
+     "seq": 5,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT \n  count(distinct carr_id) as pay_carr_count,\n  countif(carr_id NOT IN (SELECT carr_id FROM tms_carr)) as missing_carr\nFROM bil_carr_pay"
+     },
+     "row_count": 1
+    },
+    {
+     "seq": 6,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT carr_typ_cd, count(*) FROM tms_carr GROUP BY carr_typ_cd"
+     },
+     "row_count": 2
+    },
+    {
+     "seq": 7,
+     "tool": "lookup_ontology",
+     "arguments": {
+      "term": "fleet"
+     },
+     "matches": []
+    }
+   ],
+   "tool_call_counts": {
+    "lookup_ontology": 2,
+    "run_sql": 5
+   },
+   "tools_in_order": [
+    "lookup_ontology",
+    "run_sql",
+    "run_sql",
+    "run_sql",
+    "run_sql",
+    "run_sql",
+    "lookup_ontology"
+   ],
+   "layer_calls_refused": {},
+   "model_calls": 8,
+   "hit_model_call_ceiling": false,
+   "prompt_tokens_by_call": [
+    [
+     1416,
+     0
+    ],
+    [
+     1837,
+     0
+    ],
+    [
+     2228,
+     0
+    ],
+    [
+     2405,
+     0
+    ],
+    [
+     2566,
+     0
+    ],
+    [
+     2675,
+     0
+    ],
+    [
+     2751,
+     0
+    ],
+    [
+     3463,
+     0
+    ]
+   ],
+   "input_tokens": 19341,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0,
+   "input_tokens_total": 19341,
+   "output_tokens": 989,
+   "cost_usd": 0.018215,
+   "bigquery_bytes_billed": 52428800,
+   "bigquery_usd": 0.000298,
+   "seconds": 26.9,
+   "timed_out": false,
+   "error": "",
+   "model_reported": "gemini-3.8-flash",
+   "finished_at": "2026-10-09T20:19:34+00:00"
+  },
+  {
+   "config": "flash_ontology",
+   "layers": [
+    "ontology"
+   ],
+   "model": "gemini-3.8-flash",
+   "question_id": "M1",
+   "group": "metric",
+   "trial": 0,
+   "outcome": "no_answer",
+   "extracted": "",
+   "value": null,
+   "matched_decoy": "",
+   "flagged_assumption": false,
+   "mentions_query_limit": false,
+   "gold": 87.44,
+   "answer_text": "",
+   "queries": [
+    {
+     "sql": "SELECT stop_typ_cd, COUNT(*) \nFROM tms_stop \nGROUP BY stop_typ_cd",
+     "row_count": 2,
+     "bytes_billed": 0
+    },
+    {
+     "sql": "SELECT * \nFROM tms_stop \nWHERE stop_typ_cd = 'DL' \nLIMIT 5",
+     "row_count": 5,
+     "bytes_billed": 10485760
+    },
+    {
+     "sql": "SELECT \n  stop_id, \n  arr_ts, \n  tz_nm, \n  DATETIME(arr_ts, tz_nm) AS arr_lcl, \n  appt_end_lcl,\n  DATETIME(arr_ts, tz_nm) <= appt_end_lcl AS on_time_check\nFROM tms_stop \nWHERE stop_id = 'S00000423'",
+     "row_count": 1,
+     "bytes_billed": 10485760
+    },
+    {
+     "sql": "SELECT \n  load_stat_cd, \n  test_flg, \n  void_flg, \n  COUNT(*) \nFROM tms_load_hdr \nGROUP BY 1, 2, 3",
+     "row_count": 10,
+     "bytes_billed": 10485760
+    },
+    {
+     "sql": "SELECT \n  COUNT(*) as total_dlvd,\n  COUNTIF(orig_load_id IS NOT NULL) as dlvd_retendered\nFROM tms_load_hdr\nWHERE load_stat_cd = 'DLVD'\n  AND NOT test_flg AND NOT void_flg",
+     "row_count": 1,
+     "bytes_billed": 10485760
+    },
+    {
+     "sql": "SELECT orig_load_id, COUNT(*)\nFROM tms_load_hdr\nWHERE orig_load_id IS NOT NULL\nGROUP BY orig_load_id\nHAVING COUNT(*) > 1",
+     "row_count": 0,
+     "bytes_billed": 10485760
+    },
+    {
+     "sql": "SELECT load_id, COUNT(*) \nFROM tms_stop \nWHERE stop_typ_cd = 'DL' \nGROUP BY load_id \nHAVING COUNT(*) > 1 \nLIMIT 5",
+     "row_count": 5,
+     "bytes_billed": 0
+    },
+    {
+     "sql": "SELECT * FROM tms_stop WHERE load_id = 'L1000257' ORDER BY stop_seq",
+     "row_count": 3,
+     "bytes_billed": 10485760
+    }
+   ],
+   "query_count": 8,
+   "queries_refused_over_limit": 1,
+   "tool_calls": [
+    {
+     "seq": 1,
+     "tool": "lookup_ontology",
+     "arguments": {
+      "term": "on-time delivery rate"
+     },
+     "matches": [
+      "tw:OnTime"
+     ]
+    },
+    {
+     "seq": 2,
+     "tool": "lookup_ontology",
+     "arguments": {
+      "term": "delivered"
+     },
+     "matches": [
+      "tw:DeliveredLoad"
+     ]
+    },
+    {
+     "seq": 3,
+     "tool": "lookup_ontology",
+     "arguments": {
+      "term": "load"
+     },
+     "matches": [
+      "tw:Load",
+      "tw:BillableLoad",
+      "tw:CanceledLoad",
+      "tw:CanceledLoadFee",
+      "tw:DeliveredLoad",
+      "tw:Tender"
+     ]
+    },
+    {
+     "seq": 4,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT stop_typ_cd, COUNT(*) \nFROM tms_stop \nGROUP BY stop_typ_cd"
+     },
+     "row_count": 2
+    },
+    {
+     "seq": 5,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT * \nFROM tms_stop \nWHERE stop_typ_cd = 'DL' \nLIMIT 5"
+     },
+     "row_count": 5
+    },
+    {
+     "seq": 6,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT \n  stop_id, \n  arr_ts, \n  tz_nm, \n  DATETIME(arr_ts, tz_nm) AS arr_lcl, \n  appt_end_lcl,\n  DATETIME(arr_ts, tz_nm) <= appt_end_lcl AS on_time_check\nFROM tms_stop \nWHERE stop_id = 'S00000423'"
+     },
+     "row_count": 1
+    },
+    {
+     "seq": 7,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT \n  load_stat_cd, \n  test_flg, \n  void_flg, \n  COUNT(*) \nFROM tms_load_hdr \nGROUP BY 1, 2, 3"
+     },
+     "row_count": 10
+    },
+    {
+     "seq": 8,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT \n  COUNT(*) as total_dlvd,\n  COUNTIF(orig_load_id IS NOT NULL) as dlvd_retendered\nFROM tms_load_hdr\nWHERE load_stat_cd = 'DLVD'\n  AND NOT test_flg AND NOT void_flg"
+     },
+     "row_count": 1
+    },
+    {
+     "seq": 9,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT orig_load_id, COUNT(*)\nFROM tms_load_hdr\nWHERE orig_load_id IS NOT NULL\nGROUP BY orig_load_id\nHAVING COUNT(*) > 1"
+     },
+     "row_count": 0
+    },
+    {
+     "seq": 10,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT load_id, COUNT(*) \nFROM tms_stop \nWHERE stop_typ_cd = 'DL' \nGROUP BY load_id \nHAVING COUNT(*) > 1 \nLIMIT 5"
+     },
+     "row_count": 5
+    },
+    {
+     "seq": 11,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT * FROM tms_stop WHERE load_id = 'L1000257' ORDER BY stop_seq"
+     },
+     "row_count": 3
+    },
+    {
+     "seq": 12,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT evt_cd, rsn_cd, COUNT(*) \nFROM tms_stat_evt \nGROUP BY 1, 2 \nORDER BY 3 DESC \nLIMIT 20"
+     },
+     "refused": true,
+     "error": "Query limit reached: all 8 queries for this question are used. Give your final answer now."
+    },
+    {
+     "seq": 13,
+     "tool": "lookup_ontology",
+     "arguments": {
+      "term": "DLAY"
+     },
+     "matches": []
+    },
+    {
+     "seq": 14,
+     "tool": "lookup_ontology",
+     "arguments": {
+      "term": "shipper-caused delay"
+     },
+     "matches": [
+      "tw:ShipperCausedDelay"
+     ]
+    },
+    {
+     "seq": 15,
+     "tool": "lookup_ontology",
+     "arguments": {
+      "term": "final delivery stop"
+     },
+     "matches": [
+      "tw:FinalDeliveryStop"
+     ]
+    },
+    {
+     "seq": 16,
+     "tool": "lookup_ontology",
+     "arguments": {
+      "term": "portal on-time"
+     },
+     "matches": [
+      "tw:PortalOnTime"
+     ]
+    }
+   ],
+   "tool_call_counts": {
+    "lookup_ontology": 7,
+    "run_sql": 8
+   },
+   "tools_in_order": [
+    "lookup_ontology",
+    "lookup_ontology",
+    "lookup_ontology",
+    "run_sql",
+    "run_sql",
+    "run_sql",
+    "run_sql",
+    "run_sql",
+    "run_sql",
+    "run_sql",
+    "run_sql",
+    "lookup_ontology",
+    "lookup_ontology",
+    "lookup_ontology",
+    "lookup_ontology"
+   ],
+   "layer_calls_refused": {},
+   "model_calls": 16,
+   "hit_model_call_ceiling": true,
+   "prompt_tokens_by_call": [
+    [
+     1423,
+     0
+    ],
+    [
+     1795,
+     0
+    ],
+    [
+     2104,
+     0
+    ],
+    [
+     3334,
+     0
+    ],
+    [
+     3869,
+     0
+    ],
+    [
+     4595,
+     0
+    ],
+    [
+     5037,
+     0
+    ],
+    [
+     5748,
+     0
+    ],
+    [
+     5989,
+     3491
+    ],
+    [
+     6165,
+     3491
+    ],
+    [
+     6400,
+     3486
+    ],
+    [
+     6851,
+     3460
+    ],
+    [
+     7180,
+     3476
+    ],
+    [
+     7930,
+     3326
+    ],
+    [
+     8082,
+     3319
+    ],
+    [
+     8205,
+     0
+    ]
+   ],
+   "input_tokens": 60658,
+   "cache_read_tokens": 24049,
+   "cache_write_tokens": 0,
+   "input_tokens_total": 84707,
+   "output_tokens": 3379,
+   "cost_usd": 0.059968,
+   "bigquery_bytes_billed": 62914560,
+   "bigquery_usd": 0.000358,
+   "seconds": 65.4,
+   "timed_out": false,
+   "error": "LlmCallsLimitExceededError: Max number of llm calls limit of `16` exceeded",
+   "model_reported": "gemini-3.8-flash",
+   "finished_at": "2026-10-09T20:20:13+00:00"
+  }
+ ]
+}

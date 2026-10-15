@@ -1,6 +1,6 @@
 # Cloud setup with Terraform
 
-This folder creates the Google Cloud resources the series uses, in a project you own: two APIs switched on and one private BigQuery dataset.
+This folder creates the Google Cloud resources the series uses, in a project you own: two APIs switched on and two private BigQuery datasets.
 
 Nothing here contains a key, a password, or a token. Terraform signs in with your own gcloud login.
 
@@ -38,6 +38,7 @@ python -m tessaway.warehouse.load       # generate the data and load it
 | --- | --- | --- |
 | BigQuery and Vertex AI APIs switched on | Every part | No |
 | BigQuery dataset `tessaway_wh` | Every part | Storage and queries; the data is a few megabytes |
+| BigQuery dataset `tessaway_sem` | Part 2 onward: the views dbt builds for the semantic layer | Queries only; views store nothing |
 | Read access for `reader_emails` (optional) | Every part | No |
 
 ## Access
@@ -63,7 +64,7 @@ cd infra
 terraform destroy
 ```
 
-This deletes the dataset and its tables. The data is rebuilt from a fixed seed, so nothing is lost. `terraform destroy` leaves the APIs switched on, so it cannot break anything else in the project. Switch them off by hand if you want them off.
+This deletes both datasets, the tables and the views. The data is rebuilt from a fixed seed, so nothing is lost. `terraform destroy` leaves the APIs switched on, so it cannot break anything else in the project. Switch them off by hand if you want them off.
 
 ## State
 

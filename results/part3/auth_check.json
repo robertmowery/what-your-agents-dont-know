@@ -1,0 +1,28 @@
+{
+ "checked_at": "2026-10-13T15:40:26+00:00",
+ "endpoint": "CONTRACT_URL/mcp",
+ "results": [
+  {
+   "call": "no token",
+   "http_status": 403,
+   "outcome": "refused",
+   "expected": "refused",
+   "as_expected": true
+  },
+  {
+   "call": "a token with a forged signature",
+   "http_status": 401,
+   "outcome": "refused",
+   "expected": "refused",
+   "as_expected": true
+  },
+  {
+   "call": "the routed agent's ID token",
+   "http_status": 200,
+   "outcome": "accepted",
+   "expected": "accepted",
+   "as_expected": true
+  }
+ ],
+ "all_as_expected": true
+}

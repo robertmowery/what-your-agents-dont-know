@@ -1,0 +1,17 @@
+# What `gcloud builds submit` uploads from the repo root: only what the context
+# server's image needs. Everything else stays on the machine, .env and Terraform
+# state above all.
+/*
+!/tessaway/
+!/ontology/
+!/semantic_layer/
+!/context_server/
+!/requirements-semantic.txt
+__pycache__/
+*.pyc
+.env
+.env.*
+semantic_layer/target/
+semantic_layer/logs/
+semantic_layer/dbt_packages/
+semantic_layer/.user.yml

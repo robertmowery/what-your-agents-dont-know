@@ -1,0 +1,636 @@
+{
+ "config": "flash_semantic",
+ "layers": [
+  "semantic"
+ ],
+ "tools": [
+  "run_sql",
+  "query_metrics"
+ ],
+ "runtime": "adk",
+ "runtime_package": "google-adk==2.11.0",
+ "layer_packages": {
+  "rdflib": "7.6.0",
+  "pyshacl": "0.40.1",
+  "pyoxigraph": "0.5.11",
+  "dbt-metricflow": "0.15.0",
+  "metricflow": "0.213.0",
+  "dbt-core": "1.12.5",
+  "dbt-bigquery": "1.12.1"
+ },
+ "model": "gemini-3.8-flash",
+ "model_reported_by_provider": [
+  "gemini-3.8-flash"
+ ],
+ "model_and_prices_checked_on": "2026-10-09",
+ "usd_per_million_tokens": {
+  "input": 0.75,
+  "output": 3.75,
+  "cache_read": 0.075
+ },
+ "first_run_finished_at": "2026-10-09T20:18:36+00:00",
+ "last_run_finished_at": "2026-10-09T20:19:07+00:00",
+ "question_count": 2,
+ "runs_per_question": 1,
+ "runs_expected": 2,
+ "runs_saved": 2,
+ "complete": true,
+ "runs_repeated_after_a_failure": 0,
+ "sql_query_limit": 8,
+ "layer_call_limit_per_tool": 8,
+ "model_call_ceiling": 16,
+ "data_seed": 20261009,
+ "summary": {
+  "overall": {
+   "runs": 2,
+   "right": 2,
+   "right_share": 1.0,
+   "confidently_wrong": 0,
+   "confidently_wrong_share": 0.0,
+   "declined": 0,
+   "declined_share": 0.0,
+   "no_answer": 0,
+   "no_answer_share": 0.0
+  },
+  "by_group": {
+   "lookup": {
+    "runs": 1,
+    "right": 1,
+    "right_share": 1.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": 0.0,
+    "declined": 0,
+    "declined_share": 0.0,
+    "no_answer": 0,
+    "no_answer_share": 0.0
+   },
+   "metric": {
+    "runs": 1,
+    "right": 1,
+    "right_share": 1.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": 0.0,
+    "declined": 0,
+    "declined_share": 0.0,
+    "no_answer": 0,
+    "no_answer_share": 0.0
+   }
+  },
+  "by_question": {
+   "L1": {
+    "runs": 1,
+    "right": 1,
+    "right_share": 1.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": 0.0,
+    "declined": 0,
+    "declined_share": 0.0,
+    "no_answer": 0,
+    "no_answer_share": 0.0,
+    "group": "lookup",
+    "mean_input_tokens": 25513.0,
+    "mean_output_tokens": 1195.0,
+    "mean_cost_usd": 0.0236,
+    "mean_queries": 6.0,
+    "decoys_matched": {}
+   },
+   "M1": {
+    "runs": 1,
+    "right": 1,
+    "right_share": 1.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": 0.0,
+    "declined": 0,
+    "declined_share": 0.0,
+    "no_answer": 0,
+    "no_answer_share": 0.0,
+    "group": "metric",
+    "mean_input_tokens": 28777.0,
+    "mean_output_tokens": 5204.0,
+    "mean_cost_usd": 0.0411,
+    "mean_queries": 2.0,
+    "decoys_matched": {}
+   }
+  },
+  "wrong_answers_that_flagged_an_assumption": 0,
+  "wrong_answers": 0,
+  "declines": 0,
+  "declines_that_mention_the_query_limit": 0,
+  "runs_that_used_every_query": 0,
+  "mean_cost_usd_per_question": 0.0324,
+  "mean_input_tokens_per_question": 27145.0,
+  "mean_output_tokens_per_question": 3199.5,
+  "total_cost_usd": 0.0647
+ },
+ "effort": {
+  "mean_input_tokens": 27145,
+  "mean_output_tokens": 3200,
+  "cache_read_share_of_input": 0.0,
+  "runs_with_a_cache_read": 0,
+  "mean_model_calls": 6.5,
+  "mean_sql_queries": 4.0,
+  "mean_seconds": 42.7,
+  "mean_cost_usd": 0.0324,
+  "total_cost_usd": 0.0647
+ },
+ "tool_use": {
+  "runs": 2,
+  "mean_calls_per_run": {
+   "run_sql": 4.0,
+   "query_metrics": 1.5
+  },
+  "total_calls": {
+   "run_sql": 8,
+   "query_metrics": 3
+  },
+  "runs_that_called": {
+   "run_sql": 2,
+   "query_metrics": 1
+  },
+  "runs_with_no_layer_call": 1,
+  "runs_with_no_sql_call": 0,
+  "runs_whose_first_call_was_sql": 1,
+  "where_a_layer_applies": {
+   "semantic": {
+    "questions": 1,
+    "runs": 1,
+    "runs_that_used_the_layer": 1,
+    "runs_that_ignored_the_layer": 0
+   }
+  },
+  "went_around_the_semantic_layer": {
+   "what": "Runs on a question that one metric query answers, in which the agent ran at least one SQL query.",
+   "runs_on_such_questions": 1,
+   "runs_that_ran_sql": 1,
+   "of_which_never_called_the_metric_tool": 0,
+   "of_which_called_both": 1,
+   "outcomes_when_sql_was_run": {
+    "runs": 1,
+    "right": 1,
+    "right_share": 1.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": 0.0,
+    "declined": 0,
+    "declined_share": 0.0,
+    "no_answer": 0,
+    "no_answer_share": 0.0
+   },
+   "runs_answered_from_metrics_alone": 0,
+   "outcomes_from_metrics_alone": {
+    "runs": 0,
+    "right": 0,
+    "right_share": null,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": null,
+    "declined": 0,
+    "declined_share": null,
+    "no_answer": 0,
+    "no_answer_share": null
+   }
+  }
+ },
+ "tool_use_by_group": {
+  "lookup": {
+   "runs": 1,
+   "mean_calls_per_run": {
+    "run_sql": 6.0,
+    "query_metrics": 0.0
+   },
+   "total_calls": {
+    "run_sql": 6,
+    "query_metrics": 0
+   },
+   "runs_that_called": {
+    "run_sql": 1,
+    "query_metrics": 0
+   },
+   "runs_with_no_layer_call": 1,
+   "runs_with_no_sql_call": 0,
+   "runs_whose_first_call_was_sql": 1,
+   "where_a_layer_applies": {
+    "semantic": {
+     "questions": 0,
+     "runs": 0,
+     "runs_that_used_the_layer": 0,
+     "runs_that_ignored_the_layer": 0
+    }
+   },
+   "went_around_the_semantic_layer": {
+    "what": "Runs on a question that one metric query answers, in which the agent ran at least one SQL query.",
+    "runs_on_such_questions": 0,
+    "runs_that_ran_sql": 0,
+    "of_which_never_called_the_metric_tool": 0,
+    "of_which_called_both": 0,
+    "outcomes_when_sql_was_run": {
+     "runs": 0,
+     "right": 0,
+     "right_share": null,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": null,
+     "declined": 0,
+     "declined_share": null,
+     "no_answer": 0,
+     "no_answer_share": null
+    },
+    "runs_answered_from_metrics_alone": 0,
+    "outcomes_from_metrics_alone": {
+     "runs": 0,
+     "right": 0,
+     "right_share": null,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": null,
+     "declined": 0,
+     "declined_share": null,
+     "no_answer": 0,
+     "no_answer_share": null
+    }
+   }
+  },
+  "metric": {
+   "runs": 1,
+   "mean_calls_per_run": {
+    "run_sql": 2.0,
+    "query_metrics": 3.0
+   },
+   "total_calls": {
+    "run_sql": 2,
+    "query_metrics": 3
+   },
+   "runs_that_called": {
+    "run_sql": 1,
+    "query_metrics": 1
+   },
+   "runs_with_no_layer_call": 0,
+   "runs_with_no_sql_call": 0,
+   "runs_whose_first_call_was_sql": 0,
+   "where_a_layer_applies": {
+    "semantic": {
+     "questions": 1,
+     "runs": 1,
+     "runs_that_used_the_layer": 1,
+     "runs_that_ignored_the_layer": 0
+    }
+   },
+   "went_around_the_semantic_layer": {
+    "what": "Runs on a question that one metric query answers, in which the agent ran at least one SQL query.",
+    "runs_on_such_questions": 1,
+    "runs_that_ran_sql": 1,
+    "of_which_never_called_the_metric_tool": 0,
+    "of_which_called_both": 1,
+    "outcomes_when_sql_was_run": {
+     "runs": 1,
+     "right": 1,
+     "right_share": 1.0,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": 0.0,
+     "declined": 0,
+     "declined_share": 0.0,
+     "no_answer": 0,
+     "no_answer_share": 0.0
+    },
+    "runs_answered_from_metrics_alone": 0,
+    "outcomes_from_metrics_alone": {
+     "runs": 0,
+     "right": 0,
+     "right_share": null,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": null,
+     "declined": 0,
+     "declined_share": null,
+     "no_answer": 0,
+     "no_answer_share": null
+    }
+   }
+  }
+ },
+ "limits": {
+  "runs_refused_a_further_sql_query": 0,
+  "runs_refused_a_further_layer_call": 0,
+  "runs_that_hit_the_model_call_ceiling": 0,
+  "runs_that_timed_out": 0,
+  "runs_that_ended_in_an_error": 0
+ },
+ "runs": [
+  {
+   "config": "flash_semantic",
+   "layers": [
+    "semantic"
+   ],
+   "model": "gemini-3.8-flash",
+   "question_id": "L1",
+   "group": "lookup",
+   "trial": 0,
+   "outcome": "right",
+   "extracted": "65",
+   "value": 65.0,
+   "matched_decoy": "",
+   "flagged_assumption": false,
+   "mentions_query_limit": false,
+   "gold": 65,
+   "answer_text": "There are 65 carrier records on file in the carrier master table (`tms_carr`), all of which are currently marked as active (including 64 third-party carriers and Tessaway's own fleet).\n\nANSWER: 65",
+   "queries": [
+    {
+     "sql": "SELECT COUNT(*) AS total_carriers, COUNTIF(actv_flg = TRUE) AS active_carriers, COUNTIF(actv_flg = FALSE) AS inactive_carriers FROM tms_carr",
+     "row_count": 1,
+     "bytes_billed": 10485760
+    },
+    {
+     "sql": "SELECT COUNT(DISTINCT carr_id) AS distinct_carr_id, COUNT(DISTINCT carr_nm) AS distinct_carr_nm FROM tms_carr",
+     "row_count": 1,
+     "bytes_billed": 10485760
+    },
+    {
+     "sql": "SELECT * FROM tms_carr LIMIT 10",
+     "row_count": 10,
+     "bytes_billed": 0
+    },
+    {
+     "sql": "SELECT COUNT(DISTINCT carr_id) FROM tms_load_hdr WHERE carr_id NOT IN (SELECT carr_id FROM tms_carr)",
+     "row_count": 1,
+     "bytes_billed": 0
+    },
+    {
+     "sql": "SELECT carr_typ_cd, count(*) FROM tms_carr GROUP BY 1",
+     "row_count": 2,
+     "bytes_billed": 10485760
+    },
+    {
+     "sql": "SELECT * FROM tms_carr WHERE carr_typ_cd = 'OWN'",
+     "row_count": 1,
+     "bytes_billed": 0
+    }
+   ],
+   "query_count": 6,
+   "queries_refused_over_limit": 0,
+   "tool_calls": [
+    {
+     "seq": 1,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT COUNT(*) AS total_carriers, COUNTIF(actv_flg = TRUE) AS active_carriers, COUNTIF(actv_flg = FALSE) AS inactive_carriers FROM tms_carr"
+     },
+     "row_count": 1
+    },
+    {
+     "seq": 2,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT COUNT(DISTINCT carr_id) AS distinct_carr_id, COUNT(DISTINCT carr_nm) AS distinct_carr_nm FROM tms_carr"
+     },
+     "row_count": 1
+    },
+    {
+     "seq": 3,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT * FROM tms_carr LIMIT 10"
+     },
+     "row_count": 10
+    },
+    {
+     "seq": 4,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT COUNT(DISTINCT carr_id) FROM tms_load_hdr WHERE carr_id NOT IN (SELECT carr_id FROM tms_carr)"
+     },
+     "row_count": 1
+    },
+    {
+     "seq": 5,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT carr_typ_cd, count(*) FROM tms_carr GROUP BY 1"
+     },
+     "row_count": 2
+    },
+    {
+     "seq": 6,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT * FROM tms_carr WHERE carr_typ_cd = 'OWN'"
+     },
+     "row_count": 1
+    }
+   ],
+   "tool_call_counts": {
+    "run_sql": 6
+   },
+   "tools_in_order": [
+    "run_sql",
+    "run_sql",
+    "run_sql",
+    "run_sql",
+    "run_sql",
+    "run_sql"
+   ],
+   "layer_calls_refused": {},
+   "model_calls": 7,
+   "hit_model_call_ceiling": false,
+   "prompt_tokens_by_call": [
+    [
+     3154,
+     0
+    ],
+    [
+     3371,
+     0
+    ],
+    [
+     3489,
+     0
+    ],
+    [
+     3713,
+     0
+    ],
+    [
+     3816,
+     0
+    ],
+    [
+     3883,
+     0
+    ],
+    [
+     4087,
+     0
+    ]
+   ],
+   "input_tokens": 25513,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0,
+   "input_tokens_total": 25513,
+   "output_tokens": 1195,
+   "cost_usd": 0.023616,
+   "bigquery_bytes_billed": 31457280,
+   "bigquery_usd": 0.000179,
+   "seconds": 26.8,
+   "timed_out": false,
+   "error": "",
+   "model_reported": "gemini-3.8-flash",
+   "finished_at": "2026-10-09T20:18:36+00:00"
+  },
+  {
+   "config": "flash_semantic",
+   "layers": [
+    "semantic"
+   ],
+   "model": "gemini-3.8-flash",
+   "question_id": "M1",
+   "group": "metric",
+   "trial": 0,
+   "outcome": "right",
+   "extracted": "87.4409820585458",
+   "value": 87.4409820585458,
+   "matched_decoy": "",
+   "flagged_assumption": false,
+   "mentions_query_limit": false,
+   "gold": 87.44,
+   "answer_text": "In September 2026, Tessaway delivered 1,097 loads, of which 1,059 were measured for official on-time delivery performance (excluding late deliveries caused by shipper delays). With 926 loads arriving on time, the official on-time delivery rate was approximately 87.44%.\n\nANSWER: 87.4409820585458",
+   "queries": [
+    {
+     "sql": "SELECT\n  COUNT(*) AS total_delivered,\n  COUNTIF(arr_ts <= appt_end_lcl_ts) AS on_time,\n  COUNTIF(arr_ts > appt_end_lcl_ts AND NOT shipper_delay) AS late,\n  COUNTIF(arr_ts > appt_end_lcl_ts AND shipper_delay) AS shipper_delayed_late\nFROM (\n  SELECT\n    h.load_id,\n    s.arr_ts,\n    -- convert appt_end_lcl to timestamp using stop timezone\n    TIMESTAMP(DATETIME(s.appt_end_lcl), s.tz_nm) AS appt_end_lcl_ts,\n    EXISTS (\n      SELECT 1 FROM tms_stat_evt e\n      WHERE e.load_id = h.load_id\n        AND e.rsn_cd LIKE '%SHPR%' -- let's check rsn_cd\n    ) AS shipper_delay\n  FROM tms_load_hdr h\n  JOIN tms_stop s ON h.load_id = s.load_id\n  WHERE s.stop_typ_cd = 'DEL'\n    AND DATE(s.arr_ts, s.tz_nm) BETWEEN '2026-09-01' AND '2026-09-30'\n    AND NOT COALESCE(h.test_flg, FALSE)\n    AND NOT COALESCE(h.void_flg, FALSE)\n)",
+     "row_count": 1,
+     "bytes_billed": 31457280
+    },
+    {
+     "sql": "SELECT DISTINCT stop_typ_cd FROM tms_stop",
+     "row_count": 2,
+     "bytes_billed": 0
+    }
+   ],
+   "query_count": 2,
+   "queries_refused_over_limit": 0,
+   "tool_calls": [
+    {
+     "seq": 1,
+     "tool": "query_metrics",
+     "arguments": {
+      "metrics": [
+       "on_time_rate",
+       "on_time_loads",
+       "on_time_measured_loads",
+       "delivered_loads"
+      ],
+      "group_by": [],
+      "where": [],
+      "start_date": "2026-09-01",
+      "end_date": "2026-09-30",
+      "order_by": [],
+      "limit": 50
+     },
+     "generated_sql": "-- Combine Aggregated Outputs\n-- Order By [] Limit 51\n-- Write to DataTable\nWITH sma_10001_cte AS (\n  -- Read Elements From Semantic Model 'deliveries'\n  -- Metric Time Dimension 'delivered_date'\n  SELECT\n    TIMESTAMP_TRUNC(delivered_date, day) AS metric_time__day\n    , 1 AS __delivered_loads\n    , case when arrived_on_time then 1 else 0 end AS __on_time_loads\n    , case when arrived_on_time or not shipper_delayed then 1 else 0 end AS __on_time_measured_loads\n  FROM `PROJECT`.`tessaway_sem`.`deliveries` deliveries_src_10000\n)\n\nSELECT\n  MAX(subq_10.on_time_rate) AS on_time_rate\n  , MAX(subq_16.on_time_loads) AS on_time_loads\n  , MAX(subq_16.on_time_measured_loads) AS on_time_measured_loads\n  , MAX(subq_16.delivered_loads) AS delivered_loads\nFROM (\n  -- Compute Metrics via Expressions\n  SELECT\n    100 * on_time_loads / nullif(on_time_measured_loads, 0) AS on_time_rate\n  FROM (\n    -- Read From CTE For node_id=sma_10001\n    -- Constrain Time Range to [2026-09-01T00:00:00, 2026-09-30T00:00:00]\n    -- Select: ['__on_time_loads', '__on_time_measured_loads']\n    -- Select: ['__on_time_loads', '__on_time_measured_loads']\n    -- Aggregate Inputs for Simple Metrics\n    -- Compute Metrics via Expressions\n    SELECT\n      SUM(__on_time_loads) AS on_time_loads\n      , SUM(__on_time_measured_loads) AS on_time_measured_loads\n    FROM sma_10001_cte\n    WHERE metric_time__day BETWEEN '2026-09-01' AND '2026-09-30'\n  ) subq_9\n) subq_10\nCROSS JOIN (\n  -- Read From CTE For node_id=sma_10001\n  -- Constrain Time Range to [2026-09-01T00:00:00, 2026-09-30T00:00:00]\n  -- Select: ['__on_time_loads', '__on_time_measured_loads', '__delivered_loads']\n  -- Select: ['__on_time_loads', '__on_time_measured_loads', '__delivered_loads']\n  -- Aggregate Inputs for Simple Metrics\n  -- Compute Metrics via Expressions\n  SELECT\n    SUM(__on_time_loads) AS on_time_loads\n    , SUM(__on_time_measured_loads) AS on_time_measured_loads\n    , SUM(__delivered_loads) AS delivered_loads\n  FROM sma_10001_cte\n  WHERE metric_time__day BETWEEN '2026-09-01' AND '2026-09-30'\n) subq_16\nLIMIT 51",
+     "row_count": 1,
+     "bytes_billed": 52428800
+    },
+    {
+     "seq": 2,
+     "tool": "query_metrics",
+     "arguments": {
+      "metrics": [
+       "operations_on_time_rate",
+       "portal_on_time_rate"
+      ],
+      "group_by": [],
+      "where": [],
+      "start_date": "2026-09-01",
+      "end_date": "2026-09-30",
+      "order_by": [],
+      "limit": 50
+     },
+     "generated_sql": "-- Combine Aggregated Outputs\n-- Order By [] Limit 51\n-- Write to DataTable\nSELECT\n  MAX(subq_9.operations_on_time_rate) AS operations_on_time_rate\n  , MAX(subq_17.portal_on_time_rate) AS portal_on_time_rate\nFROM (\n  -- Compute Metrics via Expressions\n  SELECT\n    100 * on_time_loads / nullif(delivered_loads, 0) AS operations_on_time_rate\n  FROM (\n    -- Read Elements From Semantic Model 'deliveries'\n    -- Metric Time Dimension 'delivered_date'\n    -- Constrain Time Range to [2026-09-01T00:00:00, 2026-09-30T00:00:00]\n    -- Select: ['__on_time_loads', '__delivered_loads']\n    -- Select: ['__on_time_loads', '__delivered_loads']\n    -- Aggregate Inputs for Simple Metrics\n    -- Compute Metrics via Expressions\n    SELECT\n      SUM(case when arrived_on_time then 1 else 0 end) AS on_time_loads\n      , SUM(1) AS delivered_loads\n    FROM `PROJECT`.`tessaway_sem`.`deliveries` deliveries_src_10000\n    WHERE TIMESTAMP_TRUNC(delivered_date, day) BETWEEN '2026-09-01' AND '2026-09-30'\n  ) subq_8\n) subq_9\nCROSS JOIN (\n  -- Compute Metrics via Expressions\n  SELECT\n    100 * portal_on_time_shipments / nullif(portal_shipments, 0) AS portal_on_time_rate\n  FROM (\n    -- Read Elements From Semantic Model 'portal_shipments'\n    -- Metric Time Dimension 'portal_delivered_date'\n    -- Constrain Time Range to [2026-09-01T00:00:00, 2026-09-30T00:00:00]\n    -- Select: ['__portal_on_time_shipments', '__portal_shipments']\n    -- Select: ['__portal_on_time_shipments', '__portal_shipments']\n    -- Aggregate Inputs for Simple Metrics\n    -- Compute Metrics via Expressions\n    SELECT\n      SUM(case when portal_on_time then 1 else 0 end) AS portal_on_time_shipments\n      , SUM(1) AS portal_shipments\n    FROM `PROJECT`.`tessaway_sem`.`portal_shipments` portal_shipments_src_10000\n    WHERE TIMESTAMP_TRUNC(portal_delivered_date, day) BETWEEN '2026-09-01' AND '2026-09-30'\n  ) subq_16\n) subq_17\nLIMIT 51",
+     "row_count": 1,
+     "bytes_billed": 62914560
+    },
+    {
+     "seq": 3,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT\n  COUNT(*) AS total_delivered,\n  COUNTIF(arr_ts <= appt_end_lcl_ts) AS on_time,\n  COUNTIF(arr_ts > appt_end_lcl_ts AND NOT shipper_delay) AS late,\n  COUNTIF(arr_ts > appt_end_lcl_ts AND shipper_delay) AS shipper_delayed_late\nFROM (\n  SELECT\n    h.load_id,\n    s.arr_ts,\n    -- convert appt_end_lcl to timestamp using stop timezone\n    TIMESTAMP(DATETIME(s.appt_end_lcl), s.tz_nm) AS appt_end_lcl_ts,\n    EXISTS (\n      SELECT 1 FROM tms_stat_evt e\n      WHERE e.load_id = h.load_id\n        AND e.rsn_cd LIKE '%SHPR%' -- let's check rsn_cd\n    ) AS shipper_delay\n  FROM tms_load_hdr h\n  JOIN tms_stop s ON h.load_id = s.load_id\n  WHERE s.stop_typ_cd = 'DEL'\n    AND DATE(s.arr_ts, s.tz_nm) BETWEEN '2026-09-01' AND '2026-09-30'\n    AND NOT COALESCE(h.test_flg, FALSE)\n    AND NOT COALESCE(h.void_flg, FALSE)\n)"
+     },
+     "row_count": 1
+    },
+    {
+     "seq": 4,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT DISTINCT stop_typ_cd FROM tms_stop"
+     },
+     "row_count": 2
+    },
+    {
+     "seq": 5,
+     "tool": "query_metrics",
+     "arguments": {
+      "metrics": [
+       "revenue",
+       "margin_percentage"
+      ],
+      "group_by": [],
+      "where": [],
+      "start_date": "2026-09-01",
+      "end_date": "2026-09-30",
+      "order_by": [],
+      "limit": 50
+     },
+     "generated_sql": "-- Combine Aggregated Outputs\n-- Order By [] Limit 51\n-- Write to DataTable\nWITH sma_10002_cte AS (\n  -- Read Elements From Semantic Model 'financial_documents'\n  -- Metric Time Dimension 'document_date'\n  SELECT\n    TIMESTAMP_TRUNC(document_date, day) AS metric_time__day\n    , revenue_usd AS __revenue\n    , carrier_cost_usd AS __carrier_cost\n  FROM `PROJECT`.`tessaway_sem`.`financial_documents` financial_documents_src_10000\n)\n\nSELECT\n  MAX(subq_8.revenue) AS revenue\n  , MAX(subq_15.margin_percentage) AS margin_percentage\nFROM (\n  -- Read From CTE For node_id=sma_10002\n  -- Constrain Time Range to [2026-09-01T00:00:00, 2026-09-30T00:00:00]\n  -- Select: ['__revenue']\n  -- Select: ['__revenue']\n  -- Aggregate Inputs for Simple Metrics\n  -- Compute Metrics via Expressions\n  SELECT\n    SUM(__revenue) AS revenue\n  FROM sma_10002_cte\n  WHERE metric_time__day BETWEEN '2026-09-01' AND '2026-09-30'\n) subq_8\nCROSS JOIN (\n  -- Compute Metrics via Expressions\n  SELECT\n    100 * (revenue - carrier_cost) / nullif(revenue, 0) AS margin_percentage\n  FROM (\n    -- Read From CTE For node_id=sma_10002\n    -- Constrain Time Range to [2026-09-01T00:00:00, 2026-09-30T00:00:00]\n    -- Select: ['__revenue', '__carrier_cost']\n    -- Select: ['__revenue', '__carrier_cost']\n    -- Aggregate Inputs for Simple Metrics\n    -- Compute Metrics via Expressions\n    SELECT\n      SUM(__revenue) AS revenue\n      , SUM(__carrier_cost) AS carrier_cost\n    FROM sma_10002_cte\n    WHERE metric_time__day BETWEEN '2026-09-01' AND '2026-09-30'\n  ) subq_14\n) subq_15\nLIMIT 51",
+     "row_count": 1,
+     "bytes_billed": 73400320
+    }
+   ],
+   "tool_call_counts": {
+    "query_metrics": 3,
+    "run_sql": 2
+   },
+   "tools_in_order": [
+    "query_metrics",
+    "query_metrics",
+    "run_sql",
+    "run_sql",
+    "query_metrics"
+   ],
+   "layer_calls_refused": {},
+   "model_calls": 6,
+   "hit_model_call_ceiling": false,
+   "prompt_tokens_by_call": [
+    [
+     3161,
+     0
+    ],
+    [
+     3574,
+     0
+    ],
+    [
+     3777,
+     0
+    ],
+    [
+     5214,
+     0
+    ],
+    [
+     5288,
+     0
+    ],
+    [
+     7763,
+     0
+    ]
+   ],
+   "input_tokens": 28777,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0,
+   "input_tokens_total": 28777,
+   "output_tokens": 5204,
+   "cost_usd": 0.041098,
+   "bigquery_bytes_billed": 220200960,
+   "bigquery_usd": 0.001252,
+   "seconds": 58.6,
+   "timed_out": false,
+   "error": "",
+   "model_reported": "gemini-3.8-flash",
+   "finished_at": "2026-10-09T20:19:07+00:00"
+  }
+ ]
+}

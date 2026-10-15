@@ -9,6 +9,12 @@ variable "dataset_id" {
   default     = "tessaway_wh"
 }
 
+variable "semantic_dataset_id" {
+  description = "Id of the BigQuery dataset that holds the views dbt builds for the semantic layer (Part 2)."
+  type        = string
+  default     = "tessaway_sem"
+}
+
 variable "bq_location" {
   description = "BigQuery location for the dataset."
   type        = string

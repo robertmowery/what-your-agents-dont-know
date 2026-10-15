@@ -1,0 +1,12 @@
+# The semantic layer's own environment (Part 2): dbt and MetricFlow.
+#
+#   python3 -m venv .venv-dbt
+#   .venv-dbt/bin/pip install -r requirements-semantic.txt
+#
+# It is kept apart from requirements.txt because the two cannot be installed
+# together: dbt-bigquery 1.12.1 needs google-cloud-aiplatform, which needs
+# google-genai below 2.0, and google-adk 2.11.0 needs google-genai 2.19 or later.
+dbt-metricflow[dbt-bigquery]==0.15.0
+metricflow==0.213.0
+dbt-core==1.12.5
+dbt-bigquery==1.12.1

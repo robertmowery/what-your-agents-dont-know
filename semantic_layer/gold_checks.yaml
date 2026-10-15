@@ -1,0 +1,226 @@
+# Checks that every metric in the semantic layer returns what the Part 1 gold
+# SQL returns. Run with: python -m tessaway.layers.semantic --check-gold
+#
+# A case with `question` is compared with that question's gold SQL in
+# questions/part1.yaml, under the question's own tolerance. A case with
+# `reference_sql` covers a metric no question asks for directly; its reference
+# is a piece of the gold SQL, copied here, and must match to the cent.
+#
+# Agents never see this file. It is also how the harness knows which questions
+# the semantic layer could have answered with one metric query (the bypass count).
+
+- question: M1
+  request: {metrics: [on_time_rate], start_date: "2026-09-01", end_date: "2026-09-30"}
+  answer_column: on_time_rate
+
+- question: M2
+  request: {metrics: [revenue], start_date: "2026-07-01", end_date: "2026-09-30"}
+  answer_column: revenue
+
+- question: M3
+  request: {metrics: [margin_per_load], start_date: "2026-07-01", end_date: "2026-09-30"}
+  answer_column: margin_per_load
+
+- question: M4
+  request: {metrics: [margin_percentage], start_date: "2026-07-01", end_date: "2026-09-30"}
+  answer_column: margin_percentage
+
+- question: M5
+  request: {metrics: [delivered_loads], start_date: "2026-09-01", end_date: "2026-09-30"}
+  answer_column: delivered_loads
+
+- question: M6
+  request:
+    metrics: [delivered_loads]
+    where: ["tender__carrier_type = 'OWN'"]
+    start_date: "2026-07-01"
+    end_date: "2026-09-30"
+  answer_column: delivered_loads
+
+- question: E1
+  request:
+    metrics: [revenue]
+    group_by: [tender__customer_name]
+    start_date: "2026-07-01"
+    end_date: "2026-09-30"
+    order_by: ["-revenue"]
+    limit: 1
+  answer_column: tender__customer_name
+
+- question: E2
+  request: {metrics: [customers_shipped], start_date: "2026-07-01", end_date: "2026-09-30"}
+  answer_column: customers_shipped
+
+- question: E3
+  request:
+    metrics: [revenue]
+    where: ["tender__customer_name = 'Northgate Foods Group'"]
+    start_date: "2026-07-01"
+    end_date: "2026-09-30"
+  answer_column: revenue
+
+- question: E4
+  request: {metrics: [loads_booked], start_date: "2026-09-01", end_date: "2026-09-30"}
+  answer_column: loads_booked
+
+- question: E5
+  request:
+    metrics: [delivered_loads]
+    where: ["tender__customer_name = 'Northgate Foods Group'"]
+    start_date: "2026-07-01"
+    end_date: "2026-09-30"
+  answer_column: delivered_loads
+
+- question: E6
+  request:
+    metrics: [delivered_loads]
+    group_by: [tender__carrier_name]
+    where: ["tender__carrier_type = '3P'"]
+    start_date: "2026-07-01"
+    end_date: "2026-09-30"
+    order_by: ["-delivered_loads"]
+    limit: 1
+  answer_column: tender__carrier_name
+
+- question: R1
+  request: {metrics: [late_deliveries], start_date: "2026-09-01", end_date: "2026-09-30"}
+  answer_column: late_deliveries
+
+- question: R2
+  request:
+    metrics: [delivered_loads_not_billable]
+    start_date: "2026-09-01"
+    end_date: "2026-09-30"
+  answer_column: delivered_loads_not_billable
+
+- question: R3
+  request:
+    metrics: [revenue]
+    where: ["tender__is_cross_border = true"]
+    start_date: "2026-07-01"
+    end_date: "2026-09-30"
+  answer_column: revenue
+
+- question: R4
+  request: {metrics: [delivered_loads], start_date: "2026-09-11", end_date: "2026-09-11"}
+  answer_column: delivered_loads
+
+- question: R5
+  request: {metrics: [portal_on_time_rate], start_date: "2026-09-01", end_date: "2026-09-30"}
+  answer_column: portal_on_time_rate
+
+- question: R6
+  request:
+    metrics: [margin]
+    where: ["document__document_type = 'canceled_load_fee'"]
+    start_date: "2026-07-01"
+    end_date: "2026-09-30"
+  answer_column: margin
+
+# --- metrics no question asks for directly ---------------------------------------
+
+# The operations meaning of on-time: the first decoy of M1, copied from its SQL.
+- request: {metrics: [operations_on_time_rate], start_date: "2026-09-01", end_date: "2026-09-30"}
+  answer_column: operations_on_time_rate
+  reference_sql: |
+    WITH final_dl AS (
+      SELECT load_id, tz_nm, arr_ts, appt_end_lcl
+      FROM tms_stop
+      WHERE stop_typ_cd = 'DL'
+      QUALIFY ROW_NUMBER() OVER (PARTITION BY load_id ORDER BY stop_seq DESC) = 1
+    ),
+    dlvd AS (
+      SELECT h.load_id, DATE(f.arr_ts, f.tz_nm) AS dlvr_dt,
+             DATETIME(f.arr_ts, f.tz_nm) <= f.appt_end_lcl AS on_time
+      FROM tms_load_hdr h
+      JOIN final_dl f USING (load_id)
+      WHERE h.load_stat_cd = 'DLVD' AND NOT h.test_flg AND NOT h.void_flg
+    )
+    SELECT 100 * COUNTIF(on_time) / COUNT(*) FROM dlvd
+    WHERE dlvr_dt BETWEEN '2026-09-01' AND '2026-09-30'
+
+# The top and the bottom of the M1 gold SQL, one at a time.
+- request: {metrics: [on_time_loads], start_date: "2026-09-01", end_date: "2026-09-30"}
+  answer_column: on_time_loads
+  reference_sql: |
+    WITH final_dl AS (
+      SELECT load_id, tz_nm, arr_ts, appt_end_lcl
+      FROM tms_stop
+      WHERE stop_typ_cd = 'DL'
+      QUALIFY ROW_NUMBER() OVER (PARTITION BY load_id ORDER BY stop_seq DESC) = 1
+    ),
+    dlvd AS (
+      SELECT h.load_id, DATE(f.arr_ts, f.tz_nm) AS dlvr_dt,
+             DATETIME(f.arr_ts, f.tz_nm) <= f.appt_end_lcl AS on_time
+      FROM tms_load_hdr h
+      JOIN final_dl f USING (load_id)
+      WHERE h.load_stat_cd = 'DLVD' AND NOT h.test_flg AND NOT h.void_flg
+    )
+    SELECT COUNTIF(on_time) FROM dlvd WHERE dlvr_dt BETWEEN '2026-09-01' AND '2026-09-30'
+
+- request: {metrics: [on_time_measured_loads], start_date: "2026-09-01", end_date: "2026-09-30"}
+  answer_column: on_time_measured_loads
+  reference_sql: |
+    WITH final_dl AS (
+      SELECT load_id, tz_nm, arr_ts, appt_end_lcl
+      FROM tms_stop
+      WHERE stop_typ_cd = 'DL'
+      QUALIFY ROW_NUMBER() OVER (PARTITION BY load_id ORDER BY stop_seq DESC) = 1
+    ),
+    dlvd AS (
+      SELECT h.load_id, DATE(f.arr_ts, f.tz_nm) AS dlvr_dt,
+             DATETIME(f.arr_ts, f.tz_nm) <= f.appt_end_lcl AS on_time
+      FROM tms_load_hdr h
+      JOIN final_dl f USING (load_id)
+      WHERE h.load_stat_cd = 'DLVD' AND NOT h.test_flg AND NOT h.void_flg
+    ),
+    shpr_delay AS (
+      SELECT DISTINCT load_id FROM tms_stat_evt WHERE evt_cd = 'DLAY' AND rsn_cd = 'SHPR'
+    )
+    SELECT COUNTIF(d.on_time OR x.load_id IS NULL)
+    FROM dlvd d LEFT JOIN shpr_delay x USING (load_id)
+    WHERE d.dlvr_dt BETWEEN '2026-09-01' AND '2026-09-30'
+
+# The top and the bottom of the R5 gold SQL.
+- request: {metrics: [portal_on_time_shipments], start_date: "2026-09-01", end_date: "2026-09-30"}
+  answer_column: portal_on_time_shipments
+  reference_sql: |
+    SELECT COUNTIF(on_time_ind = 'Y') FROM ptl_shpmt
+    WHERE actl_dlvr_dt BETWEEN '2026-09-01' AND '2026-09-30'
+
+- request: {metrics: [portal_shipments], start_date: "2026-09-01", end_date: "2026-09-30"}
+  answer_column: portal_shipments
+  reference_sql: |
+    SELECT COUNT(*) FROM ptl_shpmt WHERE actl_dlvr_dt BETWEEN '2026-09-01' AND '2026-09-30'
+
+# The cost side and the divisor of the M3 gold SQL.
+- request: {metrics: [carrier_cost], start_date: "2026-07-01", end_date: "2026-09-30"}
+  answer_column: carrier_cost
+  reference_sql: |
+    WITH fx AS (
+      SELECT eff_mo_dt, fx_rt FROM ref_fx_rate
+      WHERE from_curr_cd = 'CAD' AND to_curr_cd = 'USD'
+    ),
+    cost_doc AS (
+      SELECT i.load_id, i.inv_dt AS doc_dt,
+             (p.lh_pay_amt + s.carr_fsc_amt + IFNULL(a.carr_accsrl_amt, 0))
+               * IF(i.curr_cd = 'CAD', fx.fx_rt, 1) AS amt_usd
+      FROM bil_cust_inv i
+      JOIN bil_carr_pay p USING (load_id)
+      JOIN bil_fuel_schg s USING (load_id)
+      LEFT JOIN (
+        SELECT load_id, SUM(carr_pay_amt) AS carr_accsrl_amt
+        FROM bil_accsrl_chrg GROUP BY load_id
+      ) a USING (load_id)
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(i.inv_dt, MONTH)
+      UNION ALL
+      SELECT f.load_id, f.fee_dt, f.carr_fee_amt * IF(f.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_canc_fee f
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(f.fee_dt, MONTH)
+    )
+    SELECT SUM(amt_usd) FROM cost_doc WHERE doc_dt BETWEEN '2026-07-01' AND '2026-09-30'
+
+- request: {metrics: [invoiced_loads], start_date: "2026-07-01", end_date: "2026-09-30"}
+  answer_column: invoiced_loads
+  reference_sql: |
+    SELECT COUNT(*) FROM bil_cust_inv WHERE inv_dt BETWEEN '2026-07-01' AND '2026-09-30'

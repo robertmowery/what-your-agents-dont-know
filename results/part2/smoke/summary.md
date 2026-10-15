@@ -1,0 +1,128 @@
+# Part 2 results
+
+Written by `run_part2.py`. Tessaway Freight is a fictional company and the data is synthetic.
+
+Each configuration is the Part 1 agent (Google ADK, `gemini-3.8-flash`) with the same SQL tool and one extra tool per context layer. Each reply is scored by the Part 1 scorer into one of four bins. Shares are of all runs.
+
+The baseline row is Part 1's Flash result at ten runs per question and was not run again. The Part 2 rows ran each question three times, so their shares are rougher: one run is 1.4 points of an overall share and 5.6 points within a question group. Small differences are not findings.
+
+| Configuration | Tools beside `run_sql` | Runs | Complete | Right | Confidently wrong | Declined | No answer | Est. cost | Cost per question |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| baseline | none | 20 of 20 | yes | 50.0% | 25.0% | 25.0% | 0.0% | $0.58 | $0.0291 |
+| flash_semantic | `query_metrics` | 2 of 2 | yes | 100.0% | 0.0% | 0.0% | 0.0% | $0.06 | $0.0324 |
+| flash_ontology | `lookup_ontology` | 2 of 2 | yes | 50.0% | 0.0% | 0.0% | 50.0% | $0.08 | $0.0391 |
+| flash_graph | `query_graph` | 2 of 2 | yes | 50.0% | 0.0% | 50.0% | 0.0% | $0.07 | $0.0352 |
+| flash_all_three | `query_metrics`, `lookup_ontology`, `query_graph` | 2 of 2 | yes | 100.0% | 0.0% | 0.0% | 0.0% | $0.10 | $0.0512 |
+
+## Right, by question group
+
+| Configuration | lookup | metric | entity | rule |
+| --- | --- | --- | --- | --- |
+| baseline | 100.0% (10 of 10) | 0.0% (0 of 10) | n/a | n/a |
+| flash_semantic | 100.0% (1 of 1) | 100.0% (1 of 1) | n/a | n/a |
+| flash_ontology | 100.0% (1 of 1) | 0.0% (0 of 1) | n/a | n/a |
+| flash_graph | 100.0% (1 of 1) | 0.0% (0 of 1) | n/a | n/a |
+| flash_all_three | 100.0% (1 of 1) | 100.0% (1 of 1) | n/a | n/a |
+
+## Confidently wrong, by question group
+
+| Configuration | lookup | metric | entity | rule |
+| --- | --- | --- | --- | --- |
+| baseline | 0.0% (0 of 10) | 50.0% (5 of 10) | n/a | n/a |
+| flash_semantic | 0.0% (0 of 1) | 0.0% (0 of 1) | n/a | n/a |
+| flash_ontology | 0.0% (0 of 1) | 0.0% (0 of 1) | n/a | n/a |
+| flash_graph | 0.0% (0 of 1) | 0.0% (0 of 1) | n/a | n/a |
+| flash_all_three | 0.0% (0 of 1) | 0.0% (0 of 1) | n/a | n/a |
+
+## Declined, by question group
+
+| Configuration | lookup | metric | entity | rule |
+| --- | --- | --- | --- | --- |
+| baseline | 0.0% (0 of 10) | 50.0% (5 of 10) | n/a | n/a |
+| flash_semantic | 0.0% (0 of 1) | 0.0% (0 of 1) | n/a | n/a |
+| flash_ontology | 0.0% (0 of 1) | 0.0% (0 of 1) | n/a | n/a |
+| flash_graph | 0.0% (0 of 1) | 100.0% (1 of 1) | n/a | n/a |
+| flash_all_three | 0.0% (0 of 1) | 0.0% (0 of 1) | n/a | n/a |
+
+## Change against the baseline, in percentage points
+
+Right / confidently wrong / declined. A positive first number is more right answers.
+
+| Configuration | overall | lookup | metric | entity | rule |
+| --- | --- | --- | --- | --- | --- |
+| flash_semantic | +50.0 / -25.0 / -25.0 | +0.0 / +0.0 / +0.0 | +100.0 / -50.0 / -50.0 | n/a | n/a |
+| flash_ontology | +0.0 / -25.0 / -25.0 | +0.0 / +0.0 / +0.0 | +0.0 / -50.0 / -50.0 | n/a | n/a |
+| flash_graph | +0.0 / -25.0 / +25.0 | +0.0 / +0.0 / +0.0 | +0.0 / -50.0 / +50.0 | n/a | n/a |
+| flash_all_three | +50.0 / -25.0 / -25.0 | +0.0 / +0.0 / +0.0 | +100.0 / -50.0 / -50.0 | n/a | n/a |
+
+## By question: right / confidently wrong / declined / no answer
+
+| Question | Group | baseline | flash_semantic | flash_ontology | flash_graph | flash_all_three |
+| --- | --- | --- | --- | --- | --- | --- |
+| L1 | lookup | 10 / 0 / 0 / 0 | 1 / 0 / 0 / 0 | 1 / 0 / 0 / 0 | 1 / 0 / 0 / 0 | 1 / 0 / 0 / 0 |
+| M1 | metric | 0 / 5 / 5 / 0 | 1 / 0 / 0 / 0 | 0 / 0 / 0 / 1 | 0 / 0 / 1 / 0 | 1 / 0 / 0 / 0 |
+
+## Tool calls
+
+Mean calls per run, counting calls that were let through. The agent was free to use a layer tool or ignore it.
+
+| Configuration | `run_sql` | `query_metrics` | `lookup_ontology` | `query_graph` | Runs with no layer call | Runs with no SQL | First call was SQL |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| flash_semantic | 4.00 (2 runs) | 1.50 (1 runs) | not given | not given | 1 of 2 | 0 of 2 | 1 of 2 |
+| flash_ontology | 6.50 (2 runs) | not given | 4.50 (2 runs) | not given | 0 of 2 | 0 of 2 | 0 of 2 |
+| flash_graph | 5.00 (2 runs) | not given | not given | 1.00 (2 runs) | 0 of 2 | 0 of 2 | 2 of 2 |
+| flash_all_three | 2.50 (2 runs) | 1.00 (1 runs) | 2.00 (2 runs) | 0.50 (1 runs) | 0 of 2 | 0 of 2 | 0 of 2 |
+
+### Where a layer applied, and whether the agent used it
+
+A layer applies to a question when it holds something the question needs. The rule is `applies_to` in `run_part2.py`, fixed before any run: the semantic layer applies when one metric query answers the question; the ontology when an official definition decides it; the graph when one of those definitions is about customers or loads.
+
+| Configuration | Layer | Questions | Runs | Used the layer | Ignored the layer |
+| --- | --- | --- | --- | --- | --- |
+| flash_semantic | semantic | 1 | 1 | 1 | 0 |
+| flash_ontology | ontology | 1 | 1 | 1 | 0 |
+| flash_graph | graph | 1 | 1 | 1 | 0 |
+| flash_all_three | semantic | 1 | 1 | 1 | 0 |
+| flash_all_three | ontology | 1 | 1 | 1 | 0 |
+| flash_all_three | graph | 1 | 1 | 0 | 1 |
+
+### Going around the semantic layer
+
+The bypass count: runs on a question that one metric query answers, in which the agent ran SQL anyway.
+
+| Configuration | Runs on such questions | Ran SQL | Never called the metric tool | Called both | Right when SQL was run | Answered from metrics alone | Right from metrics alone |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| flash_semantic | 1 | 1 | 0 | 1 | 1 of 1 | 0 | 0 of 0 |
+| flash_all_three | 1 | 1 | 0 | 1 | 1 of 1 | 0 | 0 of 0 |
+
+## Tokens, time and cost per question
+
+| Configuration | Input tokens | Output tokens | Cache-read share of input | Model calls | SQL queries | Seconds | Cost |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| baseline | 19,770 | 3,965 | 4.3% | 7.25 | 5.75 | 67.0 | $0.0291 |
+| flash_semantic | 27,145 | 3,200 | 0.0% | 6.50 | 4.00 | 42.7 | $0.0324 |
+| flash_ontology | 52,024 | 2,184 | 23.1% | 12.00 | 6.50 | 46.2 | $0.0391 |
+| flash_graph | 28,901 | 4,252 | 12.4% | 7.50 | 5.00 | 54.6 | $0.0352 |
+| flash_all_three | 36,454 | 6,714 | 5.3% | 7.00 | 2.50 | 72.2 | $0.0512 |
+
+## Limits
+
+Each question allows 8 SQL queries, 8 calls to each layer tool and 16 model calls. The agent is told the first two.
+
+| Configuration | Asked for a further SQL query | Asked for a further layer call | Hit the model-call ceiling | Timed out | Declines that mention the query limit |
+| --- | --- | --- | --- | --- | --- |
+| baseline | 10 of 20 | n/a | n/a | 0 | 1 of 5 |
+| flash_semantic | 0 of 2 | 0 | 0 | 0 | 0 of 0 |
+| flash_ontology | 1 of 2 | 0 | 1 | 0 | 0 of 0 |
+| flash_graph | 1 of 2 | 0 | 0 | 0 | 0 of 1 |
+| flash_all_three | 0 of 2 | 0 | 0 | 0 | 0 of 0 |
+
+## Wrong answers that said they were assuming something
+
+- baseline: 0 of 5 confidently wrong answers used a word such as "assume", "interpret" or "definition" somewhere in the reply.
+- flash_semantic: 0 of 0 confidently wrong answers used a word such as "assume", "interpret" or "definition" somewhere in the reply.
+- flash_ontology: 0 of 0 confidently wrong answers used a word such as "assume", "interpret" or "definition" somewhere in the reply.
+- flash_graph: 0 of 0 confidently wrong answers used a word such as "assume", "interpret" or "definition" somewhere in the reply.
+- flash_all_three: 0 of 0 confidently wrong answers used a word such as "assume", "interpret" or "definition" somewhere in the reply.
+
+Model names and prices were checked on 2026-10-09. Costs are estimates from token counts and list prices.

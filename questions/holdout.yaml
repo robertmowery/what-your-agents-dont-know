@@ -1,0 +1,983 @@
+# Held-out question set: 12 more questions an executive asks Tessaway Freight (a fictional company).
+#
+# Written on 2026-10-09, after the Part 2 context layers were committed, by a writer who was
+# not shown those layers. The writer saw only data/DEFINITIONS.md, data/TRAPS.md,
+# questions/part1.yaml, the warehouse schema and query tool, and the Part 1 gold answers.
+# See data/HOLDOUT.md for the rules.
+#
+# Four metric questions, four entity questions and four rule questions. No lookups.
+# Same format as questions/part1.yaml: the question, its group, the hand-written SQL that
+# produces the correct answer, a tolerance, the official definitions that decide it
+# (data/DEFINITIONS.md), why, and "decoys": plausible wrong readings with the SQL for each.
+# No question needs a definition that is not in data/DEFINITIONS.md.
+#
+# Tolerances, as in Part 1:
+#   exact       the number or name must match; used for counts
+#   rel 0.005   within half a percent; used for the one booking count, as in Part 1
+#   rel 0.01    money: within one percent
+#   abs 0.5     rates and shares: within half a percentage point
+#
+# Every gold answer differs from every decoy by more than the tolerance
+# (results/holdout/gold_answers.json).
+#
+# Agents see only the "question" text. This file is not edited after any agent runs on it.
+
+- id: H1
+  group: metric
+  question: What was our own fleet's on-time delivery rate in Q2 2026?
+  answer_type: percent
+  tolerance:
+    kind: abs
+    value: 0.5
+  definitions:
+  - on_time
+  - delivered_load
+  - local_time
+  - load
+  why: 'The official on-time rate is the contract measure, here for delivered loads hauled by the
+    carrier row that is Tessaway''s own fleet: arrival at or before the end of the appointment
+    window on the destination''s clock, with late loads the shipper delayed left out.'
+  gold_sql: |
+    WITH final_dl AS (
+      -- the last delivery stop of each load
+      SELECT load_id, tz_nm, arr_ts, appt_end_lcl
+      FROM tms_stop
+      WHERE stop_typ_cd = 'DL'
+      QUALIFY ROW_NUMBER() OVER (PARTITION BY load_id ORDER BY stop_seq DESC) = 1
+    ),
+    dlvd AS (
+      -- real delivered loads, dated and judged on the clock at the destination
+      SELECT h.load_id, h.shpr_acct_id, h.carr_id,
+             DATE(f.arr_ts, f.tz_nm) AS dlvr_dt,
+             DATETIME(f.arr_ts, f.tz_nm) <= f.appt_end_lcl AS on_time
+      FROM tms_load_hdr h
+      JOIN final_dl f USING (load_id)
+      WHERE h.load_stat_cd = 'DLVD' AND NOT h.test_flg AND NOT h.void_flg
+    ),
+    shpr_delay AS (
+      SELECT DISTINCT load_id FROM tms_stat_evt WHERE evt_cd = 'DLAY' AND rsn_cd = 'SHPR'
+    )
+    SELECT ROUND(100 * COUNTIF(d.on_time) / COUNTIF(d.on_time OR x.load_id IS NULL), 2)
+    FROM dlvd d
+    JOIN tms_carr c USING (carr_id)
+    LEFT JOIN shpr_delay x USING (load_id)
+    WHERE c.carr_typ_cd = 'OWN' AND d.dlvr_dt BETWEEN '2026-04-01' AND '2026-06-30'
+  decoys:
+  - label: 'operations definition: in the window, shipper-caused lates still counted'
+    sql: |
+      WITH final_dl AS (
+        -- the last delivery stop of each load
+        SELECT load_id, tz_nm, arr_ts, appt_end_lcl
+        FROM tms_stop
+        WHERE stop_typ_cd = 'DL'
+        QUALIFY ROW_NUMBER() OVER (PARTITION BY load_id ORDER BY stop_seq DESC) = 1
+      ),
+      dlvd AS (
+        -- real delivered loads, dated and judged on the clock at the destination
+        SELECT h.load_id, h.shpr_acct_id, h.carr_id,
+               DATE(f.arr_ts, f.tz_nm) AS dlvr_dt,
+               DATETIME(f.arr_ts, f.tz_nm) <= f.appt_end_lcl AS on_time
+        FROM tms_load_hdr h
+        JOIN final_dl f USING (load_id)
+        WHERE h.load_stat_cd = 'DLVD' AND NOT h.test_flg AND NOT h.void_flg
+      )
+      SELECT ROUND(100 * COUNTIF(d.on_time) / COUNT(*), 2)
+      FROM dlvd d JOIN tms_carr c USING (carr_id)
+      WHERE c.carr_typ_cd = 'OWN' AND d.dlvr_dt BETWEEN '2026-04-01' AND '2026-06-30'
+  - label: 'portal definition: delivered by the requested date'
+    sql: |
+      SELECT ROUND(100 * COUNTIF(p.on_time_ind = 'Y') / COUNT(*), 2)
+      FROM ptl_shpmt p
+      JOIN tms_load_hdr h USING (load_id)
+      JOIN tms_carr c USING (carr_id)
+      WHERE c.carr_typ_cd = 'OWN' AND p.actl_dlvr_dt BETWEEN '2026-04-01' AND '2026-06-30'
+  - label: UTC arrival compared with the local appointment as if both were UTC
+    sql: |
+      WITH final_dl AS (
+        -- the last delivery stop of each load
+        SELECT load_id, tz_nm, arr_ts, appt_end_lcl
+        FROM tms_stop
+        WHERE stop_typ_cd = 'DL'
+        QUALIFY ROW_NUMBER() OVER (PARTITION BY load_id ORDER BY stop_seq DESC) = 1
+      )
+      SELECT ROUND(100 * COUNTIF(f.arr_ts <= TIMESTAMP(f.appt_end_lcl)) / COUNT(*), 2)
+      FROM tms_load_hdr h
+      JOIN final_dl f USING (load_id)
+      JOIN tms_carr c USING (carr_id)
+      WHERE c.carr_typ_cd = 'OWN' AND h.load_stat_cd = 'DLVD' AND DATE(f.arr_ts) BETWEEN '2026-04-01' AND '2026-06-30'
+
+- id: H2
+  group: metric
+  question: What was our margin percentage on loads hauled by outside carriers in the first half of
+    2026?
+  answer_type: percent
+  tolerance:
+    kind: abs
+    value: 0.5
+  definitions:
+  - margin
+  - revenue
+  - currency
+  - billable
+  why: 'Margin percentage is margin over revenue, both on the official definitions, for the loads
+    whose carrier is not Tessaway''s own fleet: invoices less credits plus canceled-load fees, less
+    linehaul pay, carrier fuel, carrier accessorials and the carrier''s share of fees, in US
+    dollars, in the period of each document.'
+  gold_sql: |
+    WITH fx AS (
+      SELECT eff_mo_dt, fx_rt FROM ref_fx_rate
+      WHERE from_curr_cd = 'CAD' AND to_curr_cd = 'USD'
+    ),
+    rev_doc AS (
+      -- invoices, less credit memos, plus canceled-load fees, each in US dollars
+      -- at the rate for the month of the document
+      SELECT i.load_id, i.inv_dt AS doc_dt,
+             i.inv_tot_amt * IF(i.curr_cd = 'CAD', fx.fx_rt, 1) AS amt_usd
+      FROM bil_cust_inv i
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(i.inv_dt, MONTH)
+      UNION ALL
+      SELECT c.load_id, c.cr_dt, -c.cr_amt * IF(c.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_cr_memo c
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(c.cr_dt, MONTH)
+      UNION ALL
+      SELECT f.load_id, f.fee_dt, f.cust_fee_amt * IF(f.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_canc_fee f
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(f.fee_dt, MONTH)
+    ),
+    cost_doc AS (
+      -- what the carrier was paid for each invoiced load: linehaul, fuel and
+      -- accessorials, plus the carrier's share of canceled-load fees
+      SELECT i.load_id, i.inv_dt AS doc_dt,
+             (p.lh_pay_amt + s.carr_fsc_amt + IFNULL(a.carr_accsrl_amt, 0))
+               * IF(i.curr_cd = 'CAD', fx.fx_rt, 1) AS amt_usd
+      FROM bil_cust_inv i
+      JOIN bil_carr_pay p USING (load_id)
+      JOIN bil_fuel_schg s USING (load_id)
+      LEFT JOIN (
+        SELECT load_id, SUM(carr_pay_amt) AS carr_accsrl_amt
+        FROM bil_accsrl_chrg GROUP BY load_id
+      ) a USING (load_id)
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(i.inv_dt, MONTH)
+      UNION ALL
+      SELECT f.load_id, f.fee_dt, f.carr_fee_amt * IF(f.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_canc_fee f
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(f.fee_dt, MONTH)
+    ),
+    outside AS (
+      -- loads whose carrier is not Tessaway's own fleet
+      SELECT h.load_id
+      FROM tms_load_hdr h JOIN tms_carr c USING (carr_id)
+      WHERE c.carr_typ_cd = '3P'
+    )
+    SELECT ROUND(100 *
+      ((SELECT SUM(r.amt_usd) FROM rev_doc r JOIN outside USING (load_id) WHERE r.doc_dt BETWEEN '2026-01-01' AND '2026-06-30')
+       - (SELECT SUM(k.amt_usd) FROM cost_doc k JOIN outside USING (load_id) WHERE k.doc_dt BETWEEN '2026-01-01' AND '2026-06-30'))
+      / (SELECT SUM(r.amt_usd) FROM rev_doc r JOIN outside USING (load_id) WHERE r.doc_dt BETWEEN '2026-01-01' AND '2026-06-30'), 2)
+  decoys:
+  - label: linehaul margin over linehaul revenue on every outside-carrier load row created in the
+      period
+    sql: |
+      SELECT ROUND(100 * SUM(h.lh_rev_amt - h.lh_cost_amt) / SUM(h.lh_rev_amt), 2)
+      FROM tms_load_hdr h JOIN tms_carr c USING (carr_id)
+      WHERE c.carr_typ_cd = '3P' AND DATE(h.crt_ts) BETWEEN '2026-01-01' AND '2026-06-30'
+  - label: invoice total minus carrier linehaul pay, over invoice total
+    sql: |
+      SELECT ROUND(100 * SUM(i.inv_tot_amt - p.lh_pay_amt) / SUM(i.inv_tot_amt), 2)
+      FROM bil_cust_inv i
+      JOIN bil_carr_pay p USING (load_id)
+      JOIN tms_load_hdr h USING (load_id)
+      JOIN tms_carr c ON c.carr_id = h.carr_id
+      WHERE c.carr_typ_cd = '3P' AND i.inv_dt BETWEEN '2026-01-01' AND '2026-06-30'
+  - label: the whole company, own fleet included
+    sql: |
+      WITH fx AS (
+        SELECT eff_mo_dt, fx_rt FROM ref_fx_rate
+        WHERE from_curr_cd = 'CAD' AND to_curr_cd = 'USD'
+      ),
+      rev_doc AS (
+        -- invoices, less credit memos, plus canceled-load fees, each in US dollars
+        -- at the rate for the month of the document
+        SELECT i.load_id, i.inv_dt AS doc_dt,
+               i.inv_tot_amt * IF(i.curr_cd = 'CAD', fx.fx_rt, 1) AS amt_usd
+        FROM bil_cust_inv i
+        LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(i.inv_dt, MONTH)
+        UNION ALL
+        SELECT c.load_id, c.cr_dt, -c.cr_amt * IF(c.curr_cd = 'CAD', fx.fx_rt, 1)
+        FROM bil_cr_memo c
+        LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(c.cr_dt, MONTH)
+        UNION ALL
+        SELECT f.load_id, f.fee_dt, f.cust_fee_amt * IF(f.curr_cd = 'CAD', fx.fx_rt, 1)
+        FROM bil_canc_fee f
+        LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(f.fee_dt, MONTH)
+      ),
+      cost_doc AS (
+        -- what the carrier was paid for each invoiced load: linehaul, fuel and
+        -- accessorials, plus the carrier's share of canceled-load fees
+        SELECT i.load_id, i.inv_dt AS doc_dt,
+               (p.lh_pay_amt + s.carr_fsc_amt + IFNULL(a.carr_accsrl_amt, 0))
+                 * IF(i.curr_cd = 'CAD', fx.fx_rt, 1) AS amt_usd
+        FROM bil_cust_inv i
+        JOIN bil_carr_pay p USING (load_id)
+        JOIN bil_fuel_schg s USING (load_id)
+        LEFT JOIN (
+          SELECT load_id, SUM(carr_pay_amt) AS carr_accsrl_amt
+          FROM bil_accsrl_chrg GROUP BY load_id
+        ) a USING (load_id)
+        LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(i.inv_dt, MONTH)
+        UNION ALL
+        SELECT f.load_id, f.fee_dt, f.carr_fee_amt * IF(f.curr_cd = 'CAD', fx.fx_rt, 1)
+        FROM bil_canc_fee f
+        LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(f.fee_dt, MONTH)
+      )
+      SELECT ROUND(100 *
+        ((SELECT SUM(amt_usd) FROM rev_doc WHERE doc_dt BETWEEN '2026-01-01' AND '2026-06-30')
+         - (SELECT SUM(amt_usd) FROM cost_doc WHERE doc_dt BETWEEN '2026-01-01' AND '2026-06-30'))
+        / (SELECT SUM(amt_usd) FROM rev_doc WHERE doc_dt BETWEEN '2026-01-01' AND '2026-06-30'), 2)
+
+- id: H3
+  group: metric
+  question: What share of our Q3 2026 revenue came from cross-border loads?
+  answer_type: percent
+  tolerance:
+    kind: abs
+    value: 0.5
+  definitions:
+  - revenue
+  - currency
+  - billable
+  why: Both the cross-border revenue and the total are revenue on the official definition, in US
+    dollars. Most cross-border loads are invoiced in Canadian dollars, so adding the stored amounts
+    as they are overstates their share.
+  gold_sql: |
+    WITH fx AS (
+      SELECT eff_mo_dt, fx_rt FROM ref_fx_rate
+      WHERE from_curr_cd = 'CAD' AND to_curr_cd = 'USD'
+    ),
+    rev_doc AS (
+      -- invoices, less credit memos, plus canceled-load fees, each in US dollars
+      -- at the rate for the month of the document
+      SELECT i.load_id, i.inv_dt AS doc_dt,
+             i.inv_tot_amt * IF(i.curr_cd = 'CAD', fx.fx_rt, 1) AS amt_usd
+      FROM bil_cust_inv i
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(i.inv_dt, MONTH)
+      UNION ALL
+      SELECT c.load_id, c.cr_dt, -c.cr_amt * IF(c.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_cr_memo c
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(c.cr_dt, MONTH)
+      UNION ALL
+      SELECT f.load_id, f.fee_dt, f.cust_fee_amt * IF(f.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_canc_fee f
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(f.fee_dt, MONTH)
+    )
+    SELECT ROUND(100 * SUM(IF(h.xbrdr_flg, r.amt_usd, 0)) / SUM(r.amt_usd), 2)
+    FROM rev_doc r JOIN tms_load_hdr h USING (load_id)
+    WHERE r.doc_dt BETWEEN '2026-07-01' AND '2026-09-30'
+  decoys:
+  - label: invoice totals with Canadian dollars added in as if they were US dollars
+    sql: |
+      SELECT ROUND(100 * SUM(IF(h.xbrdr_flg, i.inv_tot_amt, 0)) / SUM(i.inv_tot_amt), 2)
+      FROM bil_cust_inv i JOIN tms_load_hdr h USING (load_id)
+      WHERE i.inv_dt BETWEEN '2026-07-01' AND '2026-09-30'
+  - label: linehaul on every load row created in the quarter, unconverted
+    sql: |
+      SELECT ROUND(100 * SUM(IF(xbrdr_flg, lh_rev_amt, 0)) / SUM(lh_rev_amt), 2)
+      FROM tms_load_hdr WHERE DATE(crt_ts) BETWEEN '2026-07-01' AND '2026-09-30'
+  - label: share of load rows, not of revenue
+    sql: |
+      SELECT ROUND(100 * COUNTIF(xbrdr_flg) / COUNT(*), 2)
+      FROM tms_load_hdr WHERE DATE(crt_ts) BETWEEN '2026-07-01' AND '2026-09-30'
+
+- id: H4
+  group: metric
+  question: What was our average margin per load on reefer loads in Q3 2026?
+  answer_type: money
+  tolerance:
+    kind: rel
+    value: 0.01
+  definitions:
+  - margin
+  - revenue
+  - currency
+  - billable
+  why: Margin per load is margin for the period divided by the loads invoiced in the period, here
+    for loads on refrigerated equipment. Margin takes in fuel, accessorials, credits and
+    canceled-load fees on both sides, in US dollars; linehaul revenue minus linehaul cost on the
+    load table leaves all of that out.
+  gold_sql: |
+    WITH fx AS (
+      SELECT eff_mo_dt, fx_rt FROM ref_fx_rate
+      WHERE from_curr_cd = 'CAD' AND to_curr_cd = 'USD'
+    ),
+    rev_doc AS (
+      -- invoices, less credit memos, plus canceled-load fees, each in US dollars
+      -- at the rate for the month of the document
+      SELECT i.load_id, i.inv_dt AS doc_dt,
+             i.inv_tot_amt * IF(i.curr_cd = 'CAD', fx.fx_rt, 1) AS amt_usd
+      FROM bil_cust_inv i
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(i.inv_dt, MONTH)
+      UNION ALL
+      SELECT c.load_id, c.cr_dt, -c.cr_amt * IF(c.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_cr_memo c
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(c.cr_dt, MONTH)
+      UNION ALL
+      SELECT f.load_id, f.fee_dt, f.cust_fee_amt * IF(f.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_canc_fee f
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(f.fee_dt, MONTH)
+    ),
+    cost_doc AS (
+      -- what the carrier was paid for each invoiced load: linehaul, fuel and
+      -- accessorials, plus the carrier's share of canceled-load fees
+      SELECT i.load_id, i.inv_dt AS doc_dt,
+             (p.lh_pay_amt + s.carr_fsc_amt + IFNULL(a.carr_accsrl_amt, 0))
+               * IF(i.curr_cd = 'CAD', fx.fx_rt, 1) AS amt_usd
+      FROM bil_cust_inv i
+      JOIN bil_carr_pay p USING (load_id)
+      JOIN bil_fuel_schg s USING (load_id)
+      LEFT JOIN (
+        SELECT load_id, SUM(carr_pay_amt) AS carr_accsrl_amt
+        FROM bil_accsrl_chrg GROUP BY load_id
+      ) a USING (load_id)
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(i.inv_dt, MONTH)
+      UNION ALL
+      SELECT f.load_id, f.fee_dt, f.carr_fee_amt * IF(f.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_canc_fee f
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(f.fee_dt, MONTH)
+    ),
+    reef AS (
+      SELECT load_id FROM tms_load_hdr WHERE eqp_typ_cd = 'REEF'
+    )
+    SELECT ROUND(
+      ((SELECT SUM(r.amt_usd) FROM rev_doc r JOIN reef USING (load_id) WHERE r.doc_dt BETWEEN '2026-07-01' AND '2026-09-30')
+       - (SELECT SUM(k.amt_usd) FROM cost_doc k JOIN reef USING (load_id) WHERE k.doc_dt BETWEEN '2026-07-01' AND '2026-09-30'))
+      / (SELECT COUNT(*) FROM bil_cust_inv i JOIN reef USING (load_id) WHERE i.inv_dt BETWEEN '2026-07-01' AND '2026-09-30'), 2)
+  decoys:
+  - label: linehaul revenue minus linehaul cost, averaged over every reefer load row created in the
+      quarter
+    sql: |
+      SELECT ROUND(AVG(lh_rev_amt - lh_cost_amt), 2)
+      FROM tms_load_hdr WHERE eqp_typ_cd = 'REEF' AND DATE(crt_ts) BETWEEN '2026-07-01' AND '2026-09-30'
+  - label: linehaul revenue minus linehaul cost on delivered reefer load rows
+    sql: |
+      SELECT ROUND(AVG(h.lh_rev_amt - h.lh_cost_amt), 2)
+      FROM tms_load_hdr h
+      JOIN tms_stat_evt e ON e.load_id = h.load_id AND e.evt_cd = 'DLVD'
+      WHERE h.eqp_typ_cd = 'REEF' AND DATE(e.evt_ts) BETWEEN '2026-07-01' AND '2026-09-30'
+  - label: invoice total minus carrier linehaul pay
+    sql: |
+      SELECT ROUND(AVG(i.inv_tot_amt - p.lh_pay_amt), 2)
+      FROM bil_cust_inv i
+      JOIN bil_carr_pay p USING (load_id)
+      JOIN tms_load_hdr h USING (load_id)
+      WHERE h.eqp_typ_cd = 'REEF' AND i.inv_dt BETWEEN '2026-07-01' AND '2026-09-30'
+
+- id: H5
+  group: entity
+  question: Which customer did we deliver the most loads for in the first half of 2026?
+  answer_type: text
+  tolerance:
+    kind: exact
+  definitions:
+  - customer
+  - delivered_load
+  - load
+  - local_time
+  why: The customer is the parent account. Delivered loads roll up from every site that ships under
+    it, whatever the site is called. The busiest single shipping site and the busiest bill-to party
+    are different rows.
+  gold_sql: |
+    WITH final_dl AS (
+      -- the last delivery stop of each load
+      SELECT load_id, tz_nm, arr_ts, appt_end_lcl
+      FROM tms_stop
+      WHERE stop_typ_cd = 'DL'
+      QUALIFY ROW_NUMBER() OVER (PARTITION BY load_id ORDER BY stop_seq DESC) = 1
+    ),
+    dlvd AS (
+      -- real delivered loads, dated and judged on the clock at the destination
+      SELECT h.load_id, h.shpr_acct_id, h.carr_id,
+             DATE(f.arr_ts, f.tz_nm) AS dlvr_dt,
+             DATETIME(f.arr_ts, f.tz_nm) <= f.appt_end_lcl AS on_time
+      FROM tms_load_hdr h
+      JOIN final_dl f USING (load_id)
+      WHERE h.load_stat_cd = 'DLVD' AND NOT h.test_flg AND NOT h.void_flg
+    ),
+    cust AS (
+      -- the customer is the parent account of the site that shipped
+      SELECT h.load_id, p.acct_id AS cust_id, p.acct_nm AS cust_nm
+      FROM tms_load_hdr h
+      JOIN mdm_cust_acct s ON s.acct_id = h.shpr_acct_id
+      JOIN mdm_cust_acct p ON p.acct_id = s.prnt_acct_id
+    )
+    SELECT c.cust_nm
+    FROM dlvd d JOIN cust c USING (load_id)
+    WHERE d.dlvr_dt BETWEEN '2026-01-01' AND '2026-06-30'
+    GROUP BY c.cust_nm
+    ORDER BY COUNT(*) DESC
+    LIMIT 1
+  accept:
+  - Northgate Foods Group
+  - Northgate Foods
+  reject:
+  - Joliet
+  - Allentown
+  - Reno
+  - Brampton
+  - Canada
+  - AP Shared Services
+  decoys:
+  - label: busiest shipper account row
+    sql: |
+      SELECT a.acct_nm
+      FROM tms_load_hdr h
+      JOIN tms_stat_evt e ON e.load_id = h.load_id AND e.evt_cd = 'DLVD'
+      JOIN mdm_cust_acct a ON a.acct_id = h.shpr_acct_id
+      WHERE DATE(e.evt_ts) BETWEEN '2026-01-01' AND '2026-06-30'
+      GROUP BY a.acct_nm ORDER BY COUNT(*) DESC LIMIT 1
+  - label: busiest bill-to party
+    sql: |
+      SELECT a.acct_nm
+      FROM tms_load_hdr h
+      JOIN tms_stat_evt e ON e.load_id = h.load_id AND e.evt_cd = 'DLVD'
+      JOIN mdm_cust_acct a ON a.acct_id = h.bill_to_acct_id
+      WHERE DATE(e.evt_ts) BETWEEN '2026-01-01' AND '2026-06-30'
+      GROUP BY a.acct_nm ORDER BY COUNT(*) DESC LIMIT 1
+
+- id: H6
+  group: entity
+  question: How many customers each brought in more than $250,000 of revenue in Q3 2026?
+  answer_type: number
+  tolerance:
+    kind: exact
+  definitions:
+  - customer
+  - revenue
+  - currency
+  why: Customers are parent accounts, and revenue rolls up to the parent of the site that shipped.
+    Counting bill-to parties lumps several customers into one freight payment firm; counting
+    shipping sites splits a customer with several sites into pieces that each fall under the line.
+  gold_sql: |
+    WITH fx AS (
+      SELECT eff_mo_dt, fx_rt FROM ref_fx_rate
+      WHERE from_curr_cd = 'CAD' AND to_curr_cd = 'USD'
+    ),
+    rev_doc AS (
+      -- invoices, less credit memos, plus canceled-load fees, each in US dollars
+      -- at the rate for the month of the document
+      SELECT i.load_id, i.inv_dt AS doc_dt,
+             i.inv_tot_amt * IF(i.curr_cd = 'CAD', fx.fx_rt, 1) AS amt_usd
+      FROM bil_cust_inv i
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(i.inv_dt, MONTH)
+      UNION ALL
+      SELECT c.load_id, c.cr_dt, -c.cr_amt * IF(c.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_cr_memo c
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(c.cr_dt, MONTH)
+      UNION ALL
+      SELECT f.load_id, f.fee_dt, f.cust_fee_amt * IF(f.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_canc_fee f
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(f.fee_dt, MONTH)
+    ),
+    cust AS (
+      -- the customer is the parent account of the site that shipped
+      SELECT h.load_id, p.acct_id AS cust_id, p.acct_nm AS cust_nm
+      FROM tms_load_hdr h
+      JOIN mdm_cust_acct s ON s.acct_id = h.shpr_acct_id
+      JOIN mdm_cust_acct p ON p.acct_id = s.prnt_acct_id
+    )
+    SELECT COUNT(*) FROM (
+      SELECT c.cust_id
+      FROM rev_doc r JOIN cust c USING (load_id)
+      WHERE r.doc_dt BETWEEN '2026-07-01' AND '2026-09-30'
+      GROUP BY c.cust_id
+      HAVING SUM(r.amt_usd) > 250000
+    )
+  decoys:
+  - label: bill-to parties over the line
+    sql: |
+      SELECT COUNT(*) FROM (
+        SELECT bill_to_acct_id FROM bil_cust_inv
+        WHERE inv_dt BETWEEN '2026-07-01' AND '2026-09-30'
+        GROUP BY bill_to_acct_id HAVING SUM(inv_tot_amt) > 250000
+      )
+  - label: shipper account rows over the line
+    sql: |
+      SELECT COUNT(*) FROM (
+        SELECT h.shpr_acct_id
+        FROM bil_cust_inv i JOIN tms_load_hdr h USING (load_id)
+        WHERE i.inv_dt BETWEEN '2026-07-01' AND '2026-09-30'
+        GROUP BY h.shpr_acct_id HAVING SUM(i.inv_tot_amt) > 250000
+      )
+  - label: shipper account rows over the line, on linehaul from the load table
+    sql: |
+      SELECT COUNT(*) FROM (
+        SELECT shpr_acct_id FROM tms_load_hdr
+        WHERE DATE(crt_ts) BETWEEN '2026-07-01' AND '2026-09-30'
+        GROUP BY shpr_acct_id HAVING SUM(lh_rev_amt) > 250000
+      )
+
+- id: H7
+  group: entity
+  question: What share of our Q3 2026 revenue came from our five largest customers?
+  answer_type: percent
+  tolerance:
+    kind: abs
+    value: 0.5
+  definitions:
+  - customer
+  - revenue
+  - currency
+  why: The five largest customers are the five parent accounts with the most revenue on the official
+    definition. The five largest bill-to parties include a freight payment firm that pays for
+    several customers, and the five largest shipping sites leave out most of a customer that ships
+    from many sites.
+  gold_sql: |
+    WITH fx AS (
+      SELECT eff_mo_dt, fx_rt FROM ref_fx_rate
+      WHERE from_curr_cd = 'CAD' AND to_curr_cd = 'USD'
+    ),
+    rev_doc AS (
+      -- invoices, less credit memos, plus canceled-load fees, each in US dollars
+      -- at the rate for the month of the document
+      SELECT i.load_id, i.inv_dt AS doc_dt,
+             i.inv_tot_amt * IF(i.curr_cd = 'CAD', fx.fx_rt, 1) AS amt_usd
+      FROM bil_cust_inv i
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(i.inv_dt, MONTH)
+      UNION ALL
+      SELECT c.load_id, c.cr_dt, -c.cr_amt * IF(c.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_cr_memo c
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(c.cr_dt, MONTH)
+      UNION ALL
+      SELECT f.load_id, f.fee_dt, f.cust_fee_amt * IF(f.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_canc_fee f
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(f.fee_dt, MONTH)
+    ),
+    cust AS (
+      -- the customer is the parent account of the site that shipped
+      SELECT h.load_id, p.acct_id AS cust_id, p.acct_nm AS cust_nm
+      FROM tms_load_hdr h
+      JOIN mdm_cust_acct s ON s.acct_id = h.shpr_acct_id
+      JOIN mdm_cust_acct p ON p.acct_id = s.prnt_acct_id
+    ),
+    by_cust AS (
+      SELECT c.cust_id, SUM(r.amt_usd) AS rev_usd
+      FROM rev_doc r JOIN cust c USING (load_id)
+      WHERE r.doc_dt BETWEEN '2026-07-01' AND '2026-09-30'
+      GROUP BY c.cust_id
+    ),
+    ranked AS (
+      SELECT rev_usd, ROW_NUMBER() OVER (ORDER BY rev_usd DESC) AS rnk FROM by_cust
+    )
+    SELECT ROUND(100 * SUM(IF(rnk <= 5, rev_usd, 0)) / SUM(rev_usd), 2) FROM ranked
+  decoys:
+  - label: five largest bill-to parties
+    sql: |
+      WITH ranked AS (
+        SELECT SUM(inv_tot_amt) AS amt,
+               ROW_NUMBER() OVER (ORDER BY SUM(inv_tot_amt) DESC) AS rnk
+        FROM bil_cust_inv WHERE inv_dt BETWEEN '2026-07-01' AND '2026-09-30'
+        GROUP BY bill_to_acct_id
+      )
+      SELECT ROUND(100 * SUM(IF(rnk <= 5, amt, 0)) / SUM(amt), 2) FROM ranked
+  - label: five largest shipper account rows
+    sql: |
+      WITH ranked AS (
+        SELECT SUM(i.inv_tot_amt) AS amt,
+               ROW_NUMBER() OVER (ORDER BY SUM(i.inv_tot_amt) DESC) AS rnk
+        FROM bil_cust_inv i JOIN tms_load_hdr h USING (load_id)
+        WHERE i.inv_dt BETWEEN '2026-07-01' AND '2026-09-30'
+        GROUP BY h.shpr_acct_id
+      )
+      SELECT ROUND(100 * SUM(IF(rnk <= 5, amt, 0)) / SUM(amt), 2) FROM ranked
+  - label: five largest shipper account rows, on linehaul from the load table
+    sql: |
+      WITH ranked AS (
+        SELECT SUM(lh_rev_amt) AS amt,
+               ROW_NUMBER() OVER (ORDER BY SUM(lh_rev_amt) DESC) AS rnk
+        FROM tms_load_hdr WHERE DATE(crt_ts) BETWEEN '2026-07-01' AND '2026-09-30'
+        GROUP BY shpr_acct_id
+      )
+      SELECT ROUND(100 * SUM(IF(rnk <= 5, amt, 0)) / SUM(amt), 2) FROM ranked
+
+- id: H8
+  group: entity
+  question: How many loads did we book for Kestrel Packaging in the first half of 2026?
+  answer_type: number
+  tolerance:
+    kind: rel
+    value: 0.005
+  definitions:
+  - load
+  - customer
+  why: 'Kestrel Packaging is a parent account with several shipping sites. A load is one shipment
+    counted once from its first tender: re-tendered rows are the same shipment again, and test and
+    voided rows are not loads.'
+  gold_sql: |
+    WITH cust AS (
+      -- the customer is the parent account of the site that shipped
+      SELECT h.load_id, p.acct_id AS cust_id, p.acct_nm AS cust_nm
+      FROM tms_load_hdr h
+      JOIN mdm_cust_acct s ON s.acct_id = h.shpr_acct_id
+      JOIN mdm_cust_acct p ON p.acct_id = s.prnt_acct_id
+    )
+    SELECT COUNT(*)
+    FROM tms_load_hdr h JOIN cust c USING (load_id)
+    WHERE c.cust_nm = 'Kestrel Packaging'
+      AND h.orig_load_id IS NULL AND NOT h.test_flg AND NOT h.void_flg
+      AND DATE(h.crt_ts) BETWEEN '2026-01-01' AND '2026-06-30'
+  decoys:
+  - label: every load row for the customer's sites
+    sql: |
+      WITH cust AS (
+        -- the customer is the parent account of the site that shipped
+        SELECT h.load_id, p.acct_id AS cust_id, p.acct_nm AS cust_nm
+        FROM tms_load_hdr h
+        JOIN mdm_cust_acct s ON s.acct_id = h.shpr_acct_id
+        JOIN mdm_cust_acct p ON p.acct_id = s.prnt_acct_id
+      )
+      SELECT COUNT(*)
+      FROM tms_load_hdr h JOIN cust c USING (load_id)
+      WHERE c.cust_nm = 'Kestrel Packaging' AND DATE(h.crt_ts) BETWEEN '2026-01-01' AND '2026-06-30'
+  - label: test and voided rows removed, re-tenders still counted twice
+    sql: |
+      WITH cust AS (
+        -- the customer is the parent account of the site that shipped
+        SELECT h.load_id, p.acct_id AS cust_id, p.acct_nm AS cust_nm
+        FROM tms_load_hdr h
+        JOIN mdm_cust_acct s ON s.acct_id = h.shpr_acct_id
+        JOIN mdm_cust_acct p ON p.acct_id = s.prnt_acct_id
+      )
+      SELECT COUNT(*)
+      FROM tms_load_hdr h JOIN cust c USING (load_id)
+      WHERE c.cust_nm = 'Kestrel Packaging' AND NOT h.test_flg AND NOT h.void_flg
+        AND DATE(h.crt_ts) BETWEEN '2026-01-01' AND '2026-06-30'
+
+- id: H9
+  group: rule
+  question: How many of our Q3 2026 deliveries arrived on a Saturday or Sunday?
+  answer_type: number
+  tolerance:
+    kind: exact
+  definitions:
+  - local_time
+  - delivered_load
+  - load
+  why: A delivery belongs to the calendar day at the destination. Timestamps are stored in UTC, so a
+    Friday evening arrival is already Saturday in the data and a Sunday evening arrival is already
+    Monday.
+  gold_sql: |
+    WITH final_dl AS (
+      -- the last delivery stop of each load
+      SELECT load_id, tz_nm, arr_ts, appt_end_lcl
+      FROM tms_stop
+      WHERE stop_typ_cd = 'DL'
+      QUALIFY ROW_NUMBER() OVER (PARTITION BY load_id ORDER BY stop_seq DESC) = 1
+    ),
+    dlvd AS (
+      -- real delivered loads, dated and judged on the clock at the destination
+      SELECT h.load_id, h.shpr_acct_id, h.carr_id,
+             DATE(f.arr_ts, f.tz_nm) AS dlvr_dt,
+             DATETIME(f.arr_ts, f.tz_nm) <= f.appt_end_lcl AS on_time
+      FROM tms_load_hdr h
+      JOIN final_dl f USING (load_id)
+      WHERE h.load_stat_cd = 'DLVD' AND NOT h.test_flg AND NOT h.void_flg
+    )
+    SELECT COUNT(*) FROM dlvd
+    WHERE dlvr_dt BETWEEN '2026-07-01' AND '2026-09-30' AND EXTRACT(DAYOFWEEK FROM dlvr_dt) IN (1, 7)
+  decoys:
+  - label: UTC day of the delivered event, test loads included
+    sql: |
+      SELECT COUNT(*) FROM tms_stat_evt
+      WHERE evt_cd = 'DLVD' AND DATE(evt_ts) BETWEEN '2026-07-01' AND '2026-09-30'
+        AND EXTRACT(DAYOFWEEK FROM evt_ts) IN (1, 7)
+  - label: UTC day of the arrival at the final stop, real loads only
+    sql: |
+      WITH final_dl AS (
+        -- the last delivery stop of each load
+        SELECT load_id, tz_nm, arr_ts, appt_end_lcl
+        FROM tms_stop
+        WHERE stop_typ_cd = 'DL'
+        QUALIFY ROW_NUMBER() OVER (PARTITION BY load_id ORDER BY stop_seq DESC) = 1
+      ),
+      dlvd AS (
+        -- real delivered loads, dated and judged on the clock at the destination
+        SELECT h.load_id, h.shpr_acct_id, h.carr_id,
+               DATE(f.arr_ts, f.tz_nm) AS dlvr_dt,
+               DATETIME(f.arr_ts, f.tz_nm) <= f.appt_end_lcl AS on_time
+        FROM tms_load_hdr h
+        JOIN final_dl f USING (load_id)
+        WHERE h.load_stat_cd = 'DLVD' AND NOT h.test_flg AND NOT h.void_flg
+      )
+      SELECT COUNT(*) FROM dlvd d JOIN final_dl f USING (load_id)
+      WHERE DATE(f.arr_ts) BETWEEN '2026-07-01' AND '2026-09-30' AND EXTRACT(DAYOFWEEK FROM f.arr_ts) IN (1, 7)
+
+- id: H10
+  group: rule
+  question: How many late deliveries in Q3 2026 were the shipper's fault?
+  answer_type: number
+  tolerance:
+    kind: exact
+  definitions:
+  - on_time
+  - delivered_load
+  - local_time
+  - load
+  why: 'These are the loads the contract rule leaves out of the on-time measure: delivered loads
+    that arrived after the end of the appointment window on the destination''s clock and carry a
+    shipper-caused delay. A load the shipper delayed that still arrived inside its window was not
+    late.'
+  gold_sql: |
+    WITH final_dl AS (
+      -- the last delivery stop of each load
+      SELECT load_id, tz_nm, arr_ts, appt_end_lcl
+      FROM tms_stop
+      WHERE stop_typ_cd = 'DL'
+      QUALIFY ROW_NUMBER() OVER (PARTITION BY load_id ORDER BY stop_seq DESC) = 1
+    ),
+    dlvd AS (
+      -- real delivered loads, dated and judged on the clock at the destination
+      SELECT h.load_id, h.shpr_acct_id, h.carr_id,
+             DATE(f.arr_ts, f.tz_nm) AS dlvr_dt,
+             DATETIME(f.arr_ts, f.tz_nm) <= f.appt_end_lcl AS on_time
+      FROM tms_load_hdr h
+      JOIN final_dl f USING (load_id)
+      WHERE h.load_stat_cd = 'DLVD' AND NOT h.test_flg AND NOT h.void_flg
+    ),
+    shpr_delay AS (
+      SELECT DISTINCT load_id FROM tms_stat_evt WHERE evt_cd = 'DLAY' AND rsn_cd = 'SHPR'
+    )
+    SELECT COUNT(*)
+    FROM dlvd d JOIN shpr_delay x USING (load_id)
+    WHERE NOT d.on_time AND d.dlvr_dt BETWEEN '2026-07-01' AND '2026-09-30'
+  decoys:
+  - label: every delivered load with a shipper delay, late or not
+    sql: |
+      WITH final_dl AS (
+        -- the last delivery stop of each load
+        SELECT load_id, tz_nm, arr_ts, appt_end_lcl
+        FROM tms_stop
+        WHERE stop_typ_cd = 'DL'
+        QUALIFY ROW_NUMBER() OVER (PARTITION BY load_id ORDER BY stop_seq DESC) = 1
+      ),
+      dlvd AS (
+        -- real delivered loads, dated and judged on the clock at the destination
+        SELECT h.load_id, h.shpr_acct_id, h.carr_id,
+               DATE(f.arr_ts, f.tz_nm) AS dlvr_dt,
+               DATETIME(f.arr_ts, f.tz_nm) <= f.appt_end_lcl AS on_time
+        FROM tms_load_hdr h
+        JOIN final_dl f USING (load_id)
+        WHERE h.load_stat_cd = 'DLVD' AND NOT h.test_flg AND NOT h.void_flg
+      ),
+      shpr_delay AS (
+        SELECT DISTINCT load_id FROM tms_stat_evt WHERE evt_cd = 'DLAY' AND rsn_cd = 'SHPR'
+      )
+      SELECT COUNT(*)
+      FROM dlvd d JOIN shpr_delay x USING (load_id)
+      WHERE d.dlvr_dt BETWEEN '2026-07-01' AND '2026-09-30'
+  - label: shipper delay events logged in the quarter
+    sql: |
+      SELECT COUNT(*) FROM tms_stat_evt
+      WHERE evt_cd = 'DLAY' AND rsn_cd = 'SHPR' AND DATE(evt_ts) BETWEEN '2026-07-01' AND '2026-09-30'
+  - label: shipper-delayed loads the portal shows as late
+    sql: |
+      WITH shpr_delay AS (
+        SELECT DISTINCT load_id FROM tms_stat_evt WHERE evt_cd = 'DLAY' AND rsn_cd = 'SHPR'
+      )
+      SELECT COUNT(*)
+      FROM ptl_shpmt p JOIN shpr_delay x USING (load_id)
+      WHERE p.on_time_ind = 'N' AND p.actl_dlvr_dt BETWEEN '2026-07-01' AND '2026-09-30'
+  - label: UTC arrival compared with the local appointment as if both were UTC
+    sql: |
+      WITH final_dl AS (
+        -- the last delivery stop of each load
+        SELECT load_id, tz_nm, arr_ts, appt_end_lcl
+        FROM tms_stop
+        WHERE stop_typ_cd = 'DL'
+        QUALIFY ROW_NUMBER() OVER (PARTITION BY load_id ORDER BY stop_seq DESC) = 1
+      ),
+      dlvd AS (
+        -- real delivered loads, dated and judged on the clock at the destination
+        SELECT h.load_id, h.shpr_acct_id, h.carr_id,
+               DATE(f.arr_ts, f.tz_nm) AS dlvr_dt,
+               DATETIME(f.arr_ts, f.tz_nm) <= f.appt_end_lcl AS on_time
+        FROM tms_load_hdr h
+        JOIN final_dl f USING (load_id)
+        WHERE h.load_stat_cd = 'DLVD' AND NOT h.test_flg AND NOT h.void_flg
+      ),
+      shpr_delay AS (
+        SELECT DISTINCT load_id FROM tms_stat_evt WHERE evt_cd = 'DLAY' AND rsn_cd = 'SHPR'
+      )
+      SELECT COUNT(*)
+      FROM dlvd d JOIN final_dl f USING (load_id) JOIN shpr_delay x USING (load_id)
+      WHERE f.arr_ts > TIMESTAMP(f.appt_end_lcl) AND DATE(f.arr_ts) BETWEEN '2026-07-01' AND '2026-09-30'
+
+- id: H11
+  group: rule
+  question: How many loads delivered in Q3 2026 have proof-of-delivery paperwork on file but still
+    can't be billed?
+  answer_type: number
+  tolerance:
+    kind: exact
+  definitions:
+  - billable
+  - delivered_load
+  - load
+  - local_time
+  why: A load can be invoiced only when a signed proof of delivery is on file. These are real
+    delivered loads that have a document, but no signed one. A load whose first document was
+    unsigned and whose signed copy came later is billable.
+  gold_sql: |
+    WITH final_dl AS (
+      -- the last delivery stop of each load
+      SELECT load_id, tz_nm, arr_ts, appt_end_lcl
+      FROM tms_stop
+      WHERE stop_typ_cd = 'DL'
+      QUALIFY ROW_NUMBER() OVER (PARTITION BY load_id ORDER BY stop_seq DESC) = 1
+    ),
+    dlvd AS (
+      -- real delivered loads, dated and judged on the clock at the destination
+      SELECT h.load_id, h.shpr_acct_id, h.carr_id,
+             DATE(f.arr_ts, f.tz_nm) AS dlvr_dt,
+             DATETIME(f.arr_ts, f.tz_nm) <= f.appt_end_lcl AS on_time
+      FROM tms_load_hdr h
+      JOIN final_dl f USING (load_id)
+      WHERE h.load_stat_cd = 'DLVD' AND NOT h.test_flg AND NOT h.void_flg
+    )
+    SELECT COUNT(*)
+    FROM dlvd d
+    WHERE d.dlvr_dt BETWEEN '2026-07-01' AND '2026-09-30'
+      AND EXISTS (SELECT 1 FROM bil_pod_doc p WHERE p.load_id = d.load_id)
+      AND NOT EXISTS (
+        SELECT 1 FROM bil_pod_doc p WHERE p.load_id = d.load_id AND p.signed_flg)
+  decoys:
+  - label: every load with an unsigned document, even if a signed one followed
+    sql: |
+      WITH final_dl AS (
+        -- the last delivery stop of each load
+        SELECT load_id, tz_nm, arr_ts, appt_end_lcl
+        FROM tms_stop
+        WHERE stop_typ_cd = 'DL'
+        QUALIFY ROW_NUMBER() OVER (PARTITION BY load_id ORDER BY stop_seq DESC) = 1
+      ),
+      dlvd AS (
+        -- real delivered loads, dated and judged on the clock at the destination
+        SELECT h.load_id, h.shpr_acct_id, h.carr_id,
+               DATE(f.arr_ts, f.tz_nm) AS dlvr_dt,
+               DATETIME(f.arr_ts, f.tz_nm) <= f.appt_end_lcl AS on_time
+        FROM tms_load_hdr h
+        JOIN final_dl f USING (load_id)
+        WHERE h.load_stat_cd = 'DLVD' AND NOT h.test_flg AND NOT h.void_flg
+      )
+      SELECT COUNT(*)
+      FROM dlvd d
+      WHERE d.dlvr_dt BETWEEN '2026-07-01' AND '2026-09-30'
+        AND EXISTS (
+          SELECT 1 FROM bil_pod_doc p WHERE p.load_id = d.load_id AND NOT p.signed_flg)
+  - label: unsigned document rows received in the quarter
+    sql: |
+      SELECT COUNT(*) FROM bil_pod_doc WHERE NOT signed_flg AND DATE(rcvd_ts) BETWEEN '2026-07-01' AND '2026-09-30'
+  - label: every delivered load that cannot be billed, paperwork or not
+    sql: |
+      WITH final_dl AS (
+        -- the last delivery stop of each load
+        SELECT load_id, tz_nm, arr_ts, appt_end_lcl
+        FROM tms_stop
+        WHERE stop_typ_cd = 'DL'
+        QUALIFY ROW_NUMBER() OVER (PARTITION BY load_id ORDER BY stop_seq DESC) = 1
+      ),
+      dlvd AS (
+        -- real delivered loads, dated and judged on the clock at the destination
+        SELECT h.load_id, h.shpr_acct_id, h.carr_id,
+               DATE(f.arr_ts, f.tz_nm) AS dlvr_dt,
+               DATETIME(f.arr_ts, f.tz_nm) <= f.appt_end_lcl AS on_time
+        FROM tms_load_hdr h
+        JOIN final_dl f USING (load_id)
+        WHERE h.load_stat_cd = 'DLVD' AND NOT h.test_flg AND NOT h.void_flg
+      )
+      SELECT COUNT(*)
+      FROM dlvd d
+      WHERE d.dlvr_dt BETWEEN '2026-07-01' AND '2026-09-30'
+        AND NOT EXISTS (
+          SELECT 1 FROM bil_pod_doc p WHERE p.load_id = d.load_id AND p.signed_flg)
+
+- id: H12
+  group: rule
+  question: What on-time rate did Northgate Foods see in the portal for its Q3 2026 deliveries?
+  answer_type: percent
+  tolerance:
+    kind: abs
+    value: 0.5
+  definitions:
+  - portal_on_time
+  - customer
+  why: 'The question asks what the customer saw in the portal, so the portal''s rule is the right
+    one: delivered on or before the requested date. The customer is the parent account Northgate
+    Foods Group, which includes sites that do not carry the Northgate name.'
+  gold_sql: |
+    SELECT ROUND(100 * COUNTIF(s.on_time_ind = 'Y') / COUNT(*), 2)
+    FROM ptl_shpmt s
+    JOIN mdm_cust_acct a ON a.acct_id = s.cust_acct_id
+    JOIN mdm_cust_acct p ON p.acct_id = a.prnt_acct_id
+    WHERE p.acct_nm = 'Northgate Foods Group' AND s.actl_dlvr_dt BETWEEN '2026-07-01' AND '2026-09-30'
+  decoys:
+  - label: contract definition for the whole parent
+    sql: |
+      WITH final_dl AS (
+        -- the last delivery stop of each load
+        SELECT load_id, tz_nm, arr_ts, appt_end_lcl
+        FROM tms_stop
+        WHERE stop_typ_cd = 'DL'
+        QUALIFY ROW_NUMBER() OVER (PARTITION BY load_id ORDER BY stop_seq DESC) = 1
+      ),
+      dlvd AS (
+        -- real delivered loads, dated and judged on the clock at the destination
+        SELECT h.load_id, h.shpr_acct_id, h.carr_id,
+               DATE(f.arr_ts, f.tz_nm) AS dlvr_dt,
+               DATETIME(f.arr_ts, f.tz_nm) <= f.appt_end_lcl AS on_time
+        FROM tms_load_hdr h
+        JOIN final_dl f USING (load_id)
+        WHERE h.load_stat_cd = 'DLVD' AND NOT h.test_flg AND NOT h.void_flg
+      ),
+      shpr_delay AS (
+        SELECT DISTINCT load_id FROM tms_stat_evt WHERE evt_cd = 'DLAY' AND rsn_cd = 'SHPR'
+      ),
+      cust AS (
+        -- the customer is the parent account of the site that shipped
+        SELECT h.load_id, p.acct_id AS cust_id, p.acct_nm AS cust_nm
+        FROM tms_load_hdr h
+        JOIN mdm_cust_acct s ON s.acct_id = h.shpr_acct_id
+        JOIN mdm_cust_acct p ON p.acct_id = s.prnt_acct_id
+      )
+      SELECT ROUND(100 * COUNTIF(d.on_time) / COUNTIF(d.on_time OR x.load_id IS NULL), 2)
+      FROM dlvd d JOIN cust c USING (load_id) LEFT JOIN shpr_delay x USING (load_id)
+      WHERE c.cust_nm = 'Northgate Foods Group' AND d.dlvr_dt BETWEEN '2026-07-01' AND '2026-09-30'
+  - label: operations definition for the whole parent
+    sql: |
+      WITH final_dl AS (
+        -- the last delivery stop of each load
+        SELECT load_id, tz_nm, arr_ts, appt_end_lcl
+        FROM tms_stop
+        WHERE stop_typ_cd = 'DL'
+        QUALIFY ROW_NUMBER() OVER (PARTITION BY load_id ORDER BY stop_seq DESC) = 1
+      ),
+      dlvd AS (
+        -- real delivered loads, dated and judged on the clock at the destination
+        SELECT h.load_id, h.shpr_acct_id, h.carr_id,
+               DATE(f.arr_ts, f.tz_nm) AS dlvr_dt,
+               DATETIME(f.arr_ts, f.tz_nm) <= f.appt_end_lcl AS on_time
+        FROM tms_load_hdr h
+        JOIN final_dl f USING (load_id)
+        WHERE h.load_stat_cd = 'DLVD' AND NOT h.test_flg AND NOT h.void_flg
+      ),
+      cust AS (
+        -- the customer is the parent account of the site that shipped
+        SELECT h.load_id, p.acct_id AS cust_id, p.acct_nm AS cust_nm
+        FROM tms_load_hdr h
+        JOIN mdm_cust_acct s ON s.acct_id = h.shpr_acct_id
+        JOIN mdm_cust_acct p ON p.acct_id = s.prnt_acct_id
+      )
+      SELECT ROUND(100 * COUNTIF(d.on_time) / COUNT(*), 2)
+      FROM dlvd d JOIN cust c USING (load_id)
+      WHERE c.cust_nm = 'Northgate Foods Group' AND d.dlvr_dt BETWEEN '2026-07-01' AND '2026-09-30'
+  - label: portal rule, every customer
+    sql: |
+      SELECT ROUND(100 * COUNTIF(on_time_ind = 'Y') / COUNT(*), 2)
+      FROM ptl_shpmt WHERE actl_dlvr_dt BETWEEN '2026-07-01' AND '2026-09-30'

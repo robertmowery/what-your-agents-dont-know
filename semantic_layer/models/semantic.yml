@@ -1,0 +1,419 @@
+# The Tessaway Freight semantic layer: named metrics in open YAML, for MetricFlow.
+#
+# Tessaway Freight is a fictional company. Every description below is written
+# from data/DEFINITIONS.md and from nothing else. No question from
+# questions/part1.yaml and no answer appears here.
+#
+# Where the logic lives:
+#   models/*.sql   row-level footing a definition needs and MetricFlow cannot
+#                  say: the last delivery stop, the clock at the destination,
+#                  the parent a site rolls up to, US dollars at the month's rate
+#   this file      what counts toward each metric, the time each metric is
+#                  dated by, how metrics divide and subtract, and the names
+#
+# The metric descriptions are shown to the agent as written.
+
+models:
+  - name: time_spine_day
+    description: One row per day, for MetricFlow.
+    time_spine:
+      standard_granularity_column: date_day
+    columns:
+      - name: date_day
+        granularity: day
+
+semantic_models:
+  - name: tenders
+    description: >
+      One row per tender: a row of the load table. Carries the names a metric
+      can be grouped or filtered by.
+    model: ref('tenders')
+    entities:
+      - name: tender
+        type: primary
+        expr: tender_id
+    dimensions:
+      - name: customer_name
+        description: >
+          The customer: the parent account that the shipping site on the
+          tender rolls up to. Revenue and loads belong to this account.
+        type: categorical
+      - name: shipper_site_name
+        description: >
+          The shipping site on the tender. A site is not the customer; several
+          sites roll up to one customer and a site does not always carry the
+          customer's name.
+        type: categorical
+      - name: bill_to_party_name
+        description: >
+          Whoever pays the invoice. It may be a shared accounts payable office
+          or a freight payment firm paying for several customers. A bill-to
+          party is not the customer.
+        type: categorical
+      - name: carrier_name
+        description: The carrier on the tender.
+        type: categorical
+      - name: carrier_type
+        description: The carrier type code on the carrier record.
+        type: categorical
+      - name: is_cross_border
+        description: The cross-border flag on the tender.
+        type: categorical
+      - name: rated_currency
+        description: The currency code the tender was rated in.
+        type: categorical
+      - name: equipment_type
+        description: The equipment type code on the tender.
+        type: categorical
+
+  - name: loads
+    description: >
+      One row per load: one shipment moved for a customer, counted once, from
+      its first tender. Test rows and voided rows are not loads.
+    model: ref('loads')
+    defaults:
+      agg_time_dimension: booked_date
+    entities:
+      - name: load
+        type: primary
+        expr: load_id
+      - name: tender
+        type: foreign
+        expr: first_tender_id
+    dimensions:
+      - name: booked_date
+        description: The UTC date the load's first tender was created.
+        type: time
+        type_params:
+          time_granularity: day
+    measures:
+      - name: loads_booked_count
+        agg: sum
+        expr: "1"
+
+  - name: deliveries
+    description: >
+      One row per delivered load, dated by the calendar day of arrival at the
+      final delivery stop on the clock at that stop.
+    model: ref('deliveries')
+    defaults:
+      agg_time_dimension: delivered_date
+    entities:
+      - name: delivery
+        type: primary
+        expr: tender_id
+      - name: tender
+        type: foreign
+        expr: tender_id
+    dimensions:
+      - name: delivered_date
+        description: >
+          The calendar day the load arrived at its final delivery stop, on the
+          local clock at that stop.
+        type: time
+        type_params:
+          time_granularity: day
+      - name: arrived_on_time
+        description: >
+          True when the truck arrived at the final delivery stop at or before
+          the end of the appointment window, both on the facility's local clock.
+        type: categorical
+      - name: shipper_delayed
+        description: True when the load has a delay the shipper caused.
+        type: categorical
+      - name: has_signed_pod
+        description: True when a signed proof of delivery is on file for the load.
+        type: categorical
+    measures:
+      - name: delivered_load_count
+        agg: sum
+        expr: "1"
+      - name: on_time_load_count
+        agg: sum
+        expr: "case when arrived_on_time then 1 else 0 end"
+      # A late load the shipper delayed is left out, top and bottom. A load the
+      # shipper delayed that still arrived inside its window stays in.
+      - name: on_time_measured_load_count
+        agg: sum
+        expr: "case when arrived_on_time or not shipper_delayed then 1 else 0 end"
+      - name: late_load_count
+        agg: sum
+        expr: "case when not arrived_on_time and not shipper_delayed then 1 else 0 end"
+      - name: delivered_not_billable_count
+        agg: sum
+        expr: "case when not has_signed_pod then 1 else 0 end"
+      - name: customers_shipped_count
+        agg: count_distinct
+        expr: customer_id
+
+  - name: financial_documents
+    description: >
+      One row per invoice, credit memo or canceled-load fee, in US dollars,
+      dated by the invoice date, the credit date or the fee date.
+    model: ref('financial_documents')
+    defaults:
+      agg_time_dimension: document_date
+    entities:
+      - name: document
+        type: primary
+        expr: document_id
+      - name: tender
+        type: foreign
+        expr: tender_id
+    dimensions:
+      - name: document_date
+        description: The invoice date, the credit date or the fee date.
+        type: time
+        type_params:
+          time_granularity: day
+      - name: document_type
+        description: "One of: invoice, credit_memo, canceled_load_fee."
+        type: categorical
+      - name: document_currency
+        description: >
+          The currency code the document was issued in. Amounts in every
+          metric are already converted to US dollars.
+        type: categorical
+    measures:
+      - name: revenue_usd_sum
+        agg: sum
+        expr: revenue_usd
+      - name: carrier_cost_usd_sum
+        agg: sum
+        expr: carrier_cost_usd
+      - name: invoiced_load_count
+        agg: sum
+        expr: "case when document_type = 'invoice' then 1 else 0 end"
+
+  - name: portal_shipments
+    description: >
+      One row per shipment the customer portal shows as delivered, dated by
+      the delivery date the portal shows.
+    model: ref('portal_shipments')
+    defaults:
+      agg_time_dimension: portal_delivered_date
+    entities:
+      - name: shipment
+        type: primary
+        expr: shipment_ref
+      - name: tender
+        type: foreign
+        expr: tender_id
+    dimensions:
+      - name: portal_delivered_date
+        description: The delivery date the customer portal shows.
+        type: time
+        type_params:
+          time_granularity: day
+    measures:
+      - name: portal_shipment_count
+        agg: sum
+        expr: "1"
+      - name: portal_on_time_shipment_count
+        agg: sum
+        expr: "case when portal_on_time then 1 else 0 end"
+
+metrics:
+  - name: loads_booked
+    label: Loads booked
+    description: >
+      Loads booked. A load is one shipment moved for a customer, counted once
+      from its first tender. A re-tender is not a second load, and test rows
+      and voided rows are not loads. A canceled load was a load and counts as
+      booked. Dated by the UTC date of the first tender.
+    type: simple
+    type_params:
+      measure: loads_booked_count
+
+  - name: delivered_loads
+    label: Delivered loads
+    description: >
+      Loads delivered: the carrier reported the final delivery. Only real
+      loads count, never test rows or voided rows, and a re-tendered load is
+      delivered once, by the carrier that hauled it. Dated by the calendar day
+      of arrival at the final delivery stop, on the clock at that stop.
+    type: simple
+    type_params:
+      measure: delivered_load_count
+
+  - name: on_time_loads
+    label: On-time loads
+    description: >
+      Delivered loads that arrived at the final delivery stop at or before the
+      end of the appointment window, on the facility's local clock. Arriving
+      early is on time. The top of the official on-time rate.
+    type: simple
+    type_params:
+      measure: on_time_load_count
+
+  - name: on_time_measured_loads
+    label: Loads measured for on-time
+    description: >
+      Delivered loads that count in the official on-time rate. A load that
+      arrived late and has a delay the shipper caused is left out. The bottom
+      of the official on-time rate.
+    type: simple
+    type_params:
+      measure: on_time_measured_load_count
+
+  - name: on_time_rate
+    label: On-time delivery rate (official)
+    description: >
+      Tessaway's official on-time delivery rate, the one its customer
+      contracts define, as a percentage from 0 to 100: on-time loads divided
+      by measured loads, over delivered loads. A load that arrived late and
+      has a delay the shipper caused is left out of the measure, top and
+      bottom; it is neither on time nor late.
+    type: derived
+    type_params:
+      expr: 100 * on_time_loads / nullif(on_time_measured_loads, 0)
+      metrics:
+        - name: on_time_loads
+        - name: on_time_measured_loads
+
+  - name: late_deliveries
+    label: Late deliveries (official)
+    description: >
+      Delivered loads that were late under the official on-time rule: arrival
+      at the final delivery stop after the end of the appointment window, on
+      the facility's local clock. A late load with a delay the shipper caused
+      is left out; it is neither on time nor late.
+    type: simple
+    type_params:
+      measure: late_load_count
+
+  - name: operations_on_time_rate
+    label: On-time rate as operations watches it (not official)
+    description: >
+      Not the official rate. What operations watches, as a percentage from 0
+      to 100: arrival inside the appointment window for every delivered load,
+      shipper-caused or not.
+    type: derived
+    type_params:
+      expr: 100 * on_time_loads / nullif(delivered_loads, 0)
+      metrics:
+        - name: on_time_loads
+        - name: delivered_loads
+
+  - name: portal_on_time_rate
+    label: On-time rate as the customer portal shows it (not official)
+    description: >
+      Not the official rate. What customers see in the customer portal, as a
+      percentage from 0 to 100: shipments delivered on or before the date the
+      customer requested. It compares dates, not appointment times, and knows
+      nothing about who caused a delay. It is the right answer only when the
+      question is about what customers see in the portal. Dated by the
+      delivery date the portal shows.
+    type: derived
+    type_params:
+      expr: 100 * portal_on_time_shipments / nullif(portal_shipments, 0)
+      metrics:
+        - name: portal_on_time_shipments
+        - name: portal_shipments
+
+  - name: portal_shipments
+    label: Shipments shown delivered in the customer portal
+    description: >
+      Shipments the customer portal shows as delivered. Dated by the delivery
+      date the portal shows.
+    type: simple
+    type_params:
+      measure: portal_shipment_count
+
+  - name: portal_on_time_shipments
+    label: Shipments the customer portal shows as on time
+    description: >
+      Shipments the customer portal shows as delivered on or before the date
+      the customer requested.
+    type: simple
+    type_params:
+      measure: portal_on_time_shipment_count
+
+  - name: delivered_loads_not_billable
+    label: Delivered loads that cannot be billed yet
+    description: >
+      Delivered loads that cannot be invoiced, because no signed proof of
+      delivery is on file. For billing, delivered is not enough: an unsigned
+      document does not count. Test loads are never billed and are not
+      waiting on anything.
+    type: simple
+    type_params:
+      measure: delivered_not_billable_count
+
+  - name: customers_shipped
+    label: Customers that shipped
+    description: >
+      Customers that shipped with us: parent accounts with at least one load
+      delivered in the period. A shipping site is not a customer and a bill-to
+      party is not a customer.
+    type: simple
+    type_params:
+      measure: customers_shipped_count
+
+  - name: revenue
+    label: Revenue (US dollars)
+    description: >
+      Revenue in US dollars, recognized when it is invoiced: invoice totals
+      (which already include linehaul, fuel surcharge and accessorial charges
+      billed to the customer) in the period of the invoice date, less credit
+      memos in the period of the credit date, plus canceled-load fees billed
+      to the customer in the period of the fee date. Canadian-dollar amounts
+      are converted at the monthly rate for the month of the document. The
+      rated linehaul on a tender is not revenue.
+    type: simple
+    type_params:
+      measure: revenue_usd_sum
+
+  - name: carrier_cost
+    label: Carrier cost (US dollars)
+    description: >
+      What was paid to carriers, in US dollars: for an invoiced load, linehaul
+      pay plus the carrier's fuel surcharge plus accessorials paid to the
+      carrier, in the period the load's invoice was cut; and the carrier's
+      share of a canceled-load fee, in the period of the fee date. Loads
+      hauled by Tessaway's own fleet are treated the same way.
+    type: simple
+    type_params:
+      measure: carrier_cost_usd_sum
+
+  - name: margin
+    label: Margin (US dollars)
+    description: >
+      Margin in US dollars: revenue less what was paid to carriers for the
+      same loads.
+    type: derived
+    type_params:
+      expr: revenue - carrier_cost
+      metrics:
+        - name: revenue
+        - name: carrier_cost
+
+  - name: invoiced_loads
+    label: Loads invoiced
+    description: The number of loads invoiced, in the period of the invoice date.
+    type: simple
+    type_params:
+      measure: invoiced_load_count
+
+  - name: margin_per_load
+    label: Margin per load (US dollars)
+    description: >
+      Margin for the period divided by the number of loads invoiced in the
+      period, in US dollars.
+    type: derived
+    type_params:
+      expr: (revenue - carrier_cost) / nullif(invoiced_loads, 0)
+      metrics:
+        - name: revenue
+        - name: carrier_cost
+        - name: invoiced_loads
+
+  - name: margin_percentage
+    label: Margin percentage
+    description: Margin divided by revenue, as a percentage from 0 to 100.
+    type: derived
+    type_params:
+      expr: 100 * (revenue - carrier_cost) / nullif(revenue, 0)
+      metrics:
+        - name: revenue
+        - name: carrier_cost

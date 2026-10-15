@@ -1,0 +1,1327 @@
+{
+ "written_at": "2026-10-09T20:23:53+00:00",
+ "bins": [
+  "right",
+  "confidently_wrong",
+  "declined",
+  "no_answer"
+ ],
+ "note": "The baseline is Part 1's Flash configuration at ten runs per question. The Part 2 configurations ran each question three times, so their shares are rougher: one run is 1.4 points of an overall share and 5.6 points within a question group of six.",
+ "baseline": {
+  "config": "baseline",
+  "source": "results/part1/adk_gemini_flash.json",
+  "what": "Part 1, adk_gemini_flash: schema and the SQL tool only. Not run again.",
+  "layers": [],
+  "tools": [
+   "run_sql"
+  ],
+  "model": "gemini-3.8-flash",
+  "question_count": 2,
+  "runs_per_question": 10,
+  "runs_saved": 20,
+  "runs_expected": 20,
+  "complete": true,
+  "last_run_finished_at": "2026-10-09T17:30:51+00:00",
+  "summary": {
+   "overall": {
+    "runs": 20,
+    "right": 10,
+    "right_share": 0.5,
+    "confidently_wrong": 5,
+    "confidently_wrong_share": 0.25,
+    "declined": 5,
+    "declined_share": 0.25,
+    "no_answer": 0,
+    "no_answer_share": 0.0
+   },
+   "by_group": {
+    "lookup": {
+     "runs": 10,
+     "right": 10,
+     "right_share": 1.0,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": 0.0,
+     "declined": 0,
+     "declined_share": 0.0,
+     "no_answer": 0,
+     "no_answer_share": 0.0
+    },
+    "metric": {
+     "runs": 10,
+     "right": 0,
+     "right_share": 0.0,
+     "confidently_wrong": 5,
+     "confidently_wrong_share": 0.5,
+     "declined": 5,
+     "declined_share": 0.5,
+     "no_answer": 0,
+     "no_answer_share": 0.0
+    }
+   },
+   "by_question": {
+    "L1": {
+     "runs": 10,
+     "right": 10,
+     "right_share": 1.0,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": 0.0,
+     "declined": 0,
+     "declined_share": 0.0,
+     "no_answer": 0,
+     "no_answer_share": 0.0,
+     "group": "lookup",
+     "mean_input_tokens": 6979.9,
+     "mean_output_tokens": 518.6,
+     "mean_cost_usd": 0.0072,
+     "mean_queries": 3.5,
+     "decoys_matched": {}
+    },
+    "M1": {
+     "runs": 10,
+     "right": 0,
+     "right_share": 0.0,
+     "confidently_wrong": 5,
+     "confidently_wrong_share": 0.5,
+     "declined": 5,
+     "declined_share": 0.5,
+     "no_answer": 0,
+     "no_answer_share": 0.0,
+     "group": "metric",
+     "mean_input_tokens": 32560.6,
+     "mean_output_tokens": 7411.9,
+     "mean_cost_usd": 0.0511,
+     "mean_queries": 8.0,
+     "decoys_matched": {
+      "portal definition: delivered by the requested date": 4
+     }
+    }
+   },
+   "wrong_answers_that_flagged_an_assumption": 0,
+   "wrong_answers": 5,
+   "declines": 5,
+   "declines_that_mention_the_query_limit": 1,
+   "runs_that_used_every_query": 10,
+   "mean_cost_usd_per_question": 0.0291,
+   "mean_input_tokens_per_question": 19770.25,
+   "mean_output_tokens_per_question": 3965.25,
+   "total_cost_usd": 0.5825
+  },
+  "effort": {
+   "mean_input_tokens": 19770,
+   "mean_output_tokens": 3965,
+   "cache_read_share_of_input": 0.043,
+   "runs_with_a_cache_read": 5,
+   "mean_model_calls": 7.25,
+   "mean_sql_queries": 5.75,
+   "mean_seconds": 67.0,
+   "mean_cost_usd": 0.0291,
+   "total_cost_usd": 0.5825
+  },
+  "limits": {
+   "runs_refused_a_further_sql_query": 10,
+   "runs_that_timed_out": 0,
+   "runs_that_ended_in_an_error": 0
+  }
+ },
+ "configurations": [
+  {
+   "config": "flash_semantic",
+   "layers": [
+    "semantic"
+   ],
+   "tools": [
+    "run_sql",
+    "query_metrics"
+   ],
+   "runtime": "adk",
+   "runtime_package": "google-adk==2.11.0",
+   "layer_packages": {
+    "rdflib": "7.6.0",
+    "pyshacl": "0.40.1",
+    "pyoxigraph": "0.5.11",
+    "dbt-metricflow": "0.15.0",
+    "metricflow": "0.213.0",
+    "dbt-core": "1.12.5",
+    "dbt-bigquery": "1.12.1"
+   },
+   "model": "gemini-3.8-flash",
+   "model_reported_by_provider": [
+    "gemini-3.8-flash"
+   ],
+   "model_and_prices_checked_on": "2026-10-09",
+   "usd_per_million_tokens": {
+    "input": 0.75,
+    "output": 3.75,
+    "cache_read": 0.075
+   },
+   "first_run_finished_at": "2026-10-09T20:18:36+00:00",
+   "last_run_finished_at": "2026-10-09T20:19:07+00:00",
+   "question_count": 2,
+   "runs_per_question": 1,
+   "runs_expected": 2,
+   "runs_saved": 2,
+   "complete": true,
+   "runs_repeated_after_a_failure": 0,
+   "sql_query_limit": 8,
+   "layer_call_limit_per_tool": 8,
+   "model_call_ceiling": 16,
+   "data_seed": 20261009,
+   "summary": {
+    "overall": {
+     "runs": 2,
+     "right": 2,
+     "right_share": 1.0,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": 0.0,
+     "declined": 0,
+     "declined_share": 0.0,
+     "no_answer": 0,
+     "no_answer_share": 0.0
+    },
+    "by_group": {
+     "lookup": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     },
+     "metric": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     }
+    },
+    "by_question": {
+     "L1": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "lookup",
+      "mean_input_tokens": 25513.0,
+      "mean_output_tokens": 1195.0,
+      "mean_cost_usd": 0.0236,
+      "mean_queries": 6.0,
+      "decoys_matched": {}
+     },
+     "M1": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "metric",
+      "mean_input_tokens": 28777.0,
+      "mean_output_tokens": 5204.0,
+      "mean_cost_usd": 0.0411,
+      "mean_queries": 2.0,
+      "decoys_matched": {}
+     }
+    },
+    "wrong_answers_that_flagged_an_assumption": 0,
+    "wrong_answers": 0,
+    "declines": 0,
+    "declines_that_mention_the_query_limit": 0,
+    "runs_that_used_every_query": 0,
+    "mean_cost_usd_per_question": 0.0324,
+    "mean_input_tokens_per_question": 27145.0,
+    "mean_output_tokens_per_question": 3199.5,
+    "total_cost_usd": 0.0647
+   },
+   "effort": {
+    "mean_input_tokens": 27145,
+    "mean_output_tokens": 3200,
+    "cache_read_share_of_input": 0.0,
+    "runs_with_a_cache_read": 0,
+    "mean_model_calls": 6.5,
+    "mean_sql_queries": 4.0,
+    "mean_seconds": 42.7,
+    "mean_cost_usd": 0.0324,
+    "total_cost_usd": 0.0647
+   },
+   "tool_use": {
+    "runs": 2,
+    "mean_calls_per_run": {
+     "run_sql": 4.0,
+     "query_metrics": 1.5
+    },
+    "total_calls": {
+     "run_sql": 8,
+     "query_metrics": 3
+    },
+    "runs_that_called": {
+     "run_sql": 2,
+     "query_metrics": 1
+    },
+    "runs_with_no_layer_call": 1,
+    "runs_with_no_sql_call": 0,
+    "runs_whose_first_call_was_sql": 1,
+    "where_a_layer_applies": {
+     "semantic": {
+      "questions": 1,
+      "runs": 1,
+      "runs_that_used_the_layer": 1,
+      "runs_that_ignored_the_layer": 0
+     }
+    },
+    "went_around_the_semantic_layer": {
+     "what": "Runs on a question that one metric query answers, in which the agent ran at least one SQL query.",
+     "runs_on_such_questions": 1,
+     "runs_that_ran_sql": 1,
+     "of_which_never_called_the_metric_tool": 0,
+     "of_which_called_both": 1,
+     "outcomes_when_sql_was_run": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     },
+     "runs_answered_from_metrics_alone": 0,
+     "outcomes_from_metrics_alone": {
+      "runs": 0,
+      "right": 0,
+      "right_share": null,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": null,
+      "declined": 0,
+      "declined_share": null,
+      "no_answer": 0,
+      "no_answer_share": null
+     }
+    }
+   },
+   "tool_use_by_group": {
+    "lookup": {
+     "runs": 1,
+     "mean_calls_per_run": {
+      "run_sql": 6.0,
+      "query_metrics": 0.0
+     },
+     "total_calls": {
+      "run_sql": 6,
+      "query_metrics": 0
+     },
+     "runs_that_called": {
+      "run_sql": 1,
+      "query_metrics": 0
+     },
+     "runs_with_no_layer_call": 1,
+     "runs_with_no_sql_call": 0,
+     "runs_whose_first_call_was_sql": 1,
+     "where_a_layer_applies": {
+      "semantic": {
+       "questions": 0,
+       "runs": 0,
+       "runs_that_used_the_layer": 0,
+       "runs_that_ignored_the_layer": 0
+      }
+     },
+     "went_around_the_semantic_layer": {
+      "what": "Runs on a question that one metric query answers, in which the agent ran at least one SQL query.",
+      "runs_on_such_questions": 0,
+      "runs_that_ran_sql": 0,
+      "of_which_never_called_the_metric_tool": 0,
+      "of_which_called_both": 0,
+      "outcomes_when_sql_was_run": {
+       "runs": 0,
+       "right": 0,
+       "right_share": null,
+       "confidently_wrong": 0,
+       "confidently_wrong_share": null,
+       "declined": 0,
+       "declined_share": null,
+       "no_answer": 0,
+       "no_answer_share": null
+      },
+      "runs_answered_from_metrics_alone": 0,
+      "outcomes_from_metrics_alone": {
+       "runs": 0,
+       "right": 0,
+       "right_share": null,
+       "confidently_wrong": 0,
+       "confidently_wrong_share": null,
+       "declined": 0,
+       "declined_share": null,
+       "no_answer": 0,
+       "no_answer_share": null
+      }
+     }
+    },
+    "metric": {
+     "runs": 1,
+     "mean_calls_per_run": {
+      "run_sql": 2.0,
+      "query_metrics": 3.0
+     },
+     "total_calls": {
+      "run_sql": 2,
+      "query_metrics": 3
+     },
+     "runs_that_called": {
+      "run_sql": 1,
+      "query_metrics": 1
+     },
+     "runs_with_no_layer_call": 0,
+     "runs_with_no_sql_call": 0,
+     "runs_whose_first_call_was_sql": 0,
+     "where_a_layer_applies": {
+      "semantic": {
+       "questions": 1,
+       "runs": 1,
+       "runs_that_used_the_layer": 1,
+       "runs_that_ignored_the_layer": 0
+      }
+     },
+     "went_around_the_semantic_layer": {
+      "what": "Runs on a question that one metric query answers, in which the agent ran at least one SQL query.",
+      "runs_on_such_questions": 1,
+      "runs_that_ran_sql": 1,
+      "of_which_never_called_the_metric_tool": 0,
+      "of_which_called_both": 1,
+      "outcomes_when_sql_was_run": {
+       "runs": 1,
+       "right": 1,
+       "right_share": 1.0,
+       "confidently_wrong": 0,
+       "confidently_wrong_share": 0.0,
+       "declined": 0,
+       "declined_share": 0.0,
+       "no_answer": 0,
+       "no_answer_share": 0.0
+      },
+      "runs_answered_from_metrics_alone": 0,
+      "outcomes_from_metrics_alone": {
+       "runs": 0,
+       "right": 0,
+       "right_share": null,
+       "confidently_wrong": 0,
+       "confidently_wrong_share": null,
+       "declined": 0,
+       "declined_share": null,
+       "no_answer": 0,
+       "no_answer_share": null
+      }
+     }
+    }
+   },
+   "limits": {
+    "runs_refused_a_further_sql_query": 0,
+    "runs_refused_a_further_layer_call": 0,
+    "runs_that_hit_the_model_call_ceiling": 0,
+    "runs_that_timed_out": 0,
+    "runs_that_ended_in_an_error": 0
+   },
+   "change_vs_baseline_points": {
+    "overall": {
+     "right": 50.0,
+     "confidently_wrong": -25.0,
+     "declined": -25.0
+    },
+    "lookup": {
+     "right": 0.0,
+     "confidently_wrong": 0.0,
+     "declined": 0.0
+    },
+    "metric": {
+     "right": 100.0,
+     "confidently_wrong": -50.0,
+     "declined": -50.0
+    }
+   }
+  },
+  {
+   "config": "flash_ontology",
+   "layers": [
+    "ontology"
+   ],
+   "tools": [
+    "run_sql",
+    "lookup_ontology"
+   ],
+   "runtime": "adk",
+   "runtime_package": "google-adk==2.11.0",
+   "layer_packages": {
+    "rdflib": "7.6.0",
+    "pyshacl": "0.40.1",
+    "pyoxigraph": "0.5.11",
+    "dbt-metricflow": "0.15.0",
+    "metricflow": "0.213.0",
+    "dbt-core": "1.12.5",
+    "dbt-bigquery": "1.12.1"
+   },
+   "model": "gemini-3.8-flash",
+   "model_reported_by_provider": [
+    "gemini-3.8-flash"
+   ],
+   "model_and_prices_checked_on": "2026-10-09",
+   "usd_per_million_tokens": {
+    "input": 0.75,
+    "output": 3.75,
+    "cache_read": 0.075
+   },
+   "first_run_finished_at": "2026-10-09T20:19:34+00:00",
+   "last_run_finished_at": "2026-10-09T20:20:13+00:00",
+   "question_count": 2,
+   "runs_per_question": 1,
+   "runs_expected": 2,
+   "runs_saved": 2,
+   "complete": true,
+   "runs_repeated_after_a_failure": 0,
+   "sql_query_limit": 8,
+   "layer_call_limit_per_tool": 8,
+   "model_call_ceiling": 16,
+   "data_seed": 20261009,
+   "summary": {
+    "overall": {
+     "runs": 2,
+     "right": 1,
+     "right_share": 0.5,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": 0.0,
+     "declined": 0,
+     "declined_share": 0.0,
+     "no_answer": 1,
+     "no_answer_share": 0.5
+    },
+    "by_group": {
+     "lookup": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     },
+     "metric": {
+      "runs": 1,
+      "right": 0,
+      "right_share": 0.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 1,
+      "no_answer_share": 1.0
+     }
+    },
+    "by_question": {
+     "L1": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "lookup",
+      "mean_input_tokens": 19341.0,
+      "mean_output_tokens": 989.0,
+      "mean_cost_usd": 0.0182,
+      "mean_queries": 5.0,
+      "decoys_matched": {}
+     },
+     "M1": {
+      "runs": 1,
+      "right": 0,
+      "right_share": 0.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 1,
+      "no_answer_share": 1.0,
+      "group": "metric",
+      "mean_input_tokens": 84707.0,
+      "mean_output_tokens": 3379.0,
+      "mean_cost_usd": 0.06,
+      "mean_queries": 8.0,
+      "decoys_matched": {}
+     }
+    },
+    "wrong_answers_that_flagged_an_assumption": 0,
+    "wrong_answers": 0,
+    "declines": 0,
+    "declines_that_mention_the_query_limit": 0,
+    "runs_that_used_every_query": 1,
+    "mean_cost_usd_per_question": 0.0391,
+    "mean_input_tokens_per_question": 52024.0,
+    "mean_output_tokens_per_question": 2184.0,
+    "total_cost_usd": 0.0782
+   },
+   "effort": {
+    "mean_input_tokens": 52024,
+    "mean_output_tokens": 2184,
+    "cache_read_share_of_input": 0.2311,
+    "runs_with_a_cache_read": 1,
+    "mean_model_calls": 12.0,
+    "mean_sql_queries": 6.5,
+    "mean_seconds": 46.2,
+    "mean_cost_usd": 0.0391,
+    "total_cost_usd": 0.0782
+   },
+   "tool_use": {
+    "runs": 2,
+    "mean_calls_per_run": {
+     "run_sql": 6.5,
+     "lookup_ontology": 4.5
+    },
+    "total_calls": {
+     "run_sql": 13,
+     "lookup_ontology": 9
+    },
+    "runs_that_called": {
+     "run_sql": 2,
+     "lookup_ontology": 2
+    },
+    "runs_with_no_layer_call": 0,
+    "runs_with_no_sql_call": 0,
+    "runs_whose_first_call_was_sql": 0,
+    "where_a_layer_applies": {
+     "ontology": {
+      "questions": 1,
+      "runs": 1,
+      "runs_that_used_the_layer": 1,
+      "runs_that_ignored_the_layer": 0
+     }
+    }
+   },
+   "tool_use_by_group": {
+    "lookup": {
+     "runs": 1,
+     "mean_calls_per_run": {
+      "run_sql": 5.0,
+      "lookup_ontology": 2.0
+     },
+     "total_calls": {
+      "run_sql": 5,
+      "lookup_ontology": 2
+     },
+     "runs_that_called": {
+      "run_sql": 1,
+      "lookup_ontology": 1
+     },
+     "runs_with_no_layer_call": 0,
+     "runs_with_no_sql_call": 0,
+     "runs_whose_first_call_was_sql": 0,
+     "where_a_layer_applies": {
+      "ontology": {
+       "questions": 0,
+       "runs": 0,
+       "runs_that_used_the_layer": 0,
+       "runs_that_ignored_the_layer": 0
+      }
+     }
+    },
+    "metric": {
+     "runs": 1,
+     "mean_calls_per_run": {
+      "run_sql": 8.0,
+      "lookup_ontology": 7.0
+     },
+     "total_calls": {
+      "run_sql": 8,
+      "lookup_ontology": 7
+     },
+     "runs_that_called": {
+      "run_sql": 1,
+      "lookup_ontology": 1
+     },
+     "runs_with_no_layer_call": 0,
+     "runs_with_no_sql_call": 0,
+     "runs_whose_first_call_was_sql": 0,
+     "where_a_layer_applies": {
+      "ontology": {
+       "questions": 1,
+       "runs": 1,
+       "runs_that_used_the_layer": 1,
+       "runs_that_ignored_the_layer": 0
+      }
+     }
+    }
+   },
+   "limits": {
+    "runs_refused_a_further_sql_query": 1,
+    "runs_refused_a_further_layer_call": 0,
+    "runs_that_hit_the_model_call_ceiling": 1,
+    "runs_that_timed_out": 0,
+    "runs_that_ended_in_an_error": 1
+   },
+   "change_vs_baseline_points": {
+    "overall": {
+     "right": 0.0,
+     "confidently_wrong": -25.0,
+     "declined": -25.0
+    },
+    "lookup": {
+     "right": 0.0,
+     "confidently_wrong": 0.0,
+     "declined": 0.0
+    },
+    "metric": {
+     "right": 0.0,
+     "confidently_wrong": -50.0,
+     "declined": -50.0
+    }
+   }
+  },
+  {
+   "config": "flash_graph",
+   "layers": [
+    "graph"
+   ],
+   "tools": [
+    "run_sql",
+    "query_graph"
+   ],
+   "runtime": "adk",
+   "runtime_package": "google-adk==2.11.0",
+   "layer_packages": {
+    "rdflib": "7.6.0",
+    "pyshacl": "0.40.1",
+    "pyoxigraph": "0.5.11",
+    "dbt-metricflow": "0.15.0",
+    "metricflow": "0.213.0",
+    "dbt-core": "1.12.5",
+    "dbt-bigquery": "1.12.1"
+   },
+   "model": "gemini-3.8-flash",
+   "model_reported_by_provider": [
+    "gemini-3.8-flash"
+   ],
+   "model_and_prices_checked_on": "2026-10-09",
+   "usd_per_million_tokens": {
+    "input": 0.75,
+    "output": 3.75,
+    "cache_read": 0.075
+   },
+   "first_run_finished_at": "2026-10-09T20:20:33+00:00",
+   "last_run_finished_at": "2026-10-09T20:21:52+00:00",
+   "question_count": 2,
+   "runs_per_question": 1,
+   "runs_expected": 2,
+   "runs_saved": 2,
+   "complete": true,
+   "runs_repeated_after_a_failure": 0,
+   "sql_query_limit": 8,
+   "layer_call_limit_per_tool": 8,
+   "model_call_ceiling": 16,
+   "data_seed": 20261009,
+   "summary": {
+    "overall": {
+     "runs": 2,
+     "right": 1,
+     "right_share": 0.5,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": 0.0,
+     "declined": 1,
+     "declined_share": 0.5,
+     "no_answer": 0,
+     "no_answer_share": 0.0
+    },
+    "by_group": {
+     "lookup": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     },
+     "metric": {
+      "runs": 1,
+      "right": 0,
+      "right_share": 0.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 1,
+      "declined_share": 1.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     }
+    },
+    "by_question": {
+     "L1": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "lookup",
+      "mean_input_tokens": 7666.0,
+      "mean_output_tokens": 461.0,
+      "mean_cost_usd": 0.0075,
+      "mean_queries": 2.0,
+      "decoys_matched": {}
+     },
+     "M1": {
+      "runs": 1,
+      "right": 0,
+      "right_share": 0.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 1,
+      "declined_share": 1.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "metric",
+      "mean_input_tokens": 50136.0,
+      "mean_output_tokens": 8044.0,
+      "mean_cost_usd": 0.0629,
+      "mean_queries": 8.0,
+      "decoys_matched": {}
+     }
+    },
+    "wrong_answers_that_flagged_an_assumption": 0,
+    "wrong_answers": 0,
+    "declines": 1,
+    "declines_that_mention_the_query_limit": 0,
+    "runs_that_used_every_query": 1,
+    "mean_cost_usd_per_question": 0.0352,
+    "mean_input_tokens_per_question": 28901.0,
+    "mean_output_tokens_per_question": 4252.5,
+    "total_cost_usd": 0.0704
+   },
+   "effort": {
+    "mean_input_tokens": 28901,
+    "mean_output_tokens": 4252,
+    "cache_read_share_of_input": 0.1244,
+    "runs_with_a_cache_read": 1,
+    "mean_model_calls": 7.5,
+    "mean_sql_queries": 5.0,
+    "mean_seconds": 54.6,
+    "mean_cost_usd": 0.0352,
+    "total_cost_usd": 0.0704
+   },
+   "tool_use": {
+    "runs": 2,
+    "mean_calls_per_run": {
+     "run_sql": 5.0,
+     "query_graph": 1.0
+    },
+    "total_calls": {
+     "run_sql": 10,
+     "query_graph": 2
+    },
+    "runs_that_called": {
+     "run_sql": 2,
+     "query_graph": 2
+    },
+    "runs_with_no_layer_call": 0,
+    "runs_with_no_sql_call": 0,
+    "runs_whose_first_call_was_sql": 2,
+    "where_a_layer_applies": {
+     "graph": {
+      "questions": 1,
+      "runs": 1,
+      "runs_that_used_the_layer": 1,
+      "runs_that_ignored_the_layer": 0
+     }
+    }
+   },
+   "tool_use_by_group": {
+    "lookup": {
+     "runs": 1,
+     "mean_calls_per_run": {
+      "run_sql": 2.0,
+      "query_graph": 1.0
+     },
+     "total_calls": {
+      "run_sql": 2,
+      "query_graph": 1
+     },
+     "runs_that_called": {
+      "run_sql": 1,
+      "query_graph": 1
+     },
+     "runs_with_no_layer_call": 0,
+     "runs_with_no_sql_call": 0,
+     "runs_whose_first_call_was_sql": 1,
+     "where_a_layer_applies": {
+      "graph": {
+       "questions": 0,
+       "runs": 0,
+       "runs_that_used_the_layer": 0,
+       "runs_that_ignored_the_layer": 0
+      }
+     }
+    },
+    "metric": {
+     "runs": 1,
+     "mean_calls_per_run": {
+      "run_sql": 8.0,
+      "query_graph": 1.0
+     },
+     "total_calls": {
+      "run_sql": 8,
+      "query_graph": 1
+     },
+     "runs_that_called": {
+      "run_sql": 1,
+      "query_graph": 1
+     },
+     "runs_with_no_layer_call": 0,
+     "runs_with_no_sql_call": 0,
+     "runs_whose_first_call_was_sql": 1,
+     "where_a_layer_applies": {
+      "graph": {
+       "questions": 1,
+       "runs": 1,
+       "runs_that_used_the_layer": 1,
+       "runs_that_ignored_the_layer": 0
+      }
+     }
+    }
+   },
+   "limits": {
+    "runs_refused_a_further_sql_query": 1,
+    "runs_refused_a_further_layer_call": 0,
+    "runs_that_hit_the_model_call_ceiling": 0,
+    "runs_that_timed_out": 0,
+    "runs_that_ended_in_an_error": 0
+   },
+   "change_vs_baseline_points": {
+    "overall": {
+     "right": 0.0,
+     "confidently_wrong": -25.0,
+     "declined": 25.0
+    },
+    "lookup": {
+     "right": 0.0,
+     "confidently_wrong": 0.0,
+     "declined": 0.0
+    },
+    "metric": {
+     "right": 0.0,
+     "confidently_wrong": -50.0,
+     "declined": 50.0
+    }
+   }
+  },
+  {
+   "config": "flash_all_three",
+   "layers": [
+    "semantic",
+    "ontology",
+    "graph"
+   ],
+   "tools": [
+    "run_sql",
+    "query_metrics",
+    "lookup_ontology",
+    "query_graph"
+   ],
+   "runtime": "adk",
+   "runtime_package": "google-adk==2.11.0",
+   "layer_packages": {
+    "rdflib": "7.6.0",
+    "pyshacl": "0.40.1",
+    "pyoxigraph": "0.5.11",
+    "dbt-metricflow": "0.15.0",
+    "metricflow": "0.213.0",
+    "dbt-core": "1.12.5",
+    "dbt-bigquery": "1.12.1"
+   },
+   "model": "gemini-3.8-flash",
+   "model_reported_by_provider": [
+    "gemini-3.8-flash"
+   ],
+   "model_and_prices_checked_on": "2026-10-09",
+   "usd_per_million_tokens": {
+    "input": 0.75,
+    "output": 3.75,
+    "cache_read": 0.075
+   },
+   "first_run_finished_at": "2026-10-09T20:22:16+00:00",
+   "last_run_finished_at": "2026-10-09T20:23:52+00:00",
+   "question_count": 2,
+   "runs_per_question": 1,
+   "runs_expected": 2,
+   "runs_saved": 2,
+   "complete": true,
+   "runs_repeated_after_a_failure": 0,
+   "sql_query_limit": 8,
+   "layer_call_limit_per_tool": 8,
+   "model_call_ceiling": 16,
+   "data_seed": 20261009,
+   "summary": {
+    "overall": {
+     "runs": 2,
+     "right": 2,
+     "right_share": 1.0,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": 0.0,
+     "declined": 0,
+     "declined_share": 0.0,
+     "no_answer": 0,
+     "no_answer_share": 0.0
+    },
+    "by_group": {
+     "lookup": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     },
+     "metric": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     }
+    },
+    "by_question": {
+     "L1": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "lookup",
+      "mean_input_tokens": 31555.0,
+      "mean_output_tokens": 560.0,
+      "mean_cost_usd": 0.0258,
+      "mean_queries": 3.0,
+      "decoys_matched": {}
+     },
+     "M1": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0,
+      "group": "metric",
+      "mean_input_tokens": 41353.0,
+      "mean_output_tokens": 12867.0,
+      "mean_cost_usd": 0.0767,
+      "mean_queries": 2.0,
+      "decoys_matched": {}
+     }
+    },
+    "wrong_answers_that_flagged_an_assumption": 0,
+    "wrong_answers": 0,
+    "declines": 0,
+    "declines_that_mention_the_query_limit": 0,
+    "runs_that_used_every_query": 0,
+    "mean_cost_usd_per_question": 0.0512,
+    "mean_input_tokens_per_question": 36454.0,
+    "mean_output_tokens_per_question": 6713.5,
+    "total_cost_usd": 0.1024
+   },
+   "effort": {
+    "mean_input_tokens": 36454,
+    "mean_output_tokens": 6714,
+    "cache_read_share_of_input": 0.0531,
+    "runs_with_a_cache_read": 1,
+    "mean_model_calls": 7.0,
+    "mean_sql_queries": 2.5,
+    "mean_seconds": 72.2,
+    "mean_cost_usd": 0.0512,
+    "total_cost_usd": 0.1024
+   },
+   "tool_use": {
+    "runs": 2,
+    "mean_calls_per_run": {
+     "run_sql": 2.5,
+     "query_metrics": 1.0,
+     "lookup_ontology": 2.0,
+     "query_graph": 0.5
+    },
+    "total_calls": {
+     "run_sql": 5,
+     "query_metrics": 2,
+     "lookup_ontology": 4,
+     "query_graph": 1
+    },
+    "runs_that_called": {
+     "run_sql": 2,
+     "query_metrics": 1,
+     "lookup_ontology": 2,
+     "query_graph": 1
+    },
+    "runs_with_no_layer_call": 0,
+    "runs_with_no_sql_call": 0,
+    "runs_whose_first_call_was_sql": 0,
+    "where_a_layer_applies": {
+     "semantic": {
+      "questions": 1,
+      "runs": 1,
+      "runs_that_used_the_layer": 1,
+      "runs_that_ignored_the_layer": 0
+     },
+     "ontology": {
+      "questions": 1,
+      "runs": 1,
+      "runs_that_used_the_layer": 1,
+      "runs_that_ignored_the_layer": 0
+     },
+     "graph": {
+      "questions": 1,
+      "runs": 1,
+      "runs_that_used_the_layer": 0,
+      "runs_that_ignored_the_layer": 1
+     }
+    },
+    "went_around_the_semantic_layer": {
+     "what": "Runs on a question that one metric query answers, in which the agent ran at least one SQL query.",
+     "runs_on_such_questions": 1,
+     "runs_that_ran_sql": 1,
+     "of_which_never_called_the_metric_tool": 0,
+     "of_which_called_both": 1,
+     "outcomes_when_sql_was_run": {
+      "runs": 1,
+      "right": 1,
+      "right_share": 1.0,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": 0.0,
+      "declined": 0,
+      "declined_share": 0.0,
+      "no_answer": 0,
+      "no_answer_share": 0.0
+     },
+     "runs_answered_from_metrics_alone": 0,
+     "outcomes_from_metrics_alone": {
+      "runs": 0,
+      "right": 0,
+      "right_share": null,
+      "confidently_wrong": 0,
+      "confidently_wrong_share": null,
+      "declined": 0,
+      "declined_share": null,
+      "no_answer": 0,
+      "no_answer_share": null
+     }
+    }
+   },
+   "tool_use_by_group": {
+    "lookup": {
+     "runs": 1,
+     "mean_calls_per_run": {
+      "run_sql": 3.0,
+      "query_metrics": 0.0,
+      "lookup_ontology": 2.0,
+      "query_graph": 1.0
+     },
+     "total_calls": {
+      "run_sql": 3,
+      "query_metrics": 0,
+      "lookup_ontology": 2,
+      "query_graph": 1
+     },
+     "runs_that_called": {
+      "run_sql": 1,
+      "query_metrics": 0,
+      "lookup_ontology": 1,
+      "query_graph": 1
+     },
+     "runs_with_no_layer_call": 0,
+     "runs_with_no_sql_call": 0,
+     "runs_whose_first_call_was_sql": 0,
+     "where_a_layer_applies": {
+      "semantic": {
+       "questions": 0,
+       "runs": 0,
+       "runs_that_used_the_layer": 0,
+       "runs_that_ignored_the_layer": 0
+      },
+      "ontology": {
+       "questions": 0,
+       "runs": 0,
+       "runs_that_used_the_layer": 0,
+       "runs_that_ignored_the_layer": 0
+      },
+      "graph": {
+       "questions": 0,
+       "runs": 0,
+       "runs_that_used_the_layer": 0,
+       "runs_that_ignored_the_layer": 0
+      }
+     },
+     "went_around_the_semantic_layer": {
+      "what": "Runs on a question that one metric query answers, in which the agent ran at least one SQL query.",
+      "runs_on_such_questions": 0,
+      "runs_that_ran_sql": 0,
+      "of_which_never_called_the_metric_tool": 0,
+      "of_which_called_both": 0,
+      "outcomes_when_sql_was_run": {
+       "runs": 0,
+       "right": 0,
+       "right_share": null,
+       "confidently_wrong": 0,
+       "confidently_wrong_share": null,
+       "declined": 0,
+       "declined_share": null,
+       "no_answer": 0,
+       "no_answer_share": null
+      },
+      "runs_answered_from_metrics_alone": 0,
+      "outcomes_from_metrics_alone": {
+       "runs": 0,
+       "right": 0,
+       "right_share": null,
+       "confidently_wrong": 0,
+       "confidently_wrong_share": null,
+       "declined": 0,
+       "declined_share": null,
+       "no_answer": 0,
+       "no_answer_share": null
+      }
+     }
+    },
+    "metric": {
+     "runs": 1,
+     "mean_calls_per_run": {
+      "run_sql": 2.0,
+      "query_metrics": 2.0,
+      "lookup_ontology": 2.0,
+      "query_graph": 0.0
+     },
+     "total_calls": {
+      "run_sql": 2,
+      "query_metrics": 2,
+      "lookup_ontology": 2,
+      "query_graph": 0
+     },
+     "runs_that_called": {
+      "run_sql": 1,
+      "query_metrics": 1,
+      "lookup_ontology": 1,
+      "query_graph": 0
+     },
+     "runs_with_no_layer_call": 0,
+     "runs_with_no_sql_call": 0,
+     "runs_whose_first_call_was_sql": 0,
+     "where_a_layer_applies": {
+      "semantic": {
+       "questions": 1,
+       "runs": 1,
+       "runs_that_used_the_layer": 1,
+       "runs_that_ignored_the_layer": 0
+      },
+      "ontology": {
+       "questions": 1,
+       "runs": 1,
+       "runs_that_used_the_layer": 1,
+       "runs_that_ignored_the_layer": 0
+      },
+      "graph": {
+       "questions": 1,
+       "runs": 1,
+       "runs_that_used_the_layer": 0,
+       "runs_that_ignored_the_layer": 1
+      }
+     },
+     "went_around_the_semantic_layer": {
+      "what": "Runs on a question that one metric query answers, in which the agent ran at least one SQL query.",
+      "runs_on_such_questions": 1,
+      "runs_that_ran_sql": 1,
+      "of_which_never_called_the_metric_tool": 0,
+      "of_which_called_both": 1,
+      "outcomes_when_sql_was_run": {
+       "runs": 1,
+       "right": 1,
+       "right_share": 1.0,
+       "confidently_wrong": 0,
+       "confidently_wrong_share": 0.0,
+       "declined": 0,
+       "declined_share": 0.0,
+       "no_answer": 0,
+       "no_answer_share": 0.0
+      },
+      "runs_answered_from_metrics_alone": 0,
+      "outcomes_from_metrics_alone": {
+       "runs": 0,
+       "right": 0,
+       "right_share": null,
+       "confidently_wrong": 0,
+       "confidently_wrong_share": null,
+       "declined": 0,
+       "declined_share": null,
+       "no_answer": 0,
+       "no_answer_share": null
+      }
+     }
+    }
+   },
+   "limits": {
+    "runs_refused_a_further_sql_query": 0,
+    "runs_refused_a_further_layer_call": 0,
+    "runs_that_hit_the_model_call_ceiling": 0,
+    "runs_that_timed_out": 0,
+    "runs_that_ended_in_an_error": 0
+   },
+   "change_vs_baseline_points": {
+    "overall": {
+     "right": 50.0,
+     "confidently_wrong": -25.0,
+     "declined": -25.0
+    },
+    "lookup": {
+     "right": 0.0,
+     "confidently_wrong": 0.0,
+     "declined": 0.0
+    },
+    "metric": {
+     "right": 100.0,
+     "confidently_wrong": -50.0,
+     "declined": -50.0
+    }
+   }
+  }
+ ],
+ "not_run": []
+}

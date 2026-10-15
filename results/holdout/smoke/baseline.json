@@ -1,0 +1,593 @@
+{
+ "config": "baseline",
+ "what": "The Part 1 Flash agent: the schema and the SQL tool only.",
+ "layers": [],
+ "tools": [
+  "run_sql"
+ ],
+ "runtime": "adk",
+ "runtime_package": "google-adk==2.11.0",
+ "model": "gemini-3.8-flash",
+ "model_reported_by_provider": [
+  "gemini-3.8-flash"
+ ],
+ "model_and_prices_checked_on": "2026-10-09",
+ "usd_per_million_tokens": {
+  "input": 0.75,
+  "output": 3.75,
+  "cache_read": 0.075
+ },
+ "first_run_finished_at": "2026-10-09T22:32:46+00:00",
+ "last_run_finished_at": "2026-10-09T22:32:51+00:00",
+ "question_file": "questions/holdout.yaml",
+ "question_count": 2,
+ "runs_per_question": 1,
+ "runs_expected": 2,
+ "runs_saved": 2,
+ "complete": true,
+ "runs_repeated_after_a_failure": 0,
+ "sql_query_limit": 8,
+ "layer_call_limit_per_tool": null,
+ "model_call_ceiling": 16,
+ "data_seed": 20261009,
+ "summary": {
+  "overall": {
+   "runs": 2,
+   "right": 0,
+   "right_share": 0.0,
+   "confidently_wrong": 0,
+   "confidently_wrong_share": 0.0,
+   "declined": 2,
+   "declined_share": 1.0,
+   "no_answer": 0,
+   "no_answer_share": 0.0
+  },
+  "by_group": {
+   "metric": {
+    "runs": 1,
+    "right": 0,
+    "right_share": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": 0.0,
+    "declined": 1,
+    "declined_share": 1.0,
+    "no_answer": 0,
+    "no_answer_share": 0.0
+   },
+   "entity": {
+    "runs": 1,
+    "right": 0,
+    "right_share": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": 0.0,
+    "declined": 1,
+    "declined_share": 1.0,
+    "no_answer": 0,
+    "no_answer_share": 0.0
+   }
+  },
+  "by_question": {
+   "H1": {
+    "runs": 1,
+    "right": 0,
+    "right_share": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": 0.0,
+    "declined": 1,
+    "declined_share": 1.0,
+    "no_answer": 0,
+    "no_answer_share": 0.0,
+    "group": "metric",
+    "mean_input_tokens": 29813.0,
+    "mean_output_tokens": 3898.0,
+    "mean_cost_usd": 0.037,
+    "mean_queries": 8.0,
+    "decoys_matched": {}
+   },
+   "H5": {
+    "runs": 1,
+    "right": 0,
+    "right_share": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": 0.0,
+    "declined": 1,
+    "declined_share": 1.0,
+    "no_answer": 0,
+    "no_answer_share": 0.0,
+    "group": "entity",
+    "mean_input_tokens": 23261.0,
+    "mean_output_tokens": 2691.0,
+    "mean_cost_usd": 0.0275,
+    "mean_queries": 8.0,
+    "decoys_matched": {}
+   }
+  },
+  "wrong_answers_that_flagged_an_assumption": 0,
+  "wrong_answers": 0,
+  "declines": 2,
+  "declines_that_mention_the_query_limit": 0,
+  "runs_that_used_every_query": 2,
+  "mean_cost_usd_per_question": 0.0323,
+  "mean_input_tokens_per_question": 26537.0,
+  "mean_output_tokens_per_question": 3294.5,
+  "total_cost_usd": 0.0645
+ },
+ "by_coverage_class": {
+  "metric_plus_filter": {
+   "runs": 2,
+   "right": 0,
+   "right_share": 0.0,
+   "confidently_wrong": 0,
+   "confidently_wrong_share": 0.0,
+   "declined": 2,
+   "declined_share": 1.0,
+   "no_answer": 0,
+   "no_answer_share": 0.0,
+   "questions": [
+    "H1",
+    "H5"
+   ]
+  }
+ },
+ "answers_given": {
+  "H1": [
+   {
+    "trial": 0,
+    "outcome": "declined",
+    "answer": "NEEDS_CLARIFICATION",
+    "matched_decoy": ""
+   }
+  ],
+  "H5": [
+   {
+    "trial": 0,
+    "outcome": "declined",
+    "answer": "NEEDS_CLARIFICATION",
+    "matched_decoy": ""
+   }
+  ]
+ },
+ "effort": {
+  "mean_input_tokens": 26537,
+  "mean_output_tokens": 3294,
+  "cache_read_share_of_input": 0.0,
+  "runs_with_a_cache_read": 0,
+  "mean_model_calls": 10.0,
+  "mean_sql_queries": 8.0,
+  "mean_seconds": 42.3,
+  "mean_cost_usd": 0.0323,
+  "total_cost_usd": 0.0645
+ },
+ "tool_use": {
+  "runs": 2,
+  "mean_calls_per_run": {
+   "run_sql": 8.0,
+   "query_metrics": 0.0
+  },
+  "total_calls": {
+   "run_sql": 16,
+   "query_metrics": 0
+  },
+  "runs_that_called": {
+   "run_sql": 2,
+   "query_metrics": 0
+  },
+  "runs_whose_first_call_was_sql": 2,
+  "metric_calls_that_returned_an_error": 0,
+  "all_runs": {
+   "runs": 2,
+   "metric_tool_only": 0,
+   "both_tools": 0,
+   "sql_only": 2,
+   "no_tool_call": 0,
+   "outcomes_metric_tool_only": {
+    "runs": 0,
+    "right": 0,
+    "right_share": null,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": null,
+    "declined": 0,
+    "declined_share": null,
+    "no_answer": 0,
+    "no_answer_share": null
+   },
+   "outcomes_both_tools": {
+    "runs": 0,
+    "right": 0,
+    "right_share": null,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": null,
+    "declined": 0,
+    "declined_share": null,
+    "no_answer": 0,
+    "no_answer_share": null
+   },
+   "outcomes_sql_only": {
+    "runs": 2,
+    "right": 0,
+    "right_share": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": 0.0,
+    "declined": 2,
+    "declined_share": 1.0,
+    "no_answer": 0,
+    "no_answer_share": 0.0
+   }
+  },
+  "by_coverage_class": {
+   "metric_plus_filter": {
+    "runs": 2,
+    "metric_tool_only": 0,
+    "both_tools": 0,
+    "sql_only": 2,
+    "no_tool_call": 0,
+    "outcomes_metric_tool_only": {
+     "runs": 0,
+     "right": 0,
+     "right_share": null,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": null,
+     "declined": 0,
+     "declined_share": null,
+     "no_answer": 0,
+     "no_answer_share": null
+    },
+    "outcomes_both_tools": {
+     "runs": 0,
+     "right": 0,
+     "right_share": null,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": null,
+     "declined": 0,
+     "declined_share": null,
+     "no_answer": 0,
+     "no_answer_share": null
+    },
+    "outcomes_sql_only": {
+     "runs": 2,
+     "right": 0,
+     "right_share": 0.0,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": 0.0,
+     "declined": 2,
+     "declined_share": 1.0,
+     "no_answer": 0,
+     "no_answer_share": 0.0
+    }
+   }
+  },
+  "went_around_the_semantic_layer": {
+   "what": "Runs on a question that one metric query answers (coverage classes one_metric_query and metric_plus_filter), in which the agent ran at least one SQL query.",
+   "runs_on_such_questions": 2,
+   "runs_that_ran_sql": 2,
+   "of_which_never_called_the_metric_tool": 2,
+   "of_which_called_both": 0,
+   "outcomes_when_sql_was_run": {
+    "runs": 2,
+    "right": 0,
+    "right_share": 0.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": 0.0,
+    "declined": 2,
+    "declined_share": 1.0,
+    "no_answer": 0,
+    "no_answer_share": 0.0
+   },
+   "runs_answered_from_metrics_alone": 0,
+   "outcomes_from_metrics_alone": {
+    "runs": 0,
+    "right": 0,
+    "right_share": null,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": null,
+    "declined": 0,
+    "declined_share": null,
+    "no_answer": 0,
+    "no_answer_share": null
+   }
+  }
+ },
+ "limits": {
+  "runs_refused_a_further_sql_query": 2,
+  "runs_refused_a_further_layer_call": 0,
+  "runs_that_hit_the_model_call_ceiling": 0,
+  "runs_that_timed_out": 0,
+  "runs_that_ended_in_an_error": 0
+ },
+ "runs": [
+  {
+   "config": "baseline",
+   "model": "gemini-3.8-flash",
+   "question_id": "H1",
+   "group": "metric",
+   "trial": 0,
+   "outcome": "declined",
+   "extracted": "NEEDS_CLARIFICATION",
+   "value": null,
+   "matched_decoy": "",
+   "flagged_assumption": true,
+   "mentions_query_limit": false,
+   "gold": 88.17,
+   "answer_text": "To calculate the on-time delivery rate for our own fleet (Tessaway Fleet, carrier ID `C2065`) in Q2 2026, clarification is needed on the company's standard business definitions:\n\n1. **On-Time Metric Definition**: Whether on-time delivery is measured at the shipment/load level based on requested delivery date versus actual delivery date (`ptl_shpmt` / `req_dlvr_dt`), or at the destination stop level comparing appointment windows (`appt_start_lcl` / `appt_end_lcl`) against actual arrival timestamps (`arr_ts`).\n2. **Quarter Cohort Assignment**: Whether loads are assigned to Q2 2026 based on their requested delivery date, actual delivery date, or load creation date.\n\nANSWER: NEEDS_CLARIFICATION",
+   "queries": [
+    {
+     "sql": "SELECT DISTINCT carr_typ_cd, count(*) as cnt FROM tms_carr GROUP BY 1",
+     "row_count": 2,
+     "bytes_billed": 0
+    },
+    {
+     "sql": "SELECT * FROM tms_carr WHERE carr_typ_cd = 'OWN'",
+     "row_count": 1,
+     "bytes_billed": 0
+    },
+    {
+     "sql": "SELECT * FROM ptl_shpmt LIMIT 10",
+     "row_count": 10,
+     "bytes_billed": 0
+    },
+    {
+     "sql": "SELECT \n  count(*) as total_shpmt,\n  count(distinct load_id) as distinct_loads,\n  count(distinct shpmt_ref) as distinct_shpmts\nFROM ptl_shpmt",
+     "row_count": 1,
+     "bytes_billed": 10485760
+    },
+    {
+     "sql": "SELECT \n  count(*) as total_loads,\n  count(distinct load_id) as distinct_loads,\n  count(case when test_flg then 1 end) as test_loads,\n  count(case when void_flg then 1 end) as void_loads\nFROM tms_load_hdr",
+     "row_count": 1,
+     "bytes_billed": 10485760
+    },
+    {
+     "sql": "SELECT \n  on_time_ind,\n  count(*) as cnt,\n  count(case when actl_dlvr_dt <= req_dlvr_dt then 1 end) as le,\n  count(case when actl_dlvr_dt > req_dlvr_dt then 1 end) as gt,\n  count(case when actl_dlvr_dt is null then 1 end) as null_actl\nFROM ptl_shpmt\nGROUP BY 1",
+     "row_count": 3,
+     "bytes_billed": 10485760
+    },
+    {
+     "sql": "SELECT stop_typ_cd, count(*) \nFROM tms_stop \nGROUP BY 1",
+     "row_count": 2,
+     "bytes_billed": 0
+    },
+    {
+     "sql": "SELECT \n  h.test_flg,\n  h.void_flg,\n  h.load_stat_cd,\n  count(*) as cnt\nFROM ptl_shpmt p\nJOIN tms_load_hdr h ON p.load_id = h.load_id\nGROUP BY 1, 2, 3",
+     "row_count": 6,
+     "bytes_billed": 20971520
+    }
+   ],
+   "query_count": 8,
+   "queries_refused_over_limit": 1,
+   "model_calls": 10,
+   "input_tokens": 29813,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0,
+   "input_tokens_total": 29813,
+   "output_tokens": 3898,
+   "cost_usd": 0.036977,
+   "bigquery_bytes_billed": 52428800,
+   "bigquery_usd": 0.000298,
+   "seconds": 44.6,
+   "timed_out": false,
+   "error": "",
+   "model_reported": "gemini-3.8-flash",
+   "finished_at": "2026-10-09T22:32:51+00:00",
+   "layers": [],
+   "tool_calls": [
+    {
+     "seq": 1,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT DISTINCT carr_typ_cd, count(*) as cnt FROM tms_carr GROUP BY 1"
+     }
+    },
+    {
+     "seq": 2,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT * FROM tms_carr WHERE carr_typ_cd = 'OWN'"
+     }
+    },
+    {
+     "seq": 3,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT * FROM ptl_shpmt LIMIT 10"
+     }
+    },
+    {
+     "seq": 4,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT \n  count(*) as total_shpmt,\n  count(distinct load_id) as distinct_loads,\n  count(distinct shpmt_ref) as distinct_shpmts\nFROM ptl_shpmt"
+     }
+    },
+    {
+     "seq": 5,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT \n  count(*) as total_loads,\n  count(distinct load_id) as distinct_loads,\n  count(case when test_flg then 1 end) as test_loads,\n  count(case when void_flg then 1 end) as void_loads\nFROM tms_load_hdr"
+     }
+    },
+    {
+     "seq": 6,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT \n  on_time_ind,\n  count(*) as cnt,\n  count(case when actl_dlvr_dt <= req_dlvr_dt then 1 end) as le,\n  count(case when actl_dlvr_dt > req_dlvr_dt then 1 end) as gt,\n  count(case when actl_dlvr_dt is null then 1 end) as null_actl\nFROM ptl_shpmt\nGROUP BY 1"
+     }
+    },
+    {
+     "seq": 7,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT stop_typ_cd, count(*) \nFROM tms_stop \nGROUP BY 1"
+     }
+    },
+    {
+     "seq": 8,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT \n  h.test_flg,\n  h.void_flg,\n  h.load_stat_cd,\n  count(*) as cnt\nFROM ptl_shpmt p\nJOIN tms_load_hdr h ON p.load_id = h.load_id\nGROUP BY 1, 2, 3"
+     }
+    }
+   ],
+   "tool_call_counts": {
+    "run_sql": 8
+   },
+   "tools_in_order": [
+    "run_sql",
+    "run_sql",
+    "run_sql",
+    "run_sql",
+    "run_sql",
+    "run_sql",
+    "run_sql",
+    "run_sql"
+   ],
+   "layer_calls_refused": {},
+   "hit_model_call_ceiling": false
+  },
+  {
+   "config": "baseline",
+   "model": "gemini-3.8-flash",
+   "question_id": "H5",
+   "group": "entity",
+   "trial": 0,
+   "outcome": "declined",
+   "extracted": "NEEDS_CLARIFICATION",
+   "value": null,
+   "matched_decoy": "",
+   "flagged_assumption": true,
+   "mentions_query_limit": false,
+   "gold": "Northgate Foods Group",
+   "answer_text": "To determine which customer had the most delivered loads in the first half of 2026, please clarify:\n\n1. **Customer level**: Whether loads should be aggregated at the corporate parent account level (`prnt_acct_id` in `mdm_cust_acct`), the billing account level (`bill_to_acct_id`), or the specific shipping facility account level (`shpr_acct_id`).\n2. **Delivery date definition**: Whether delivery in H1 2026 (January 1 \u2013 June 30, 2026) is determined by the actual delivery date/timestamp or the requested delivery date (`req_dlvr_dt`).\n\nANSWER: NEEDS_CLARIFICATION",
+   "queries": [
+    {
+     "sql": "SELECT DISTINCT load_stat_cd FROM tms_load_hdr",
+     "row_count": 8,
+     "bytes_billed": 0
+    },
+    {
+     "sql": "SELECT DISTINCT stop_typ_cd FROM tms_stop",
+     "row_count": 2,
+     "bytes_billed": 0
+    },
+    {
+     "sql": "SELECT DISTINCT evt_cd FROM tms_stat_evt",
+     "row_count": 11,
+     "bytes_billed": 0
+    },
+    {
+     "sql": "SELECT \n  COUNT(*) as total_loads,\n  COUNT(DISTINCT shpr_acct_id) as distinct_shpr,\n  COUNT(DISTINCT bill_to_acct_id) as distinct_bill_to\nFROM tms_load_hdr",
+     "row_count": 1,
+     "bytes_billed": 10485760
+    },
+    {
+     "sql": "SELECT acct_id, acct_nm, acct_typ_cd, prnt_acct_id, seg_cd FROM mdm_cust_acct LIMIT 15",
+     "row_count": 15,
+     "bytes_billed": 10485760
+    },
+    {
+     "sql": "SELECT COUNT(*), COUNT(DISTINCT load_id), COUNT(DISTINCT cust_acct_id) FROM ptl_shpmt",
+     "row_count": 1,
+     "bytes_billed": 0
+    },
+    {
+     "sql": "SELECT \n  COUNT(*) as matched,\n  COUNT(CASE WHEN p.cust_acct_id = h.shpr_acct_id THEN 1 END) as matches_shpr,\n  COUNT(CASE WHEN p.cust_acct_id = h.bill_to_acct_id THEN 1 END) as matches_bill_to\nFROM ptl_shpmt p\nJOIN tms_load_hdr h ON p.load_id = h.load_id",
+     "row_count": 1,
+     "bytes_billed": 20971520
+    },
+    {
+     "sql": "SELECT acct_id, acct_nm FROM mdm_cust_acct WHERE acct_typ_cd = 'PRNT'",
+     "row_count": 39,
+     "bytes_billed": 10485760
+    }
+   ],
+   "query_count": 8,
+   "queries_refused_over_limit": 1,
+   "model_calls": 10,
+   "input_tokens": 23261,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0,
+   "input_tokens_total": 23261,
+   "output_tokens": 2691,
+   "cost_usd": 0.027537,
+   "bigquery_bytes_billed": 52428800,
+   "bigquery_usd": 0.000298,
+   "seconds": 40.0,
+   "timed_out": false,
+   "error": "",
+   "model_reported": "gemini-3.8-flash",
+   "finished_at": "2026-10-09T22:32:46+00:00",
+   "layers": [],
+   "tool_calls": [
+    {
+     "seq": 1,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT DISTINCT load_stat_cd FROM tms_load_hdr"
+     }
+    },
+    {
+     "seq": 2,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT DISTINCT stop_typ_cd FROM tms_stop"
+     }
+    },
+    {
+     "seq": 3,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT DISTINCT evt_cd FROM tms_stat_evt"
+     }
+    },
+    {
+     "seq": 4,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT \n  COUNT(*) as total_loads,\n  COUNT(DISTINCT shpr_acct_id) as distinct_shpr,\n  COUNT(DISTINCT bill_to_acct_id) as distinct_bill_to\nFROM tms_load_hdr"
+     }
+    },
+    {
+     "seq": 5,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT acct_id, acct_nm, acct_typ_cd, prnt_acct_id, seg_cd FROM mdm_cust_acct LIMIT 15"
+     }
+    },
+    {
+     "seq": 6,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT COUNT(*), COUNT(DISTINCT load_id), COUNT(DISTINCT cust_acct_id) FROM ptl_shpmt"
+     }
+    },
+    {
+     "seq": 7,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT \n  COUNT(*) as matched,\n  COUNT(CASE WHEN p.cust_acct_id = h.shpr_acct_id THEN 1 END) as matches_shpr,\n  COUNT(CASE WHEN p.cust_acct_id = h.bill_to_acct_id THEN 1 END) as matches_bill_to\nFROM ptl_shpmt p\nJOIN tms_load_hdr h ON p.load_id = h.load_id"
+     }
+    },
+    {
+     "seq": 8,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT acct_id, acct_nm FROM mdm_cust_acct WHERE acct_typ_cd = 'PRNT'"
+     }
+    }
+   ],
+   "tool_call_counts": {
+    "run_sql": 8
+   },
+   "tools_in_order": [
+    "run_sql",
+    "run_sql",
+    "run_sql",
+    "run_sql",
+    "run_sql",
+    "run_sql",
+    "run_sql",
+    "run_sql"
+   ],
+   "layer_calls_refused": {},
+   "hit_model_call_ceiling": false
+  }
+ ]
+}

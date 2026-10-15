@@ -1,0 +1,19 @@
+{
+ "note": "Estimated from token counts and list prices in tessaway/config.py, and from BigQuery bytes billed at the on-demand rate. Every line ever appended under results/holdout is counted: the full run, the smoke test and any run later repeated. The invoice is the authority.",
+ "prices_checked_on": "2026-10-09",
+ "by_folder": {
+  "full run": {
+   "runs": 72,
+   "model_usd": 3.0908,
+   "bigquery_usd": 0.0508
+  },
+  "smoke": {
+   "runs": 4,
+   "model_usd": 0.1212,
+   "bigquery_usd": 0.0026
+  }
+ },
+ "model_usd": 3.212,
+ "bigquery_usd": 0.0534,
+ "total_usd": 3.2654
+}

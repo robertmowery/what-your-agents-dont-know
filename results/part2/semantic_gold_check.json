@@ -1,0 +1,462 @@
+{
+ "checked_at": "2026-10-09T20:05:46+00:00",
+ "what": "Each metric's MetricFlow-generated SQL, run on BigQuery, beside the Part 1 gold SQL run on the same warehouse.",
+ "cases": 25,
+ "matching": 25,
+ "metrics_defined": [
+  "carrier_cost",
+  "customers_shipped",
+  "delivered_loads",
+  "delivered_loads_not_billable",
+  "invoiced_loads",
+  "late_deliveries",
+  "loads_booked",
+  "margin",
+  "margin_per_load",
+  "margin_percentage",
+  "on_time_loads",
+  "on_time_measured_loads",
+  "on_time_rate",
+  "operations_on_time_rate",
+  "portal_on_time_rate",
+  "portal_on_time_shipments",
+  "portal_shipments",
+  "revenue"
+ ],
+ "metrics_not_checked": [],
+ "all_match": true,
+ "results": [
+  {
+   "metric": "on_time_rate",
+   "request": {
+    "metrics": [
+     "on_time_rate"
+    ],
+    "start_date": "2026-09-01",
+    "end_date": "2026-09-30"
+   },
+   "compared_with": "gold SQL of M1",
+   "expected": 87.44,
+   "got": 87.4409820585458,
+   "matches": true,
+   "error": "",
+   "generated_sql": "-- Compute Metrics via Expressions\n-- Write to DataTable\nSELECT\n  100 * on_time_loads / nullif(on_time_measured_loads, 0) AS on_time_rate\nFROM (\n  -- Read Elements From Semantic Model 'deliveries'\n  -- Metric Time Dimension 'delivered_date'\n  -- Constrain Time Range to [2026-09-01T00:00:00, 2026-09-30T00:00:00]\n  -- Select: ['__on_time_loads', '__on_time_measured_loads']\n  -- Select: ['__on_time_loads', '__on_time_measured_loads']\n  -- Aggregate Inputs for Simple Metrics\n  -- Compute Metrics via Expressions\n  SELECT\n    SUM(case when arrived_on_time then 1 else 0 end) AS on_time_loads\n    , SUM(case when arrived_on_time or not shipper_delayed then 1 else 0 end) AS on_time_measured_loads\n  FROM `PROJECT`.`tessaway_sem`.`deliveries` deliveries_src_10000\n  WHERE TIMESTAMP_TRUNC(delivered_date, day) BETWEEN '2026-09-01' AND '2026-09-30'\n) subq_6"
+  },
+  {
+   "metric": "revenue",
+   "request": {
+    "metrics": [
+     "revenue"
+    ],
+    "start_date": "2026-07-01",
+    "end_date": "2026-09-30"
+   },
+   "compared_with": "gold SQL of M2",
+   "expected": 10294019.12,
+   "got": 10294019.115413,
+   "matches": true,
+   "error": "",
+   "generated_sql": "-- Read Elements From Semantic Model 'financial_documents'\n-- Metric Time Dimension 'document_date'\n-- Constrain Time Range to [2026-07-01T00:00:00, 2026-09-30T00:00:00]\n-- Select: ['__revenue']\n-- Select: ['__revenue']\n-- Aggregate Inputs for Simple Metrics\n-- Compute Metrics via Expressions\n-- Write to DataTable\nSELECT\n  SUM(revenue_usd) AS revenue\nFROM `PROJECT`.`tessaway_sem`.`financial_documents` financial_documents_src_10000\nWHERE TIMESTAMP_TRUNC(document_date, day) BETWEEN '2026-07-01' AND '2026-09-30'"
+  },
+  {
+   "metric": "margin_per_load",
+   "request": {
+    "metrics": [
+     "margin_per_load"
+    ],
+    "start_date": "2026-07-01",
+    "end_date": "2026-09-30"
+   },
+   "compared_with": "gold SQL of M3",
+   "expected": 409.19,
+   "got": 409.186793016,
+   "matches": true,
+   "error": "",
+   "generated_sql": "-- Compute Metrics via Expressions\n-- Write to DataTable\nSELECT\n  (revenue - carrier_cost) / nullif(invoiced_loads, 0) AS margin_per_load\nFROM (\n  -- Read Elements From Semantic Model 'financial_documents'\n  -- Metric Time Dimension 'document_date'\n  -- Constrain Time Range to [2026-07-01T00:00:00, 2026-09-30T00:00:00]\n  -- Select: ['__revenue', '__carrier_cost', '__invoiced_loads']\n  -- Select: ['__revenue', '__carrier_cost', '__invoiced_loads']\n  -- Aggregate Inputs for Simple Metrics\n  -- Compute Metrics via Expressions\n  SELECT\n    SUM(revenue_usd) AS revenue\n    , SUM(carrier_cost_usd) AS carrier_cost\n    , SUM(case when document_type = 'invoice' then 1 else 0 end) AS invoiced_loads\n  FROM `PROJECT`.`tessaway_sem`.`financial_documents` financial_documents_src_10000\n  WHERE TIMESTAMP_TRUNC(document_date, day) BETWEEN '2026-07-01' AND '2026-09-30'\n) subq_6"
+  },
+  {
+   "metric": "margin_percentage",
+   "request": {
+    "metrics": [
+     "margin_percentage"
+    ],
+    "start_date": "2026-07-01",
+    "end_date": "2026-09-30"
+   },
+   "compared_with": "gold SQL of M4",
+   "expected": 13.24,
+   "got": 13.24468489,
+   "matches": true,
+   "error": "",
+   "generated_sql": "-- Compute Metrics via Expressions\n-- Write to DataTable\nSELECT\n  100 * (revenue - carrier_cost) / nullif(revenue, 0) AS margin_percentage\nFROM (\n  -- Read Elements From Semantic Model 'financial_documents'\n  -- Metric Time Dimension 'document_date'\n  -- Constrain Time Range to [2026-07-01T00:00:00, 2026-09-30T00:00:00]\n  -- Select: ['__revenue', '__carrier_cost']\n  -- Select: ['__revenue', '__carrier_cost']\n  -- Aggregate Inputs for Simple Metrics\n  -- Compute Metrics via Expressions\n  SELECT\n    SUM(revenue_usd) AS revenue\n    , SUM(carrier_cost_usd) AS carrier_cost\n  FROM `PROJECT`.`tessaway_sem`.`financial_documents` financial_documents_src_10000\n  WHERE TIMESTAMP_TRUNC(document_date, day) BETWEEN '2026-07-01' AND '2026-09-30'\n) subq_6"
+  },
+  {
+   "metric": "delivered_loads",
+   "request": {
+    "metrics": [
+     "delivered_loads"
+    ],
+    "start_date": "2026-09-01",
+    "end_date": "2026-09-30"
+   },
+   "compared_with": "gold SQL of M5",
+   "expected": 1097,
+   "got": 1097,
+   "matches": true,
+   "error": "",
+   "generated_sql": "-- Read Elements From Semantic Model 'deliveries'\n-- Metric Time Dimension 'delivered_date'\n-- Constrain Time Range to [2026-09-01T00:00:00, 2026-09-30T00:00:00]\n-- Select: ['__delivered_loads']\n-- Select: ['__delivered_loads']\n-- Aggregate Inputs for Simple Metrics\n-- Compute Metrics via Expressions\n-- Write to DataTable\nSELECT\n  SUM(1) AS delivered_loads\nFROM `PROJECT`.`tessaway_sem`.`deliveries` deliveries_src_10000\nWHERE TIMESTAMP_TRUNC(delivered_date, day) BETWEEN '2026-09-01' AND '2026-09-30'"
+  },
+  {
+   "metric": "delivered_loads",
+   "request": {
+    "metrics": [
+     "delivered_loads"
+    ],
+    "where": [
+     "tender__carrier_type = 'OWN'"
+    ],
+    "start_date": "2026-07-01",
+    "end_date": "2026-09-30"
+   },
+   "compared_with": "gold SQL of M6",
+   "expected": 393,
+   "got": 393,
+   "matches": true,
+   "error": "",
+   "generated_sql": "-- Constrain Output with WHERE\n-- Select: ['__delivered_loads']\n-- Aggregate Inputs for Simple Metrics\n-- Compute Metrics via Expressions\n-- Write to DataTable\nSELECT\n  SUM(delivered_loads) AS delivered_loads\nFROM (\n  -- Join Standard Outputs\n  -- Select: ['__delivered_loads', 'tender__carrier_type']\n  SELECT\n    tenders_src_10000.carrier_type AS tender__carrier_type\n    , subq_2.__delivered_loads AS delivered_loads\n  FROM (\n    -- Read Elements From Semantic Model 'deliveries'\n    -- Metric Time Dimension 'delivered_date'\n    -- Constrain Time Range to [2026-07-01T00:00:00, 2026-09-30T00:00:00]\n    SELECT\n      tender_id AS tender\n      , 1 AS __delivered_loads\n    FROM `PROJECT`.`tessaway_sem`.`deliveries` deliveries_src_10000\n    WHERE TIMESTAMP_TRUNC(delivered_date, day) BETWEEN '2026-07-01' AND '2026-09-30'\n  ) subq_2\n  LEFT OUTER JOIN\n    `PROJECT`.`tessaway_sem`.`tenders` tenders_src_10000\n  ON\n    subq_2.tender = tenders_src_10000.tender_id\n) subq_6\nWHERE tender__carrier_type = 'OWN'"
+  },
+  {
+   "metric": "revenue",
+   "request": {
+    "metrics": [
+     "revenue"
+    ],
+    "group_by": [
+     "tender__customer_name"
+    ],
+    "start_date": "2026-07-01",
+    "end_date": "2026-09-30",
+    "order_by": [
+     "-revenue"
+    ],
+    "limit": 1
+   },
+   "compared_with": "gold SQL of E1",
+   "expected": "Northgate Foods Group",
+   "got": "Northgate Foods Group",
+   "matches": true,
+   "error": "",
+   "generated_sql": "-- Join Standard Outputs\n-- Select: ['__revenue', 'tender__customer_name']\n-- Select: ['__revenue', 'tender__customer_name']\n-- Aggregate Inputs for Simple Metrics\n-- Compute Metrics via Expressions\n-- Order By ['revenue'] Limit 1\n-- Write to DataTable\nSELECT\n  tenders_src_10000.customer_name AS tender__customer_name\n  , SUM(subq_2.__revenue) AS revenue\nFROM (\n  -- Read Elements From Semantic Model 'financial_documents'\n  -- Metric Time Dimension 'document_date'\n  -- Constrain Time Range to [2026-07-01T00:00:00, 2026-09-30T00:00:00]\n  SELECT\n    tender_id AS tender\n    , revenue_usd AS __revenue\n  FROM `PROJECT`.`tessaway_sem`.`financial_documents` financial_documents_src_10000\n  WHERE TIMESTAMP_TRUNC(document_date, day) BETWEEN '2026-07-01' AND '2026-09-30'\n) subq_2\nLEFT OUTER JOIN\n  `PROJECT`.`tessaway_sem`.`tenders` tenders_src_10000\nON\n  subq_2.tender = tenders_src_10000.tender_id\nGROUP BY\n  tender__customer_name\nORDER BY revenue DESC\nLIMIT 1"
+  },
+  {
+   "metric": "customers_shipped",
+   "request": {
+    "metrics": [
+     "customers_shipped"
+    ],
+    "start_date": "2026-07-01",
+    "end_date": "2026-09-30"
+   },
+   "compared_with": "gold SQL of E2",
+   "expected": 36,
+   "got": 36,
+   "matches": true,
+   "error": "",
+   "generated_sql": "-- Read Elements From Semantic Model 'deliveries'\n-- Metric Time Dimension 'delivered_date'\n-- Constrain Time Range to [2026-07-01T00:00:00, 2026-09-30T00:00:00]\n-- Select: ['__customers_shipped']\n-- Select: ['__customers_shipped']\n-- Aggregate Inputs for Simple Metrics\n-- Compute Metrics via Expressions\n-- Write to DataTable\nSELECT\n  COUNT(DISTINCT customer_id) AS customers_shipped\nFROM `PROJECT`.`tessaway_sem`.`deliveries` deliveries_src_10000\nWHERE TIMESTAMP_TRUNC(delivered_date, day) BETWEEN '2026-07-01' AND '2026-09-30'"
+  },
+  {
+   "metric": "revenue",
+   "request": {
+    "metrics": [
+     "revenue"
+    ],
+    "where": [
+     "tender__customer_name = 'Northgate Foods Group'"
+    ],
+    "start_date": "2026-07-01",
+    "end_date": "2026-09-30"
+   },
+   "compared_with": "gold SQL of E3",
+   "expected": 1299690.26,
+   "got": 1299690.263658,
+   "matches": true,
+   "error": "",
+   "generated_sql": "-- Constrain Output with WHERE\n-- Select: ['__revenue']\n-- Aggregate Inputs for Simple Metrics\n-- Compute Metrics via Expressions\n-- Write to DataTable\nSELECT\n  SUM(revenue) AS revenue\nFROM (\n  -- Join Standard Outputs\n  -- Select: ['__revenue', 'tender__customer_name']\n  SELECT\n    tenders_src_10000.customer_name AS tender__customer_name\n    , subq_2.__revenue AS revenue\n  FROM (\n    -- Read Elements From Semantic Model 'financial_documents'\n    -- Metric Time Dimension 'document_date'\n    -- Constrain Time Range to [2026-07-01T00:00:00, 2026-09-30T00:00:00]\n    SELECT\n      tender_id AS tender\n      , revenue_usd AS __revenue\n    FROM `PROJECT`.`tessaway_sem`.`financial_documents` financial_documents_src_10000\n    WHERE TIMESTAMP_TRUNC(document_date, day) BETWEEN '2026-07-01' AND '2026-09-30'\n  ) subq_2\n  LEFT OUTER JOIN\n    `PROJECT`.`tessaway_sem`.`tenders` tenders_src_10000\n  ON\n    subq_2.tender = tenders_src_10000.tender_id\n) subq_6\nWHERE tender__customer_name = 'Northgate Foods Group'"
+  },
+  {
+   "metric": "loads_booked",
+   "request": {
+    "metrics": [
+     "loads_booked"
+    ],
+    "start_date": "2026-09-01",
+    "end_date": "2026-09-30"
+   },
+   "compared_with": "gold SQL of E4",
+   "expected": 1170,
+   "got": 1170,
+   "matches": true,
+   "error": "",
+   "generated_sql": "-- Read Elements From Semantic Model 'loads'\n-- Metric Time Dimension 'booked_date'\n-- Constrain Time Range to [2026-09-01T00:00:00, 2026-09-30T00:00:00]\n-- Select: ['__loads_booked']\n-- Select: ['__loads_booked']\n-- Aggregate Inputs for Simple Metrics\n-- Compute Metrics via Expressions\n-- Write to DataTable\nSELECT\n  SUM(1) AS loads_booked\nFROM `PROJECT`.`tessaway_sem`.`loads` loads_src_10000\nWHERE TIMESTAMP_TRUNC(booked_date, day) BETWEEN '2026-09-01' AND '2026-09-30'"
+  },
+  {
+   "metric": "delivered_loads",
+   "request": {
+    "metrics": [
+     "delivered_loads"
+    ],
+    "where": [
+     "tender__customer_name = 'Northgate Foods Group'"
+    ],
+    "start_date": "2026-07-01",
+    "end_date": "2026-09-30"
+   },
+   "compared_with": "gold SQL of E5",
+   "expected": 433,
+   "got": 433,
+   "matches": true,
+   "error": "",
+   "generated_sql": "-- Constrain Output with WHERE\n-- Select: ['__delivered_loads']\n-- Aggregate Inputs for Simple Metrics\n-- Compute Metrics via Expressions\n-- Write to DataTable\nSELECT\n  SUM(delivered_loads) AS delivered_loads\nFROM (\n  -- Join Standard Outputs\n  -- Select: ['__delivered_loads', 'tender__customer_name']\n  SELECT\n    tenders_src_10000.customer_name AS tender__customer_name\n    , subq_2.__delivered_loads AS delivered_loads\n  FROM (\n    -- Read Elements From Semantic Model 'deliveries'\n    -- Metric Time Dimension 'delivered_date'\n    -- Constrain Time Range to [2026-07-01T00:00:00, 2026-09-30T00:00:00]\n    SELECT\n      tender_id AS tender\n      , 1 AS __delivered_loads\n    FROM `PROJECT`.`tessaway_sem`.`deliveries` deliveries_src_10000\n    WHERE TIMESTAMP_TRUNC(delivered_date, day) BETWEEN '2026-07-01' AND '2026-09-30'\n  ) subq_2\n  LEFT OUTER JOIN\n    `PROJECT`.`tessaway_sem`.`tenders` tenders_src_10000\n  ON\n    subq_2.tender = tenders_src_10000.tender_id\n) subq_6\nWHERE tender__customer_name = 'Northgate Foods Group'"
+  },
+  {
+   "metric": "delivered_loads",
+   "request": {
+    "metrics": [
+     "delivered_loads"
+    ],
+    "group_by": [
+     "tender__carrier_name"
+    ],
+    "where": [
+     "tender__carrier_type = '3P'"
+    ],
+    "start_date": "2026-07-01",
+    "end_date": "2026-09-30",
+    "order_by": [
+     "-delivered_loads"
+    ],
+    "limit": 1
+   },
+   "compared_with": "gold SQL of E6",
+   "expected": "Midvale Transport",
+   "got": "Midvale Transport",
+   "matches": true,
+   "error": "",
+   "generated_sql": "-- Constrain Output with WHERE\n-- Select: ['__delivered_loads', 'tender__carrier_name']\n-- Aggregate Inputs for Simple Metrics\n-- Compute Metrics via Expressions\n-- Order By ['delivered_loads'] Limit 1\n-- Write to DataTable\nSELECT\n  tender__carrier_name\n  , SUM(delivered_loads) AS delivered_loads\nFROM (\n  -- Join Standard Outputs\n  -- Select: ['__delivered_loads', 'tender__carrier_name', 'tender__carrier_type']\n  SELECT\n    tenders_src_10000.carrier_name AS tender__carrier_name\n    , tenders_src_10000.carrier_type AS tender__carrier_type\n    , subq_2.__delivered_loads AS delivered_loads\n  FROM (\n    -- Read Elements From Semantic Model 'deliveries'\n    -- Metric Time Dimension 'delivered_date'\n    -- Constrain Time Range to [2026-07-01T00:00:00, 2026-09-30T00:00:00]\n    SELECT\n      tender_id AS tender\n      , 1 AS __delivered_loads\n    FROM `PROJECT`.`tessaway_sem`.`deliveries` deliveries_src_10000\n    WHERE TIMESTAMP_TRUNC(delivered_date, day) BETWEEN '2026-07-01' AND '2026-09-30'\n  ) subq_2\n  LEFT OUTER JOIN\n    `PROJECT`.`tessaway_sem`.`tenders` tenders_src_10000\n  ON\n    subq_2.tender = tenders_src_10000.tender_id\n) subq_6\nWHERE tender__carrier_type = '3P'\nGROUP BY\n  tender__carrier_name\nORDER BY delivered_loads DESC\nLIMIT 1"
+  },
+  {
+   "metric": "late_deliveries",
+   "request": {
+    "metrics": [
+     "late_deliveries"
+    ],
+    "start_date": "2026-09-01",
+    "end_date": "2026-09-30"
+   },
+   "compared_with": "gold SQL of R1",
+   "expected": 133,
+   "got": 133,
+   "matches": true,
+   "error": "",
+   "generated_sql": "-- Read Elements From Semantic Model 'deliveries'\n-- Metric Time Dimension 'delivered_date'\n-- Constrain Time Range to [2026-09-01T00:00:00, 2026-09-30T00:00:00]\n-- Select: ['__late_deliveries']\n-- Select: ['__late_deliveries']\n-- Aggregate Inputs for Simple Metrics\n-- Compute Metrics via Expressions\n-- Write to DataTable\nSELECT\n  SUM(case when not arrived_on_time and not shipper_delayed then 1 else 0 end) AS late_deliveries\nFROM `PROJECT`.`tessaway_sem`.`deliveries` deliveries_src_10000\nWHERE TIMESTAMP_TRUNC(delivered_date, day) BETWEEN '2026-09-01' AND '2026-09-30'"
+  },
+  {
+   "metric": "delivered_loads_not_billable",
+   "request": {
+    "metrics": [
+     "delivered_loads_not_billable"
+    ],
+    "start_date": "2026-09-01",
+    "end_date": "2026-09-30"
+   },
+   "compared_with": "gold SQL of R2",
+   "expected": 142,
+   "got": 142,
+   "matches": true,
+   "error": "",
+   "generated_sql": "-- Read Elements From Semantic Model 'deliveries'\n-- Metric Time Dimension 'delivered_date'\n-- Constrain Time Range to [2026-09-01T00:00:00, 2026-09-30T00:00:00]\n-- Select: ['__delivered_loads_not_billable']\n-- Select: ['__delivered_loads_not_billable']\n-- Aggregate Inputs for Simple Metrics\n-- Compute Metrics via Expressions\n-- Write to DataTable\nSELECT\n  SUM(case when not has_signed_pod then 1 else 0 end) AS delivered_loads_not_billable\nFROM `PROJECT`.`tessaway_sem`.`deliveries` deliveries_src_10000\nWHERE TIMESTAMP_TRUNC(delivered_date, day) BETWEEN '2026-09-01' AND '2026-09-30'"
+  },
+  {
+   "metric": "revenue",
+   "request": {
+    "metrics": [
+     "revenue"
+    ],
+    "where": [
+     "tender__is_cross_border = true"
+    ],
+    "start_date": "2026-07-01",
+    "end_date": "2026-09-30"
+   },
+   "compared_with": "gold SQL of R3",
+   "expected": 986208.77,
+   "got": 986208.765413,
+   "matches": true,
+   "error": "",
+   "generated_sql": "-- Constrain Output with WHERE\n-- Select: ['__revenue']\n-- Aggregate Inputs for Simple Metrics\n-- Compute Metrics via Expressions\n-- Write to DataTable\nSELECT\n  SUM(revenue) AS revenue\nFROM (\n  -- Join Standard Outputs\n  -- Select: ['__revenue', 'tender__is_cross_border']\n  SELECT\n    tenders_src_10000.is_cross_border AS tender__is_cross_border\n    , subq_2.__revenue AS revenue\n  FROM (\n    -- Read Elements From Semantic Model 'financial_documents'\n    -- Metric Time Dimension 'document_date'\n    -- Constrain Time Range to [2026-07-01T00:00:00, 2026-09-30T00:00:00]\n    SELECT\n      tender_id AS tender\n      , revenue_usd AS __revenue\n    FROM `PROJECT`.`tessaway_sem`.`financial_documents` financial_documents_src_10000\n    WHERE TIMESTAMP_TRUNC(document_date, day) BETWEEN '2026-07-01' AND '2026-09-30'\n  ) subq_2\n  LEFT OUTER JOIN\n    `PROJECT`.`tessaway_sem`.`tenders` tenders_src_10000\n  ON\n    subq_2.tender = tenders_src_10000.tender_id\n) subq_6\nWHERE tender__is_cross_border = true"
+  },
+  {
+   "metric": "delivered_loads",
+   "request": {
+    "metrics": [
+     "delivered_loads"
+    ],
+    "start_date": "2026-09-11",
+    "end_date": "2026-09-11"
+   },
+   "compared_with": "gold SQL of R4",
+   "expected": 30,
+   "got": 30,
+   "matches": true,
+   "error": "",
+   "generated_sql": "-- Read Elements From Semantic Model 'deliveries'\n-- Metric Time Dimension 'delivered_date'\n-- Constrain Time Range to [2026-09-11T00:00:00, 2026-09-11T00:00:00]\n-- Select: ['__delivered_loads']\n-- Select: ['__delivered_loads']\n-- Aggregate Inputs for Simple Metrics\n-- Compute Metrics via Expressions\n-- Write to DataTable\nSELECT\n  SUM(1) AS delivered_loads\nFROM `PROJECT`.`tessaway_sem`.`deliveries` deliveries_src_10000\nWHERE TIMESTAMP_TRUNC(delivered_date, day) BETWEEN '2026-09-11' AND '2026-09-11'"
+  },
+  {
+   "metric": "portal_on_time_rate",
+   "request": {
+    "metrics": [
+     "portal_on_time_rate"
+    ],
+    "start_date": "2026-09-01",
+    "end_date": "2026-09-30"
+   },
+   "compared_with": "gold SQL of R5",
+   "expected": 91.52,
+   "got": 91.52233363719235,
+   "matches": true,
+   "error": "",
+   "generated_sql": "-- Compute Metrics via Expressions\n-- Write to DataTable\nSELECT\n  100 * portal_on_time_shipments / nullif(portal_shipments, 0) AS portal_on_time_rate\nFROM (\n  -- Read Elements From Semantic Model 'portal_shipments'\n  -- Metric Time Dimension 'portal_delivered_date'\n  -- Constrain Time Range to [2026-09-01T00:00:00, 2026-09-30T00:00:00]\n  -- Select: ['__portal_on_time_shipments', '__portal_shipments']\n  -- Select: ['__portal_on_time_shipments', '__portal_shipments']\n  -- Aggregate Inputs for Simple Metrics\n  -- Compute Metrics via Expressions\n  SELECT\n    SUM(case when portal_on_time then 1 else 0 end) AS portal_on_time_shipments\n    , SUM(1) AS portal_shipments\n  FROM `PROJECT`.`tessaway_sem`.`portal_shipments` portal_shipments_src_10000\n  WHERE TIMESTAMP_TRUNC(portal_delivered_date, day) BETWEEN '2026-09-01' AND '2026-09-30'\n) subq_6"
+  },
+  {
+   "metric": "margin",
+   "request": {
+    "metrics": [
+     "margin"
+    ],
+    "where": [
+     "document__document_type = 'canceled_load_fee'"
+    ],
+    "start_date": "2026-07-01",
+    "end_date": "2026-09-30"
+   },
+   "compared_with": "gold SQL of R6",
+   "expected": 3050.0,
+   "got": 3050.0,
+   "matches": true,
+   "error": "",
+   "generated_sql": "-- Compute Metrics via Expressions\n-- Write to DataTable\nSELECT\n  revenue - carrier_cost AS margin\nFROM (\n  -- Constrain Output with WHERE\n  -- Select: ['__revenue', '__carrier_cost']\n  -- Aggregate Inputs for Simple Metrics\n  -- Compute Metrics via Expressions\n  SELECT\n    SUM(revenue) AS revenue\n    , SUM(carrier_cost) AS carrier_cost\n  FROM (\n    -- Read Elements From Semantic Model 'financial_documents'\n    -- Metric Time Dimension 'document_date'\n    -- Constrain Time Range to [2026-07-01T00:00:00, 2026-09-30T00:00:00]\n    -- Select: ['__revenue', '__carrier_cost', 'document__document_type']\n    SELECT\n      document_type AS document__document_type\n      , revenue_usd AS revenue\n      , carrier_cost_usd AS carrier_cost\n    FROM `PROJECT`.`tessaway_sem`.`financial_documents` financial_documents_src_10000\n    WHERE TIMESTAMP_TRUNC(document_date, day) BETWEEN '2026-07-01' AND '2026-09-30'\n  ) subq_3\n  WHERE document__document_type = 'canceled_load_fee'\n) subq_7"
+  },
+  {
+   "metric": "operations_on_time_rate",
+   "request": {
+    "metrics": [
+     "operations_on_time_rate"
+    ],
+    "start_date": "2026-09-01",
+    "end_date": "2026-09-30"
+   },
+   "compared_with": "reference SQL in gold_checks.yaml",
+   "expected": 84.41203281677302,
+   "got": 84.41203281677302,
+   "matches": true,
+   "error": "",
+   "generated_sql": "-- Compute Metrics via Expressions\n-- Write to DataTable\nSELECT\n  100 * on_time_loads / nullif(delivered_loads, 0) AS operations_on_time_rate\nFROM (\n  -- Read Elements From Semantic Model 'deliveries'\n  -- Metric Time Dimension 'delivered_date'\n  -- Constrain Time Range to [2026-09-01T00:00:00, 2026-09-30T00:00:00]\n  -- Select: ['__on_time_loads', '__delivered_loads']\n  -- Select: ['__on_time_loads', '__delivered_loads']\n  -- Aggregate Inputs for Simple Metrics\n  -- Compute Metrics via Expressions\n  SELECT\n    SUM(case when arrived_on_time then 1 else 0 end) AS on_time_loads\n    , SUM(1) AS delivered_loads\n  FROM `PROJECT`.`tessaway_sem`.`deliveries` deliveries_src_10000\n  WHERE TIMESTAMP_TRUNC(delivered_date, day) BETWEEN '2026-09-01' AND '2026-09-30'\n) subq_6"
+  },
+  {
+   "metric": "on_time_loads",
+   "request": {
+    "metrics": [
+     "on_time_loads"
+    ],
+    "start_date": "2026-09-01",
+    "end_date": "2026-09-30"
+   },
+   "compared_with": "reference SQL in gold_checks.yaml",
+   "expected": 926,
+   "got": 926,
+   "matches": true,
+   "error": "",
+   "generated_sql": "-- Read Elements From Semantic Model 'deliveries'\n-- Metric Time Dimension 'delivered_date'\n-- Constrain Time Range to [2026-09-01T00:00:00, 2026-09-30T00:00:00]\n-- Select: ['__on_time_loads']\n-- Select: ['__on_time_loads']\n-- Aggregate Inputs for Simple Metrics\n-- Compute Metrics via Expressions\n-- Write to DataTable\nSELECT\n  SUM(case when arrived_on_time then 1 else 0 end) AS on_time_loads\nFROM `PROJECT`.`tessaway_sem`.`deliveries` deliveries_src_10000\nWHERE TIMESTAMP_TRUNC(delivered_date, day) BETWEEN '2026-09-01' AND '2026-09-30'"
+  },
+  {
+   "metric": "on_time_measured_loads",
+   "request": {
+    "metrics": [
+     "on_time_measured_loads"
+    ],
+    "start_date": "2026-09-01",
+    "end_date": "2026-09-30"
+   },
+   "compared_with": "reference SQL in gold_checks.yaml",
+   "expected": 1059,
+   "got": 1059,
+   "matches": true,
+   "error": "",
+   "generated_sql": "-- Read Elements From Semantic Model 'deliveries'\n-- Metric Time Dimension 'delivered_date'\n-- Constrain Time Range to [2026-09-01T00:00:00, 2026-09-30T00:00:00]\n-- Select: ['__on_time_measured_loads']\n-- Select: ['__on_time_measured_loads']\n-- Aggregate Inputs for Simple Metrics\n-- Compute Metrics via Expressions\n-- Write to DataTable\nSELECT\n  SUM(case when arrived_on_time or not shipper_delayed then 1 else 0 end) AS on_time_measured_loads\nFROM `PROJECT`.`tessaway_sem`.`deliveries` deliveries_src_10000\nWHERE TIMESTAMP_TRUNC(delivered_date, day) BETWEEN '2026-09-01' AND '2026-09-30'"
+  },
+  {
+   "metric": "portal_on_time_shipments",
+   "request": {
+    "metrics": [
+     "portal_on_time_shipments"
+    ],
+    "start_date": "2026-09-01",
+    "end_date": "2026-09-30"
+   },
+   "compared_with": "reference SQL in gold_checks.yaml",
+   "expected": 1004,
+   "got": 1004,
+   "matches": true,
+   "error": "",
+   "generated_sql": "-- Read Elements From Semantic Model 'portal_shipments'\n-- Metric Time Dimension 'portal_delivered_date'\n-- Constrain Time Range to [2026-09-01T00:00:00, 2026-09-30T00:00:00]\n-- Select: ['__portal_on_time_shipments']\n-- Select: ['__portal_on_time_shipments']\n-- Aggregate Inputs for Simple Metrics\n-- Compute Metrics via Expressions\n-- Write to DataTable\nSELECT\n  SUM(case when portal_on_time then 1 else 0 end) AS portal_on_time_shipments\nFROM `PROJECT`.`tessaway_sem`.`portal_shipments` portal_shipments_src_10000\nWHERE TIMESTAMP_TRUNC(portal_delivered_date, day) BETWEEN '2026-09-01' AND '2026-09-30'"
+  },
+  {
+   "metric": "portal_shipments",
+   "request": {
+    "metrics": [
+     "portal_shipments"
+    ],
+    "start_date": "2026-09-01",
+    "end_date": "2026-09-30"
+   },
+   "compared_with": "reference SQL in gold_checks.yaml",
+   "expected": 1097,
+   "got": 1097,
+   "matches": true,
+   "error": "",
+   "generated_sql": "-- Read Elements From Semantic Model 'portal_shipments'\n-- Metric Time Dimension 'portal_delivered_date'\n-- Constrain Time Range to [2026-09-01T00:00:00, 2026-09-30T00:00:00]\n-- Select: ['__portal_shipments']\n-- Select: ['__portal_shipments']\n-- Aggregate Inputs for Simple Metrics\n-- Compute Metrics via Expressions\n-- Write to DataTable\nSELECT\n  SUM(1) AS portal_shipments\nFROM `PROJECT`.`tessaway_sem`.`portal_shipments` portal_shipments_src_10000\nWHERE TIMESTAMP_TRUNC(portal_delivered_date, day) BETWEEN '2026-09-01' AND '2026-09-30'"
+  },
+  {
+   "metric": "carrier_cost",
+   "request": {
+    "metrics": [
+     "carrier_cost"
+    ],
+    "start_date": "2026-07-01",
+    "end_date": "2026-09-30"
+   },
+   "compared_with": "reference SQL in gold_checks.yaml",
+   "expected": 8930608.721084,
+   "got": 8930608.721084,
+   "matches": true,
+   "error": "",
+   "generated_sql": "-- Read Elements From Semantic Model 'financial_documents'\n-- Metric Time Dimension 'document_date'\n-- Constrain Time Range to [2026-07-01T00:00:00, 2026-09-30T00:00:00]\n-- Select: ['__carrier_cost']\n-- Select: ['__carrier_cost']\n-- Aggregate Inputs for Simple Metrics\n-- Compute Metrics via Expressions\n-- Write to DataTable\nSELECT\n  SUM(carrier_cost_usd) AS carrier_cost\nFROM `PROJECT`.`tessaway_sem`.`financial_documents` financial_documents_src_10000\nWHERE TIMESTAMP_TRUNC(document_date, day) BETWEEN '2026-07-01' AND '2026-09-30'"
+  },
+  {
+   "metric": "invoiced_loads",
+   "request": {
+    "metrics": [
+     "invoiced_loads"
+    ],
+    "start_date": "2026-07-01",
+    "end_date": "2026-09-30"
+   },
+   "compared_with": "reference SQL in gold_checks.yaml",
+   "expected": 3332,
+   "got": 3332,
+   "matches": true,
+   "error": "",
+   "generated_sql": "-- Read Elements From Semantic Model 'financial_documents'\n-- Metric Time Dimension 'document_date'\n-- Constrain Time Range to [2026-07-01T00:00:00, 2026-09-30T00:00:00]\n-- Select: ['__invoiced_loads']\n-- Select: ['__invoiced_loads']\n-- Aggregate Inputs for Simple Metrics\n-- Compute Metrics via Expressions\n-- Write to DataTable\nSELECT\n  SUM(case when document_type = 'invoice' then 1 else 0 end) AS invoiced_loads\nFROM `PROJECT`.`tessaway_sem`.`financial_documents` financial_documents_src_10000\nWHERE TIMESTAMP_TRUNC(document_date, day) BETWEEN '2026-07-01' AND '2026-09-30'"
+  }
+ ]
+}

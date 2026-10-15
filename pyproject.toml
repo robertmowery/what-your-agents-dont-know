@@ -10,12 +10,15 @@ authors = [{ name = "Robert H. Mowery III" }]
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["tests"]
+# The default run makes no model call and no cloud call. `pytest -m cloud` runs the rest.
+addopts = "-m 'not cloud'"
+markers = ["cloud: needs BigQuery and the MetricFlow environment (.venv-dbt)"]
 
 [tool.ruff]
 line-length = 100
 target-version = "py311"
 # Figure and publishing scripts are working tools kept private, not part of the experiment.
-extend-exclude = ["articles", "tools", "plugins"]
+extend-exclude = ["articles", "tools", "plugins", "semantic_layer/target", "semantic_layer/dbt_packages"]
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "B", "UP", "D", "N", "SIM", "C4", "RUF", "BLE"]
@@ -33,7 +36,16 @@ convention = "google"
 
 [tool.mypy]
 python_version = "3.11"
-files = ["tessaway", "tests", "run_part1.py"]
+files = [
+    "tessaway",
+    "tests",
+    "run_part1.py",
+    "run_part2.py",
+    "run_holdout.py",
+    "analysis/holdout_coverage.py",
+    "analysis/holdout_article_numbers.py",
+    "semantic_layer/mf_worker.py",
+]
 disallow_untyped_defs = true
 disallow_incomplete_defs = true
 warn_unused_ignores = true

@@ -1,0 +1,877 @@
+{
+ "checked_at": "2026-10-09T22:28:25+00:00",
+ "what": "For each held-out question, the least work through the semantic layer, as it stood before any held-out agent run, that reproduces the saved gold answer. Metric requests go through semantic.run_metrics, the function behind the agent's query_metrics tool, with its limit of 50 rows.",
+ "classes": {
+  "one_metric_query": "one metric query, as is",
+  "metric_plus_filter": "metric plus a filter or dimension the layer already has",
+  "several_or_arithmetic": "needs more than one metric query or arithmetic on results",
+  "not_answerable": "not answerable from the layer"
+ },
+ "counts": {
+  "one_metric_query": 0,
+  "metric_plus_filter": 8,
+  "several_or_arithmetic": 3,
+  "not_answerable": 1
+ },
+ "questions_where_dropping_a_condition_still_scores_right": [
+  "H4"
+ ],
+ "by_class": {
+  "one_metric_query": [],
+  "metric_plus_filter": [
+   "H1",
+   "H2",
+   "H4",
+   "H5",
+   "H8",
+   "H9",
+   "H10",
+   "H12"
+  ],
+  "several_or_arithmetic": [
+   "H3",
+   "H6",
+   "H7"
+  ],
+  "not_answerable": [
+   "H11"
+  ]
+ },
+ "questions": [
+  {
+   "question_id": "H1",
+   "group": "metric",
+   "question": "What was our own fleet's on-time delivery rate in Q2 2026?",
+   "gold": 88.17,
+   "class": "metric_plus_filter",
+   "class_label": "metric plus a filter or dimension the layer already has",
+   "metric_queries_needed": 1,
+   "query_used": [
+    {
+     "metrics": [
+      "on_time_rate"
+     ],
+     "where": [
+      "tender__carrier_type = 'OWN'"
+     ],
+     "start_date": "2026-04-01",
+     "end_date": "2026-06-30"
+    }
+   ],
+   "how": "the official rate, filtered to the own-fleet carrier type",
+   "value_from_the_layer": 88.1657,
+   "note": "",
+   "a_query_that_drops_a_condition_also_scores_right": false,
+   "value_of_that_query": null,
+   "attempts": [
+    {
+     "class": "control_drops_a_condition",
+     "what": "the official rate for the period",
+     "requests": [
+      {
+       "metrics": [
+        "on_time_rate"
+       ],
+       "start_date": "2026-04-01",
+       "end_date": "2026-06-30"
+      }
+     ],
+     "rows_returned": [
+      1
+     ],
+     "value": 86.9297,
+     "matches_gold": false
+    },
+    {
+     "class": "metric_plus_filter",
+     "what": "the official rate, filtered to the own-fleet carrier type",
+     "requests": [
+      {
+       "metrics": [
+        "on_time_rate"
+       ],
+       "where": [
+        "tender__carrier_type = 'OWN'"
+       ],
+       "start_date": "2026-04-01",
+       "end_date": "2026-06-30"
+      }
+     ],
+     "rows_returned": [
+      1
+     ],
+     "value": 88.1657,
+     "matches_gold": true
+    }
+   ]
+  },
+  {
+   "question_id": "H2",
+   "group": "metric",
+   "question": "What was our margin percentage on loads hauled by outside carriers in the first half of 2026?",
+   "gold": 12.36,
+   "class": "metric_plus_filter",
+   "class_label": "metric plus a filter or dimension the layer already has",
+   "metric_queries_needed": 1,
+   "query_used": [
+    {
+     "metrics": [
+      "margin_percentage"
+     ],
+     "where": [
+      "tender__carrier_type = '3P'"
+     ],
+     "start_date": "2026-01-01",
+     "end_date": "2026-06-30"
+    }
+   ],
+   "how": "margin percentage, filtered to the outside-carrier type",
+   "value_from_the_layer": 12.3596,
+   "note": "",
+   "a_query_that_drops_a_condition_also_scores_right": false,
+   "value_of_that_query": null,
+   "attempts": [
+    {
+     "class": "control_drops_a_condition",
+     "what": "margin percentage for the period",
+     "requests": [
+      {
+       "metrics": [
+        "margin_percentage"
+       ],
+       "start_date": "2026-01-01",
+       "end_date": "2026-06-30"
+      }
+     ],
+     "rows_returned": [
+      1
+     ],
+     "value": 13.2348,
+     "matches_gold": false
+    },
+    {
+     "class": "metric_plus_filter",
+     "what": "margin percentage, filtered to the outside-carrier type",
+     "requests": [
+      {
+       "metrics": [
+        "margin_percentage"
+       ],
+       "where": [
+        "tender__carrier_type = '3P'"
+       ],
+       "start_date": "2026-01-01",
+       "end_date": "2026-06-30"
+      }
+     ],
+     "rows_returned": [
+      1
+     ],
+     "value": 12.3596,
+     "matches_gold": true
+    }
+   ]
+  },
+  {
+   "question_id": "H3",
+   "group": "metric",
+   "question": "What share of our Q3 2026 revenue came from cross-border loads?",
+   "gold": 9.58,
+   "class": "several_or_arithmetic",
+   "class_label": "needs more than one metric query or arithmetic on results",
+   "metric_queries_needed": 1,
+   "query_used": [
+    {
+     "metrics": [
+      "revenue"
+     ],
+     "group_by": [
+      "tender__is_cross_border"
+     ],
+     "start_date": "2026-07-01",
+     "end_date": "2026-09-30"
+    }
+   ],
+   "how": "revenue grouped by the cross-border flag, then one row over the sum",
+   "value_from_the_layer": 9.5804,
+   "note": "",
+   "a_query_that_drops_a_condition_also_scores_right": false,
+   "value_of_that_query": null,
+   "attempts": [
+    {
+     "class": "several_or_arithmetic",
+     "what": "revenue grouped by the cross-border flag, then one row over the sum",
+     "requests": [
+      {
+       "metrics": [
+        "revenue"
+       ],
+       "group_by": [
+        "tender__is_cross_border"
+       ],
+       "start_date": "2026-07-01",
+       "end_date": "2026-09-30"
+      }
+     ],
+     "rows_returned": [
+      2
+     ],
+     "value": 9.5804,
+     "matches_gold": true
+    }
+   ]
+  },
+  {
+   "question_id": "H4",
+   "group": "metric",
+   "question": "What was our average margin per load on reefer loads in Q3 2026?",
+   "gold": 408.74,
+   "class": "metric_plus_filter",
+   "class_label": "metric plus a filter or dimension the layer already has",
+   "metric_queries_needed": 1,
+   "query_used": [
+    {
+     "metrics": [
+      "margin_per_load"
+     ],
+     "where": [
+      "tender__equipment_type = 'REEF'"
+     ],
+     "start_date": "2026-07-01",
+     "end_date": "2026-09-30"
+    }
+   ],
+   "how": "margin per load, filtered to the reefer equipment type",
+   "value_from_the_layer": 408.7377,
+   "note": "Flaw in the question, found here and left as it is: margin per load for the whole company in the quarter is within the question's 1% tolerance of the reefer answer, so the scorer cannot tell an answer that ignores 'reefer' from a right one. The whole-company reading is not among the question's decoys.",
+   "a_query_that_drops_a_condition_also_scores_right": true,
+   "value_of_that_query": 409.1868,
+   "attempts": [
+    {
+     "class": "control_drops_a_condition",
+     "what": "margin per load for the period",
+     "requests": [
+      {
+       "metrics": [
+        "margin_per_load"
+       ],
+       "start_date": "2026-07-01",
+       "end_date": "2026-09-30"
+      }
+     ],
+     "rows_returned": [
+      1
+     ],
+     "value": 409.1868,
+     "matches_gold": true
+    },
+    {
+     "class": "metric_plus_filter",
+     "what": "margin per load, filtered to the reefer equipment type",
+     "requests": [
+      {
+       "metrics": [
+        "margin_per_load"
+       ],
+       "where": [
+        "tender__equipment_type = 'REEF'"
+       ],
+       "start_date": "2026-07-01",
+       "end_date": "2026-09-30"
+      }
+     ],
+     "rows_returned": [
+      1
+     ],
+     "value": 408.7377,
+     "matches_gold": true
+    }
+   ]
+  },
+  {
+   "question_id": "H5",
+   "group": "entity",
+   "question": "Which customer did we deliver the most loads for in the first half of 2026?",
+   "gold": "Northgate Foods Group",
+   "class": "metric_plus_filter",
+   "class_label": "metric plus a filter or dimension the layer already has",
+   "metric_queries_needed": 1,
+   "query_used": [
+    {
+     "metrics": [
+      "delivered_loads"
+     ],
+     "group_by": [
+      "tender__customer_name"
+     ],
+     "order_by": [
+      "-delivered_loads"
+     ],
+     "limit": 1,
+     "start_date": "2026-01-01",
+     "end_date": "2026-06-30"
+    }
+   ],
+   "how": "delivered loads grouped by customer, sorted high to low, first row",
+   "value_from_the_layer": "Northgate Foods Group",
+   "note": "",
+   "a_query_that_drops_a_condition_also_scores_right": false,
+   "value_of_that_query": null,
+   "attempts": [
+    {
+     "class": "metric_plus_filter",
+     "what": "delivered loads grouped by customer, sorted high to low, first row",
+     "requests": [
+      {
+       "metrics": [
+        "delivered_loads"
+       ],
+       "group_by": [
+        "tender__customer_name"
+       ],
+       "order_by": [
+        "-delivered_loads"
+       ],
+       "limit": 1,
+       "start_date": "2026-01-01",
+       "end_date": "2026-06-30"
+      }
+     ],
+     "rows_returned": [
+      1
+     ],
+     "value": "Northgate Foods Group",
+     "matches_gold": true
+    }
+   ]
+  },
+  {
+   "question_id": "H6",
+   "group": "entity",
+   "question": "How many customers each brought in more than $250,000 of revenue in Q3 2026?",
+   "gold": 17,
+   "class": "several_or_arithmetic",
+   "class_label": "needs more than one metric query or arithmetic on results",
+   "metric_queries_needed": 1,
+   "query_used": [
+    {
+     "metrics": [
+      "revenue"
+     ],
+     "group_by": [
+      "tender__customer_name"
+     ],
+     "order_by": [
+      "-revenue"
+     ],
+     "start_date": "2026-07-01",
+     "end_date": "2026-09-30"
+    }
+   ],
+   "how": "revenue grouped by customer, sorted high to low, then count rows over the line",
+   "value_from_the_layer": 17,
+   "note": "",
+   "a_query_that_drops_a_condition_also_scores_right": false,
+   "value_of_that_query": null,
+   "attempts": [
+    {
+     "class": "control_drops_a_condition",
+     "what": "customers that shipped in the period",
+     "requests": [
+      {
+       "metrics": [
+        "customers_shipped"
+       ],
+       "start_date": "2026-07-01",
+       "end_date": "2026-09-30"
+      }
+     ],
+     "rows_returned": [
+      1
+     ],
+     "value": 36,
+     "matches_gold": false
+    },
+    {
+     "class": "several_or_arithmetic",
+     "what": "revenue grouped by customer, sorted high to low, then count rows over the line",
+     "requests": [
+      {
+       "metrics": [
+        "revenue"
+       ],
+       "group_by": [
+        "tender__customer_name"
+       ],
+       "order_by": [
+        "-revenue"
+       ],
+       "start_date": "2026-07-01",
+       "end_date": "2026-09-30"
+      }
+     ],
+     "rows_returned": [
+      36
+     ],
+     "value": 17,
+     "matches_gold": true
+    }
+   ]
+  },
+  {
+   "question_id": "H7",
+   "group": "entity",
+   "question": "What share of our Q3 2026 revenue came from our five largest customers?",
+   "gold": 30.93,
+   "class": "several_or_arithmetic",
+   "class_label": "needs more than one metric query or arithmetic on results",
+   "metric_queries_needed": 2,
+   "query_used": [
+    {
+     "metrics": [
+      "revenue"
+     ],
+     "group_by": [
+      "tender__customer_name"
+     ],
+     "order_by": [
+      "-revenue"
+     ],
+     "limit": 5,
+     "start_date": "2026-07-01",
+     "end_date": "2026-09-30"
+    },
+    {
+     "metrics": [
+      "revenue"
+     ],
+     "start_date": "2026-07-01",
+     "end_date": "2026-09-30"
+    }
+   ],
+   "how": "the top five customers by revenue, and total revenue, then a division",
+   "value_from_the_layer": 30.9309,
+   "note": "",
+   "a_query_that_drops_a_condition_also_scores_right": false,
+   "value_of_that_query": null,
+   "attempts": [
+    {
+     "class": "several_or_arithmetic",
+     "what": "the top five customers by revenue, and total revenue, then a division",
+     "requests": [
+      {
+       "metrics": [
+        "revenue"
+       ],
+       "group_by": [
+        "tender__customer_name"
+       ],
+       "order_by": [
+        "-revenue"
+       ],
+       "limit": 5,
+       "start_date": "2026-07-01",
+       "end_date": "2026-09-30"
+      },
+      {
+       "metrics": [
+        "revenue"
+       ],
+       "start_date": "2026-07-01",
+       "end_date": "2026-09-30"
+      }
+     ],
+     "rows_returned": [
+      5,
+      1
+     ],
+     "value": 30.9309,
+     "matches_gold": true
+    }
+   ]
+  },
+  {
+   "question_id": "H8",
+   "group": "entity",
+   "question": "How many loads did we book for Kestrel Packaging in the first half of 2026?",
+   "gold": 216,
+   "class": "metric_plus_filter",
+   "class_label": "metric plus a filter or dimension the layer already has",
+   "metric_queries_needed": 1,
+   "query_used": [
+    {
+     "metrics": [
+      "loads_booked"
+     ],
+     "where": [
+      "tender__customer_name = 'Kestrel Packaging'"
+     ],
+     "start_date": "2026-01-01",
+     "end_date": "2026-06-30"
+    }
+   ],
+   "how": "loads booked, filtered to the customer by name",
+   "value_from_the_layer": 216,
+   "note": "",
+   "a_query_that_drops_a_condition_also_scores_right": false,
+   "value_of_that_query": null,
+   "attempts": [
+    {
+     "class": "control_drops_a_condition",
+     "what": "loads booked in the period",
+     "requests": [
+      {
+       "metrics": [
+        "loads_booked"
+       ],
+       "start_date": "2026-01-01",
+       "end_date": "2026-06-30"
+      }
+     ],
+     "rows_returned": [
+      1
+     ],
+     "value": 6989,
+     "matches_gold": false
+    },
+    {
+     "class": "metric_plus_filter",
+     "what": "loads booked, filtered to the customer by name",
+     "requests": [
+      {
+       "metrics": [
+        "loads_booked"
+       ],
+       "where": [
+        "tender__customer_name = 'Kestrel Packaging'"
+       ],
+       "start_date": "2026-01-01",
+       "end_date": "2026-06-30"
+      }
+     ],
+     "rows_returned": [
+      1
+     ],
+     "value": 216,
+     "matches_gold": true
+    }
+   ]
+  },
+  {
+   "question_id": "H9",
+   "group": "rule",
+   "question": "How many of our Q3 2026 deliveries arrived on a Saturday or Sunday?",
+   "gold": 1119,
+   "class": "metric_plus_filter",
+   "class_label": "metric plus a filter or dimension the layer already has",
+   "metric_queries_needed": 1,
+   "query_used": [
+    {
+     "metrics": [
+      "delivered_loads"
+     ],
+     "where": [
+      "EXTRACT(DAYOFWEEK FROM metric_time__day) IN (1, 7)"
+     ],
+     "start_date": "2026-07-01",
+     "end_date": "2026-09-30"
+    }
+   ],
+   "how": "delivered loads, with a day-of-week expression on the metric's day as a filter",
+   "value_from_the_layer": 1119,
+   "note": "The filter is a SQL day-of-week expression on the metric's own day, which MetricFlow accepts. The layer has no day-of-week dimension; an agent has to think of the expression or fetch the days and count.",
+   "a_query_that_drops_a_condition_also_scores_right": false,
+   "value_of_that_query": null,
+   "attempts": [
+    {
+     "class": "control_drops_a_condition",
+     "what": "delivered loads in the period",
+     "requests": [
+      {
+       "metrics": [
+        "delivered_loads"
+       ],
+       "start_date": "2026-07-01",
+       "end_date": "2026-09-30"
+      }
+     ],
+     "rows_returned": [
+      1
+     ],
+     "value": 3434,
+     "matches_gold": false
+    },
+    {
+     "class": "metric_plus_filter",
+     "what": "delivered loads, with a day-of-week expression on the metric's day as a filter",
+     "requests": [
+      {
+       "metrics": [
+        "delivered_loads"
+       ],
+       "where": [
+        "EXTRACT(DAYOFWEEK FROM metric_time__day) IN (1, 7)"
+       ],
+       "start_date": "2026-07-01",
+       "end_date": "2026-09-30"
+      }
+     ],
+     "rows_returned": [
+      1
+     ],
+     "value": 1119,
+     "matches_gold": true
+    },
+    {
+     "class": "several_or_arithmetic",
+     "what": "delivered loads by day in two halves (92 days, 50 rows a call), then add up the Saturdays and Sundays",
+     "requests": [
+      {
+       "metrics": [
+        "delivered_loads"
+       ],
+       "group_by": [
+        "metric_time__day"
+       ],
+       "order_by": [
+        "metric_time__day"
+       ],
+       "start_date": "2026-07-01",
+       "end_date": "2026-08-15"
+      },
+      {
+       "metrics": [
+        "delivered_loads"
+       ],
+       "group_by": [
+        "metric_time__day"
+       ],
+       "order_by": [
+        "metric_time__day"
+       ],
+       "start_date": "2026-08-16",
+       "end_date": "2026-09-30"
+      }
+     ],
+     "rows_returned": [
+      46,
+      46
+     ],
+     "value": 1119,
+     "matches_gold": true
+    }
+   ]
+  },
+  {
+   "question_id": "H10",
+   "group": "rule",
+   "question": "How many late deliveries in Q3 2026 were the shipper's fault?",
+   "gold": 139,
+   "class": "metric_plus_filter",
+   "class_label": "metric plus a filter or dimension the layer already has",
+   "metric_queries_needed": 1,
+   "query_used": [
+    {
+     "metrics": [
+      "delivered_loads"
+     ],
+     "where": [
+      "delivery__arrived_on_time = false",
+      "delivery__shipper_delayed = true"
+     ],
+     "start_date": "2026-07-01",
+     "end_date": "2026-09-30"
+    }
+   ],
+   "how": "delivered loads, filtered to not on time and shipper-delayed",
+   "value_from_the_layer": 139,
+   "note": "",
+   "a_query_that_drops_a_condition_also_scores_right": false,
+   "value_of_that_query": null,
+   "attempts": [
+    {
+     "class": "control_drops_a_condition",
+     "what": "official late deliveries in the period",
+     "requests": [
+      {
+       "metrics": [
+        "late_deliveries"
+       ],
+       "start_date": "2026-07-01",
+       "end_date": "2026-09-30"
+      }
+     ],
+     "rows_returned": [
+      1
+     ],
+     "value": 409,
+     "matches_gold": false
+    },
+    {
+     "class": "metric_plus_filter",
+     "what": "delivered loads, filtered to not on time and shipper-delayed",
+     "requests": [
+      {
+       "metrics": [
+        "delivered_loads"
+       ],
+       "where": [
+        "delivery__arrived_on_time = false",
+        "delivery__shipper_delayed = true"
+       ],
+       "start_date": "2026-07-01",
+       "end_date": "2026-09-30"
+      }
+     ],
+     "rows_returned": [
+      1
+     ],
+     "value": 139,
+     "matches_gold": true
+    },
+    {
+     "class": "several_or_arithmetic",
+     "what": "delivered loads less the loads measured for on-time, in one query",
+     "requests": [
+      {
+       "metrics": [
+        "delivered_loads",
+        "on_time_measured_loads"
+       ],
+       "start_date": "2026-07-01",
+       "end_date": "2026-09-30"
+      }
+     ],
+     "rows_returned": [
+      1
+     ],
+     "value": 139.0,
+     "matches_gold": true
+    }
+   ]
+  },
+  {
+   "question_id": "H11",
+   "group": "rule",
+   "question": "How many loads delivered in Q3 2026 have proof-of-delivery paperwork on file but still can't be billed?",
+   "gold": 27,
+   "class": "not_answerable",
+   "class_label": "not answerable from the layer",
+   "metric_queries_needed": null,
+   "query_used": null,
+   "how": "The layer knows whether a signed proof of delivery is on file (delivery__has_signed_pod). It has no metric and no dimension for whether any proof-of-delivery document is on file, so it cannot separate loads with unsigned paperwork from loads with none.",
+   "value_from_the_layer": null,
+   "note": "",
+   "a_query_that_drops_a_condition_also_scores_right": false,
+   "value_of_that_query": null,
+   "attempts": [
+    {
+     "class": "control_drops_a_condition",
+     "what": "delivered loads that cannot be billed yet",
+     "requests": [
+      {
+       "metrics": [
+        "delivered_loads_not_billable"
+       ],
+       "start_date": "2026-07-01",
+       "end_date": "2026-09-30"
+      }
+     ],
+     "rows_returned": [
+      1
+     ],
+     "value": 197,
+     "matches_gold": false
+    },
+    {
+     "class": "metric_plus_filter",
+     "what": "delivered loads, filtered to no signed proof of delivery",
+     "requests": [
+      {
+       "metrics": [
+        "delivered_loads"
+       ],
+       "where": [
+        "delivery__has_signed_pod = false"
+       ],
+       "start_date": "2026-07-01",
+       "end_date": "2026-09-30"
+      }
+     ],
+     "rows_returned": [
+      1
+     ],
+     "value": 197,
+     "matches_gold": false
+    }
+   ]
+  },
+  {
+   "question_id": "H12",
+   "group": "rule",
+   "question": "What on-time rate did Northgate Foods see in the portal for its Q3 2026 deliveries?",
+   "gold": 89.38,
+   "class": "metric_plus_filter",
+   "class_label": "metric plus a filter or dimension the layer already has",
+   "metric_queries_needed": 1,
+   "query_used": [
+    {
+     "metrics": [
+      "portal_on_time_rate"
+     ],
+     "where": [
+      "tender__customer_name = 'Northgate Foods Group'"
+     ],
+     "start_date": "2026-07-01",
+     "end_date": "2026-09-30"
+    }
+   ],
+   "how": "the portal rate, filtered to the customer by name",
+   "value_from_the_layer": 89.3764,
+   "note": "",
+   "a_query_that_drops_a_condition_also_scores_right": false,
+   "value_of_that_query": null,
+   "attempts": [
+    {
+     "class": "control_drops_a_condition",
+     "what": "the portal rate for the period",
+     "requests": [
+      {
+       "metrics": [
+        "portal_on_time_rate"
+       ],
+       "start_date": "2026-07-01",
+       "end_date": "2026-09-30"
+      }
+     ],
+     "rows_returned": [
+      1
+     ],
+     "value": 91.8754,
+     "matches_gold": false
+    },
+    {
+     "class": "metric_plus_filter",
+     "what": "the portal rate, filtered to the customer by name",
+     "requests": [
+      {
+       "metrics": [
+        "portal_on_time_rate"
+       ],
+       "where": [
+        "tender__customer_name = 'Northgate Foods Group'"
+       ],
+       "start_date": "2026-07-01",
+       "end_date": "2026-09-30"
+      }
+     ],
+     "rows_returned": [
+      1
+     ],
+     "value": 89.3764,
+     "matches_gold": true
+    }
+   ]
+  }
+ ]
+}

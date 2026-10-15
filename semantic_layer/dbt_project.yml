@@ -1,0 +1,20 @@
+# The dbt project behind the Part 2 semantic layer.
+#
+# Tessaway Freight is a fictional company. Everything here is written from
+# data/DEFINITIONS.md and from nothing else. The views in models/ put each row
+# on the footing a definition needs (the clock at the destination, US dollars,
+# one row per load), and models/semantic.yml names the metrics MetricFlow
+# builds from them.
+name: tessaway_semantic
+version: "1.0.0"
+config-version: 2
+
+profile: tessaway
+
+model-paths: ["models"]
+target-path: "target"
+clean-targets: ["target", "logs"]
+
+models:
+  tessaway_semantic:
+    +materialized: view

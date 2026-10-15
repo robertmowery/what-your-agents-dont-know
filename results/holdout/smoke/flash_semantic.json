@@ -1,0 +1,615 @@
+{
+ "config": "flash_semantic",
+ "what": "The Part 2 semantic configuration: the same agent with the query_metrics tool.",
+ "layers": [
+  "semantic"
+ ],
+ "tools": [
+  "run_sql",
+  "query_metrics"
+ ],
+ "runtime": "adk",
+ "runtime_package": "google-adk==2.11.0",
+ "model": "gemini-3.8-flash",
+ "model_reported_by_provider": [
+  "gemini-3.8-flash"
+ ],
+ "model_and_prices_checked_on": "2026-10-09",
+ "usd_per_million_tokens": {
+  "input": 0.75,
+  "output": 3.75,
+  "cache_read": 0.075
+ },
+ "first_run_finished_at": "2026-10-09T22:33:08+00:00",
+ "last_run_finished_at": "2026-10-09T22:33:41+00:00",
+ "question_file": "questions/holdout.yaml",
+ "question_count": 2,
+ "runs_per_question": 1,
+ "runs_expected": 2,
+ "runs_saved": 2,
+ "complete": true,
+ "runs_repeated_after_a_failure": 0,
+ "sql_query_limit": 8,
+ "layer_call_limit_per_tool": 8,
+ "model_call_ceiling": 24,
+ "data_seed": 20261009,
+ "summary": {
+  "overall": {
+   "runs": 2,
+   "right": 2,
+   "right_share": 1.0,
+   "confidently_wrong": 0,
+   "confidently_wrong_share": 0.0,
+   "declined": 0,
+   "declined_share": 0.0,
+   "no_answer": 0,
+   "no_answer_share": 0.0
+  },
+  "by_group": {
+   "metric": {
+    "runs": 1,
+    "right": 1,
+    "right_share": 1.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": 0.0,
+    "declined": 0,
+    "declined_share": 0.0,
+    "no_answer": 0,
+    "no_answer_share": 0.0
+   },
+   "entity": {
+    "runs": 1,
+    "right": 1,
+    "right_share": 1.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": 0.0,
+    "declined": 0,
+    "declined_share": 0.0,
+    "no_answer": 0,
+    "no_answer_share": 0.0
+   }
+  },
+  "by_question": {
+   "H1": {
+    "runs": 1,
+    "right": 1,
+    "right_share": 1.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": 0.0,
+    "declined": 0,
+    "declined_share": 0.0,
+    "no_answer": 0,
+    "no_answer_share": 0.0,
+    "group": "metric",
+    "mean_input_tokens": 36647.0,
+    "mean_output_tokens": 4632.0,
+    "mean_cost_usd": 0.0449,
+    "mean_queries": 3.0,
+    "decoys_matched": {}
+   },
+   "H5": {
+    "runs": 1,
+    "right": 1,
+    "right_share": 1.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": 0.0,
+    "declined": 0,
+    "declined_share": 0.0,
+    "no_answer": 0,
+    "no_answer_share": 0.0,
+    "group": "entity",
+    "mean_input_tokens": 11086.0,
+    "mean_output_tokens": 950.0,
+    "mean_cost_usd": 0.0119,
+    "mean_queries": 1.0,
+    "decoys_matched": {}
+   }
+  },
+  "wrong_answers_that_flagged_an_assumption": 0,
+  "wrong_answers": 0,
+  "declines": 0,
+  "declines_that_mention_the_query_limit": 0,
+  "runs_that_used_every_query": 0,
+  "mean_cost_usd_per_question": 0.0284,
+  "mean_input_tokens_per_question": 23866.5,
+  "mean_output_tokens_per_question": 2791.0,
+  "total_cost_usd": 0.0567
+ },
+ "by_coverage_class": {
+  "metric_plus_filter": {
+   "runs": 2,
+   "right": 2,
+   "right_share": 1.0,
+   "confidently_wrong": 0,
+   "confidently_wrong_share": 0.0,
+   "declined": 0,
+   "declined_share": 0.0,
+   "no_answer": 0,
+   "no_answer_share": 0.0,
+   "questions": [
+    "H1",
+    "H5"
+   ]
+  }
+ },
+ "answers_given": {
+  "H1": [
+   {
+    "trial": 0,
+    "outcome": "right",
+    "answer": "88.1656804733728",
+    "matched_decoy": ""
+   }
+  ],
+  "H5": [
+   {
+    "trial": 0,
+    "outcome": "right",
+    "answer": "Northgate Foods Group",
+    "matched_decoy": ""
+   }
+  ]
+ },
+ "effort": {
+  "mean_input_tokens": 23866,
+  "mean_output_tokens": 2791,
+  "cache_read_share_of_input": 0.0,
+  "runs_with_a_cache_read": 0,
+  "mean_model_calls": 5.5,
+  "mean_sql_queries": 2.0,
+  "mean_seconds": 29.7,
+  "mean_cost_usd": 0.0284,
+  "total_cost_usd": 0.0567
+ },
+ "tool_use": {
+  "runs": 2,
+  "mean_calls_per_run": {
+   "run_sql": 2.0,
+   "query_metrics": 2.5
+  },
+  "total_calls": {
+   "run_sql": 4,
+   "query_metrics": 5
+  },
+  "runs_that_called": {
+   "run_sql": 2,
+   "query_metrics": 2
+  },
+  "runs_whose_first_call_was_sql": 1,
+  "metric_calls_that_returned_an_error": 0,
+  "all_runs": {
+   "runs": 2,
+   "metric_tool_only": 0,
+   "both_tools": 2,
+   "sql_only": 0,
+   "no_tool_call": 0,
+   "outcomes_metric_tool_only": {
+    "runs": 0,
+    "right": 0,
+    "right_share": null,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": null,
+    "declined": 0,
+    "declined_share": null,
+    "no_answer": 0,
+    "no_answer_share": null
+   },
+   "outcomes_both_tools": {
+    "runs": 2,
+    "right": 2,
+    "right_share": 1.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": 0.0,
+    "declined": 0,
+    "declined_share": 0.0,
+    "no_answer": 0,
+    "no_answer_share": 0.0
+   },
+   "outcomes_sql_only": {
+    "runs": 0,
+    "right": 0,
+    "right_share": null,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": null,
+    "declined": 0,
+    "declined_share": null,
+    "no_answer": 0,
+    "no_answer_share": null
+   }
+  },
+  "by_coverage_class": {
+   "metric_plus_filter": {
+    "runs": 2,
+    "metric_tool_only": 0,
+    "both_tools": 2,
+    "sql_only": 0,
+    "no_tool_call": 0,
+    "outcomes_metric_tool_only": {
+     "runs": 0,
+     "right": 0,
+     "right_share": null,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": null,
+     "declined": 0,
+     "declined_share": null,
+     "no_answer": 0,
+     "no_answer_share": null
+    },
+    "outcomes_both_tools": {
+     "runs": 2,
+     "right": 2,
+     "right_share": 1.0,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": 0.0,
+     "declined": 0,
+     "declined_share": 0.0,
+     "no_answer": 0,
+     "no_answer_share": 0.0
+    },
+    "outcomes_sql_only": {
+     "runs": 0,
+     "right": 0,
+     "right_share": null,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": null,
+     "declined": 0,
+     "declined_share": null,
+     "no_answer": 0,
+     "no_answer_share": null
+    }
+   }
+  },
+  "went_around_the_semantic_layer": {
+   "what": "Runs on a question that one metric query answers (coverage classes one_metric_query and metric_plus_filter), in which the agent ran at least one SQL query.",
+   "runs_on_such_questions": 2,
+   "runs_that_ran_sql": 2,
+   "of_which_never_called_the_metric_tool": 0,
+   "of_which_called_both": 2,
+   "outcomes_when_sql_was_run": {
+    "runs": 2,
+    "right": 2,
+    "right_share": 1.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": 0.0,
+    "declined": 0,
+    "declined_share": 0.0,
+    "no_answer": 0,
+    "no_answer_share": 0.0
+   },
+   "runs_answered_from_metrics_alone": 0,
+   "outcomes_from_metrics_alone": {
+    "runs": 0,
+    "right": 0,
+    "right_share": null,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": null,
+    "declined": 0,
+    "declined_share": null,
+    "no_answer": 0,
+    "no_answer_share": null
+   }
+  }
+ },
+ "limits": {
+  "runs_refused_a_further_sql_query": 0,
+  "runs_refused_a_further_layer_call": 0,
+  "runs_that_hit_the_model_call_ceiling": 0,
+  "runs_that_timed_out": 0,
+  "runs_that_ended_in_an_error": 0
+ },
+ "runs": [
+  {
+   "config": "flash_semantic",
+   "layers": [
+    "semantic"
+   ],
+   "model": "gemini-3.8-flash",
+   "question_id": "H1",
+   "group": "metric",
+   "trial": 0,
+   "outcome": "right",
+   "extracted": "88.1656804733728",
+   "value": 88.1656804733728,
+   "matched_decoy": "",
+   "flagged_assumption": false,
+   "mentions_query_limit": false,
+   "gold": 88.17,
+   "answer_text": "In Q2 2026 (April 1, 2026 \u2013 June 30, 2026), Tessaway's own fleet had:\n- **Delivered loads:** 354\n- **Measured loads:** 338\n- **On-time loads:** 298\n\nThis results in an official on-time delivery rate of **88.1656804733728%** (or approximately **88.17%**).\n\nANSWER: 88.1656804733728",
+   "queries": [
+    {
+     "sql": "SELECT carr_typ_cd, count(*) as cnt, array_agg(carr_nm LIMIT 5) as samples\nFROM tms_carr\nGROUP BY carr_typ_cd",
+     "row_count": 2,
+     "bytes_billed": 10485760
+    },
+    {
+     "sql": "-- Let's check how on-time rate is calculated in the semantic layer or warehouse\n-- Delivey stop arrival vs appointment window\nSELECT 298.0 / 338.0 * 100 AS on_time_rate",
+     "row_count": 1,
+     "bytes_billed": 0
+    },
+    {
+     "sql": "SELECT routine_name, routine_definition FROM information_schema.routines LIMIT 10",
+     "error": "Not found: Dataset PROJECT:information_schema was not found in location US"
+    }
+   ],
+   "query_count": 3,
+   "queries_refused_over_limit": 0,
+   "tool_calls": [
+    {
+     "seq": 1,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT carr_typ_cd, count(*) as cnt, array_agg(carr_nm LIMIT 5) as samples\nFROM tms_carr\nGROUP BY carr_typ_cd"
+     },
+     "row_count": 2
+    },
+    {
+     "seq": 2,
+     "tool": "query_metrics",
+     "arguments": {
+      "metrics": [
+       "on_time_rate",
+       "on_time_loads",
+       "on_time_measured_loads",
+       "delivered_loads"
+      ],
+      "group_by": [],
+      "where": [
+       "tender__carrier_type = 'OWN'"
+      ],
+      "start_date": "2026-04-01",
+      "end_date": "2026-06-30",
+      "order_by": [],
+      "limit": 50
+     },
+     "generated_sql": "-- Combine Aggregated Outputs\n-- Order By [] Limit 51\n-- Write to DataTable\nWITH sma_10001_cte AS (\n  -- Read Elements From Semantic Model 'deliveries'\n  -- Metric Time Dimension 'delivered_date'\n  SELECT\n    TIMESTAMP_TRUNC(delivered_date, day) AS metric_time__day\n    , tender_id AS tender\n    , 1 AS __delivered_loads\n    , case when arrived_on_time then 1 else 0 end AS __on_time_loads\n    , case when arrived_on_time or not shipper_delayed then 1 else 0 end AS __on_time_measured_loads\n  FROM `PROJECT`.`tessaway_sem`.`deliveries` deliveries_src_10000\n)\n\n, rss_10005_cte AS (\n  -- Read Elements From Semantic Model 'tenders'\n  SELECT\n    carrier_type\n    , tender_id AS tender\n  FROM `PROJECT`.`tessaway_sem`.`tenders` tenders_src_10000\n)\n\nSELECT\n  MAX(subq_14.on_time_rate) AS on_time_rate\n  , MAX(subq_24.on_time_loads) AS on_time_loads\n  , MAX(subq_24.on_time_measured_loads) AS on_time_measured_loads\n  , MAX(subq_24.delivered_loads) AS delivered_loads\nFROM (\n  -- Compute Metrics via Expressions\n  SELECT\n    100 * on_time_loads / nullif(on_time_measured_loads, 0) AS on_time_rate\n  FROM (\n    -- Constrain Output with WHERE\n    -- Select: ['__on_time_loads', '__on_time_measured_loads']\n    -- Aggregate Inputs for Simple Metrics\n    -- Compute Metrics via Expressions\n    SELECT\n      SUM(on_time_loads) AS on_time_loads\n      , SUM(on_time_measured_loads) AS on_time_measured_loads\n    FROM (\n      -- Join Standard Outputs\n      -- Select: ['__on_time_loads', '__on_time_measured_loads', 'tender__carrier_type']\n      SELECT\n        rss_10005_cte.carrier_type AS tender__carrier_type\n        , subq_5.__on_time_loads AS on_time_loads\n        , subq_5.__on_time_measured_loads AS on_time_measured_loads\n      FROM (\n        -- Read From CTE For node_id=sma_10001\n        -- Constrain Time Range to [2026-04-01T00:00:00, 2026-06-30T00:00:00]\n        SELECT\n          tender\n          , __on_time_loads\n          , __on_time_measured_loads\n        FROM sma_10001_cte\n        WHERE metric_time__day BETWEEN '2026-04-01' AND '2026-06-30'\n      ) subq_5\n      LEFT OUTER JOIN\n        rss_10005_cte\n      ON\n        subq_5.tender = rss_10005_cte.tender\n    ) subq_9\n    WHERE tender__carrier_type = 'OWN'\n  ) subq_13\n) subq_14\nCROSS JOIN (\n  -- Constrain Output with WHERE\n  -- Select: ['__on_time_loads', '__on_time_measured_loads', '__delivered_loads']\n  -- Aggregate Inputs for Simple Metrics\n  -- Compute Metrics via Expressions\n  SELECT\n    SUM(on_time_loads) AS on_time_loads\n    , SUM(on_time_measured_loads) AS on_time_measured_loads\n    , SUM(delivered_loads) AS delivered_loads\n  FROM (\n    -- Join Standard Outputs\n    -- Select: ['__on_time_loads', '__on_time_measured_loads', '__delivered_loads', 'tender__carrier_type']\n    SELECT\n      rss_10005_cte.carrier_type AS tender__carrier_type\n      , subq_16.__delivered_loads AS delivered_loads\n      , subq_16.__on_time_loads AS on_time_loads\n      , subq_16.__on_time_measured_loads AS on_time_measured_loads\n    FROM (\n      -- Read From CTE For node_id=sma_10001\n      -- Constrain Time Range to [2026-04-01T00:00:00, 2026-06-30T00:00:00]\n      SELECT\n        tender\n        , __delivered_loads\n        , __on_time_loads\n        , __on_time_measured_loads\n      FROM sma_10001_cte\n      WHERE metric_time__day BETWEEN '2026-04-01' AND '2026-06-30'\n    ) subq_16\n    LEFT OUTER JOIN\n      rss_10005_cte\n    ON\n      subq_16.tender = rss_10005_cte.tender\n  ) subq_20\n  WHERE tender__carrier_type = 'OWN'\n) subq_24\nLIMIT 51",
+     "row_count": 1,
+     "bytes_billed": 62914560
+    },
+    {
+     "seq": 3,
+     "tool": "query_metrics",
+     "arguments": {
+      "metrics": [
+       "on_time_rate",
+       "operations_on_time_rate"
+      ],
+      "group_by": [],
+      "where": [
+       "tender__carrier_type = 'OWN'"
+      ],
+      "start_date": "2026-04-01",
+      "end_date": "2026-06-30",
+      "order_by": [],
+      "limit": 50
+     },
+     "generated_sql": "-- Compute Metrics via Expressions\n-- Order By [] Limit 51\n-- Write to DataTable\nSELECT\n  100 * on_time_loads / nullif(on_time_measured_loads, 0) AS on_time_rate\n  , 100 * on_time_loads / nullif(delivered_loads, 0) AS operations_on_time_rate\nFROM (\n  -- Constrain Output with WHERE\n  -- Select: ['__on_time_loads', '__on_time_measured_loads', '__delivered_loads']\n  -- Aggregate Inputs for Simple Metrics\n  -- Compute Metrics via Expressions\n  SELECT\n    SUM(on_time_loads) AS on_time_loads\n    , SUM(on_time_measured_loads) AS on_time_measured_loads\n    , SUM(delivered_loads) AS delivered_loads\n  FROM (\n    -- Join Standard Outputs\n    -- Select: ['__on_time_loads', '__on_time_measured_loads', '__delivered_loads', 'tender__carrier_type']\n    SELECT\n      tenders_src_10000.carrier_type AS tender__carrier_type\n      , subq_2.__delivered_loads AS delivered_loads\n      , subq_2.__on_time_loads AS on_time_loads\n      , subq_2.__on_time_measured_loads AS on_time_measured_loads\n    FROM (\n      -- Read Elements From Semantic Model 'deliveries'\n      -- Metric Time Dimension 'delivered_date'\n      -- Constrain Time Range to [2026-04-01T00:00:00, 2026-06-30T00:00:00]\n      SELECT\n        tender_id AS tender\n        , 1 AS __delivered_loads\n        , case when arrived_on_time then 1 else 0 end AS __on_time_loads\n        , case when arrived_on_time or not shipper_delayed then 1 else 0 end AS __on_time_measured_loads\n      FROM `PROJECT`.`tessaway_sem`.`deliveries` deliveries_src_10000\n      WHERE TIMESTAMP_TRUNC(delivered_date, day) BETWEEN '2026-04-01' AND '2026-06-30'\n    ) subq_2\n    LEFT OUTER JOIN\n      `PROJECT`.`tessaway_sem`.`tenders` tenders_src_10000\n    ON\n      subq_2.tender = tenders_src_10000.tender_id\n  ) subq_6\n  WHERE tender__carrier_type = 'OWN'\n) subq_10\nLIMIT 51",
+     "row_count": 1,
+     "bytes_billed": 62914560
+    },
+    {
+     "seq": 4,
+     "tool": "query_metrics",
+     "arguments": {
+      "metrics": [
+       "on_time_rate"
+      ],
+      "group_by": [],
+      "where": [
+       "tender__carrier_name = 'Tessaway Fleet'"
+      ],
+      "start_date": "2026-04-01",
+      "end_date": "2026-06-30",
+      "order_by": [],
+      "limit": 50
+     },
+     "generated_sql": "-- Compute Metrics via Expressions\n-- Order By [] Limit 51\n-- Write to DataTable\nSELECT\n  100 * on_time_loads / nullif(on_time_measured_loads, 0) AS on_time_rate\nFROM (\n  -- Constrain Output with WHERE\n  -- Select: ['__on_time_loads', '__on_time_measured_loads']\n  -- Aggregate Inputs for Simple Metrics\n  -- Compute Metrics via Expressions\n  SELECT\n    SUM(on_time_loads) AS on_time_loads\n    , SUM(on_time_measured_loads) AS on_time_measured_loads\n  FROM (\n    -- Join Standard Outputs\n    -- Select: ['__on_time_loads', '__on_time_measured_loads', 'tender__carrier_name']\n    SELECT\n      tenders_src_10000.carrier_name AS tender__carrier_name\n      , subq_4.__on_time_loads AS on_time_loads\n      , subq_4.__on_time_measured_loads AS on_time_measured_loads\n    FROM (\n      -- Read Elements From Semantic Model 'deliveries'\n      -- Metric Time Dimension 'delivered_date'\n      -- Constrain Time Range to [2026-04-01T00:00:00, 2026-06-30T00:00:00]\n      SELECT\n        tender_id AS tender\n        , case when arrived_on_time then 1 else 0 end AS __on_time_loads\n        , case when arrived_on_time or not shipper_delayed then 1 else 0 end AS __on_time_measured_loads\n      FROM `PROJECT`.`tessaway_sem`.`deliveries` deliveries_src_10000\n      WHERE TIMESTAMP_TRUNC(delivered_date, day) BETWEEN '2026-04-01' AND '2026-06-30'\n    ) subq_4\n    LEFT OUTER JOIN\n      `PROJECT`.`tessaway_sem`.`tenders` tenders_src_10000\n    ON\n      subq_4.tender = tenders_src_10000.tender_id\n  ) subq_8\n  WHERE tender__carrier_name = 'Tessaway Fleet'\n) subq_12\nLIMIT 51",
+     "row_count": 1,
+     "bytes_billed": 62914560
+    },
+    {
+     "seq": 5,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "-- Let's check how on-time rate is calculated in the semantic layer or warehouse\n-- Delivey stop arrival vs appointment window\nSELECT 298.0 / 338.0 * 100 AS on_time_rate"
+     },
+     "row_count": 1
+    },
+    {
+     "seq": 6,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT routine_name, routine_definition FROM information_schema.routines LIMIT 10"
+     },
+     "error": "Not found: Dataset PROJECT:information_schema was not found in location US"
+    },
+    {
+     "seq": 7,
+     "tool": "query_metrics",
+     "arguments": {
+      "metrics": [
+       "on_time_rate",
+       "on_time_loads",
+       "on_time_measured_loads",
+       "delivered_loads"
+      ],
+      "group_by": [
+       "metric_time__month"
+      ],
+      "where": [
+       "tender__carrier_type = 'OWN'"
+      ],
+      "start_date": "2026-04-01",
+      "end_date": "2026-06-30",
+      "order_by": [
+       "metric_time__month"
+      ],
+      "limit": 50
+     },
+     "generated_sql": "-- Combine Aggregated Outputs\n-- Order By ['metric_time__month'] Limit 51\n-- Write to DataTable\nWITH sma_10001_cte AS (\n  -- Read Elements From Semantic Model 'deliveries'\n  -- Metric Time Dimension 'delivered_date'\n  SELECT\n    TIMESTAMP_TRUNC(delivered_date, day) AS metric_time__day\n    , TIMESTAMP_TRUNC(delivered_date, month) AS metric_time__month\n    , tender_id AS tender\n    , 1 AS __delivered_loads\n    , case when arrived_on_time then 1 else 0 end AS __on_time_loads\n    , case when arrived_on_time or not shipper_delayed then 1 else 0 end AS __on_time_measured_loads\n  FROM `PROJECT`.`tessaway_sem`.`deliveries` deliveries_src_10000\n)\n\n, rss_10005_cte AS (\n  -- Read Elements From Semantic Model 'tenders'\n  SELECT\n    carrier_type\n    , tender_id AS tender\n  FROM `PROJECT`.`tessaway_sem`.`tenders` tenders_src_10000\n)\n\nSELECT\n  COALESCE(subq_14.metric_time__month, subq_24.metric_time__month) AS metric_time__month\n  , MAX(subq_14.on_time_rate) AS on_time_rate\n  , MAX(subq_24.on_time_loads) AS on_time_loads\n  , MAX(subq_24.on_time_measured_loads) AS on_time_measured_loads\n  , MAX(subq_24.delivered_loads) AS delivered_loads\nFROM (\n  -- Compute Metrics via Expressions\n  SELECT\n    metric_time__month\n    , 100 * on_time_loads / nullif(on_time_measured_loads, 0) AS on_time_rate\n  FROM (\n    -- Constrain Output with WHERE\n    -- Select: ['__on_time_loads', '__on_time_measured_loads', 'metric_time__month']\n    -- Aggregate Inputs for Simple Metrics\n    -- Compute Metrics via Expressions\n    SELECT\n      metric_time__month\n      , SUM(on_time_loads) AS on_time_loads\n      , SUM(on_time_measured_loads) AS on_time_measured_loads\n    FROM (\n      -- Join Standard Outputs\n      -- Select: ['__on_time_loads', '__on_time_measured_loads', 'tender__carrier_type', 'metric_time__month']\n      SELECT\n        subq_5.metric_time__month AS metric_time__month\n        , rss_10005_cte.carrier_type AS tender__carrier_type\n        , subq_5.__on_time_loads AS on_time_loads\n        , subq_5.__on_time_measured_loads AS on_time_measured_loads\n      FROM (\n        -- Read From CTE For node_id=sma_10001\n        -- Constrain Time Range to [2026-04-01T00:00:00, 2026-06-30T00:00:00]\n        SELECT\n          metric_time__month\n          , tender\n          , __on_time_loads\n          , __on_time_measured_loads\n        FROM sma_10001_cte\n        WHERE metric_time__day BETWEEN '2026-04-01' AND '2026-06-30'\n      ) subq_5\n      LEFT OUTER JOIN\n        rss_10005_cte\n      ON\n        subq_5.tender = rss_10005_cte.tender\n    ) subq_9\n    WHERE tender__carrier_type = 'OWN'\n    GROUP BY\n      metric_time__month\n  ) subq_13\n) subq_14\nFULL OUTER JOIN (\n  -- Constrain Output with WHERE\n  -- Select: ['__on_time_loads', '__on_time_measured_loads', '__delivered_loads', 'metric_time__month']\n  -- Aggregate Inputs for Simple Metrics\n  -- Compute Metrics via Expressions\n  SELECT\n    metric_time__month\n    , SUM(on_time_loads) AS on_time_loads\n    , SUM(on_time_measured_loads) AS on_time_measured_loads\n    , SUM(delivered_loads) AS delivered_loads\n  FROM (\n    -- Join Standard Outputs\n    -- Select: ['__on_time_loads', '__on_time_measured_loads', '__delivered_loads', 'tender__carrier_type', 'metric_time__month']\n    SELECT\n      subq_16.metric_time__month AS metric_time__month\n      , rss_10005_cte.carrier_type AS tender__carrier_type\n      , subq_16.__delivered_loads AS delivered_loads\n      , subq_16.__on_time_loads AS on_time_loads\n      , subq_16.__on_time_measured_loads AS on_time_measured_loads\n    FROM (\n      -- Read From CTE For node_id=sma_10001\n      -- Constrain Time Range to [2026-04-01T00:00:00, 2026-06-30T00:00:00]\n      SELECT\n        metric_time__month\n        , tender\n        , __delivered_loads\n        , __on_time_loads\n        , __on_time_measured_loads\n      FROM sma_10001_cte\n      WHERE metric_time__day BETWEEN '2026-04-01' AND '2026-06-30'\n    ) subq_16\n    LEFT OUTER JOIN\n      rss_10005_cte\n    ON\n      subq_16.tender = rss_10005_cte.tender\n  ) subq_20\n  WHERE tender__carrier_type = 'OWN'\n  GROUP BY\n    metric_time__month\n) subq_24\nON\n  subq_14.metric_time__month = subq_24.metric_time__month\nGROUP BY\n  metric_time__month\nORDER BY metric_time__month\nLIMIT 51",
+     "row_count": 3,
+     "bytes_billed": 62914560
+    }
+   ],
+   "tool_call_counts": {
+    "run_sql": 3,
+    "query_metrics": 4
+   },
+   "tools_in_order": [
+    "run_sql",
+    "query_metrics",
+    "query_metrics",
+    "query_metrics",
+    "run_sql",
+    "run_sql",
+    "query_metrics"
+   ],
+   "layer_calls_refused": {},
+   "model_calls": 8,
+   "hit_model_call_ceiling": false,
+   "prompt_tokens_by_call": [
+    [
+     3166,
+     0
+    ],
+    [
+     3474,
+     0
+    ],
+    [
+     3740,
+     0
+    ],
+    [
+     3931,
+     0
+    ],
+    [
+     4367,
+     0
+    ],
+    [
+     4862,
+     0
+    ],
+    [
+     5361,
+     0
+    ],
+    [
+     7746,
+     0
+    ]
+   ],
+   "input_tokens": 36647,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0,
+   "input_tokens_total": 36647,
+   "output_tokens": 4632,
+   "cost_usd": 0.044855,
+   "bigquery_bytes_billed": 262144000,
+   "bigquery_usd": 0.00149,
+   "seconds": 46.2,
+   "timed_out": false,
+   "error": "",
+   "model_reported": "gemini-3.8-flash",
+   "finished_at": "2026-10-09T22:33:41+00:00"
+  },
+  {
+   "config": "flash_semantic",
+   "layers": [
+    "semantic"
+   ],
+   "model": "gemini-3.8-flash",
+   "question_id": "H5",
+   "group": "entity",
+   "trial": 0,
+   "outcome": "right",
+   "extracted": "Northgate Foods Group",
+   "value": "Northgate Foods Group",
+   "matched_decoy": "",
+   "flagged_assumption": false,
+   "mentions_query_limit": false,
+   "gold": "Northgate Foods Group",
+   "answer_text": "In the first half of 2026 (January 1 through June 30, 2026), the customer with the most delivered loads was Northgate Foods Group, with 785 loads delivered.\n\nANSWER: Northgate Foods Group",
+   "queries": [
+    {
+     "sql": "SELECT \n    p.acct_nm AS customer_name,\n    COUNT(DISTINCT l.load_id) as cnt\nFROM tms_load_hdr l\nJOIN mdm_cust_acct s ON l.shpr_acct_id = s.acct_id\nLEFT JOIN mdm_cust_acct p ON COALESCE(s.prnt_acct_id, s.acct_id) = p.acct_id\nWHERE l.test_flg = FALSE AND l.void_flg = FALSE\nGROUP BY 1\nORDER BY cnt DESC\nLIMIT 5",
+     "row_count": 5,
+     "bytes_billed": 20971520
+    }
+   ],
+   "query_count": 1,
+   "queries_refused_over_limit": 0,
+   "tool_calls": [
+    {
+     "seq": 1,
+     "tool": "query_metrics",
+     "arguments": {
+      "metrics": [
+       "delivered_loads"
+      ],
+      "group_by": [
+       "tender__customer_name"
+      ],
+      "where": [],
+      "start_date": "2026-01-01",
+      "end_date": "2026-06-30",
+      "order_by": [
+       "-delivered_loads"
+      ],
+      "limit": 50
+     },
+     "generated_sql": "-- Join Standard Outputs\n-- Select: ['__delivered_loads', 'tender__customer_name']\n-- Select: ['__delivered_loads', 'tender__customer_name']\n-- Aggregate Inputs for Simple Metrics\n-- Compute Metrics via Expressions\n-- Order By ['delivered_loads'] Limit 51\n-- Write to DataTable\nSELECT\n  tenders_src_10000.customer_name AS tender__customer_name\n  , SUM(subq_3.__delivered_loads) AS delivered_loads\nFROM (\n  -- Read Elements From Semantic Model 'deliveries'\n  -- Metric Time Dimension 'delivered_date'\n  -- Constrain Time Range to [2026-01-01T00:00:00, 2026-06-30T00:00:00]\n  SELECT\n    tender_id AS tender\n    , 1 AS __delivered_loads\n  FROM `PROJECT`.`tessaway_sem`.`deliveries` deliveries_src_10000\n  WHERE TIMESTAMP_TRUNC(delivered_date, day) BETWEEN '2026-01-01' AND '2026-06-30'\n) subq_3\nLEFT OUTER JOIN\n  `PROJECT`.`tessaway_sem`.`tenders` tenders_src_10000\nON\n  subq_3.tender = tenders_src_10000.tender_id\nGROUP BY\n  tender__customer_name\nORDER BY delivered_loads DESC\nLIMIT 51",
+     "row_count": 36,
+     "bytes_billed": 62914560
+    },
+    {
+     "seq": 2,
+     "tool": "run_sql",
+     "arguments": {
+      "sql": "SELECT \n    p.acct_nm AS customer_name,\n    COUNT(DISTINCT l.load_id) as cnt\nFROM tms_load_hdr l\nJOIN mdm_cust_acct s ON l.shpr_acct_id = s.acct_id\nLEFT JOIN mdm_cust_acct p ON COALESCE(s.prnt_acct_id, s.acct_id) = p.acct_id\nWHERE l.test_flg = FALSE AND l.void_flg = FALSE\nGROUP BY 1\nORDER BY cnt DESC\nLIMIT 5"
+     },
+     "row_count": 5
+    }
+   ],
+   "tool_call_counts": {
+    "query_metrics": 1,
+    "run_sql": 1
+   },
+   "tools_in_order": [
+    "query_metrics",
+    "run_sql"
+   ],
+   "layer_calls_refused": {},
+   "model_calls": 3,
+   "hit_model_call_ceiling": false,
+   "prompt_tokens_by_call": [
+    [
+     3165,
+     0
+    ],
+    [
+     3814,
+     0
+    ],
+    [
+     4107,
+     0
+    ]
+   ],
+   "input_tokens": 11086,
+   "cache_read_tokens": 0,
+   "cache_write_tokens": 0,
+   "input_tokens_total": 11086,
+   "output_tokens": 950,
+   "cost_usd": 0.011877,
+   "bigquery_bytes_billed": 83886080,
+   "bigquery_usd": 0.000477,
+   "seconds": 13.1,
+   "timed_out": false,
+   "error": "",
+   "model_reported": "gemini-3.8-flash",
+   "finished_at": "2026-10-09T22:33:08+00:00"
+  }
+ ]
+}

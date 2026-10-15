@@ -1,0 +1,1592 @@
+{
+ "what": "Figures for the held-out fairness test of Part 2, derived from results/holdout/runs by analysis/holdout_article_numbers.py.",
+ "complete": {
+  "baseline": true,
+  "flash_semantic": true
+ },
+ "runs_per_question": 3,
+ "questions": 12,
+ "one_run_in_points": {
+  "overall": 2.8
+ },
+ "coverage": {
+  "labels": {
+   "one_metric_query": "one metric query, as is",
+   "metric_plus_filter": "metric plus a filter or dimension the layer already has",
+   "several_or_arithmetic": "needs more than one metric query or arithmetic on results",
+   "not_answerable": "not answerable from the layer"
+  },
+  "counts": {
+   "one_metric_query": 0,
+   "metric_plus_filter": 8,
+   "several_or_arithmetic": 3,
+   "not_answerable": 1
+  },
+  "by_class": {
+   "one_metric_query": [],
+   "metric_plus_filter": [
+    "H1",
+    "H2",
+    "H4",
+    "H5",
+    "H8",
+    "H9",
+    "H10",
+    "H12"
+   ],
+   "several_or_arithmetic": [
+    "H3",
+    "H6",
+    "H7"
+   ],
+   "not_answerable": [
+    "H11"
+   ]
+  },
+  "checked_at": "2026-10-09T22:28:25+00:00"
+ },
+ "configurations": {
+  "baseline": {
+   "overall": {
+    "runs": 36,
+    "right": 5,
+    "right_pct": 13.9,
+    "confidently_wrong": 5,
+    "confidently_wrong_pct": 13.9,
+    "declined": 26,
+    "declined_pct": 72.2,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "by_group": {
+    "metric": {
+     "runs": 12,
+     "right": 0,
+     "right_pct": 0.0,
+     "confidently_wrong": 0,
+     "confidently_wrong_pct": 0.0,
+     "declined": 12,
+     "declined_pct": 100.0,
+     "no_answer": 0,
+     "no_answer_pct": 0.0
+    },
+    "entity": {
+     "runs": 12,
+     "right": 2,
+     "right_pct": 16.7,
+     "confidently_wrong": 4,
+     "confidently_wrong_pct": 33.3,
+     "declined": 6,
+     "declined_pct": 50.0,
+     "no_answer": 0,
+     "no_answer_pct": 0.0
+    },
+    "rule": {
+     "runs": 12,
+     "right": 3,
+     "right_pct": 25.0,
+     "confidently_wrong": 1,
+     "confidently_wrong_pct": 8.3,
+     "declined": 8,
+     "declined_pct": 66.7,
+     "no_answer": 0,
+     "no_answer_pct": 0.0
+    }
+   },
+   "by_coverage_class": {
+    "metric_plus_filter": {
+     "runs": 24,
+     "right": 4,
+     "right_pct": 16.7,
+     "confidently_wrong": 4,
+     "confidently_wrong_pct": 16.7,
+     "declined": 16,
+     "declined_pct": 66.7,
+     "no_answer": 0,
+     "no_answer_pct": 0.0
+    },
+    "several_or_arithmetic": {
+     "runs": 9,
+     "right": 0,
+     "right_pct": 0.0,
+     "confidently_wrong": 1,
+     "confidently_wrong_pct": 11.1,
+     "declined": 8,
+     "declined_pct": 88.9,
+     "no_answer": 0,
+     "no_answer_pct": 0.0
+    },
+    "not_answerable": {
+     "runs": 3,
+     "right": 1,
+     "right_pct": 33.3,
+     "confidently_wrong": 0,
+     "confidently_wrong_pct": 0.0,
+     "declined": 2,
+     "declined_pct": 66.7,
+     "no_answer": 0,
+     "no_answer_pct": 0.0
+    }
+   }
+  },
+  "flash_semantic": {
+   "overall": {
+    "runs": 36,
+    "right": 36,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "by_group": {
+    "metric": {
+     "runs": 12,
+     "right": 12,
+     "right_pct": 100.0,
+     "confidently_wrong": 0,
+     "confidently_wrong_pct": 0.0,
+     "declined": 0,
+     "declined_pct": 0.0,
+     "no_answer": 0,
+     "no_answer_pct": 0.0
+    },
+    "entity": {
+     "runs": 12,
+     "right": 12,
+     "right_pct": 100.0,
+     "confidently_wrong": 0,
+     "confidently_wrong_pct": 0.0,
+     "declined": 0,
+     "declined_pct": 0.0,
+     "no_answer": 0,
+     "no_answer_pct": 0.0
+    },
+    "rule": {
+     "runs": 12,
+     "right": 12,
+     "right_pct": 100.0,
+     "confidently_wrong": 0,
+     "confidently_wrong_pct": 0.0,
+     "declined": 0,
+     "declined_pct": 0.0,
+     "no_answer": 0,
+     "no_answer_pct": 0.0
+    }
+   },
+   "by_coverage_class": {
+    "metric_plus_filter": {
+     "runs": 24,
+     "right": 24,
+     "right_pct": 100.0,
+     "confidently_wrong": 0,
+     "confidently_wrong_pct": 0.0,
+     "declined": 0,
+     "declined_pct": 0.0,
+     "no_answer": 0,
+     "no_answer_pct": 0.0
+    },
+    "several_or_arithmetic": {
+     "runs": 9,
+     "right": 9,
+     "right_pct": 100.0,
+     "confidently_wrong": 0,
+     "confidently_wrong_pct": 0.0,
+     "declined": 0,
+     "declined_pct": 0.0,
+     "no_answer": 0,
+     "no_answer_pct": 0.0
+    },
+    "not_answerable": {
+     "runs": 3,
+     "right": 3,
+     "right_pct": 100.0,
+     "confidently_wrong": 0,
+     "confidently_wrong_pct": 0.0,
+     "declined": 0,
+     "declined_pct": 0.0,
+     "no_answer": 0,
+     "no_answer_pct": 0.0
+    }
+   }
+  }
+ },
+ "change_baseline_to_semantic_points": {
+  "overall": {
+   "right": 86.1,
+   "confidently_wrong": -13.9,
+   "declined": -72.2
+  },
+  "by_group": {
+   "metric": {
+    "right": 100.0,
+    "confidently_wrong": 0.0,
+    "declined": -100.0
+   },
+   "entity": {
+    "right": 83.3,
+    "confidently_wrong": -33.3,
+    "declined": -50.0
+   },
+   "rule": {
+    "right": 75.0,
+    "confidently_wrong": -8.3,
+    "declined": -66.7
+   }
+  },
+  "by_coverage_class": {
+   "metric_plus_filter": {
+    "right": 83.3,
+    "confidently_wrong": -16.7,
+    "declined": -66.7
+   },
+   "several_or_arithmetic": {
+    "right": 100.0,
+    "confidently_wrong": -11.1,
+    "declined": -88.9
+   },
+   "not_answerable": {
+    "right": 66.7,
+    "confidently_wrong": 0.0,
+    "declined": -66.7
+   }
+  }
+ },
+ "side_by_side": {
+  "held_out_12_questions": {
+   "baseline": {
+    "runs": 36,
+    "right": 5,
+    "right_pct": 13.9,
+    "confidently_wrong": 5,
+    "confidently_wrong_pct": 13.9,
+    "declined": 26,
+    "declined_pct": 72.2,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "flash_semantic": {
+    "runs": 36,
+    "right": 36,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0
+   },
+   "change_points": {
+    "right": 86.1,
+    "confidently_wrong": -13.9,
+    "declined": -72.2
+   }
+  },
+  "all_24_questions": {
+   "baseline": {
+    "runs": 240,
+    "right": 105,
+    "right_pct": 43.8,
+    "confidently_wrong": 20,
+    "confidently_wrong_pct": 8.3,
+    "declined": 115,
+    "declined_pct": 47.9,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "runs_per_question": 10
+   },
+   "flash_semantic": {
+    "runs": 72,
+    "right": 72,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "runs_per_question": 3
+   },
+   "change_points": {
+    "right": 56.2,
+    "confidently_wrong": -8.3,
+    "declined": -47.9
+   }
+  },
+  "the_18_outside_the_lookup_group": {
+   "note": "The held-out set has no lookup questions, so this is the like-for-like row.",
+   "baseline": {
+    "runs": 180,
+    "right": 45,
+    "right_pct": 25.0,
+    "confidently_wrong": 20,
+    "confidently_wrong_pct": 11.1,
+    "declined": 115,
+    "declined_pct": 63.9,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "runs_per_question": 10
+   },
+   "flash_semantic": {
+    "runs": 54,
+    "right": 54,
+    "right_pct": 100.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_pct": 0.0,
+    "declined": 0,
+    "declined_pct": 0.0,
+    "no_answer": 0,
+    "no_answer_pct": 0.0,
+    "runs_per_question": 3
+   },
+   "change_points": {
+    "right": 75.0,
+    "confidently_wrong": -11.1,
+    "declined": -63.9
+   }
+  }
+ },
+ "without_the_flawed_questions": {
+  "questions_left_out": [
+   "H4"
+  ],
+  "why": "The coverage check found that an answer ignoring the question's condition is still scored right.",
+  "baseline": {
+   "runs": 33,
+   "right": 5,
+   "right_pct": 15.2,
+   "confidently_wrong": 5,
+   "confidently_wrong_pct": 15.2,
+   "declined": 23,
+   "declined_pct": 69.7,
+   "no_answer": 0,
+   "no_answer_pct": 0.0
+  },
+  "flash_semantic": {
+   "runs": 33,
+   "right": 33,
+   "right_pct": 100.0,
+   "confidently_wrong": 0,
+   "confidently_wrong_pct": 0.0,
+   "declined": 0,
+   "declined_pct": 0.0,
+   "no_answer": 0,
+   "no_answer_pct": 0.0
+  },
+  "change_points": {
+   "right": 84.8,
+   "confidently_wrong": -15.2,
+   "declined": -69.7
+  }
+ },
+ "per_question": [
+  {
+   "question_id": "H1",
+   "group": "metric",
+   "question": "What was our own fleet's on-time delivery rate in Q2 2026?",
+   "gold": 88.17,
+   "coverage_class": "metric_plus_filter",
+   "coverage_note": "",
+   "baseline": {
+    "runs": 3,
+    "right": 0,
+    "confidently_wrong": 0,
+    "declined": 3,
+    "no_answer": 0,
+    "outcomes": [
+     "declined",
+     "declined",
+     "declined"
+    ],
+    "answers": [
+     "NEEDS_CLARIFICATION",
+     "NEEDS_CLARIFICATION",
+     "NEEDS_CLARIFICATION"
+    ],
+    "decoys_matched": [],
+    "tools": [
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     },
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     },
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     }
+    ]
+   },
+   "flash_semantic": {
+    "runs": 3,
+    "right": 3,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0,
+    "outcomes": [
+     "right",
+     "right",
+     "right"
+    ],
+    "answers": [
+     "88.1656804733728",
+     "88.1656804733728",
+     "88.1656804733728"
+    ],
+    "decoys_matched": [],
+    "tools": [
+     {
+      "run_sql": 5,
+      "query_metrics": 3
+     },
+     {
+      "run_sql": 4,
+      "query_metrics": 2
+     },
+     {
+      "run_sql": 4,
+      "query_metrics": 2
+     }
+    ]
+   }
+  },
+  {
+   "question_id": "H2",
+   "group": "metric",
+   "question": "What was our margin percentage on loads hauled by outside carriers in the first half of 2026?",
+   "gold": 12.36,
+   "coverage_class": "metric_plus_filter",
+   "coverage_note": "",
+   "baseline": {
+    "runs": 3,
+    "right": 0,
+    "confidently_wrong": 0,
+    "declined": 3,
+    "no_answer": 0,
+    "outcomes": [
+     "declined",
+     "declined",
+     "declined"
+    ],
+    "answers": [
+     "NEEDS_CLARIFICATION",
+     "NEEDS_CLARIFICATION",
+     "NEEDS_CLARIFICATION"
+    ],
+    "decoys_matched": [],
+    "tools": [
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     },
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     },
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     }
+    ]
+   },
+   "flash_semantic": {
+    "runs": 3,
+    "right": 3,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0,
+    "outcomes": [
+     "right",
+     "right",
+     "right"
+    ],
+    "answers": [
+     "12.359558455",
+     "12.359558455",
+     "12.359558455"
+    ],
+    "decoys_matched": [],
+    "tools": [
+     {
+      "run_sql": 2,
+      "query_metrics": 3
+     },
+     {
+      "run_sql": 3,
+      "query_metrics": 2
+     },
+     {
+      "run_sql": 4,
+      "query_metrics": 4
+     }
+    ]
+   }
+  },
+  {
+   "question_id": "H3",
+   "group": "metric",
+   "question": "What share of our Q3 2026 revenue came from cross-border loads?",
+   "gold": 9.58,
+   "coverage_class": "several_or_arithmetic",
+   "coverage_note": "",
+   "baseline": {
+    "runs": 3,
+    "right": 0,
+    "confidently_wrong": 0,
+    "declined": 3,
+    "no_answer": 0,
+    "outcomes": [
+     "declined",
+     "declined",
+     "declined"
+    ],
+    "answers": [
+     "NEEDS_CLARIFICATION",
+     "NEEDS_CLARIFICATION",
+     "NEEDS_CLARIFICATION"
+    ],
+    "decoys_matched": [],
+    "tools": [
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     },
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     },
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     }
+    ]
+   },
+   "flash_semantic": {
+    "runs": 3,
+    "right": 3,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0,
+    "outcomes": [
+     "right",
+     "right",
+     "right"
+    ],
+    "answers": [
+     "9.58",
+     "9.58",
+     "9.58"
+    ],
+    "decoys_matched": [],
+    "tools": [
+     {
+      "run_sql": 1,
+      "query_metrics": 2
+     },
+     {
+      "run_sql": 1,
+      "query_metrics": 4
+     },
+     {
+      "run_sql": 2,
+      "query_metrics": 3
+     }
+    ]
+   }
+  },
+  {
+   "question_id": "H4",
+   "group": "metric",
+   "question": "What was our average margin per load on reefer loads in Q3 2026?",
+   "gold": 408.74,
+   "coverage_class": "metric_plus_filter",
+   "coverage_note": "Flaw in the question, found here and left as it is: margin per load for the whole company in the quarter is within the question's 1% tolerance of the reefer answer, so the scorer cannot tell an answer that ignores 'reefer' from a right one. The whole-company reading is not among the question's decoys.",
+   "baseline": {
+    "runs": 3,
+    "right": 0,
+    "confidently_wrong": 0,
+    "declined": 3,
+    "no_answer": 0,
+    "outcomes": [
+     "declined",
+     "declined",
+     "declined"
+    ],
+    "answers": [
+     "NEEDS_CLARIFICATION",
+     "NEEDS_CLARIFICATION",
+     "NEEDS_CLARIFICATION"
+    ],
+    "decoys_matched": [],
+    "tools": [
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     },
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     },
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     }
+    ]
+   },
+   "flash_semantic": {
+    "runs": 3,
+    "right": 3,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0,
+    "outcomes": [
+     "right",
+     "right",
+     "right"
+    ],
+    "answers": [
+     "408.74",
+     "408.74",
+     "408.74"
+    ],
+    "decoys_matched": [],
+    "tools": [
+     {
+      "run_sql": 4,
+      "query_metrics": 2
+     },
+     {
+      "run_sql": 2,
+      "query_metrics": 3
+     },
+     {
+      "run_sql": 3,
+      "query_metrics": 2
+     }
+    ]
+   }
+  },
+  {
+   "question_id": "H5",
+   "group": "entity",
+   "question": "Which customer did we deliver the most loads for in the first half of 2026?",
+   "gold": "Northgate Foods Group",
+   "coverage_class": "metric_plus_filter",
+   "coverage_note": "",
+   "baseline": {
+    "runs": 3,
+    "right": 2,
+    "confidently_wrong": 1,
+    "declined": 0,
+    "no_answer": 0,
+    "outcomes": [
+     "confidently_wrong",
+     "right",
+     "right"
+    ],
+    "answers": [
+     "Pellam Paper Corp",
+     "Northgate Foods Group",
+     "Northgate Foods Group"
+    ],
+    "decoys_matched": [],
+    "tools": [
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     },
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     },
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     }
+    ]
+   },
+   "flash_semantic": {
+    "runs": 3,
+    "right": 3,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0,
+    "outcomes": [
+     "right",
+     "right",
+     "right"
+    ],
+    "answers": [
+     "Northgate Foods Group",
+     "Northgate Foods Group",
+     "Northgate Foods Group"
+    ],
+    "decoys_matched": [],
+    "tools": [
+     {
+      "run_sql": 0,
+      "query_metrics": 1
+     },
+     {
+      "run_sql": 3,
+      "query_metrics": 1
+     },
+     {
+      "run_sql": 2,
+      "query_metrics": 1
+     }
+    ]
+   }
+  },
+  {
+   "question_id": "H6",
+   "group": "entity",
+   "question": "How many customers each brought in more than $250,000 of revenue in Q3 2026?",
+   "gold": 17,
+   "coverage_class": "several_or_arithmetic",
+   "coverage_note": "",
+   "baseline": {
+    "runs": 3,
+    "right": 0,
+    "confidently_wrong": 1,
+    "declined": 2,
+    "no_answer": 0,
+    "outcomes": [
+     "confidently_wrong",
+     "declined",
+     "declined"
+    ],
+    "answers": [
+     "13",
+     "NEEDS_CLARIFICATION",
+     "NEEDS_CLARIFICATION"
+    ],
+    "decoys_matched": [
+     "shipper account rows over the line, on linehaul from the load table"
+    ],
+    "tools": [
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     },
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     },
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     }
+    ]
+   },
+   "flash_semantic": {
+    "runs": 3,
+    "right": 3,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0,
+    "outcomes": [
+     "right",
+     "right",
+     "right"
+    ],
+    "answers": [
+     "17",
+     "17",
+     "17"
+    ],
+    "decoys_matched": [],
+    "tools": [
+     {
+      "run_sql": 2,
+      "query_metrics": 1
+     },
+     {
+      "run_sql": 4,
+      "query_metrics": 2
+     },
+     {
+      "run_sql": 2,
+      "query_metrics": 3
+     }
+    ]
+   }
+  },
+  {
+   "question_id": "H7",
+   "group": "entity",
+   "question": "What share of our Q3 2026 revenue came from our five largest customers?",
+   "gold": 30.93,
+   "coverage_class": "several_or_arithmetic",
+   "coverage_note": "",
+   "baseline": {
+    "runs": 3,
+    "right": 0,
+    "confidently_wrong": 0,
+    "declined": 3,
+    "no_answer": 0,
+    "outcomes": [
+     "declined",
+     "declined",
+     "declined"
+    ],
+    "answers": [
+     "NEEDS_CLARIFICATION",
+     "NEEDS_CLARIFICATION",
+     "NEEDS_CLARIFICATION"
+    ],
+    "decoys_matched": [],
+    "tools": [
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     },
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     },
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     }
+    ]
+   },
+   "flash_semantic": {
+    "runs": 3,
+    "right": 3,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0,
+    "outcomes": [
+     "right",
+     "right",
+     "right"
+    ],
+    "answers": [
+     "30.93",
+     "30.93",
+     "30.93"
+    ],
+    "decoys_matched": [],
+    "tools": [
+     {
+      "run_sql": 1,
+      "query_metrics": 7
+     },
+     {
+      "run_sql": 4,
+      "query_metrics": 4
+     },
+     {
+      "run_sql": 1,
+      "query_metrics": 6
+     }
+    ]
+   }
+  },
+  {
+   "question_id": "H8",
+   "group": "entity",
+   "question": "How many loads did we book for Kestrel Packaging in the first half of 2026?",
+   "gold": 216,
+   "coverage_class": "metric_plus_filter",
+   "coverage_note": "",
+   "baseline": {
+    "runs": 3,
+    "right": 0,
+    "confidently_wrong": 2,
+    "declined": 1,
+    "no_answer": 0,
+    "outcomes": [
+     "confidently_wrong",
+     "declined",
+     "confidently_wrong"
+    ],
+    "answers": [
+     "225",
+     "NEEDS_CLARIFICATION",
+     "225"
+    ],
+    "decoys_matched": [
+     "test and voided rows removed, re-tenders still counted twice",
+     "test and voided rows removed, re-tenders still counted twice"
+    ],
+    "tools": [
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     },
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     },
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     }
+    ]
+   },
+   "flash_semantic": {
+    "runs": 3,
+    "right": 3,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0,
+    "outcomes": [
+     "right",
+     "right",
+     "right"
+    ],
+    "answers": [
+     "216",
+     "216",
+     "216"
+    ],
+    "decoys_matched": [],
+    "tools": [
+     {
+      "run_sql": 3,
+      "query_metrics": 1
+     },
+     {
+      "run_sql": 2,
+      "query_metrics": 1
+     },
+     {
+      "run_sql": 3,
+      "query_metrics": 1
+     }
+    ]
+   }
+  },
+  {
+   "question_id": "H9",
+   "group": "rule",
+   "question": "How many of our Q3 2026 deliveries arrived on a Saturday or Sunday?",
+   "gold": 1119,
+   "coverage_class": "metric_plus_filter",
+   "coverage_note": "The filter is a SQL day-of-week expression on the metric's own day, which MetricFlow accepts. The layer has no day-of-week dimension; an agent has to think of the expression or fetch the days and count.",
+   "baseline": {
+    "runs": 3,
+    "right": 0,
+    "confidently_wrong": 0,
+    "declined": 3,
+    "no_answer": 0,
+    "outcomes": [
+     "declined",
+     "declined",
+     "declined"
+    ],
+    "answers": [
+     "NEEDS_CLARIFICATION",
+     "NEEDS_CLARIFICATION",
+     "NEEDS_CLARIFICATION"
+    ],
+    "decoys_matched": [],
+    "tools": [
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     },
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     },
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     }
+    ]
+   },
+   "flash_semantic": {
+    "runs": 3,
+    "right": 3,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0,
+    "outcomes": [
+     "right",
+     "right",
+     "right"
+    ],
+    "answers": [
+     "1119",
+     "1119",
+     "1119"
+    ],
+    "decoys_matched": [],
+    "tools": [
+     {
+      "run_sql": 4,
+      "query_metrics": 3
+     },
+     {
+      "run_sql": 5,
+      "query_metrics": 5
+     },
+     {
+      "run_sql": 8,
+      "query_metrics": 5
+     }
+    ]
+   }
+  },
+  {
+   "question_id": "H10",
+   "group": "rule",
+   "question": "How many late deliveries in Q3 2026 were the shipper's fault?",
+   "gold": 139,
+   "coverage_class": "metric_plus_filter",
+   "coverage_note": "",
+   "baseline": {
+    "runs": 3,
+    "right": 0,
+    "confidently_wrong": 1,
+    "declined": 2,
+    "no_answer": 0,
+    "outcomes": [
+     "declined",
+     "confidently_wrong",
+     "declined"
+    ],
+    "answers": [
+     "NEEDS_CLARIFICATION",
+     "40",
+     "NEEDS_CLARIFICATION"
+    ],
+    "decoys_matched": [
+     "shipper-delayed loads the portal shows as late"
+    ],
+    "tools": [
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     },
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     },
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     }
+    ]
+   },
+   "flash_semantic": {
+    "runs": 3,
+    "right": 3,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0,
+    "outcomes": [
+     "right",
+     "right",
+     "right"
+    ],
+    "answers": [
+     "139",
+     "139",
+     "139"
+    ],
+    "decoys_matched": [],
+    "tools": [
+     {
+      "run_sql": 4,
+      "query_metrics": 2
+     },
+     {
+      "run_sql": 8,
+      "query_metrics": 3
+     },
+     {
+      "run_sql": 6,
+      "query_metrics": 4
+     }
+    ]
+   }
+  },
+  {
+   "question_id": "H11",
+   "group": "rule",
+   "question": "How many loads delivered in Q3 2026 have proof-of-delivery paperwork on file but still can't be billed?",
+   "gold": 27,
+   "coverage_class": "not_answerable",
+   "coverage_note": "",
+   "baseline": {
+    "runs": 3,
+    "right": 1,
+    "confidently_wrong": 0,
+    "declined": 2,
+    "no_answer": 0,
+    "outcomes": [
+     "right",
+     "declined",
+     "declined"
+    ],
+    "answers": [
+     "27",
+     "NEEDS_CLARIFICATION",
+     "NEEDS_CLARIFICATION"
+    ],
+    "decoys_matched": [],
+    "tools": [
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     },
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     },
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     }
+    ]
+   },
+   "flash_semantic": {
+    "runs": 3,
+    "right": 3,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0,
+    "outcomes": [
+     "right",
+     "right",
+     "right"
+    ],
+    "answers": [
+     "27",
+     "27",
+     "27"
+    ],
+    "decoys_matched": [],
+    "tools": [
+     {
+      "run_sql": 8,
+      "query_metrics": 1
+     },
+     {
+      "run_sql": 8,
+      "query_metrics": 2
+     },
+     {
+      "run_sql": 8,
+      "query_metrics": 2
+     }
+    ]
+   }
+  },
+  {
+   "question_id": "H12",
+   "group": "rule",
+   "question": "What on-time rate did Northgate Foods see in the portal for its Q3 2026 deliveries?",
+   "gold": 89.38,
+   "coverage_class": "metric_plus_filter",
+   "coverage_note": "",
+   "baseline": {
+    "runs": 3,
+    "right": 2,
+    "confidently_wrong": 0,
+    "declined": 1,
+    "no_answer": 0,
+    "outcomes": [
+     "right",
+     "right",
+     "declined"
+    ],
+    "answers": [
+     "89.53",
+     "89.53",
+     "NEEDS_CLARIFICATION"
+    ],
+    "decoys_matched": [],
+    "tools": [
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     },
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     },
+     {
+      "run_sql": 8,
+      "query_metrics": 0
+     }
+    ]
+   },
+   "flash_semantic": {
+    "runs": 3,
+    "right": 3,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0,
+    "outcomes": [
+     "right",
+     "right",
+     "right"
+    ],
+    "answers": [
+     "89.3764434180139",
+     "89.38",
+     "89.3764434180139"
+    ],
+    "decoys_matched": [],
+    "tools": [
+     {
+      "run_sql": 5,
+      "query_metrics": 2
+     },
+     {
+      "run_sql": 5,
+      "query_metrics": 2
+     },
+     {
+      "run_sql": 5,
+      "query_metrics": 1
+     }
+    ]
+   }
+  }
+ ],
+ "semantic_tool_use": {
+  "runs": 36,
+  "mean_calls_per_run": {
+   "run_sql": 3.78,
+   "query_metrics": 2.58
+  },
+  "total_calls": {
+   "run_sql": 136,
+   "query_metrics": 93
+  },
+  "runs_that_called": {
+   "run_sql": 35,
+   "query_metrics": 36
+  },
+  "runs_whose_first_call_was_sql": 12,
+  "metric_calls_that_returned_an_error": 0,
+  "all_runs": {
+   "runs": 36,
+   "metric_tool_only": 1,
+   "both_tools": 35,
+   "sql_only": 0,
+   "no_tool_call": 0,
+   "outcomes_metric_tool_only": {
+    "runs": 1,
+    "right": 1,
+    "right_share": 1.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": 0.0,
+    "declined": 0,
+    "declined_share": 0.0,
+    "no_answer": 0,
+    "no_answer_share": 0.0
+   },
+   "outcomes_both_tools": {
+    "runs": 35,
+    "right": 35,
+    "right_share": 1.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": 0.0,
+    "declined": 0,
+    "declined_share": 0.0,
+    "no_answer": 0,
+    "no_answer_share": 0.0
+   },
+   "outcomes_sql_only": {
+    "runs": 0,
+    "right": 0,
+    "right_share": null,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": null,
+    "declined": 0,
+    "declined_share": null,
+    "no_answer": 0,
+    "no_answer_share": null
+   }
+  },
+  "by_coverage_class": {
+   "metric_plus_filter": {
+    "runs": 24,
+    "metric_tool_only": 1,
+    "both_tools": 23,
+    "sql_only": 0,
+    "no_tool_call": 0,
+    "outcomes_metric_tool_only": {
+     "runs": 1,
+     "right": 1,
+     "right_share": 1.0,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": 0.0,
+     "declined": 0,
+     "declined_share": 0.0,
+     "no_answer": 0,
+     "no_answer_share": 0.0
+    },
+    "outcomes_both_tools": {
+     "runs": 23,
+     "right": 23,
+     "right_share": 1.0,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": 0.0,
+     "declined": 0,
+     "declined_share": 0.0,
+     "no_answer": 0,
+     "no_answer_share": 0.0
+    },
+    "outcomes_sql_only": {
+     "runs": 0,
+     "right": 0,
+     "right_share": null,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": null,
+     "declined": 0,
+     "declined_share": null,
+     "no_answer": 0,
+     "no_answer_share": null
+    }
+   },
+   "several_or_arithmetic": {
+    "runs": 9,
+    "metric_tool_only": 0,
+    "both_tools": 9,
+    "sql_only": 0,
+    "no_tool_call": 0,
+    "outcomes_metric_tool_only": {
+     "runs": 0,
+     "right": 0,
+     "right_share": null,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": null,
+     "declined": 0,
+     "declined_share": null,
+     "no_answer": 0,
+     "no_answer_share": null
+    },
+    "outcomes_both_tools": {
+     "runs": 9,
+     "right": 9,
+     "right_share": 1.0,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": 0.0,
+     "declined": 0,
+     "declined_share": 0.0,
+     "no_answer": 0,
+     "no_answer_share": 0.0
+    },
+    "outcomes_sql_only": {
+     "runs": 0,
+     "right": 0,
+     "right_share": null,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": null,
+     "declined": 0,
+     "declined_share": null,
+     "no_answer": 0,
+     "no_answer_share": null
+    }
+   },
+   "not_answerable": {
+    "runs": 3,
+    "metric_tool_only": 0,
+    "both_tools": 3,
+    "sql_only": 0,
+    "no_tool_call": 0,
+    "outcomes_metric_tool_only": {
+     "runs": 0,
+     "right": 0,
+     "right_share": null,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": null,
+     "declined": 0,
+     "declined_share": null,
+     "no_answer": 0,
+     "no_answer_share": null
+    },
+    "outcomes_both_tools": {
+     "runs": 3,
+     "right": 3,
+     "right_share": 1.0,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": 0.0,
+     "declined": 0,
+     "declined_share": 0.0,
+     "no_answer": 0,
+     "no_answer_share": 0.0
+    },
+    "outcomes_sql_only": {
+     "runs": 0,
+     "right": 0,
+     "right_share": null,
+     "confidently_wrong": 0,
+     "confidently_wrong_share": null,
+     "declined": 0,
+     "declined_share": null,
+     "no_answer": 0,
+     "no_answer_share": null
+    }
+   }
+  },
+  "went_around_the_semantic_layer": {
+   "what": "Runs on a question that one metric query answers (coverage classes one_metric_query and metric_plus_filter), in which the agent ran at least one SQL query.",
+   "runs_on_such_questions": 24,
+   "runs_that_ran_sql": 23,
+   "of_which_never_called_the_metric_tool": 0,
+   "of_which_called_both": 23,
+   "outcomes_when_sql_was_run": {
+    "runs": 23,
+    "right": 23,
+    "right_share": 1.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": 0.0,
+    "declined": 0,
+    "declined_share": 0.0,
+    "no_answer": 0,
+    "no_answer_share": 0.0
+   },
+   "runs_answered_from_metrics_alone": 1,
+   "outcomes_from_metrics_alone": {
+    "runs": 1,
+    "right": 1,
+    "right_share": 1.0,
+    "confidently_wrong": 0,
+    "confidently_wrong_share": 0.0,
+    "declined": 0,
+    "declined_share": 0.0,
+    "no_answer": 0,
+    "no_answer_share": 0.0
+   }
+  }
+ },
+ "bypass": {
+  "what": "Runs on a question that one metric query answers (coverage classes one_metric_query and metric_plus_filter), in which the agent ran at least one SQL query.",
+  "runs_on_such_questions": 24,
+  "runs_that_ran_sql": 23,
+  "of_which_never_called_the_metric_tool": 0,
+  "of_which_called_both": 23,
+  "outcomes_when_sql_was_run": {
+   "runs": 23,
+   "right": 23,
+   "right_share": 1.0,
+   "confidently_wrong": 0,
+   "confidently_wrong_share": 0.0,
+   "declined": 0,
+   "declined_share": 0.0,
+   "no_answer": 0,
+   "no_answer_share": 0.0
+  },
+  "runs_answered_from_metrics_alone": 1,
+  "outcomes_from_metrics_alone": {
+   "runs": 1,
+   "right": 1,
+   "right_share": 1.0,
+   "confidently_wrong": 0,
+   "confidently_wrong_share": 0.0,
+   "declined": 0,
+   "declined_share": 0.0,
+   "no_answer": 0,
+   "no_answer_share": 0.0
+  }
+ },
+ "semantic_runs_not_right": [],
+ "semantic_runs_not_right_by_question": {},
+ "baseline_decoys_matched": {
+  "H10: shipper-delayed loads the portal shows as late": 1,
+  "H6: shipper account rows over the line, on linehaul from the load table": 1,
+  "H8: test and voided rows removed, re-tenders still counted twice": 2
+ },
+ "semantic_decoys_matched": {},
+ "runs_repeated_after_a_failure": {
+  "baseline": 0,
+  "flash_semantic": 0
+ },
+ "predictions_read_against_the_runs": [
+  {
+   "claim": "The layer helps on questions it was not built for",
+   "rule": "semantic right share more than two runs above the held-out baseline's",
+   "holds": true,
+   "numbers": {
+    "gain_points": 86.1,
+    "two_runs_points": 5.6
+   }
+  },
+  {
+   "claim": "The layer generalizes as well as Part 2 suggested",
+   "rule": "semantic right in at least 34 of 36 runs",
+   "holds": true,
+   "numbers": {
+    "right": 36,
+    "runs": 36
+   }
+  },
+  {
+   "claim": "The layer does much less on unseen questions",
+   "rule": "gain over the held-out baseline is less than half the gain on the 24",
+   "holds": false,
+   "numbers": {
+    "gain_points": 86.1,
+    "gain_points_on_the_24": 56.2
+   }
+  },
+  {
+   "claim": "The layer's failures are the ones coverage predicts",
+   "rule": "wrong and declined semantic runs fall mostly in the third and fourth classes",
+   "holds": null,
+   "numbers": {
+    "failures": 0,
+    "in_third_or_fourth_class": 0
+   }
+  },
+  {
+   "claim": "The layer does no harm",
+   "rule": "semantic confidently wrong share not more than two runs above the baseline's",
+   "holds": true,
+   "numbers": {
+    "baseline_confidently_wrong": 5,
+    "semantic_confidently_wrong": 0
+   }
+  },
+  {
+   "claim": "baseline: between 7 and 12 of 36 runs right",
+   "rule": "the range written in predictions.md",
+   "holds": false,
+   "numbers": {
+    "right": 5,
+    "runs": 36
+   }
+  },
+  {
+   "claim": "flash_semantic: between 20 and 30 of 36 runs right",
+   "rule": "the range written in predictions.md",
+   "holds": false,
+   "numbers": {
+    "right": 36,
+    "runs": 36
+   }
+  }
+ ],
+ "spend": {
+  "note": "Estimated from token counts and list prices in tessaway/config.py, and from BigQuery bytes billed at the on-demand rate. Every line ever appended under results/holdout is counted: the full run, the smoke test and any run later repeated. The invoice is the authority.",
+  "prices_checked_on": "2026-10-09",
+  "by_folder": {
+   "full run": {
+    "runs": 72,
+    "model_usd": 3.0908,
+    "bigquery_usd": 0.0508
+   },
+   "smoke": {
+    "runs": 4,
+    "model_usd": 0.1212,
+    "bigquery_usd": 0.0026
+   }
+  },
+  "model_usd": 3.212,
+  "bigquery_usd": 0.0534,
+  "total_usd": 3.2654
+ }
+}
