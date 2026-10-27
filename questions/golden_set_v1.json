@@ -1,0 +1,24 @@
+{
+ "name": "Tessaway Freight golden set",
+ "version": 1,
+ "about": "The 24 Part 1 questions with their correct answers, frozen. Every Part 5 run is scored against these values and nothing else. The correct answers are never recomputed from the warehouse while the check is in use: a change in a source column would change the recomputed answer along with the agent's, and the check would pass a wrong answer. Tessaway Freight is a fictional company and the owner is a fictional role.",
+ "owner": "Head of Data",
+ "frozen_on": "2026-10-09",
+ "questions_file": "questions/part1.yaml",
+ "questions_sha256": "eae3cc25520a1383f72d803bc21d47b2873d2bb7dcb00081d96a95a4f4cee03a",
+ "answers_file": "results/part1/gold_answers.json",
+ "answers_sha256": "9481d0f11a70ca7191e133f9dc12bd999bc8653ae5a44255c6c4d90f7f43fa08",
+ "warehouse_seed": 20261009,
+ "change_log": [
+  {
+   "version": 1,
+   "date": "2026-10-09",
+   "change": "Written with the Part 1 question set: 24 questions, gold SQL reviewed against data/DEFINITIONS.md, answers computed once from the warehouse built with seed 20261009 (commit dea695c)."
+  },
+  {
+   "version": 1,
+   "date": "2026-10-14",
+   "change": "Frozen as golden set version 1 for Part 5. No value changed: the manifest pins the two files by hash."
+  }
+ ]
+}

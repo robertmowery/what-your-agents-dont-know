@@ -1,0 +1,6 @@
+# Part 5, on top of requirements.txt: traces and the results bucket.
+# opentelemetry-api and -sdk 1.42.1 come with google-adk 2.11.0; pinned here so the image matches.
+opentelemetry-api==1.42.1
+opentelemetry-sdk==1.42.1
+opentelemetry-exporter-gcp-trace==1.15.0
+google-cloud-storage==3.17.0

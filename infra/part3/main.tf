@@ -177,11 +177,11 @@ resource "google_cloud_run_v2_service" "contract" {
       }
       env {
         name  = "BQ_DATASET"
-        value = "tessaway_wh"
+        value = var.warehouse_dataset
       }
       env {
         name  = "BQ_SEMANTIC_DATASET"
-        value = "tessaway_sem"
+        value = var.semantic_dataset
       }
       env {
         name  = "BQ_LOCATION"

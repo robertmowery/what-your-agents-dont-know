@@ -1,0 +1,257 @@
+{
+ "name": "after_revert",
+ "written_at": "2026-10-15T03:55:28+00:00",
+ "status": {
+  "dataset": "tessaway_wh_p5",
+  "record": "tessaway_wh",
+  "tables": {
+   "tms_load_hdr": {
+    "rows": 11519,
+    "rows_in_record": 11519,
+    "same_columns_and_types": true
+   },
+   "tms_stop": {
+    "rows": 23966,
+    "rows_in_record": 23966,
+    "same_columns_and_types": true
+   },
+   "tms_stat_evt": {
+    "rows": 78839,
+    "rows_in_record": 78839,
+    "same_columns_and_types": true
+   },
+   "tms_fac": {
+    "rows": 161,
+    "rows_in_record": 161,
+    "same_columns_and_types": true
+   },
+   "tms_carr": {
+    "rows": 65,
+    "rows_in_record": 65,
+    "same_columns_and_types": true
+   },
+   "mdm_cust_acct": {
+    "rows": 142,
+    "rows_in_record": 142,
+    "same_columns_and_types": true
+   },
+   "bil_cust_inv": {
+    "rows": 9593,
+    "rows_in_record": 9593,
+    "same_columns_and_types": true,
+    "rows_with_a_changed_amount": 0,
+    "of_which_cad": 0,
+    "rows_with_a_changed_currency_code": 0
+   },
+   "bil_pod_doc": {
+    "rows": 10117,
+    "rows_in_record": 10117,
+    "same_columns_and_types": true
+   },
+   "bil_carr_pay": {
+    "rows": 9981,
+    "rows_in_record": 9981,
+    "same_columns_and_types": true,
+    "rows_with_a_changed_amount": 0,
+    "of_which_cad": 0,
+    "rows_with_a_changed_currency_code": 0
+   },
+   "bil_fuel_schg": {
+    "rows": 9981,
+    "rows_in_record": 9981,
+    "same_columns_and_types": true,
+    "rows_with_a_changed_amount": 0,
+    "of_which_cad": 0,
+    "rows_with_a_changed_currency_code": 0
+   },
+   "bil_accsrl_chrg": {
+    "rows": 3577,
+    "rows_in_record": 3577,
+    "same_columns_and_types": true,
+    "rows_with_a_changed_amount": 0,
+    "of_which_cad": 0,
+    "rows_with_a_changed_currency_code": 0
+   },
+   "bil_cr_memo": {
+    "rows": 443,
+    "rows_in_record": 443,
+    "same_columns_and_types": true,
+    "rows_with_a_changed_amount": 0,
+    "of_which_cad": 0,
+    "rows_with_a_changed_currency_code": 0
+   },
+   "bil_canc_fee": {
+    "rows": 81,
+    "rows_in_record": 81,
+    "same_columns_and_types": true,
+    "rows_with_a_changed_amount": 0,
+    "of_which_cad": 0,
+    "rows_with_a_changed_currency_code": 0
+   },
+   "ref_fx_rate": {
+    "rows": 20,
+    "rows_in_record": 20,
+    "same_columns_and_types": true
+   },
+   "ptl_shpmt": {
+    "rows": 10567,
+    "rows_in_record": 10567,
+    "same_columns_and_types": true
+   }
+  },
+  "changed_rows": 0,
+  "clean": true
+ },
+ "gold_recomputed_on_copy": {
+  "dataset": "tessaway_wh_p5",
+  "golden_set_version": 1,
+  "questions": {
+   "L1": {
+    "frozen": 65,
+    "recomputed": 65,
+    "within_tolerance": true,
+    "change_pct": 0.0
+   },
+   "L2": {
+    "frozen": 11,
+    "recomputed": 11,
+    "within_tolerance": true,
+    "change_pct": 0.0
+   },
+   "L3": {
+    "frozen": "Green Bay",
+    "recomputed": "Green Bay",
+    "within_tolerance": true,
+    "change_pct": null
+   },
+   "L4": {
+    "frozen": "BHRI",
+    "recomputed": "BHRI",
+    "within_tolerance": true,
+    "change_pct": null
+   },
+   "L5": {
+    "frozen": 638,
+    "recomputed": 638,
+    "within_tolerance": true,
+    "change_pct": 0.0
+   },
+   "L6": {
+    "frozen": 0.7318,
+    "recomputed": 0.7318,
+    "within_tolerance": true,
+    "change_pct": 0.0
+   },
+   "M1": {
+    "frozen": 87.44,
+    "recomputed": 87.44,
+    "within_tolerance": true,
+    "change_pct": 0.0
+   },
+   "M2": {
+    "frozen": 10294019.12,
+    "recomputed": 10294019.12,
+    "within_tolerance": true,
+    "change_pct": 0.0
+   },
+   "M3": {
+    "frozen": 409.19,
+    "recomputed": 409.19,
+    "within_tolerance": true,
+    "change_pct": 0.0
+   },
+   "M4": {
+    "frozen": 13.24,
+    "recomputed": 13.24,
+    "within_tolerance": true,
+    "change_pct": 0.0
+   },
+   "M5": {
+    "frozen": 1097,
+    "recomputed": 1097,
+    "within_tolerance": true,
+    "change_pct": 0.0
+   },
+   "M6": {
+    "frozen": 393,
+    "recomputed": 393,
+    "within_tolerance": true,
+    "change_pct": 0.0
+   },
+   "E1": {
+    "frozen": "Northgate Foods Group",
+    "recomputed": "Northgate Foods Group",
+    "within_tolerance": true,
+    "change_pct": null
+   },
+   "E2": {
+    "frozen": 36,
+    "recomputed": 36,
+    "within_tolerance": true,
+    "change_pct": 0.0
+   },
+   "E3": {
+    "frozen": 1299690.26,
+    "recomputed": 1299690.26,
+    "within_tolerance": true,
+    "change_pct": 0.0
+   },
+   "E4": {
+    "frozen": 1170,
+    "recomputed": 1170,
+    "within_tolerance": true,
+    "change_pct": 0.0
+   },
+   "E5": {
+    "frozen": 433,
+    "recomputed": 433,
+    "within_tolerance": true,
+    "change_pct": 0.0
+   },
+   "E6": {
+    "frozen": "Midvale Transport",
+    "recomputed": "Midvale Transport",
+    "within_tolerance": true,
+    "change_pct": null
+   },
+   "R1": {
+    "frozen": 133,
+    "recomputed": 133,
+    "within_tolerance": true,
+    "change_pct": 0.0
+   },
+   "R2": {
+    "frozen": 142,
+    "recomputed": 142,
+    "within_tolerance": true,
+    "change_pct": 0.0
+   },
+   "R3": {
+    "frozen": 986208.77,
+    "recomputed": 986208.77,
+    "within_tolerance": true,
+    "change_pct": 0.0
+   },
+   "R4": {
+    "frozen": 30,
+    "recomputed": 30,
+    "within_tolerance": true,
+    "change_pct": 0.0
+   },
+   "R5": {
+    "frozen": 91.52,
+    "recomputed": 91.52,
+    "within_tolerance": true,
+    "change_pct": 0.0
+   },
+   "R6": {
+    "frozen": 3050.0,
+    "recomputed": 3050.0,
+    "within_tolerance": true,
+    "change_pct": 0.0
+   }
+  },
+  "out_of_tolerance": [],
+  "out_of_tolerance_count": 0
+ }
+}

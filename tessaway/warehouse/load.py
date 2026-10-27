@@ -34,9 +34,14 @@ from tessaway import config
 from tessaway.warehouse import generate, query, schema
 
 
-def load_table(client: bigquery.Client, name: str, rows: list[generate.Row]) -> int:
-    """Replace one table with ``rows`` and return the row count BigQuery reports."""
-    table_id = f"{config.project()}.{config.DATASET}.{name}"
+def load_table(
+    client: bigquery.Client, name: str, rows: list[generate.Row], dataset: str | None = None
+) -> int:
+    """Replace one table with ``rows`` and return the row count BigQuery reports.
+
+    ``dataset`` defaults to the configured warehouse; Part 5 loads a copy elsewhere.
+    """
+    table_id = f"{config.project()}.{dataset or config.DATASET}.{name}"
     nullable = schema.NULLABLE.get(name, set())
     job_config = bigquery.LoadJobConfig(
         schema=[

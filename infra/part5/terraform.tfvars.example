@@ -1,0 +1,8 @@
+# Copy to terraform.tfvars and fill in. No secrets belong in this file.
+project_id = "your-project-id"
+
+# From infra/part3 once the context server is up: terraform -chdir=../part3 output -raw service_url
+contract_url = ""
+
+# Leave empty for the first apply; set it to the built image for the second.
+image = ""

@@ -1,0 +1,143 @@
+[
+ {
+  "fired": true,
+  "groups_below": [
+   "metric",
+   "entity",
+   "rule"
+  ],
+  "by_group": {
+   "lookup": {
+    "runs": 6,
+    "right": 6,
+    "share": 1.0,
+    "baseline_share": 1.0
+   },
+   "metric": {
+    "runs": 6,
+    "right": 4,
+    "share": 0.6667,
+    "baseline_share": 1.0
+   },
+   "entity": {
+    "runs": 6,
+    "right": 5,
+    "share": 0.8333,
+    "baseline_share": 1.0
+   },
+   "rule": {
+    "runs": 6,
+    "right": 5,
+    "share": 0.8333,
+    "baseline_share": 1.0
+   }
+  },
+  "missed": [
+   "E3/confidently_wrong",
+   "M2/confidently_wrong",
+   "M3/confidently_wrong",
+   "R3/confidently_wrong"
+  ],
+  "phase": "drift",
+  "execution": 1,
+  "runs": 24,
+  "right": 20,
+  "rule": "Fire when the share of runs scored right in any question group is lower than that group's share in the baseline (Part 4 available, 72 runs).",
+  "stopped_at_budget": false,
+  "evaluated_at": "2026-10-15T03:35:16+00:00"
+ },
+ {
+  "fired": true,
+  "groups_below": [
+   "metric",
+   "entity",
+   "rule"
+  ],
+  "by_group": {
+   "lookup": {
+    "runs": 6,
+    "right": 6,
+    "share": 1.0,
+    "baseline_share": 1.0
+   },
+   "metric": {
+    "runs": 6,
+    "right": 4,
+    "share": 0.6667,
+    "baseline_share": 1.0
+   },
+   "entity": {
+    "runs": 6,
+    "right": 5,
+    "share": 0.8333,
+    "baseline_share": 1.0
+   },
+   "rule": {
+    "runs": 6,
+    "right": 5,
+    "share": 0.8333,
+    "baseline_share": 1.0
+   }
+  },
+  "missed": [
+   "E3/confidently_wrong",
+   "M2/confidently_wrong",
+   "M3/confidently_wrong",
+   "R3/confidently_wrong"
+  ],
+  "phase": "drift",
+  "execution": 2,
+  "runs": 24,
+  "right": 20,
+  "rule": "Fire when the share of runs scored right in any question group is lower than that group's share in the baseline (Part 4 available, 72 runs).",
+  "stopped_at_budget": false,
+  "evaluated_at": "2026-10-15T03:46:03+00:00"
+ },
+ {
+  "fired": true,
+  "groups_below": [
+   "metric",
+   "entity",
+   "rule"
+  ],
+  "by_group": {
+   "lookup": {
+    "runs": 6,
+    "right": 6,
+    "share": 1.0,
+    "baseline_share": 1.0
+   },
+   "metric": {
+    "runs": 6,
+    "right": 4,
+    "share": 0.6667,
+    "baseline_share": 1.0
+   },
+   "entity": {
+    "runs": 6,
+    "right": 5,
+    "share": 0.8333,
+    "baseline_share": 1.0
+   },
+   "rule": {
+    "runs": 6,
+    "right": 5,
+    "share": 0.8333,
+    "baseline_share": 1.0
+   }
+  },
+  "missed": [
+   "E3/confidently_wrong",
+   "M2/confidently_wrong",
+   "M3/confidently_wrong",
+   "R3/confidently_wrong"
+  ],
+  "phase": "drift",
+  "execution": 3,
+  "runs": 24,
+  "right": 20,
+  "rule": "Fire when the share of runs scored right in any question group is lower than that group's share in the baseline (Part 4 available, 72 runs).",
+  "stopped_at_budget": false,
+  "evaluated_at": "2026-10-15T03:54:09+00:00"
+ }
+]

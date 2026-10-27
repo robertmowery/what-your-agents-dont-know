@@ -1,0 +1,3114 @@
+{
+ "model": "gemini-3.8-flash",
+ "contract_version": "2.0.0",
+ "golden_set": {
+  "version": 1,
+  "owner": "Head of Data",
+  "frozen_on": "2026-10-09",
+  "answers_sha256": "9481d0f11a70ca7191e133f9dc12bd999bc8653ae5a44255c6c4d90f7f43fa08",
+  "questions_sha256": "eae3cc25520a1383f72d803bc21d47b2873d2bb7dcb00081d96a95a4f4cee03a"
+ },
+ "question_count": 24,
+ "alert_rule": "Fire when the share of runs scored right in any question group is lower than that group's share in the baseline (Part 4 available, 72 runs).",
+ "bands": {
+  "seconds": {
+   "low": 28.3213,
+   "high": 105.6203,
+   "mean": 66.9708,
+   "sd": 38.6495
+  },
+  "cost_usd": {
+   "low": 0.0214,
+   "high": 0.0538,
+   "mean": 0.0376,
+   "sd": 0.0162
+  },
+  "input_tokens_total": {
+   "low": 22300.5886,
+   "high": 67183.8836,
+   "mean": 44742.2361,
+   "sd": 22441.6475
+  },
+  "query_count": {
+   "low": 0.7945,
+   "high": 4.7055,
+   "mean": 2.75,
+   "sd": 1.9555
+  }
+ },
+ "operational": {
+  "baseline": {
+   "runs": 72,
+   "failed_runs": 0,
+   "error_runs": 0,
+   "timed_out_runs": 0,
+   "failed_share": 0.0,
+   "total_cost_usd": 2.7089,
+   "seconds": {
+    "n": 72,
+    "mean": 66.9708,
+    "sd": 38.6495,
+    "median": 56.05,
+    "min": 9.8,
+    "max": 193.3
+   },
+   "cost_usd": {
+    "n": 72,
+    "mean": 0.0376,
+    "sd": 0.0162,
+    "median": 0.0358,
+    "min": 0.0079,
+    "max": 0.0774
+   },
+   "input_tokens_total": {
+    "n": 72,
+    "mean": 44742.2361,
+    "sd": 22441.6475,
+    "median": 40509.5,
+    "min": 7826.0,
+    "max": 93733.0
+   },
+   "output_tokens": {
+    "n": 72,
+    "mean": 3129.4306,
+    "sd": 2126.6577,
+    "median": 2440.0,
+    "min": 543.0,
+    "max": 9553.0
+   },
+   "query_count": {
+    "n": 72,
+    "mean": 2.75,
+    "sd": 1.9555,
+    "median": 2.0,
+    "min": 0.0,
+    "max": 7.0
+   },
+   "contract_calls": {
+    "n": 72,
+    "mean": 3.9861,
+    "sd": 1.827,
+    "median": 4.0,
+    "min": 0.0,
+    "max": 8.0
+   },
+   "model_calls": {
+    "n": 72,
+    "mean": 7.5278,
+    "sd": 2.7983,
+    "median": 7.0,
+    "min": 2.0,
+    "max": 13.0
+   }
+  },
+  "part3_available": {
+   "runs": 72,
+   "failed_runs": 0,
+   "error_runs": 0,
+   "timed_out_runs": 0,
+   "failed_share": 0.0,
+   "total_cost_usd": 2.6073,
+   "seconds": {
+    "n": 72,
+    "mean": 79.3486,
+    "sd": 51.5026,
+    "median": 70.05,
+    "min": 9.2,
+    "max": 251.3
+   },
+   "cost_usd": {
+    "n": 72,
+    "mean": 0.0362,
+    "sd": 0.019,
+    "median": 0.0351,
+    "min": 0.0068,
+    "max": 0.0986
+   },
+   "input_tokens_total": {
+    "n": 72,
+    "mean": 45595.1667,
+    "sd": 27456.8013,
+    "median": 41410.0,
+    "min": 7606.0,
+    "max": 139754.0
+   },
+   "output_tokens": {
+    "n": 72,
+    "mean": 2531.5139,
+    "sd": 2266.1931,
+    "median": 1795.0,
+    "min": 304.0,
+    "max": 10880.0
+   },
+   "query_count": {
+    "n": 72,
+    "mean": 2.9861,
+    "sd": 1.8651,
+    "median": 3.0,
+    "min": 0.0,
+    "max": 7.0
+   },
+   "contract_calls": {
+    "n": 72,
+    "mean": 3.8611,
+    "sd": 2.3092,
+    "median": 4.0,
+    "min": 0.0,
+    "max": 11.0
+   },
+   "model_calls": {
+    "n": 72,
+    "mean": 7.8056,
+    "sd": 3.3468,
+    "median": 8.0,
+    "min": 2.0,
+    "max": 17.0
+   }
+  },
+  "drift": {
+   "runs": 72,
+   "failed_runs": 0,
+   "error_runs": 0,
+   "timed_out_runs": 0,
+   "failed_share": 0.0,
+   "total_cost_usd": 2.8261,
+   "seconds": {
+    "n": 72,
+    "mean": 62.1944,
+    "sd": 40.9349,
+    "median": 51.05,
+    "min": 13.3,
+    "max": 227.4
+   },
+   "cost_usd": {
+    "n": 72,
+    "mean": 0.0393,
+    "sd": 0.0176,
+    "median": 0.0385,
+    "min": 0.0078,
+    "max": 0.1005
+   },
+   "input_tokens_total": {
+    "n": 72,
+    "mean": 49490.5972,
+    "sd": 28985.0681,
+    "median": 41871.0,
+    "min": 7831.0,
+    "max": 135631.0
+   },
+   "output_tokens": {
+    "n": 72,
+    "mean": 3192.0278,
+    "sd": 2245.5376,
+    "median": 2629.0,
+    "min": 512.0,
+    "max": 13338.0
+   },
+   "query_count": {
+    "n": 72,
+    "mean": 2.9583,
+    "sd": 2.0857,
+    "median": 3.0,
+    "min": 0.0,
+    "max": 8.0
+   },
+   "contract_calls": {
+    "n": 72,
+    "mean": 4.2222,
+    "sd": 2.2903,
+    "median": 4.0,
+    "min": 0.0,
+    "max": 10.0
+   },
+   "model_calls": {
+    "n": 72,
+    "mean": 7.9167,
+    "sd": 3.2534,
+    "median": 7.0,
+    "min": 2.0,
+    "max": 16.0
+   }
+  },
+  "after_fix": {
+   "runs": 24,
+   "failed_runs": 0,
+   "error_runs": 0,
+   "timed_out_runs": 0,
+   "failed_share": 0.0,
+   "total_cost_usd": 0.8997,
+   "seconds": {
+    "n": 24,
+    "mean": 41.7625,
+    "sd": 20.616,
+    "median": 40.75,
+    "min": 10.4,
+    "max": 77.7
+   },
+   "cost_usd": {
+    "n": 24,
+    "mean": 0.0375,
+    "sd": 0.0184,
+    "median": 0.0347,
+    "min": 0.0078,
+    "max": 0.0802
+   },
+   "input_tokens_total": {
+    "n": 24,
+    "mean": 43470.125,
+    "sd": 24622.377,
+    "median": 39912.0,
+    "min": 7824.0,
+    "max": 92642.0
+   },
+   "output_tokens": {
+    "n": 24,
+    "mean": 3418.2917,
+    "sd": 2661.8239,
+    "median": 3046.0,
+    "min": 528.0,
+    "max": 11334.0
+   },
+   "query_count": {
+    "n": 24,
+    "mean": 2.5,
+    "sd": 1.7937,
+    "median": 3.0,
+    "min": 0.0,
+    "max": 6.0
+   },
+   "contract_calls": {
+    "n": 24,
+    "mean": 4.0833,
+    "sd": 2.1853,
+    "median": 4.0,
+    "min": 0.0,
+    "max": 8.0
+   },
+   "model_calls": {
+    "n": 24,
+    "mean": 7.125,
+    "sd": 3.0405,
+    "median": 6.5,
+    "min": 2.0,
+    "max": 13.0
+   }
+  }
+ },
+ "operational_by_execution": {
+  "baseline": [
+   {
+    "execution": 1,
+    "runs": 24,
+    "failed_runs": 0,
+    "error_runs": 0,
+    "timed_out_runs": 0,
+    "failed_share": 0.0,
+    "total_cost_usd": 0.9068,
+    "seconds": {
+     "n": 24,
+     "mean": 63.8667,
+     "sd": 36.7678,
+     "median": 65.85,
+     "min": 9.8,
+     "max": 139.6
+    },
+    "cost_usd": {
+     "n": 24,
+     "mean": 0.0378,
+     "sd": 0.0166,
+     "median": 0.04,
+     "min": 0.0079,
+     "max": 0.0695
+    },
+    "input_tokens_total": {
+     "n": 24,
+     "mean": 44737.0417,
+     "sd": 24089.5732,
+     "median": 42065.5,
+     "min": 7826.0,
+     "max": 86925.0
+    },
+    "output_tokens": {
+     "n": 24,
+     "mean": 3251.0833,
+     "sd": 2161.4227,
+     "median": 2584.0,
+     "min": 543.0,
+     "max": 7852.0
+    },
+    "query_count": {
+     "n": 24,
+     "mean": 2.9583,
+     "sd": 2.1565,
+     "median": 3.0,
+     "min": 0.0,
+     "max": 7.0
+    },
+    "contract_calls": {
+     "n": 24,
+     "mean": 3.7917,
+     "sd": 1.744,
+     "median": 4.0,
+     "min": 0.0,
+     "max": 7.0
+    },
+    "model_calls": {
+     "n": 24,
+     "mean": 7.5,
+     "sd": 3.0787,
+     "median": 7.5,
+     "min": 2.0,
+     "max": 12.0
+    }
+   },
+   {
+    "execution": 2,
+    "runs": 24,
+    "failed_runs": 0,
+    "error_runs": 0,
+    "timed_out_runs": 0,
+    "failed_share": 0.0,
+    "total_cost_usd": 0.9435,
+    "seconds": {
+     "n": 24,
+     "mean": 70.6708,
+     "sd": 39.9812,
+     "median": 57.3,
+     "min": 28.3,
+     "max": 193.3
+    },
+    "cost_usd": {
+     "n": 24,
+     "mean": 0.0393,
+     "sd": 0.0183,
+     "median": 0.0351,
+     "min": 0.008,
+     "max": 0.0774
+    },
+    "input_tokens_total": {
+     "n": 24,
+     "mean": 46365.125,
+     "sd": 23863.0926,
+     "median": 40116.0,
+     "min": 7867.0,
+     "max": 93733.0
+    },
+    "output_tokens": {
+     "n": 24,
+     "mean": 3338.2917,
+     "sd": 2475.222,
+     "median": 2542.5,
+     "min": 555.0,
+     "max": 9553.0
+    },
+    "query_count": {
+     "n": 24,
+     "mean": 2.875,
+     "sd": 1.8954,
+     "median": 3.0,
+     "min": 0.0,
+     "max": 7.0
+    },
+    "contract_calls": {
+     "n": 24,
+     "mean": 4.0,
+     "sd": 1.9111,
+     "median": 4.0,
+     "min": 0.0,
+     "max": 8.0
+    },
+    "model_calls": {
+     "n": 24,
+     "mean": 7.75,
+     "sd": 2.9229,
+     "median": 7.0,
+     "min": 2.0,
+     "max": 13.0
+    }
+   },
+   {
+    "execution": 3,
+    "runs": 24,
+    "failed_runs": 0,
+    "error_runs": 0,
+    "timed_out_runs": 0,
+    "failed_share": 0.0,
+    "total_cost_usd": 0.8586,
+    "seconds": {
+     "n": 24,
+     "mean": 66.375,
+     "sd": 40.4496,
+     "median": 54.95,
+     "min": 16.0,
+     "max": 152.9
+    },
+    "cost_usd": {
+     "n": 24,
+     "mean": 0.0358,
+     "sd": 0.0139,
+     "median": 0.033,
+     "min": 0.0122,
+     "max": 0.0646
+    },
+    "input_tokens_total": {
+     "n": 24,
+     "mean": 43124.5417,
+     "sd": 19986.0595,
+     "median": 39124.5,
+     "min": 12311.0,
+     "max": 85031.0
+    },
+    "output_tokens": {
+     "n": 24,
+     "mean": 2798.9167,
+     "sd": 1728.5459,
+     "median": 2197.5,
+     "min": 791.0,
+     "max": 6892.0
+    },
+    "query_count": {
+     "n": 24,
+     "mean": 2.4167,
+     "sd": 1.8396,
+     "median": 2.0,
+     "min": 0.0,
+     "max": 6.0
+    },
+    "contract_calls": {
+     "n": 24,
+     "mean": 4.1667,
+     "sd": 1.8805,
+     "median": 4.0,
+     "min": 1.0,
+     "max": 8.0
+    },
+    "model_calls": {
+     "n": 24,
+     "mean": 7.3333,
+     "sd": 2.4613,
+     "median": 7.0,
+     "min": 3.0,
+     "max": 12.0
+    }
+   }
+  ],
+  "part3_available": [
+   {
+    "execution": 1,
+    "runs": 24,
+    "failed_runs": 0,
+    "error_runs": 0,
+    "timed_out_runs": 0,
+    "failed_share": 0.0,
+    "total_cost_usd": 0.9329,
+    "seconds": {
+     "n": 24,
+     "mean": 87.0708,
+     "sd": 60.8856,
+     "median": 78.65,
+     "min": 21.4,
+     "max": 251.3
+    },
+    "cost_usd": {
+     "n": 24,
+     "mean": 0.0389,
+     "sd": 0.0207,
+     "median": 0.0374,
+     "min": 0.0071,
+     "max": 0.0986
+    },
+    "input_tokens_total": {
+     "n": 24,
+     "mean": 50103.3333,
+     "sd": 30644.5266,
+     "median": 44757.0,
+     "min": 7635.0,
+     "max": 139754.0
+    },
+    "output_tokens": {
+     "n": 24,
+     "mean": 2656.3333,
+     "sd": 2296.3036,
+     "median": 1912.5,
+     "min": 359.0,
+     "max": 8167.0
+    },
+    "query_count": {
+     "n": 24,
+     "mean": 3.25,
+     "sd": 2.172,
+     "median": 3.0,
+     "min": 0.0,
+     "max": 7.0
+    },
+    "contract_calls": {
+     "n": 24,
+     "mean": 4.1667,
+     "sd": 2.4613,
+     "median": 4.5,
+     "min": 0.0,
+     "max": 11.0
+    },
+    "model_calls": {
+     "n": 24,
+     "mean": 8.2917,
+     "sd": 3.6293,
+     "median": 8.0,
+     "min": 2.0,
+     "max": 17.0
+    }
+   },
+   {
+    "execution": 2,
+    "runs": 24,
+    "failed_runs": 0,
+    "error_runs": 0,
+    "timed_out_runs": 0,
+    "failed_share": 0.0,
+    "total_cost_usd": 0.8308,
+    "seconds": {
+     "n": 24,
+     "mean": 74.2167,
+     "sd": 35.3783,
+     "median": 69.65,
+     "min": 26.2,
+     "max": 148.9
+    },
+    "cost_usd": {
+     "n": 24,
+     "mean": 0.0346,
+     "sd": 0.0185,
+     "median": 0.0332,
+     "min": 0.0068,
+     "max": 0.0738
+    },
+    "input_tokens_total": {
+     "n": 24,
+     "mean": 42845.875,
+     "sd": 25657.5238,
+     "median": 37764.0,
+     "min": 7606.0,
+     "max": 102589.0
+    },
+    "output_tokens": {
+     "n": 24,
+     "mean": 2557.9167,
+     "sd": 2525.4346,
+     "median": 1707.5,
+     "min": 304.0,
+     "max": 10880.0
+    },
+    "query_count": {
+     "n": 24,
+     "mean": 2.7917,
+     "sd": 1.6146,
+     "median": 3.0,
+     "min": 0.0,
+     "max": 7.0
+    },
+    "contract_calls": {
+     "n": 24,
+     "mean": 3.7083,
+     "sd": 2.3679,
+     "median": 3.0,
+     "min": 0.0,
+     "max": 9.0
+    },
+    "model_calls": {
+     "n": 24,
+     "mean": 7.5,
+     "sd": 3.2033,
+     "median": 7.5,
+     "min": 2.0,
+     "max": 14.0
+    }
+   },
+   {
+    "execution": 3,
+    "runs": 24,
+    "failed_runs": 0,
+    "error_runs": 0,
+    "timed_out_runs": 0,
+    "failed_share": 0.0,
+    "total_cost_usd": 0.8436,
+    "seconds": {
+     "n": 24,
+     "mean": 76.7583,
+     "sd": 55.9714,
+     "median": 64.2,
+     "min": 9.2,
+     "max": 197.2
+    },
+    "cost_usd": {
+     "n": 24,
+     "mean": 0.0351,
+     "sd": 0.0183,
+     "median": 0.0323,
+     "min": 0.0069,
+     "max": 0.0824
+    },
+    "input_tokens_total": {
+     "n": 24,
+     "mean": 43836.2917,
+     "sd": 26409.546,
+     "median": 33678.0,
+     "min": 7629.0,
+     "max": 108392.0
+    },
+    "output_tokens": {
+     "n": 24,
+     "mean": 2380.2917,
+     "sd": 2040.0472,
+     "median": 1787.5,
+     "min": 319.0,
+     "max": 7052.0
+    },
+    "query_count": {
+     "n": 24,
+     "mean": 2.9167,
+     "sd": 1.8158,
+     "median": 3.0,
+     "min": 0.0,
+     "max": 7.0
+    },
+    "contract_calls": {
+     "n": 24,
+     "mean": 3.7083,
+     "sd": 2.1565,
+     "median": 3.5,
+     "min": 0.0,
+     "max": 8.0
+    },
+    "model_calls": {
+     "n": 24,
+     "mean": 7.625,
+     "sd": 3.2812,
+     "median": 7.0,
+     "min": 2.0,
+     "max": 14.0
+    }
+   }
+  ],
+  "drift": [
+   {
+    "execution": 1,
+    "runs": 24,
+    "failed_runs": 0,
+    "error_runs": 0,
+    "timed_out_runs": 0,
+    "failed_share": 0.0,
+    "total_cost_usd": 0.9634,
+    "seconds": {
+     "n": 24,
+     "mean": 89.4833,
+     "sd": 52.3557,
+     "median": 69.5,
+     "min": 22.9,
+     "max": 227.4
+    },
+    "cost_usd": {
+     "n": 24,
+     "mean": 0.0401,
+     "sd": 0.0199,
+     "median": 0.0399,
+     "min": 0.0081,
+     "max": 0.1005
+    },
+    "input_tokens_total": {
+     "n": 24,
+     "mean": 50276.4583,
+     "sd": 29755.1053,
+     "median": 45188.0,
+     "min": 7831.0,
+     "max": 135631.0
+    },
+    "output_tokens": {
+     "n": 24,
+     "mean": 3301.5417,
+     "sd": 2656.4165,
+     "median": 2672.5,
+     "min": 604.0,
+     "max": 13338.0
+    },
+    "query_count": {
+     "n": 24,
+     "mean": 2.9583,
+     "sd": 2.1765,
+     "median": 3.0,
+     "min": 0.0,
+     "max": 7.0
+    },
+    "contract_calls": {
+     "n": 24,
+     "mean": 4.2917,
+     "sd": 2.3679,
+     "median": 4.0,
+     "min": 0.0,
+     "max": 10.0
+    },
+    "model_calls": {
+     "n": 24,
+     "mean": 7.9583,
+     "sd": 3.2233,
+     "median": 7.5,
+     "min": 2.0,
+     "max": 14.0
+    }
+   },
+   {
+    "execution": 2,
+    "runs": 24,
+    "failed_runs": 0,
+    "error_runs": 0,
+    "timed_out_runs": 0,
+    "failed_share": 0.0,
+    "total_cost_usd": 0.9137,
+    "seconds": {
+     "n": 24,
+     "mean": 56.1375,
+     "sd": 29.4967,
+     "median": 49.8,
+     "min": 18.3,
+     "max": 125.4
+    },
+    "cost_usd": {
+     "n": 24,
+     "mean": 0.0381,
+     "sd": 0.0161,
+     "median": 0.0354,
+     "min": 0.0084,
+     "max": 0.0678
+    },
+    "input_tokens_total": {
+     "n": 24,
+     "mean": 46548.0833,
+     "sd": 27147.678,
+     "median": 38402.5,
+     "min": 7854.0,
+     "max": 103317.0
+    },
+    "output_tokens": {
+     "n": 24,
+     "mean": 3205.125,
+     "sd": 1912.2012,
+     "median": 2756.0,
+     "min": 673.0,
+     "max": 8251.0
+    },
+    "query_count": {
+     "n": 24,
+     "mean": 2.5833,
+     "sd": 1.7917,
+     "median": 2.5,
+     "min": 0.0,
+     "max": 6.0
+    },
+    "contract_calls": {
+     "n": 24,
+     "mean": 4.25,
+     "sd": 2.2698,
+     "median": 4.0,
+     "min": 0.0,
+     "max": 9.0
+    },
+    "model_calls": {
+     "n": 24,
+     "mean": 7.5417,
+     "sd": 3.1344,
+     "median": 7.0,
+     "min": 2.0,
+     "max": 14.0
+    }
+   },
+   {
+    "execution": 3,
+    "runs": 24,
+    "failed_runs": 0,
+    "error_runs": 0,
+    "timed_out_runs": 0,
+    "failed_share": 0.0,
+    "total_cost_usd": 0.949,
+    "seconds": {
+     "n": 24,
+     "mean": 40.9625,
+     "sd": 16.607,
+     "median": 38.8,
+     "min": 13.3,
+     "max": 76.8
+    },
+    "cost_usd": {
+     "n": 24,
+     "mean": 0.0395,
+     "sd": 0.0173,
+     "median": 0.0401,
+     "min": 0.0078,
+     "max": 0.0877
+    },
+    "input_tokens_total": {
+     "n": 24,
+     "mean": 51647.25,
+     "sd": 30928.3414,
+     "median": 42850.0,
+     "min": 7859.0,
+     "max": 128425.0
+    },
+    "output_tokens": {
+     "n": 24,
+     "mean": 3069.4167,
+     "sd": 2196.4396,
+     "median": 2434.5,
+     "min": 512.0,
+     "max": 9989.0
+    },
+    "query_count": {
+     "n": 24,
+     "mean": 3.3333,
+     "sd": 2.2778,
+     "median": 3.0,
+     "min": 0.0,
+     "max": 8.0
+    },
+    "contract_calls": {
+     "n": 24,
+     "mean": 4.125,
+     "sd": 2.3278,
+     "median": 4.0,
+     "min": 0.0,
+     "max": 9.0
+    },
+    "model_calls": {
+     "n": 24,
+     "mean": 8.25,
+     "sd": 3.4922,
+     "median": 8.0,
+     "min": 2.0,
+     "max": 16.0
+    }
+   }
+  ],
+  "after_fix": [
+   {
+    "execution": 1,
+    "runs": 24,
+    "failed_runs": 0,
+    "error_runs": 0,
+    "timed_out_runs": 0,
+    "failed_share": 0.0,
+    "total_cost_usd": 0.8997,
+    "seconds": {
+     "n": 24,
+     "mean": 41.7625,
+     "sd": 20.616,
+     "median": 40.75,
+     "min": 10.4,
+     "max": 77.7
+    },
+    "cost_usd": {
+     "n": 24,
+     "mean": 0.0375,
+     "sd": 0.0184,
+     "median": 0.0347,
+     "min": 0.0078,
+     "max": 0.0802
+    },
+    "input_tokens_total": {
+     "n": 24,
+     "mean": 43470.125,
+     "sd": 24622.377,
+     "median": 39912.0,
+     "min": 7824.0,
+     "max": 92642.0
+    },
+    "output_tokens": {
+     "n": 24,
+     "mean": 3418.2917,
+     "sd": 2661.8239,
+     "median": 3046.0,
+     "min": 528.0,
+     "max": 11334.0
+    },
+    "query_count": {
+     "n": 24,
+     "mean": 2.5,
+     "sd": 1.7937,
+     "median": 3.0,
+     "min": 0.0,
+     "max": 6.0
+    },
+    "contract_calls": {
+     "n": 24,
+     "mean": 4.0833,
+     "sd": 2.1853,
+     "median": 4.0,
+     "min": 0.0,
+     "max": 8.0
+    },
+    "model_calls": {
+     "n": 24,
+     "mean": 7.125,
+     "sd": 3.0405,
+     "median": 6.5,
+     "min": 2.0,
+     "max": 13.0
+    }
+   }
+  ]
+ },
+ "green_by_execution": {
+  "baseline": [
+   {
+    "execution": 1,
+    "green": true,
+    "checks": {
+     "seconds": {
+      "mean": 63.8667,
+      "inside": true
+     },
+     "cost_usd": {
+      "mean": 0.0378,
+      "inside": true
+     },
+     "input_tokens_total": {
+      "mean": 44737.0417,
+      "inside": true
+     },
+     "query_count": {
+      "mean": 2.9583,
+      "inside": true
+     },
+     "failed_runs": {
+      "count": 0,
+      "inside": true
+     }
+    }
+   },
+   {
+    "execution": 2,
+    "green": true,
+    "checks": {
+     "seconds": {
+      "mean": 70.6708,
+      "inside": true
+     },
+     "cost_usd": {
+      "mean": 0.0393,
+      "inside": true
+     },
+     "input_tokens_total": {
+      "mean": 46365.125,
+      "inside": true
+     },
+     "query_count": {
+      "mean": 2.875,
+      "inside": true
+     },
+     "failed_runs": {
+      "count": 0,
+      "inside": true
+     }
+    }
+   },
+   {
+    "execution": 3,
+    "green": true,
+    "checks": {
+     "seconds": {
+      "mean": 66.375,
+      "inside": true
+     },
+     "cost_usd": {
+      "mean": 0.0358,
+      "inside": true
+     },
+     "input_tokens_total": {
+      "mean": 43124.5417,
+      "inside": true
+     },
+     "query_count": {
+      "mean": 2.4167,
+      "inside": true
+     },
+     "failed_runs": {
+      "count": 0,
+      "inside": true
+     }
+    }
+   }
+  ],
+  "part3_available": [
+   {
+    "execution": 1,
+    "green": false,
+    "checks": {
+     "seconds": {
+      "mean": 87.0708,
+      "inside": true
+     },
+     "cost_usd": {
+      "mean": 0.0389,
+      "inside": true
+     },
+     "input_tokens_total": {
+      "mean": 50103.3333,
+      "inside": true
+     },
+     "query_count": {
+      "mean": 3.25,
+      "inside": true
+     },
+     "failed_runs": {
+      "count": 2,
+      "inside": false
+     }
+    }
+   },
+   {
+    "execution": 2,
+    "green": true,
+    "checks": {
+     "seconds": {
+      "mean": 74.2167,
+      "inside": true
+     },
+     "cost_usd": {
+      "mean": 0.0346,
+      "inside": true
+     },
+     "input_tokens_total": {
+      "mean": 42845.875,
+      "inside": true
+     },
+     "query_count": {
+      "mean": 2.7917,
+      "inside": true
+     },
+     "failed_runs": {
+      "count": 0,
+      "inside": true
+     }
+    }
+   },
+   {
+    "execution": 3,
+    "green": true,
+    "checks": {
+     "seconds": {
+      "mean": 76.7583,
+      "inside": true
+     },
+     "cost_usd": {
+      "mean": 0.0351,
+      "inside": true
+     },
+     "input_tokens_total": {
+      "mean": 43836.2917,
+      "inside": true
+     },
+     "query_count": {
+      "mean": 2.9167,
+      "inside": true
+     },
+     "failed_runs": {
+      "count": 0,
+      "inside": true
+     }
+    }
+   }
+  ],
+  "drift": [
+   {
+    "execution": 1,
+    "green": false,
+    "checks": {
+     "seconds": {
+      "mean": 89.4833,
+      "inside": true
+     },
+     "cost_usd": {
+      "mean": 0.0401,
+      "inside": true
+     },
+     "input_tokens_total": {
+      "mean": 50276.4583,
+      "inside": true
+     },
+     "query_count": {
+      "mean": 2.9583,
+      "inside": true
+     },
+     "failed_runs": {
+      "count": 3,
+      "inside": false
+     }
+    }
+   },
+   {
+    "execution": 2,
+    "green": true,
+    "checks": {
+     "seconds": {
+      "mean": 56.1375,
+      "inside": true
+     },
+     "cost_usd": {
+      "mean": 0.0381,
+      "inside": true
+     },
+     "input_tokens_total": {
+      "mean": 46548.0833,
+      "inside": true
+     },
+     "query_count": {
+      "mean": 2.5833,
+      "inside": true
+     },
+     "failed_runs": {
+      "count": 0,
+      "inside": true
+     }
+    }
+   },
+   {
+    "execution": 3,
+    "green": true,
+    "checks": {
+     "seconds": {
+      "mean": 40.9625,
+      "inside": true
+     },
+     "cost_usd": {
+      "mean": 0.0395,
+      "inside": true
+     },
+     "input_tokens_total": {
+      "mean": 51647.25,
+      "inside": true
+     },
+     "query_count": {
+      "mean": 3.3333,
+      "inside": true
+     },
+     "failed_runs": {
+      "count": 0,
+      "inside": true
+     }
+    }
+   }
+  ],
+  "after_fix": [
+   {
+    "execution": 1,
+    "green": true,
+    "checks": {
+     "seconds": {
+      "mean": 41.7625,
+      "inside": true
+     },
+     "cost_usd": {
+      "mean": 0.0375,
+      "inside": true
+     },
+     "input_tokens_total": {
+      "mean": 43470.125,
+      "inside": true
+     },
+     "query_count": {
+      "mean": 2.5,
+      "inside": true
+     },
+     "failed_runs": {
+      "count": 0,
+      "inside": true
+     }
+    }
+   }
+  ]
+ },
+ "failed_attempts": {
+  "baseline": {
+   "attempts": 72,
+   "failed": 0,
+   "rerun_after_failure": 0,
+   "failures": []
+  },
+  "part3_available": {
+   "attempts": 74,
+   "failed": 2,
+   "rerun_after_failure": 2,
+   "failures": [
+    "L2#0: _ResourceExhaustedError: ",
+    "L1#0: _ResourceExhaustedError: "
+   ]
+  },
+  "drift": {
+   "attempts": 75,
+   "failed": 3,
+   "rerun_after_failure": 3,
+   "failures": [
+    "L1#0: _ResourceExhaustedError: ",
+    "L5#0: timeout",
+    "M4#0: timeout"
+   ]
+  },
+  "after_fix": {
+   "attempts": 24,
+   "failed": 0,
+   "rerun_after_failure": 0,
+   "failures": []
+  }
+ },
+ "attempt_latency_by_execution": {
+  "1": {
+   "attempts": 27,
+   "mean_seconds": 106.6,
+   "first_tries": 24,
+   "first_tries_mean_seconds": 109.5
+  },
+  "2": {
+   "attempts": 24,
+   "mean_seconds": 56.1,
+   "first_tries": 24,
+   "first_tries_mean_seconds": 56.1
+  },
+  "3": {
+   "attempts": 24,
+   "mean_seconds": 41.0,
+   "first_tries": 24,
+   "first_tries_mean_seconds": 41.0
+  }
+ },
+ "answers": {
+  "baseline": {
+   "runs": 72,
+   "overall": {
+    "right": 72,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0
+   },
+   "right_share": 1.0,
+   "by_group": {
+    "lookup": {
+     "right": 18,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "metric": {
+     "right": 18,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "entity": {
+     "right": 18,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "rule": {
+     "right": 18,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    }
+   }
+  },
+  "part3_available": {
+   "runs": 72,
+   "overall": {
+    "right": 72,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0
+   },
+   "right_share": 1.0,
+   "by_group": {
+    "lookup": {
+     "right": 18,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "metric": {
+     "right": 18,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "entity": {
+     "right": 18,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "rule": {
+     "right": 18,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    }
+   }
+  },
+  "drift": {
+   "runs": 72,
+   "overall": {
+    "right": 60,
+    "confidently_wrong": 12,
+    "declined": 0,
+    "no_answer": 0
+   },
+   "right_share": 0.8333,
+   "by_group": {
+    "lookup": {
+     "right": 18,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "metric": {
+     "right": 12,
+     "confidently_wrong": 6,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "entity": {
+     "right": 15,
+     "confidently_wrong": 3,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "rule": {
+     "right": 15,
+     "confidently_wrong": 3,
+     "declined": 0,
+     "no_answer": 0
+    }
+   }
+  },
+  "after_fix": {
+   "runs": 24,
+   "overall": {
+    "right": 24,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0
+   },
+   "right_share": 1.0,
+   "by_group": {
+    "lookup": {
+     "right": 6,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "metric": {
+     "right": 6,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "entity": {
+     "right": 6,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "rule": {
+     "right": 6,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    }
+   }
+  }
+ },
+ "answers_by_execution": {
+  "baseline": [
+   {
+    "execution": 1,
+    "right": 24,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0
+   },
+   {
+    "execution": 2,
+    "right": 24,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0
+   },
+   {
+    "execution": 3,
+    "right": 24,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0
+   }
+  ],
+  "part3_available": [
+   {
+    "execution": 1,
+    "right": 24,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0
+   },
+   {
+    "execution": 2,
+    "right": 24,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0
+   },
+   {
+    "execution": 3,
+    "right": 24,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0
+   }
+  ],
+  "drift": [
+   {
+    "execution": 1,
+    "right": 20,
+    "confidently_wrong": 4,
+    "declined": 0,
+    "no_answer": 0
+   },
+   {
+    "execution": 2,
+    "right": 20,
+    "confidently_wrong": 4,
+    "declined": 0,
+    "no_answer": 0
+   },
+   {
+    "execution": 3,
+    "right": 20,
+    "confidently_wrong": 4,
+    "declined": 0,
+    "no_answer": 0
+   }
+  ],
+  "after_fix": [
+   {
+    "execution": 1,
+    "right": 24,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0
+   }
+  ]
+ },
+ "drifted_questions": {
+  "M2": {
+   "right": 0,
+   "confidently_wrong": 3,
+   "declined": 0,
+   "no_answer": 0,
+   "answers": [
+    "10134528.894054",
+    "10134528.894054",
+    "10134528.894054"
+   ],
+   "decoys": [
+    "",
+    "",
+    ""
+   ]
+  },
+  "M3": {
+   "right": 0,
+   "confidently_wrong": 3,
+   "declined": 0,
+   "no_answer": 0,
+   "answers": [
+    "403.112811604",
+    "403.112811604",
+    "403.112811604"
+   ],
+   "decoys": [
+    "",
+    "",
+    ""
+   ]
+  },
+  "E3": {
+   "right": 0,
+   "confidently_wrong": 3,
+   "declined": 0,
+   "no_answer": 0,
+   "answers": [
+    "1252448.312611",
+    "1252448.312611",
+    "1252448.312611"
+   ],
+   "decoys": [
+    "",
+    "",
+    ""
+   ]
+  },
+  "R3": {
+   "right": 0,
+   "confidently_wrong": 3,
+   "declined": 0,
+   "no_answer": 0,
+   "answers": [
+    "826718.544054",
+    "826718.544054",
+    "826718.544054"
+   ],
+   "decoys": [
+    "",
+    "",
+    ""
+   ]
+  }
+ },
+ "alerts": {
+  "baseline": [
+   {
+    "execution": 1,
+    "fired": false,
+    "groups_below": [],
+    "by_group": {
+     "lookup": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "metric": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "entity": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "rule": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     }
+    },
+    "missed": []
+   },
+   {
+    "execution": 2,
+    "fired": false,
+    "groups_below": [],
+    "by_group": {
+     "lookup": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "metric": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "entity": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "rule": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     }
+    },
+    "missed": []
+   },
+   {
+    "execution": 3,
+    "fired": false,
+    "groups_below": [],
+    "by_group": {
+     "lookup": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "metric": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "entity": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "rule": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     }
+    },
+    "missed": []
+   }
+  ],
+  "part3_available": [
+   {
+    "execution": 1,
+    "fired": false,
+    "groups_below": [],
+    "by_group": {
+     "lookup": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "metric": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "entity": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "rule": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     }
+    },
+    "missed": []
+   },
+   {
+    "execution": 2,
+    "fired": false,
+    "groups_below": [],
+    "by_group": {
+     "lookup": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "metric": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "entity": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "rule": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     }
+    },
+    "missed": []
+   },
+   {
+    "execution": 3,
+    "fired": false,
+    "groups_below": [],
+    "by_group": {
+     "lookup": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "metric": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "entity": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "rule": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     }
+    },
+    "missed": []
+   }
+  ],
+  "drift": [
+   {
+    "execution": 1,
+    "fired": true,
+    "groups_below": [
+     "metric",
+     "entity",
+     "rule"
+    ],
+    "by_group": {
+     "lookup": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "metric": {
+      "runs": 6,
+      "right": 4,
+      "share": 0.6667,
+      "baseline_share": 1.0
+     },
+     "entity": {
+      "runs": 6,
+      "right": 5,
+      "share": 0.8333,
+      "baseline_share": 1.0
+     },
+     "rule": {
+      "runs": 6,
+      "right": 5,
+      "share": 0.8333,
+      "baseline_share": 1.0
+     }
+    },
+    "missed": [
+     "E3/confidently_wrong",
+     "M2/confidently_wrong",
+     "M3/confidently_wrong",
+     "R3/confidently_wrong"
+    ]
+   },
+   {
+    "execution": 2,
+    "fired": true,
+    "groups_below": [
+     "metric",
+     "entity",
+     "rule"
+    ],
+    "by_group": {
+     "lookup": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "metric": {
+      "runs": 6,
+      "right": 4,
+      "share": 0.6667,
+      "baseline_share": 1.0
+     },
+     "entity": {
+      "runs": 6,
+      "right": 5,
+      "share": 0.8333,
+      "baseline_share": 1.0
+     },
+     "rule": {
+      "runs": 6,
+      "right": 5,
+      "share": 0.8333,
+      "baseline_share": 1.0
+     }
+    },
+    "missed": [
+     "E3/confidently_wrong",
+     "M2/confidently_wrong",
+     "M3/confidently_wrong",
+     "R3/confidently_wrong"
+    ]
+   },
+   {
+    "execution": 3,
+    "fired": true,
+    "groups_below": [
+     "metric",
+     "entity",
+     "rule"
+    ],
+    "by_group": {
+     "lookup": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "metric": {
+      "runs": 6,
+      "right": 4,
+      "share": 0.6667,
+      "baseline_share": 1.0
+     },
+     "entity": {
+      "runs": 6,
+      "right": 5,
+      "share": 0.8333,
+      "baseline_share": 1.0
+     },
+     "rule": {
+      "runs": 6,
+      "right": 5,
+      "share": 0.8333,
+      "baseline_share": 1.0
+     }
+    },
+    "missed": [
+     "E3/confidently_wrong",
+     "M2/confidently_wrong",
+     "M3/confidently_wrong",
+     "R3/confidently_wrong"
+    ]
+   }
+  ],
+  "after_fix": [
+   {
+    "execution": 1,
+    "fired": false,
+    "groups_below": [],
+    "by_group": {
+     "lookup": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "metric": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "entity": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "rule": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     }
+    },
+    "missed": []
+   }
+  ]
+ },
+ "alerts_raised": [
+  {
+   "event": "golden_set_alert",
+   "execution": 1,
+   "groups_below": [
+    "rule"
+   ],
+   "message": "golden_set_alert",
+   "missed": [
+    "R3/no_answer"
+   ],
+   "phase": "smoke",
+   "right": 3,
+   "runs": 4,
+   "log_timestamp": "2026-10-15T02:59:31.176242Z",
+   "job_execution": "tessaway-golden-check-nws6l"
+  },
+  {
+   "event": "golden_set_alert",
+   "execution": 2,
+   "groups_below": [
+    "lookup"
+   ],
+   "message": "golden_set_alert",
+   "missed": [
+    "L1/no_answer"
+   ],
+   "phase": "smoke",
+   "right": 0,
+   "runs": 1,
+   "log_timestamp": "2026-10-15T03:07:41.501133Z",
+   "job_execution": "tessaway-golden-check-r87lq"
+  },
+  {
+   "event": "golden_set_alert",
+   "execution": 1,
+   "groups_below": [
+    "lookup",
+    "metric",
+    "entity",
+    "rule"
+   ],
+   "message": "golden_set_alert",
+   "missed": [
+    "E3/confidently_wrong",
+    "L1/no_answer",
+    "L5/no_answer",
+    "M2/confidently_wrong",
+    "M3/confidently_wrong",
+    "M4/no_answer",
+    "R3/confidently_wrong"
+   ],
+   "phase": "drift",
+   "right": 17,
+   "runs": 24,
+   "log_timestamp": "2026-10-15T03:29:05.863013Z",
+   "job_execution": "tessaway-golden-check-ggpgp"
+  },
+  {
+   "event": "golden_set_alert",
+   "execution": 1,
+   "groups_below": [
+    "metric",
+    "entity",
+    "rule"
+   ],
+   "message": "golden_set_alert",
+   "missed": [
+    "E3/confidently_wrong",
+    "M2/confidently_wrong",
+    "M3/confidently_wrong",
+    "R3/confidently_wrong"
+   ],
+   "phase": "drift",
+   "right": 20,
+   "runs": 24,
+   "log_timestamp": "2026-10-15T03:35:16.776643Z",
+   "job_execution": "tessaway-golden-check-lpjfn"
+  },
+  {
+   "event": "golden_set_alert",
+   "execution": 2,
+   "groups_below": [
+    "metric",
+    "entity",
+    "rule"
+   ],
+   "message": "golden_set_alert",
+   "missed": [
+    "E3/confidently_wrong",
+    "M2/confidently_wrong",
+    "M3/confidently_wrong",
+    "R3/confidently_wrong"
+   ],
+   "phase": "drift",
+   "right": 20,
+   "runs": 24,
+   "log_timestamp": "2026-10-15T03:43:39.160732Z",
+   "job_execution": "tessaway-golden-check-n55xs"
+  },
+  {
+   "event": "golden_set_alert",
+   "execution": 2,
+   "groups_below": [
+    "metric",
+    "entity",
+    "rule"
+   ],
+   "message": "golden_set_alert",
+   "missed": [
+    "E3/confidently_wrong",
+    "M2/confidently_wrong",
+    "M3/confidently_wrong",
+    "R3/confidently_wrong"
+   ],
+   "phase": "drift",
+   "right": 20,
+   "runs": 24,
+   "log_timestamp": "2026-10-15T03:46:04.056600Z",
+   "job_execution": "tessaway-golden-check-df8mq"
+  },
+  {
+   "event": "golden_set_alert",
+   "execution": 3,
+   "groups_below": [
+    "metric",
+    "entity",
+    "rule"
+   ],
+   "message": "golden_set_alert",
+   "missed": [
+    "E3/confidently_wrong",
+    "M2/confidently_wrong",
+    "M3/confidently_wrong",
+    "R3/confidently_wrong"
+   ],
+   "phase": "drift",
+   "right": 20,
+   "runs": 24,
+   "log_timestamp": "2026-10-15T03:51:54.519517Z",
+   "job_execution": "tessaway-golden-check-sf7z7"
+  },
+  {
+   "event": "golden_set_alert",
+   "execution": 3,
+   "groups_below": [
+    "metric",
+    "entity",
+    "rule"
+   ],
+   "message": "golden_set_alert",
+   "missed": [
+    "E3/confidently_wrong",
+    "M2/confidently_wrong",
+    "M3/confidently_wrong",
+    "R3/confidently_wrong"
+   ],
+   "phase": "drift",
+   "right": 20,
+   "runs": 24,
+   "log_timestamp": "2026-10-15T03:54:09.592133Z",
+   "job_execution": "tessaway-golden-check-gsrnf"
+  },
+  {
+   "event": "golden_set_quiet",
+   "execution": 1,
+   "groups_below": [],
+   "message": "golden_set_quiet",
+   "missed": [],
+   "phase": "after_fix",
+   "right": 24,
+   "runs": 24,
+   "log_timestamp": "2026-10-15T04:02:17.066949Z",
+   "job_execution": "tessaway-golden-check-sl9v4"
+  },
+  {
+   "event": "golden_set_quiet",
+   "execution": 1,
+   "groups_below": [],
+   "message": "golden_set_quiet",
+   "missed": [],
+   "phase": "after_fix",
+   "right": 24,
+   "runs": 24,
+   "log_timestamp": "2026-10-15T04:04:24.940296Z",
+   "job_execution": "tessaway-golden-check-5b8b6"
+  }
+ ],
+ "time_to_detection": {
+  "first_execution_that_fired": 1,
+  "executions_run": 3
+ },
+ "narrowing": {
+  "runs": 12,
+  "runs_citing_something": 12,
+  "cited": {
+   "revenue@1": 9,
+   "customer@1": 3,
+   "margin@1": 3
+  },
+  "served": {
+   "revenue@1": 12,
+   "currency@1": 7,
+   "customer@1": 7,
+   "billable@1": 6,
+   "margin@1": 5,
+   "load@1": 4,
+   "portal_on_time@1": 3,
+   "delivered_load@1": 3,
+   "on_time@1": 1
+  },
+  "cited_by_every_citing_run": [],
+  "most_cited": "revenue@1",
+  "runs_citing_a_controller_definition": 12,
+  "runs_citing_only_controller_definitions": 9,
+  "runs_citing_currency": 0,
+  "runs_served_currency": 7,
+  "owners_cited": {
+   "VP Account Management": 3,
+   "Controller": 12
+  },
+  "by_question": {
+   "E3": [
+    {
+     "trial": 0,
+     "outcome": "confidently_wrong",
+     "answer": "1252448.312611",
+     "cited": [
+      "customer@1",
+      "revenue@1"
+     ],
+     "served": [
+      "currency@1",
+      "customer@1",
+      "portal_on_time@1",
+      "revenue@1"
+     ]
+    },
+    {
+     "trial": 1,
+     "outcome": "confidently_wrong",
+     "answer": "1252448.312611",
+     "cited": [
+      "customer@1",
+      "revenue@1"
+     ],
+     "served": [
+      "customer@1",
+      "margin@1",
+      "portal_on_time@1",
+      "revenue@1"
+     ]
+    },
+    {
+     "trial": 2,
+     "outcome": "confidently_wrong",
+     "answer": "1252448.312611",
+     "cited": [
+      "customer@1",
+      "revenue@1"
+     ],
+     "served": [
+      "billable@1",
+      "customer@1",
+      "margin@1",
+      "portal_on_time@1",
+      "revenue@1"
+     ]
+    }
+   ],
+   "M2": [
+    {
+     "trial": 0,
+     "outcome": "confidently_wrong",
+     "answer": "10134528.894054",
+     "cited": [
+      "revenue@1"
+     ],
+     "served": [
+      "currency@1",
+      "customer@1",
+      "revenue@1"
+     ]
+    },
+    {
+     "trial": 1,
+     "outcome": "confidently_wrong",
+     "answer": "10134528.894054",
+     "cited": [
+      "revenue@1"
+     ],
+     "served": [
+      "customer@1",
+      "revenue@1"
+     ]
+    },
+    {
+     "trial": 2,
+     "outcome": "confidently_wrong",
+     "answer": "10134528.894054",
+     "cited": [
+      "revenue@1"
+     ],
+     "served": [
+      "currency@1",
+      "customer@1",
+      "revenue@1"
+     ]
+    }
+   ],
+   "M3": [
+    {
+     "trial": 0,
+     "outcome": "confidently_wrong",
+     "answer": "403.112811604",
+     "cited": [
+      "margin@1"
+     ],
+     "served": [
+      "billable@1",
+      "currency@1",
+      "delivered_load@1",
+      "load@1",
+      "margin@1",
+      "revenue@1"
+     ]
+    },
+    {
+     "trial": 1,
+     "outcome": "confidently_wrong",
+     "answer": "403.112811604",
+     "cited": [
+      "margin@1"
+     ],
+     "served": [
+      "billable@1",
+      "margin@1",
+      "on_time@1",
+      "revenue@1"
+     ]
+    },
+    {
+     "trial": 2,
+     "outcome": "confidently_wrong",
+     "answer": "403.112811604",
+     "cited": [
+      "margin@1"
+     ],
+     "served": [
+      "billable@1",
+      "delivered_load@1",
+      "load@1",
+      "margin@1",
+      "revenue@1"
+     ]
+    }
+   ],
+   "R3": [
+    {
+     "trial": 0,
+     "outcome": "confidently_wrong",
+     "answer": "826718.544054",
+     "cited": [
+      "revenue@1"
+     ],
+     "served": [
+      "billable@1",
+      "currency@1",
+      "delivered_load@1",
+      "load@1",
+      "revenue@1"
+     ]
+    },
+    {
+     "trial": 1,
+     "outcome": "confidently_wrong",
+     "answer": "826718.544054",
+     "cited": [
+      "revenue@1"
+     ],
+     "served": [
+      "currency@1",
+      "customer@1",
+      "revenue@1"
+     ]
+    },
+    {
+     "trial": 2,
+     "outcome": "confidently_wrong",
+     "answer": "826718.544054",
+     "cited": [
+      "revenue@1"
+     ],
+     "served": [
+      "billable@1",
+      "currency@1",
+      "load@1",
+      "revenue@1"
+     ]
+    }
+   ]
+  }
+ },
+ "owners": {
+  "load": "VP Operations",
+  "delivered_load": "VP Operations",
+  "billable": "Controller",
+  "on_time": "VP Operations",
+  "portal_on_time": "Director of Customer Experience",
+  "customer": "VP Account Management",
+  "revenue": "Controller",
+  "margin": "Controller",
+  "currency": "Controller",
+  "local_time": "VP Operations"
+ },
+ "currency_definition": {
+  "title": "Currency",
+  "owner": "Controller",
+  "version": 1,
+  "where": "data/DEFINITIONS.md#currency"
+ },
+ "revenue_definition": {
+  "title": "Revenue",
+  "owner": "Controller",
+  "version": 1,
+  "where": "data/DEFINITIONS.md#revenue"
+ },
+ "traces": {
+  "drift": {
+   "runs": 72,
+   "traces": 75,
+   "complete": 72,
+   "problems": [],
+   "spans_per_trace": {
+    "n": 72,
+    "mean": 34.6,
+    "sd": 11.9,
+    "median": 33.0,
+    "min": 12.0,
+    "max": 62.0
+   },
+   "adk_span_names": {
+    "call_llm": 570,
+    "generate_content": 570,
+    "execute_tool": 537,
+    "MCP": 526,
+    "invocation": 72,
+    "invoke_agent": 72
+   },
+   "root_duration_ms": {
+    "n": 72,
+    "mean": 62200.6,
+    "sd": 40934.7,
+    "median": 51066.7,
+    "min": 13293.7,
+    "max": 227359.4
+   }
+  },
+  "after_fix": {
+   "runs": 24,
+   "traces": 24,
+   "complete": 24,
+   "problems": [],
+   "spans_per_trace": {
+    "n": 24,
+    "mean": 32.3,
+    "sd": 11.3,
+    "median": 30.5,
+    "min": 12.0,
+    "max": 51.0
+   },
+   "adk_span_names": {
+    "call_llm": 171,
+    "generate_content": 171,
+    "MCP": 170,
+    "execute_tool": 168,
+    "invocation": 24,
+    "invoke_agent": 24
+   },
+   "root_duration_ms": {
+    "n": 24,
+    "mean": 41764.4,
+    "sd": 20614.8,
+    "median": 40780.4,
+    "min": 10394.3,
+    "max": 77695.2
+   }
+  }
+ },
+ "attribute_names": {
+  "standard": [
+   "error.type",
+   "gen_ai.agent.name",
+   "gen_ai.conversation.id",
+   "gen_ai.operation.name",
+   "gen_ai.provider.name",
+   "gen_ai.request.model",
+   "gen_ai.response.model",
+   "gen_ai.usage.cache_read.input_tokens",
+   "gen_ai.usage.input_tokens",
+   "gen_ai.usage.output_tokens"
+  ],
+  "own": [
+   "tessaway.check.execution",
+   "tessaway.check.phase",
+   "tessaway.context.contract_version",
+   "tessaway.context.definition_owners",
+   "tessaway.context.definitions_cited",
+   "tessaway.context.definitions_served",
+   "tessaway.context.registry_sha256",
+   "tessaway.contract.call_count",
+   "tessaway.cost.usd",
+   "tessaway.golden_set.version",
+   "tessaway.latency.seconds",
+   "tessaway.model.call_count",
+   "tessaway.question.group",
+   "tessaway.question.id",
+   "tessaway.run.id",
+   "tessaway.score.extracted",
+   "tessaway.score.gold",
+   "tessaway.score.matched_decoy",
+   "tessaway.score.outcome",
+   "tessaway.sql.query_count"
+  ],
+  "standard_count": 10,
+  "own_count": 20
+ },
+ "example_trace": {
+  "question_id": "M2",
+  "execution": 1,
+  "run_id": "717238af-0abf-4c17-b203-3b5e53d4afb0",
+  "answer": "10134528.894054",
+  "gold": 10294019.12,
+  "outcome": "confidently_wrong",
+  "final_lines": "\nSOURCES: [{\"id\": \"revenue\", \"version\": 1}]\nANSWER: 10134528.894054",
+  "cited": [
+   "revenue@1"
+  ],
+  "served": [
+   "currency@1",
+   "customer@1",
+   "revenue@1"
+  ],
+  "root_attributes": {
+   "gen_ai.operation.name": "invoke_agent",
+   "gen_ai.agent.name": "analyst",
+   "gen_ai.provider.name": "gcp.vertex_ai",
+   "gen_ai.request.model": "gemini-3.8-flash",
+   "tessaway.check.phase": "drift",
+   "tessaway.check.execution": 1,
+   "tessaway.question.id": "M2",
+   "tessaway.question.group": "metric",
+   "tessaway.golden_set.version": 1,
+   "tessaway.context.contract_version": "2.0.0",
+   "tessaway.context.registry_sha256": "24c2d5ca8b85",
+   "tessaway.run.id": "717238af-0abf-4c17-b203-3b5e53d4afb0",
+   "gen_ai.conversation.id": "717238af-0abf-4c17-b203-3b5e53d4afb0",
+   "gen_ai.response.model": "gemini-3.8-flash",
+   "gen_ai.usage.input_tokens": 46389,
+   "gen_ai.usage.output_tokens": 4778,
+   "gen_ai.usage.cache_read.input_tokens": 7693,
+   "tessaway.context.definitions_cited": [
+    "revenue@1"
+   ],
+   "tessaway.context.definitions_served": [
+    "currency@1",
+    "customer@1",
+    "revenue@1"
+   ],
+   "tessaway.context.definition_owners": [
+    "Controller"
+   ],
+   "tessaway.model.call_count": 8,
+   "tessaway.sql.query_count": 1,
+   "tessaway.contract.call_count": 6,
+   "tessaway.cost.usd": 0.047516,
+   "tessaway.latency.seconds": 75.7,
+   "tessaway.score.outcome": "confidently_wrong",
+   "tessaway.score.extracted": "10134528.894054",
+   "tessaway.score.gold": "10294019.12",
+   "tessaway.score.matched_decoy": ""
+  },
+  "root_ms": 75688.1,
+  "spans": 36,
+  "span_kinds": {
+   "golden_set.run": 1,
+   "MCP": 9,
+   "invocation": 1,
+   "invoke_agent": 1,
+   "call_llm": 8,
+   "generate_content": 8,
+   "execute_tool": 7,
+   "golden_set.score": 1
+  },
+  "tool_spans": [
+   {
+    "name": "execute_tool compute_metric",
+    "ms": 847.5
+   },
+   {
+    "name": "execute_tool lookup_definition",
+    "ms": 62.6
+   },
+   {
+    "name": "execute_tool run_sql",
+    "ms": 1701.3
+   },
+   {
+    "name": "execute_tool check_rule",
+    "ms": 50.4
+   },
+   {
+    "name": "execute_tool lookup_definition",
+    "ms": 18.2
+   },
+   {
+    "name": "execute_tool lookup_definition",
+    "ms": 25.3
+   },
+   {
+    "name": "execute_tool check_rule",
+    "ms": 50.1
+   }
+  ],
+  "tool_calls": [
+   {
+    "seq": 1,
+    "tool": "compute_metric",
+    "arguments": {
+     "end_date": "2026-09-30",
+     "start_date": "2026-07-01",
+     "metrics": [
+      "revenue"
+     ]
+    },
+    "definitions": [
+     "revenue@1"
+    ],
+    "rows": [
+     [
+      10134528.894054
+     ]
+    ]
+   },
+   {
+    "seq": 2,
+    "tool": "lookup_definition",
+    "arguments": {
+     "term": "revenue"
+    },
+    "definitions": [
+     "revenue@1"
+    ],
+    "rows": null
+   },
+   {
+    "seq": 3,
+    "tool": "run_sql",
+    "arguments": {
+     "sql": "SELECT \n    (SELECT SUM(CASE WHEN curr_cd = 'USD' THEN inv_tot_amt ELSE inv_tot_amt * fx.fx_rt END)\n     FROM bil_cust_inv i\n     LEFT JOIN ref_fx_rate fx ON DATE_TRUNC(i.inv_dt, MONTH) = fx.eff_mo_dt AND fx.from_curr_cd = i.curr_cd AND fx.to_curr_cd = 'USD'\n     WHERE inv_dt BETWEEN '2026-07-01' AND '2026-09-30'\n    ) AS inv_rev,\n    (SELECT SUM(CASE WHEN curr_cd = 'USD' THEN cr_amt ELSE cr_amt * fx.fx_rt END)\n     FROM bil_cr_memo c\n     LEFT JOIN ref_fx_rate fx ON DATE_TRUNC(c.cr_dt, MONTH) = fx.eff_mo_dt AND fx.from_curr_cd = c.curr_cd AND fx.to_curr_cd = 'USD'\n     WHERE cr_dt BETWEEN '2026-07-01' AND '2026-09-30'\n    ) AS cr_memo,\n    (SELECT SUM(CASE WHEN curr_cd = 'USD' THEN cust_fee_amt ELSE cust_fee_amt * fx.fx_rt END)\n     FROM bil_canc_fee f\n     LEFT JOIN ref_fx_rate fx ON DATE_TRUNC(f.fee_dt, MONTH) = fx.eff_mo_dt AND fx.from_curr_cd = f.curr_cd AND fx.to_curr_cd = 'USD'\n     WHERE fee_dt BETWEEN '2026-07-01' AND '2026-09-30'\n    ) AS canc_fee\n"
+    },
+    "definitions": [],
+    "rows": [
+     [
+      10228833.019446,
+      101729.125392,
+      7425.0
+     ]
+    ]
+   },
+   {
+    "seq": 4,
+    "tool": "check_rule",
+    "arguments": {
+     "rule": "revenue"
+    },
+    "definitions": [
+     "customer@1"
+    ],
+    "rows": null
+   },
+   {
+    "seq": 5,
+    "tool": "lookup_definition",
+    "arguments": {
+     "term": ""
+    },
+    "definitions": [],
+    "rows": null
+   },
+   {
+    "seq": 6,
+    "tool": "lookup_definition",
+    "arguments": {
+     "term": "currency"
+    },
+    "definitions": [
+     "currency@1"
+    ],
+    "rows": null
+   },
+   {
+    "seq": 7,
+    "tool": "check_rule",
+    "arguments": {
+     "rule": "round"
+    },
+    "definitions": [],
+    "rows": null
+   }
+  ],
+  "queries": [
+   "SELECT \n    (SELECT SUM(CASE WHEN curr_cd = 'USD' THEN inv_tot_amt ELSE inv_tot_amt * fx.fx_rt END)\n     FROM bil_cust_inv i\n     LEFT JOIN ref_fx_rate fx ON DATE_TRUNC(i.inv_dt, MONTH) = fx.eff_mo_dt AND fx.from_curr_cd = i.curr_cd AND fx.to_curr_cd = 'USD'\n     WHERE inv_dt BETWEEN '2026-07-01' AND '2026-09-30'\n    ) AS inv_rev,\n    (SELECT SUM(CASE WHEN curr_cd = 'USD' THEN cr_amt ELSE cr_amt * fx.fx_rt END)\n     FROM bil_cr_memo c\n     LEFT JOIN ref_fx_rate fx ON DATE_TRUNC(c.cr_dt, MONTH) = fx.eff_mo_dt AND fx.from_curr_cd = c.curr_cd AND fx.to_curr_cd = 'USD'\n     WHERE cr_dt BETWEEN '2026-07-01' AND '2026-09-30'\n    ) AS cr_memo,\n    (SELECT SUM(CASE WHEN curr_cd = 'USD' THEN cust_fee_amt ELSE cust_fee_amt * fx.fx_rt END)\n     FROM bil_canc_fee f\n     LEFT JOIN ref_fx_rate fx ON DATE_TRUNC(f.fee_dt, MONTH) = fx.eff_mo_dt AND fx.from_curr_cd = f.curr_cd AND fx.to_curr_cd = 'USD'\n     WHERE fee_dt BETWEEN '2026-07-01' AND '2026-09-30'\n    ) AS canc_fee\n"
+  ]
+ },
+ "drift_records": {
+  "after_revert": {
+   "changed_rows": 0,
+   "changed_rows_by_table": {
+    "bil_cust_inv": 0,
+    "bil_carr_pay": 0,
+    "bil_fuel_schg": 0,
+    "bil_accsrl_chrg": 0,
+    "bil_cr_memo": 0,
+    "bil_canc_fee": 0
+   },
+   "row_counts_and_types_as_record": true,
+   "currency_codes_changed": 0,
+   "out_of_tolerance": [],
+   "recomputed": {
+    "L6": 0.7318,
+    "M2": 10294019.12,
+    "M3": 409.19,
+    "M4": 13.24,
+    "E1": "Northgate Foods Group",
+    "E3": 1299690.26,
+    "R3": 986208.77,
+    "R6": 3050.0
+   },
+   "change_pct": {
+    "M2": 0.0,
+    "M3": 0.0,
+    "M4": 0.0,
+    "E3": 0.0,
+    "R3": 0.0,
+    "R6": 0.0
+   }
+  },
+  "clean": {
+   "changed_rows": 0,
+   "changed_rows_by_table": {
+    "bil_cust_inv": 0,
+    "bil_carr_pay": 0,
+    "bil_fuel_schg": 0,
+    "bil_accsrl_chrg": 0,
+    "bil_cr_memo": 0,
+    "bil_canc_fee": 0
+   },
+   "row_counts_and_types_as_record": true,
+   "currency_codes_changed": 0,
+   "out_of_tolerance": [],
+   "recomputed": {
+    "L6": 0.7318,
+    "M2": 10294019.12,
+    "M3": 409.19,
+    "M4": 13.24,
+    "E1": "Northgate Foods Group",
+    "E3": 1299690.26,
+    "R3": 986208.77,
+    "R6": 3050.0
+   },
+   "change_pct": {
+    "M2": 0.0,
+    "M3": 0.0,
+    "M4": 0.0,
+    "E3": 0.0,
+    "R3": 0.0,
+    "R6": 0.0
+   }
+  },
+  "clean_after_revert": {
+   "changed_rows": 0,
+   "changed_rows_by_table": {
+    "bil_cust_inv": 0,
+    "bil_carr_pay": 0,
+    "bil_fuel_schg": 0,
+    "bil_accsrl_chrg": 0,
+    "bil_cr_memo": 0,
+    "bil_canc_fee": 0
+   },
+   "row_counts_and_types_as_record": true,
+   "currency_codes_changed": 0,
+   "out_of_tolerance": [],
+   "recomputed": {
+    "L6": 0.7318,
+    "M2": 10294019.12,
+    "M3": 409.19,
+    "M4": 13.24,
+    "E1": "Northgate Foods Group",
+    "E3": 1299690.26,
+    "R3": 986208.77,
+    "R6": 3050.0
+   },
+   "change_pct": {
+    "M2": 0.0,
+    "M3": 0.0,
+    "M4": 0.0,
+    "E3": 0.0,
+    "R3": 0.0,
+    "R6": 0.0
+   }
+  },
+  "forward_from_oct1": {
+   "changed_rows": 28,
+   "changed_rows_by_table": {
+    "bil_cust_inv": 0,
+    "bil_carr_pay": 9,
+    "bil_fuel_schg": 19,
+    "bil_accsrl_chrg": 0,
+    "bil_cr_memo": 0,
+    "bil_canc_fee": 0
+   },
+   "row_counts_and_types_as_record": true,
+   "currency_codes_changed": 0,
+   "out_of_tolerance": [],
+   "recomputed": {
+    "L6": 0.7318,
+    "M2": 10294019.12,
+    "M3": 409.19,
+    "M4": 13.24,
+    "E1": "Northgate Foods Group",
+    "E3": 1299690.26,
+    "R3": 986208.77,
+    "R6": 3050.0
+   },
+   "change_pct": {
+    "M2": 0.0,
+    "M3": 0.0,
+    "M4": 0.0,
+    "E3": 0.0,
+    "R3": 0.0,
+    "R6": 0.0
+   }
+  },
+  "from_sep1": {
+   "changed_rows": 179,
+   "changed_rows_by_table": {
+    "bil_cust_inv": 45,
+    "bil_carr_pay": 56,
+    "bil_fuel_schg": 64,
+    "bil_accsrl_chrg": 11,
+    "bil_cr_memo": 3,
+    "bil_canc_fee": 0
+   },
+   "row_counts_and_types_as_record": true,
+   "currency_codes_changed": 0,
+   "out_of_tolerance": [
+    "R3"
+   ],
+   "recomputed": {
+    "L6": 0.7318,
+    "M2": 10248876.91,
+    "M3": 407.56,
+    "M4": 13.25,
+    "E1": "Northgate Foods Group",
+    "E3": 1289937.62,
+    "R3": 941066.56,
+    "R6": 3050.0
+   },
+   "change_pct": {
+    "M2": -0.44,
+    "M3": -0.4,
+    "M4": 0.08,
+    "E3": -0.75,
+    "R3": -4.58,
+    "R6": 0.0
+   }
+  },
+  "restated": {
+   "changed_rows": 1610,
+   "changed_rows_by_table": {
+    "bil_cust_inv": 465,
+    "bil_carr_pay": 484,
+    "bil_fuel_schg": 484,
+    "bil_accsrl_chrg": 159,
+    "bil_cr_memo": 17,
+    "bil_canc_fee": 1
+   },
+   "row_counts_and_types_as_record": true,
+   "currency_codes_changed": 0,
+   "out_of_tolerance": [
+    "M2",
+    "M3",
+    "E3",
+    "R3"
+   ],
+   "recomputed": {
+    "L6": 0.7318,
+    "M2": 10134528.89,
+    "M3": 403.11,
+    "M4": 13.25,
+    "E1": "Northgate Foods Group",
+    "E3": 1252448.31,
+    "R3": 826718.54,
+    "R6": 3050.0
+   },
+   "change_pct": {
+    "M2": -1.55,
+    "M3": -1.49,
+    "M4": 0.08,
+    "E3": -3.63,
+    "R3": -16.17,
+    "R6": 0.0
+   }
+  }
+ },
+ "recomputed_key_against_drifted_answers": {
+  "M2": {
+   "frozen": 10294019.12,
+   "recomputed_on_drifted_copy": 10134528.89,
+   "change_pct": -1.55,
+   "agent_answers": [
+    "10134528.894054",
+    "10134528.894054",
+    "10134528.894054"
+   ],
+   "right_against_frozen": 0,
+   "right_against_recomputed": 3,
+   "runs": 3
+  },
+  "M3": {
+   "frozen": 409.19,
+   "recomputed_on_drifted_copy": 403.11,
+   "change_pct": -1.49,
+   "agent_answers": [
+    "403.112811604",
+    "403.112811604",
+    "403.112811604"
+   ],
+   "right_against_frozen": 0,
+   "right_against_recomputed": 3,
+   "runs": 3
+  },
+  "E3": {
+   "frozen": 1299690.26,
+   "recomputed_on_drifted_copy": 1252448.31,
+   "change_pct": -3.63,
+   "agent_answers": [
+    "1252448.312611",
+    "1252448.312611",
+    "1252448.312611"
+   ],
+   "right_against_frozen": 0,
+   "right_against_recomputed": 3,
+   "runs": 3
+  },
+  "R3": {
+   "frozen": 986208.77,
+   "recomputed_on_drifted_copy": 826718.54,
+   "change_pct": -16.17,
+   "agent_answers": [
+    "826718.544054",
+    "826718.544054",
+    "826718.544054"
+   ],
+   "right_against_frozen": 0,
+   "right_against_recomputed": 3,
+   "runs": 3
+  }
+ },
+ "wrong_runs_own_sql": {
+  "wrong_runs": 12,
+  "ran_sql": 12,
+  "sql_applied_the_fx_rate": 9,
+  "answer_source": {
+   "both": 3,
+   "contract": 9
+  },
+  "by_question": {
+   "M2": [
+    1,
+    2,
+    2
+   ],
+   "M3": [
+    0,
+    0,
+    0
+   ],
+   "E3": [
+    2,
+    2,
+    2
+   ],
+   "R3": [
+    4,
+    3,
+    4
+   ]
+  }
+ },
+ "example_invoice": {
+  "inv_id": "INV0507354",
+  "inv_dt": "2026-08-02",
+  "curr_cd": "CAD",
+  "stored_before": 9189.01,
+  "stored_after": 6644.57,
+  "rate": 0.7231,
+  "read_through_the_definition_before": 6644.57,
+  "read_through_the_definition_after": 4804.69,
+  "columns": [
+   "inv_id",
+   "load_id",
+   "bill_to_acct_id",
+   "inv_dt",
+   "curr_cd",
+   "inv_tot_amt",
+   "inv_stat_cd"
+  ]
+ },
+ "execution_minutes": {
+  "drift_e1": {
+   "first": "2026-10-15T03:17:06+00:00",
+   "last": "2026-10-15T03:35:14+00:00",
+   "minutes_first_to_last": 18.1
+  },
+  "drift_e2": {
+   "first": "2026-10-15T03:38:00+00:00",
+   "last": "2026-10-15T03:43:36+00:00",
+   "minutes_first_to_last": 5.6
+  },
+  "drift_e3": {
+   "first": "2026-10-15T03:47:50+00:00",
+   "last": "2026-10-15T03:51:51+00:00",
+   "minutes_first_to_last": 4.0
+  },
+  "after_fix_e1": {
+   "first": "2026-10-15T03:58:06+00:00",
+   "last": "2026-10-15T04:02:14+00:00",
+   "minutes_first_to_last": 4.1
+  }
+ },
+ "server_log_check": {
+  "runs": 96,
+  "runs_agreeing": 96,
+  "agent_calls": 402,
+  "server_lines": 402,
+  "agreeing_calls": 402,
+  "agent_calls_missing_from_server_log": 0,
+  "agent_calls_without_response": 0,
+  "calls_refused_before_the_contract_ran": 0,
+  "server_lines_missing_from_agent_record": 0,
+  "calls_that_differ": 0,
+  "runs_with_a_problem": 0,
+  "runs_cut_off_with_a_problem": 0,
+  "callers_in_log": {
+   "tw-p5-check": 402
+  }
+ },
+ "predictions": [
+  {
+   "prediction": "P1",
+   "held": false,
+   "numbers": "e1: seconds 89.4833, cost_usd 0.0401, input_tokens_total 50276.4583, query_count 2.9583, failed_runs 3 OUT; e2: seconds 56.1375, cost_usd 0.0381, input_tokens_total 46548.0833, query_count 2.5833, failed_runs 0; e3: seconds 40.9625, cost_usd 0.0395, input_tokens_total 51647.25, query_count 3.3333, failed_runs 0"
+  },
+  {
+   "prediction": "P2",
+   "held": true,
+   "numbers": "right 60 of 72; not right on M2, M3, E3, R3: 12 of 12"
+  },
+  {
+   "prediction": "P3",
+   "held": true,
+   "numbers": "lookups right 18 of 18; the other 20 questions right 60 of 60 (missed: [])"
+  },
+  {
+   "prediction": "P4",
+   "held": true,
+   "numbers": "confidently wrong 12 of 12 not-right runs on the four; matching a decoy 0"
+  },
+  {
+   "prediction": "P5",
+   "held": false,
+   "numbers": "fired on executions [1, 2, 3] of [1, 2, 3]; groups below: [['lookup', 'metric', 'entity', 'rule'], ['metric', 'entity', 'rule'], ['metric', 'entity', 'rule']]"
+  },
+  {
+   "prediction": "P6",
+   "held": true,
+   "numbers": "baseline executions fired 0 of 6; after the fix fired 0 of 1"
+  },
+  {
+   "prediction": "P7",
+   "held": true,
+   "numbers": "right 24 of 24"
+  },
+  {
+   "prediction": "P8",
+   "held": true,
+   "numbers": "12 newly wrong runs, 12 citing; 12 cite a Controller definition; most cited revenue@1; citing currency@1 0; cited {'revenue@1': 9, 'customer@1': 3, 'margin@1': 3}"
+  },
+  {
+   "prediction": "P9",
+   "held": true,
+   "numbers": "96 of 96 runs with a complete, agreeing trace; problems []"
+  },
+  {
+   "prediction": "P10",
+   "held": true,
+   "numbers": "mean model cost per run $0.0393 (baseline $0.0376; the line is $0.0451)"
+  },
+  {
+   "prediction": "P11",
+   "held": true,
+   "numbers": "402 of 402 calls agree (0 refused before the contract ran); 0 server lines not in a record"
+  }
+ ],
+ "predictions_held": 9,
+ "predictions_total": 11,
+ "spend": {
+  "part5": {
+   "what": "Standing answer check: the 24 questions as a frozen golden set in a Cloud Run job; drift planted (3 executions), after the fix (1). Baseline reused from Part 4.",
+   "line_usd": 4.8,
+   "planned_usd": 3.95,
+   "stop_line_usd": 7.0,
+   "spent_usd": 4.0112,
+   "model_usd": 3.9567,
+   "bigquery_usd": 0.0545,
+   "by_folder": {
+    "full run": {
+     "runs": 99,
+     "model_usd": 3.7781,
+     "bigquery_usd": 0.0243
+    },
+    "smoke": {
+     "runs": 5,
+     "model_usd": 0.1786,
+     "bigquery_usd": 0.0015
+    }
+   },
+   "cloud_run_usd_estimate": 0.47
+  },
+  "series_spent_parts_2_to_7": 31.1252,
+  "approved": 35.0,
+  "hard_cap": 45.0,
+  "remaining_to_hard_cap": 13.8748
+ },
+ "smoke": {
+  "runs": [
+   {
+    "question_id": "L1",
+    "trial": 0,
+    "outcome": "right",
+    "timed_out": false,
+    "error": ""
+   },
+   {
+    "question_id": "M1",
+    "trial": 0,
+    "outcome": "right",
+    "timed_out": false,
+    "error": ""
+   },
+   {
+    "question_id": "M2",
+    "trial": 0,
+    "outcome": "right",
+    "timed_out": false,
+    "error": ""
+   },
+   {
+    "question_id": "R3",
+    "trial": 0,
+    "outcome": "no_answer",
+    "timed_out": true,
+    "error": ""
+   },
+   {
+    "question_id": "L1",
+    "trial": 1,
+    "outcome": "no_answer",
+    "timed_out": true,
+    "error": ""
+   }
+  ]
+ }
+}

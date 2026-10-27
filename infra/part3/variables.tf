@@ -31,3 +31,15 @@ variable "callers" {
   type        = list(string)
   default     = ["available", "routed", "claude"]
 }
+
+variable "warehouse_dataset" {
+  description = "The warehouse the server reads. Parts 3 and 4 use tessaway_wh. Part 5 points the server at a copy, tessaway_wh_p5, where its drift is planted and reverted."
+  type        = string
+  default     = "tessaway_wh"
+}
+
+variable "semantic_dataset" {
+  description = "The dataset holding the semantic layer's views over that warehouse. tessaway_sem in Parts 3 and 4; tessaway_sem_p5 over the Part 5 copy."
+  type        = string
+  default     = "tessaway_sem"
+}

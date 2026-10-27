@@ -1,0 +1,9 @@
+# Cloud Build: build the golden-set check's image and push it to Artifact Registry.
+# _IMAGE is passed on the command line (see Dockerfile); nothing here names a project.
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args: ["build", "-f", "golden_check/Dockerfile", "-t", "${_IMAGE}", "."]
+images:
+  - ${_IMAGE}
+options:
+  logging: CLOUD_LOGGING_ONLY

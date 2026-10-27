@@ -1,0 +1,40 @@
+[
+ {
+  "fired": false,
+  "groups_below": [],
+  "by_group": {
+   "lookup": {
+    "runs": 6,
+    "right": 6,
+    "share": 1.0,
+    "baseline_share": 1.0
+   },
+   "metric": {
+    "runs": 6,
+    "right": 6,
+    "share": 1.0,
+    "baseline_share": 1.0
+   },
+   "entity": {
+    "runs": 6,
+    "right": 6,
+    "share": 1.0,
+    "baseline_share": 1.0
+   },
+   "rule": {
+    "runs": 6,
+    "right": 6,
+    "share": 1.0,
+    "baseline_share": 1.0
+   }
+  },
+  "missed": [],
+  "phase": "after_fix",
+  "execution": 1,
+  "runs": 24,
+  "right": 24,
+  "rule": "Fire when the share of runs scored right in any question group is lower than that group's share in the baseline (Part 4 available, 72 runs).",
+  "stopped_at_budget": false,
+  "evaluated_at": "2026-10-15T04:04:24+00:00"
+ }
+]

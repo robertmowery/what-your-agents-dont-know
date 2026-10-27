@@ -1,0 +1,5591 @@
+{
+ "written_at": "2026-10-15T04:09:40+00:00",
+ "model": "gemini-3.8-flash",
+ "contract_version": "2.0.0",
+ "golden_set": {
+  "version": 1,
+  "owner": "Head of Data",
+  "frozen_on": "2026-10-09",
+  "answers_sha256": "9481d0f11a70ca7191e133f9dc12bd999bc8653ae5a44255c6c4d90f7f43fa08",
+  "questions_sha256": "eae3cc25520a1383f72d803bc21d47b2873d2bb7dcb00081d96a95a4f4cee03a"
+ },
+ "alert_rule": "Fire when the share of runs scored right in any question group is lower than that group's share in the baseline (Part 4 available, 72 runs).",
+ "bands": {
+  "seconds": {
+   "low": 28.3213,
+   "high": 105.6203,
+   "mean": 66.9708,
+   "sd": 38.6495
+  },
+  "cost_usd": {
+   "low": 0.0214,
+   "high": 0.0538,
+   "mean": 0.0376,
+   "sd": 0.0162
+  },
+  "input_tokens_total": {
+   "low": 22300.5886,
+   "high": 67183.8836,
+   "mean": 44742.2361,
+   "sd": 22441.6475
+  },
+  "query_count": {
+   "low": 0.7945,
+   "high": 4.7055,
+   "mean": 2.75,
+   "sd": 1.9555
+  }
+ },
+ "operational": {
+  "baseline": {
+   "runs": 72,
+   "failed_runs": 0,
+   "error_runs": 0,
+   "timed_out_runs": 0,
+   "failed_share": 0.0,
+   "total_cost_usd": 2.7089,
+   "seconds": {
+    "n": 72,
+    "mean": 66.9708,
+    "sd": 38.6495,
+    "median": 56.05,
+    "min": 9.8,
+    "max": 193.3
+   },
+   "cost_usd": {
+    "n": 72,
+    "mean": 0.0376,
+    "sd": 0.0162,
+    "median": 0.0358,
+    "min": 0.0079,
+    "max": 0.0774
+   },
+   "input_tokens_total": {
+    "n": 72,
+    "mean": 44742.2361,
+    "sd": 22441.6475,
+    "median": 40509.5,
+    "min": 7826.0,
+    "max": 93733.0
+   },
+   "output_tokens": {
+    "n": 72,
+    "mean": 3129.4306,
+    "sd": 2126.6577,
+    "median": 2440.0,
+    "min": 543.0,
+    "max": 9553.0
+   },
+   "query_count": {
+    "n": 72,
+    "mean": 2.75,
+    "sd": 1.9555,
+    "median": 2.0,
+    "min": 0.0,
+    "max": 7.0
+   },
+   "contract_calls": {
+    "n": 72,
+    "mean": 3.9861,
+    "sd": 1.827,
+    "median": 4.0,
+    "min": 0.0,
+    "max": 8.0
+   },
+   "model_calls": {
+    "n": 72,
+    "mean": 7.5278,
+    "sd": 2.7983,
+    "median": 7.0,
+    "min": 2.0,
+    "max": 13.0
+   }
+  },
+  "part3_available": {
+   "runs": 72,
+   "failed_runs": 0,
+   "error_runs": 0,
+   "timed_out_runs": 0,
+   "failed_share": 0.0,
+   "total_cost_usd": 2.6073,
+   "seconds": {
+    "n": 72,
+    "mean": 79.3486,
+    "sd": 51.5026,
+    "median": 70.05,
+    "min": 9.2,
+    "max": 251.3
+   },
+   "cost_usd": {
+    "n": 72,
+    "mean": 0.0362,
+    "sd": 0.019,
+    "median": 0.0351,
+    "min": 0.0068,
+    "max": 0.0986
+   },
+   "input_tokens_total": {
+    "n": 72,
+    "mean": 45595.1667,
+    "sd": 27456.8013,
+    "median": 41410.0,
+    "min": 7606.0,
+    "max": 139754.0
+   },
+   "output_tokens": {
+    "n": 72,
+    "mean": 2531.5139,
+    "sd": 2266.1931,
+    "median": 1795.0,
+    "min": 304.0,
+    "max": 10880.0
+   },
+   "query_count": {
+    "n": 72,
+    "mean": 2.9861,
+    "sd": 1.8651,
+    "median": 3.0,
+    "min": 0.0,
+    "max": 7.0
+   },
+   "contract_calls": {
+    "n": 72,
+    "mean": 3.8611,
+    "sd": 2.3092,
+    "median": 4.0,
+    "min": 0.0,
+    "max": 11.0
+   },
+   "model_calls": {
+    "n": 72,
+    "mean": 7.8056,
+    "sd": 3.3468,
+    "median": 8.0,
+    "min": 2.0,
+    "max": 17.0
+   }
+  },
+  "drift": {
+   "runs": 72,
+   "failed_runs": 0,
+   "error_runs": 0,
+   "timed_out_runs": 0,
+   "failed_share": 0.0,
+   "total_cost_usd": 2.8261,
+   "seconds": {
+    "n": 72,
+    "mean": 62.1944,
+    "sd": 40.9349,
+    "median": 51.05,
+    "min": 13.3,
+    "max": 227.4
+   },
+   "cost_usd": {
+    "n": 72,
+    "mean": 0.0393,
+    "sd": 0.0176,
+    "median": 0.0385,
+    "min": 0.0078,
+    "max": 0.1005
+   },
+   "input_tokens_total": {
+    "n": 72,
+    "mean": 49490.5972,
+    "sd": 28985.0681,
+    "median": 41871.0,
+    "min": 7831.0,
+    "max": 135631.0
+   },
+   "output_tokens": {
+    "n": 72,
+    "mean": 3192.0278,
+    "sd": 2245.5376,
+    "median": 2629.0,
+    "min": 512.0,
+    "max": 13338.0
+   },
+   "query_count": {
+    "n": 72,
+    "mean": 2.9583,
+    "sd": 2.0857,
+    "median": 3.0,
+    "min": 0.0,
+    "max": 8.0
+   },
+   "contract_calls": {
+    "n": 72,
+    "mean": 4.2222,
+    "sd": 2.2903,
+    "median": 4.0,
+    "min": 0.0,
+    "max": 10.0
+   },
+   "model_calls": {
+    "n": 72,
+    "mean": 7.9167,
+    "sd": 3.2534,
+    "median": 7.0,
+    "min": 2.0,
+    "max": 16.0
+   }
+  },
+  "after_fix": {
+   "runs": 24,
+   "failed_runs": 0,
+   "error_runs": 0,
+   "timed_out_runs": 0,
+   "failed_share": 0.0,
+   "total_cost_usd": 0.8997,
+   "seconds": {
+    "n": 24,
+    "mean": 41.7625,
+    "sd": 20.616,
+    "median": 40.75,
+    "min": 10.4,
+    "max": 77.7
+   },
+   "cost_usd": {
+    "n": 24,
+    "mean": 0.0375,
+    "sd": 0.0184,
+    "median": 0.0347,
+    "min": 0.0078,
+    "max": 0.0802
+   },
+   "input_tokens_total": {
+    "n": 24,
+    "mean": 43470.125,
+    "sd": 24622.377,
+    "median": 39912.0,
+    "min": 7824.0,
+    "max": 92642.0
+   },
+   "output_tokens": {
+    "n": 24,
+    "mean": 3418.2917,
+    "sd": 2661.8239,
+    "median": 3046.0,
+    "min": 528.0,
+    "max": 11334.0
+   },
+   "query_count": {
+    "n": 24,
+    "mean": 2.5,
+    "sd": 1.7937,
+    "median": 3.0,
+    "min": 0.0,
+    "max": 6.0
+   },
+   "contract_calls": {
+    "n": 24,
+    "mean": 4.0833,
+    "sd": 2.1853,
+    "median": 4.0,
+    "min": 0.0,
+    "max": 8.0
+   },
+   "model_calls": {
+    "n": 24,
+    "mean": 7.125,
+    "sd": 3.0405,
+    "median": 6.5,
+    "min": 2.0,
+    "max": 13.0
+   }
+  }
+ },
+ "operational_by_execution": {
+  "baseline": [
+   {
+    "execution": 1,
+    "runs": 24,
+    "failed_runs": 0,
+    "error_runs": 0,
+    "timed_out_runs": 0,
+    "failed_share": 0.0,
+    "total_cost_usd": 0.9068,
+    "seconds": {
+     "n": 24,
+     "mean": 63.8667,
+     "sd": 36.7678,
+     "median": 65.85,
+     "min": 9.8,
+     "max": 139.6
+    },
+    "cost_usd": {
+     "n": 24,
+     "mean": 0.0378,
+     "sd": 0.0166,
+     "median": 0.04,
+     "min": 0.0079,
+     "max": 0.0695
+    },
+    "input_tokens_total": {
+     "n": 24,
+     "mean": 44737.0417,
+     "sd": 24089.5732,
+     "median": 42065.5,
+     "min": 7826.0,
+     "max": 86925.0
+    },
+    "output_tokens": {
+     "n": 24,
+     "mean": 3251.0833,
+     "sd": 2161.4227,
+     "median": 2584.0,
+     "min": 543.0,
+     "max": 7852.0
+    },
+    "query_count": {
+     "n": 24,
+     "mean": 2.9583,
+     "sd": 2.1565,
+     "median": 3.0,
+     "min": 0.0,
+     "max": 7.0
+    },
+    "contract_calls": {
+     "n": 24,
+     "mean": 3.7917,
+     "sd": 1.744,
+     "median": 4.0,
+     "min": 0.0,
+     "max": 7.0
+    },
+    "model_calls": {
+     "n": 24,
+     "mean": 7.5,
+     "sd": 3.0787,
+     "median": 7.5,
+     "min": 2.0,
+     "max": 12.0
+    }
+   },
+   {
+    "execution": 2,
+    "runs": 24,
+    "failed_runs": 0,
+    "error_runs": 0,
+    "timed_out_runs": 0,
+    "failed_share": 0.0,
+    "total_cost_usd": 0.9435,
+    "seconds": {
+     "n": 24,
+     "mean": 70.6708,
+     "sd": 39.9812,
+     "median": 57.3,
+     "min": 28.3,
+     "max": 193.3
+    },
+    "cost_usd": {
+     "n": 24,
+     "mean": 0.0393,
+     "sd": 0.0183,
+     "median": 0.0351,
+     "min": 0.008,
+     "max": 0.0774
+    },
+    "input_tokens_total": {
+     "n": 24,
+     "mean": 46365.125,
+     "sd": 23863.0926,
+     "median": 40116.0,
+     "min": 7867.0,
+     "max": 93733.0
+    },
+    "output_tokens": {
+     "n": 24,
+     "mean": 3338.2917,
+     "sd": 2475.222,
+     "median": 2542.5,
+     "min": 555.0,
+     "max": 9553.0
+    },
+    "query_count": {
+     "n": 24,
+     "mean": 2.875,
+     "sd": 1.8954,
+     "median": 3.0,
+     "min": 0.0,
+     "max": 7.0
+    },
+    "contract_calls": {
+     "n": 24,
+     "mean": 4.0,
+     "sd": 1.9111,
+     "median": 4.0,
+     "min": 0.0,
+     "max": 8.0
+    },
+    "model_calls": {
+     "n": 24,
+     "mean": 7.75,
+     "sd": 2.9229,
+     "median": 7.0,
+     "min": 2.0,
+     "max": 13.0
+    }
+   },
+   {
+    "execution": 3,
+    "runs": 24,
+    "failed_runs": 0,
+    "error_runs": 0,
+    "timed_out_runs": 0,
+    "failed_share": 0.0,
+    "total_cost_usd": 0.8586,
+    "seconds": {
+     "n": 24,
+     "mean": 66.375,
+     "sd": 40.4496,
+     "median": 54.95,
+     "min": 16.0,
+     "max": 152.9
+    },
+    "cost_usd": {
+     "n": 24,
+     "mean": 0.0358,
+     "sd": 0.0139,
+     "median": 0.033,
+     "min": 0.0122,
+     "max": 0.0646
+    },
+    "input_tokens_total": {
+     "n": 24,
+     "mean": 43124.5417,
+     "sd": 19986.0595,
+     "median": 39124.5,
+     "min": 12311.0,
+     "max": 85031.0
+    },
+    "output_tokens": {
+     "n": 24,
+     "mean": 2798.9167,
+     "sd": 1728.5459,
+     "median": 2197.5,
+     "min": 791.0,
+     "max": 6892.0
+    },
+    "query_count": {
+     "n": 24,
+     "mean": 2.4167,
+     "sd": 1.8396,
+     "median": 2.0,
+     "min": 0.0,
+     "max": 6.0
+    },
+    "contract_calls": {
+     "n": 24,
+     "mean": 4.1667,
+     "sd": 1.8805,
+     "median": 4.0,
+     "min": 1.0,
+     "max": 8.0
+    },
+    "model_calls": {
+     "n": 24,
+     "mean": 7.3333,
+     "sd": 2.4613,
+     "median": 7.0,
+     "min": 3.0,
+     "max": 12.0
+    }
+   }
+  ],
+  "part3_available": [
+   {
+    "execution": 1,
+    "runs": 24,
+    "failed_runs": 0,
+    "error_runs": 0,
+    "timed_out_runs": 0,
+    "failed_share": 0.0,
+    "total_cost_usd": 0.9329,
+    "seconds": {
+     "n": 24,
+     "mean": 87.0708,
+     "sd": 60.8856,
+     "median": 78.65,
+     "min": 21.4,
+     "max": 251.3
+    },
+    "cost_usd": {
+     "n": 24,
+     "mean": 0.0389,
+     "sd": 0.0207,
+     "median": 0.0374,
+     "min": 0.0071,
+     "max": 0.0986
+    },
+    "input_tokens_total": {
+     "n": 24,
+     "mean": 50103.3333,
+     "sd": 30644.5266,
+     "median": 44757.0,
+     "min": 7635.0,
+     "max": 139754.0
+    },
+    "output_tokens": {
+     "n": 24,
+     "mean": 2656.3333,
+     "sd": 2296.3036,
+     "median": 1912.5,
+     "min": 359.0,
+     "max": 8167.0
+    },
+    "query_count": {
+     "n": 24,
+     "mean": 3.25,
+     "sd": 2.172,
+     "median": 3.0,
+     "min": 0.0,
+     "max": 7.0
+    },
+    "contract_calls": {
+     "n": 24,
+     "mean": 4.1667,
+     "sd": 2.4613,
+     "median": 4.5,
+     "min": 0.0,
+     "max": 11.0
+    },
+    "model_calls": {
+     "n": 24,
+     "mean": 8.2917,
+     "sd": 3.6293,
+     "median": 8.0,
+     "min": 2.0,
+     "max": 17.0
+    }
+   },
+   {
+    "execution": 2,
+    "runs": 24,
+    "failed_runs": 0,
+    "error_runs": 0,
+    "timed_out_runs": 0,
+    "failed_share": 0.0,
+    "total_cost_usd": 0.8308,
+    "seconds": {
+     "n": 24,
+     "mean": 74.2167,
+     "sd": 35.3783,
+     "median": 69.65,
+     "min": 26.2,
+     "max": 148.9
+    },
+    "cost_usd": {
+     "n": 24,
+     "mean": 0.0346,
+     "sd": 0.0185,
+     "median": 0.0332,
+     "min": 0.0068,
+     "max": 0.0738
+    },
+    "input_tokens_total": {
+     "n": 24,
+     "mean": 42845.875,
+     "sd": 25657.5238,
+     "median": 37764.0,
+     "min": 7606.0,
+     "max": 102589.0
+    },
+    "output_tokens": {
+     "n": 24,
+     "mean": 2557.9167,
+     "sd": 2525.4346,
+     "median": 1707.5,
+     "min": 304.0,
+     "max": 10880.0
+    },
+    "query_count": {
+     "n": 24,
+     "mean": 2.7917,
+     "sd": 1.6146,
+     "median": 3.0,
+     "min": 0.0,
+     "max": 7.0
+    },
+    "contract_calls": {
+     "n": 24,
+     "mean": 3.7083,
+     "sd": 2.3679,
+     "median": 3.0,
+     "min": 0.0,
+     "max": 9.0
+    },
+    "model_calls": {
+     "n": 24,
+     "mean": 7.5,
+     "sd": 3.2033,
+     "median": 7.5,
+     "min": 2.0,
+     "max": 14.0
+    }
+   },
+   {
+    "execution": 3,
+    "runs": 24,
+    "failed_runs": 0,
+    "error_runs": 0,
+    "timed_out_runs": 0,
+    "failed_share": 0.0,
+    "total_cost_usd": 0.8436,
+    "seconds": {
+     "n": 24,
+     "mean": 76.7583,
+     "sd": 55.9714,
+     "median": 64.2,
+     "min": 9.2,
+     "max": 197.2
+    },
+    "cost_usd": {
+     "n": 24,
+     "mean": 0.0351,
+     "sd": 0.0183,
+     "median": 0.0323,
+     "min": 0.0069,
+     "max": 0.0824
+    },
+    "input_tokens_total": {
+     "n": 24,
+     "mean": 43836.2917,
+     "sd": 26409.546,
+     "median": 33678.0,
+     "min": 7629.0,
+     "max": 108392.0
+    },
+    "output_tokens": {
+     "n": 24,
+     "mean": 2380.2917,
+     "sd": 2040.0472,
+     "median": 1787.5,
+     "min": 319.0,
+     "max": 7052.0
+    },
+    "query_count": {
+     "n": 24,
+     "mean": 2.9167,
+     "sd": 1.8158,
+     "median": 3.0,
+     "min": 0.0,
+     "max": 7.0
+    },
+    "contract_calls": {
+     "n": 24,
+     "mean": 3.7083,
+     "sd": 2.1565,
+     "median": 3.5,
+     "min": 0.0,
+     "max": 8.0
+    },
+    "model_calls": {
+     "n": 24,
+     "mean": 7.625,
+     "sd": 3.2812,
+     "median": 7.0,
+     "min": 2.0,
+     "max": 14.0
+    }
+   }
+  ],
+  "drift": [
+   {
+    "execution": 1,
+    "runs": 24,
+    "failed_runs": 0,
+    "error_runs": 0,
+    "timed_out_runs": 0,
+    "failed_share": 0.0,
+    "total_cost_usd": 0.9634,
+    "seconds": {
+     "n": 24,
+     "mean": 89.4833,
+     "sd": 52.3557,
+     "median": 69.5,
+     "min": 22.9,
+     "max": 227.4
+    },
+    "cost_usd": {
+     "n": 24,
+     "mean": 0.0401,
+     "sd": 0.0199,
+     "median": 0.0399,
+     "min": 0.0081,
+     "max": 0.1005
+    },
+    "input_tokens_total": {
+     "n": 24,
+     "mean": 50276.4583,
+     "sd": 29755.1053,
+     "median": 45188.0,
+     "min": 7831.0,
+     "max": 135631.0
+    },
+    "output_tokens": {
+     "n": 24,
+     "mean": 3301.5417,
+     "sd": 2656.4165,
+     "median": 2672.5,
+     "min": 604.0,
+     "max": 13338.0
+    },
+    "query_count": {
+     "n": 24,
+     "mean": 2.9583,
+     "sd": 2.1765,
+     "median": 3.0,
+     "min": 0.0,
+     "max": 7.0
+    },
+    "contract_calls": {
+     "n": 24,
+     "mean": 4.2917,
+     "sd": 2.3679,
+     "median": 4.0,
+     "min": 0.0,
+     "max": 10.0
+    },
+    "model_calls": {
+     "n": 24,
+     "mean": 7.9583,
+     "sd": 3.2233,
+     "median": 7.5,
+     "min": 2.0,
+     "max": 14.0
+    }
+   },
+   {
+    "execution": 2,
+    "runs": 24,
+    "failed_runs": 0,
+    "error_runs": 0,
+    "timed_out_runs": 0,
+    "failed_share": 0.0,
+    "total_cost_usd": 0.9137,
+    "seconds": {
+     "n": 24,
+     "mean": 56.1375,
+     "sd": 29.4967,
+     "median": 49.8,
+     "min": 18.3,
+     "max": 125.4
+    },
+    "cost_usd": {
+     "n": 24,
+     "mean": 0.0381,
+     "sd": 0.0161,
+     "median": 0.0354,
+     "min": 0.0084,
+     "max": 0.0678
+    },
+    "input_tokens_total": {
+     "n": 24,
+     "mean": 46548.0833,
+     "sd": 27147.678,
+     "median": 38402.5,
+     "min": 7854.0,
+     "max": 103317.0
+    },
+    "output_tokens": {
+     "n": 24,
+     "mean": 3205.125,
+     "sd": 1912.2012,
+     "median": 2756.0,
+     "min": 673.0,
+     "max": 8251.0
+    },
+    "query_count": {
+     "n": 24,
+     "mean": 2.5833,
+     "sd": 1.7917,
+     "median": 2.5,
+     "min": 0.0,
+     "max": 6.0
+    },
+    "contract_calls": {
+     "n": 24,
+     "mean": 4.25,
+     "sd": 2.2698,
+     "median": 4.0,
+     "min": 0.0,
+     "max": 9.0
+    },
+    "model_calls": {
+     "n": 24,
+     "mean": 7.5417,
+     "sd": 3.1344,
+     "median": 7.0,
+     "min": 2.0,
+     "max": 14.0
+    }
+   },
+   {
+    "execution": 3,
+    "runs": 24,
+    "failed_runs": 0,
+    "error_runs": 0,
+    "timed_out_runs": 0,
+    "failed_share": 0.0,
+    "total_cost_usd": 0.949,
+    "seconds": {
+     "n": 24,
+     "mean": 40.9625,
+     "sd": 16.607,
+     "median": 38.8,
+     "min": 13.3,
+     "max": 76.8
+    },
+    "cost_usd": {
+     "n": 24,
+     "mean": 0.0395,
+     "sd": 0.0173,
+     "median": 0.0401,
+     "min": 0.0078,
+     "max": 0.0877
+    },
+    "input_tokens_total": {
+     "n": 24,
+     "mean": 51647.25,
+     "sd": 30928.3414,
+     "median": 42850.0,
+     "min": 7859.0,
+     "max": 128425.0
+    },
+    "output_tokens": {
+     "n": 24,
+     "mean": 3069.4167,
+     "sd": 2196.4396,
+     "median": 2434.5,
+     "min": 512.0,
+     "max": 9989.0
+    },
+    "query_count": {
+     "n": 24,
+     "mean": 3.3333,
+     "sd": 2.2778,
+     "median": 3.0,
+     "min": 0.0,
+     "max": 8.0
+    },
+    "contract_calls": {
+     "n": 24,
+     "mean": 4.125,
+     "sd": 2.3278,
+     "median": 4.0,
+     "min": 0.0,
+     "max": 9.0
+    },
+    "model_calls": {
+     "n": 24,
+     "mean": 8.25,
+     "sd": 3.4922,
+     "median": 8.0,
+     "min": 2.0,
+     "max": 16.0
+    }
+   }
+  ],
+  "after_fix": [
+   {
+    "execution": 1,
+    "runs": 24,
+    "failed_runs": 0,
+    "error_runs": 0,
+    "timed_out_runs": 0,
+    "failed_share": 0.0,
+    "total_cost_usd": 0.8997,
+    "seconds": {
+     "n": 24,
+     "mean": 41.7625,
+     "sd": 20.616,
+     "median": 40.75,
+     "min": 10.4,
+     "max": 77.7
+    },
+    "cost_usd": {
+     "n": 24,
+     "mean": 0.0375,
+     "sd": 0.0184,
+     "median": 0.0347,
+     "min": 0.0078,
+     "max": 0.0802
+    },
+    "input_tokens_total": {
+     "n": 24,
+     "mean": 43470.125,
+     "sd": 24622.377,
+     "median": 39912.0,
+     "min": 7824.0,
+     "max": 92642.0
+    },
+    "output_tokens": {
+     "n": 24,
+     "mean": 3418.2917,
+     "sd": 2661.8239,
+     "median": 3046.0,
+     "min": 528.0,
+     "max": 11334.0
+    },
+    "query_count": {
+     "n": 24,
+     "mean": 2.5,
+     "sd": 1.7937,
+     "median": 3.0,
+     "min": 0.0,
+     "max": 6.0
+    },
+    "contract_calls": {
+     "n": 24,
+     "mean": 4.0833,
+     "sd": 2.1853,
+     "median": 4.0,
+     "min": 0.0,
+     "max": 8.0
+    },
+    "model_calls": {
+     "n": 24,
+     "mean": 7.125,
+     "sd": 3.0405,
+     "median": 6.5,
+     "min": 2.0,
+     "max": 13.0
+    }
+   }
+  ]
+ },
+ "green_by_execution": {
+  "baseline": [
+   {
+    "execution": 1,
+    "green": true,
+    "checks": {
+     "seconds": {
+      "mean": 63.8667,
+      "inside": true
+     },
+     "cost_usd": {
+      "mean": 0.0378,
+      "inside": true
+     },
+     "input_tokens_total": {
+      "mean": 44737.0417,
+      "inside": true
+     },
+     "query_count": {
+      "mean": 2.9583,
+      "inside": true
+     },
+     "failed_runs": {
+      "count": 0,
+      "inside": true
+     }
+    }
+   },
+   {
+    "execution": 2,
+    "green": true,
+    "checks": {
+     "seconds": {
+      "mean": 70.6708,
+      "inside": true
+     },
+     "cost_usd": {
+      "mean": 0.0393,
+      "inside": true
+     },
+     "input_tokens_total": {
+      "mean": 46365.125,
+      "inside": true
+     },
+     "query_count": {
+      "mean": 2.875,
+      "inside": true
+     },
+     "failed_runs": {
+      "count": 0,
+      "inside": true
+     }
+    }
+   },
+   {
+    "execution": 3,
+    "green": true,
+    "checks": {
+     "seconds": {
+      "mean": 66.375,
+      "inside": true
+     },
+     "cost_usd": {
+      "mean": 0.0358,
+      "inside": true
+     },
+     "input_tokens_total": {
+      "mean": 43124.5417,
+      "inside": true
+     },
+     "query_count": {
+      "mean": 2.4167,
+      "inside": true
+     },
+     "failed_runs": {
+      "count": 0,
+      "inside": true
+     }
+    }
+   }
+  ],
+  "part3_available": [
+   {
+    "execution": 1,
+    "green": false,
+    "checks": {
+     "seconds": {
+      "mean": 87.0708,
+      "inside": true
+     },
+     "cost_usd": {
+      "mean": 0.0389,
+      "inside": true
+     },
+     "input_tokens_total": {
+      "mean": 50103.3333,
+      "inside": true
+     },
+     "query_count": {
+      "mean": 3.25,
+      "inside": true
+     },
+     "failed_runs": {
+      "count": 2,
+      "inside": false
+     }
+    }
+   },
+   {
+    "execution": 2,
+    "green": true,
+    "checks": {
+     "seconds": {
+      "mean": 74.2167,
+      "inside": true
+     },
+     "cost_usd": {
+      "mean": 0.0346,
+      "inside": true
+     },
+     "input_tokens_total": {
+      "mean": 42845.875,
+      "inside": true
+     },
+     "query_count": {
+      "mean": 2.7917,
+      "inside": true
+     },
+     "failed_runs": {
+      "count": 0,
+      "inside": true
+     }
+    }
+   },
+   {
+    "execution": 3,
+    "green": true,
+    "checks": {
+     "seconds": {
+      "mean": 76.7583,
+      "inside": true
+     },
+     "cost_usd": {
+      "mean": 0.0351,
+      "inside": true
+     },
+     "input_tokens_total": {
+      "mean": 43836.2917,
+      "inside": true
+     },
+     "query_count": {
+      "mean": 2.9167,
+      "inside": true
+     },
+     "failed_runs": {
+      "count": 0,
+      "inside": true
+     }
+    }
+   }
+  ],
+  "drift": [
+   {
+    "execution": 1,
+    "green": false,
+    "checks": {
+     "seconds": {
+      "mean": 89.4833,
+      "inside": true
+     },
+     "cost_usd": {
+      "mean": 0.0401,
+      "inside": true
+     },
+     "input_tokens_total": {
+      "mean": 50276.4583,
+      "inside": true
+     },
+     "query_count": {
+      "mean": 2.9583,
+      "inside": true
+     },
+     "failed_runs": {
+      "count": 3,
+      "inside": false
+     }
+    }
+   },
+   {
+    "execution": 2,
+    "green": true,
+    "checks": {
+     "seconds": {
+      "mean": 56.1375,
+      "inside": true
+     },
+     "cost_usd": {
+      "mean": 0.0381,
+      "inside": true
+     },
+     "input_tokens_total": {
+      "mean": 46548.0833,
+      "inside": true
+     },
+     "query_count": {
+      "mean": 2.5833,
+      "inside": true
+     },
+     "failed_runs": {
+      "count": 0,
+      "inside": true
+     }
+    }
+   },
+   {
+    "execution": 3,
+    "green": true,
+    "checks": {
+     "seconds": {
+      "mean": 40.9625,
+      "inside": true
+     },
+     "cost_usd": {
+      "mean": 0.0395,
+      "inside": true
+     },
+     "input_tokens_total": {
+      "mean": 51647.25,
+      "inside": true
+     },
+     "query_count": {
+      "mean": 3.3333,
+      "inside": true
+     },
+     "failed_runs": {
+      "count": 0,
+      "inside": true
+     }
+    }
+   }
+  ],
+  "after_fix": [
+   {
+    "execution": 1,
+    "green": true,
+    "checks": {
+     "seconds": {
+      "mean": 41.7625,
+      "inside": true
+     },
+     "cost_usd": {
+      "mean": 0.0375,
+      "inside": true
+     },
+     "input_tokens_total": {
+      "mean": 43470.125,
+      "inside": true
+     },
+     "query_count": {
+      "mean": 2.5,
+      "inside": true
+     },
+     "failed_runs": {
+      "count": 0,
+      "inside": true
+     }
+    }
+   }
+  ]
+ },
+ "failed_attempts": {
+  "baseline": {
+   "attempts": 72,
+   "failed": 0,
+   "rerun_after_failure": 0,
+   "failures": []
+  },
+  "part3_available": {
+   "attempts": 74,
+   "failed": 2,
+   "rerun_after_failure": 2,
+   "failures": [
+    "L2#0: _ResourceExhaustedError: ",
+    "L1#0: _ResourceExhaustedError: "
+   ]
+  },
+  "drift": {
+   "attempts": 75,
+   "failed": 3,
+   "rerun_after_failure": 3,
+   "failures": [
+    "L1#0: _ResourceExhaustedError: ",
+    "L5#0: timeout",
+    "M4#0: timeout"
+   ]
+  },
+  "after_fix": {
+   "attempts": 24,
+   "failed": 0,
+   "rerun_after_failure": 0,
+   "failures": []
+  }
+ },
+ "answers": {
+  "baseline": {
+   "runs": 72,
+   "overall": {
+    "right": 72,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0
+   },
+   "right_share": 1.0,
+   "by_group": {
+    "lookup": {
+     "right": 18,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "metric": {
+     "right": 18,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "entity": {
+     "right": 18,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "rule": {
+     "right": 18,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    }
+   },
+   "by_question": {
+    "L1": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "65",
+      "65",
+      "65"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "L2": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "11",
+      "11",
+      "11"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "L3": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "Green Bay",
+      "Green Bay",
+      "Green Bay"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "L4": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "BHRI",
+      "BHRI",
+      "BHRI"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "L5": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "638",
+      "638",
+      "638"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "L6": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "0.7318",
+      "0.7318",
+      "0.7318"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "M1": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "87.4409820585458",
+      "87.4409820585458",
+      "87.4409820585458"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "M2": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "10294019.115413",
+      "10294019.115413",
+      "10294019.115413"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "M3": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "409.186793016",
+      "409.186793016",
+      "409.186793016"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "M4": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "13.24468489",
+      "13.24468489",
+      "13.24468489"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "M5": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "1097",
+      "1097",
+      "1097"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "M6": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "393",
+      "393",
+      "393"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "E1": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "Northgate Foods Group",
+      "Northgate Foods Group",
+      "Northgate Foods Group"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "E2": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "36",
+      "36",
+      "36"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "E3": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "1299690.263658",
+      "1299690.263658",
+      "1299690.263658"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "E4": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "1170",
+      "1170",
+      "1170"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "E5": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "433",
+      "433",
+      "433"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "E6": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "Midvale Transport",
+      "Midvale Transport",
+      "Midvale Transport"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "R1": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "133",
+      "133",
+      "133"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "R2": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "142",
+      "142",
+      "142"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "R3": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "986208.765413",
+      "986208.765413",
+      "986208.765413"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "R4": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "30",
+      "30",
+      "30"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "R5": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "91.52233363719235",
+      "91.52233363719235",
+      "91.52"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "R6": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "3050",
+      "3050",
+      "3050"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    }
+   }
+  },
+  "part3_available": {
+   "runs": 72,
+   "overall": {
+    "right": 72,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0
+   },
+   "right_share": 1.0,
+   "by_group": {
+    "lookup": {
+     "right": 18,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "metric": {
+     "right": 18,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "entity": {
+     "right": 18,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "rule": {
+     "right": 18,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    }
+   },
+   "by_question": {
+    "L1": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "65",
+      "65",
+      "65"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "L2": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "11",
+      "11",
+      "11"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "L3": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "Green Bay",
+      "Green Bay",
+      "Green Bay"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "L4": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "BHRI",
+      "BHRI",
+      "BHRI"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "L5": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "638",
+      "638",
+      "638"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "L6": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "0.7318",
+      "0.7318",
+      "0.7318"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "M1": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "87.4409820585458",
+      "87.4409820585458",
+      "87.44"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "M2": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "10294019.115413",
+      "10294019.115413",
+      "10294019.115413"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "M3": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "409.19",
+      "409.186793016",
+      "409.186793016"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "M4": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "13.24468489",
+      "13.24468489",
+      "13.24468489"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "M5": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "1097",
+      "1097",
+      "1097"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "M6": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "393",
+      "393",
+      "393"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "E1": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "Northgate Foods Group",
+      "Northgate Foods Group",
+      "Northgate Foods Group"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "E2": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "36",
+      "36",
+      "36"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "E3": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "1299690.263658",
+      "1299690.263658",
+      "1299690.263658"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "E4": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "1170",
+      "1170",
+      "1170"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "E5": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "433",
+      "433",
+      "433"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "E6": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "Midvale Transport",
+      "Midvale Transport",
+      "Midvale Transport"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "R1": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "133",
+      "133",
+      "133"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "R2": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "142",
+      "142",
+      "142"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "R3": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "986208.765413",
+      "986208.765413",
+      "986208.765413"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "R4": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "30",
+      "30",
+      "30"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "R5": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "91.52",
+      "91.52233363719235",
+      "91.52"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "R6": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "3050",
+      "3050",
+      "3050"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    }
+   }
+  },
+  "drift": {
+   "runs": 72,
+   "overall": {
+    "right": 60,
+    "confidently_wrong": 12,
+    "declined": 0,
+    "no_answer": 0
+   },
+   "right_share": 0.8333,
+   "by_group": {
+    "lookup": {
+     "right": 18,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "metric": {
+     "right": 12,
+     "confidently_wrong": 6,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "entity": {
+     "right": 15,
+     "confidently_wrong": 3,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "rule": {
+     "right": 15,
+     "confidently_wrong": 3,
+     "declined": 0,
+     "no_answer": 0
+    }
+   },
+   "by_question": {
+    "L1": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "65",
+      "65",
+      "65"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "L2": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "11",
+      "11",
+      "11"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "L3": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "Green Bay",
+      "Green Bay",
+      "Green Bay"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "L4": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "BHRI",
+      "BHRI",
+      "BHRI"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "L5": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "638",
+      "638",
+      "638"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "L6": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "0.7318",
+      "0.7318",
+      "0.7318"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "M1": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "87.4409820585458",
+      "87.4409820585458",
+      "87.4409820585458"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "M2": {
+     "right": 0,
+     "confidently_wrong": 3,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "10134528.894054",
+      "10134528.894054",
+      "10134528.894054"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "M3": {
+     "right": 0,
+     "confidently_wrong": 3,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "403.112811604",
+      "403.112811604",
+      "403.112811604"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "M4": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "13.253422061",
+      "13.253422061",
+      "13.253422061"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "M5": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "1097",
+      "1097",
+      "1097"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "M6": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "393",
+      "393",
+      "393"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "E1": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "Northgate Foods Group",
+      "Northgate Foods Group",
+      "Northgate Foods Group"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "E2": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "36",
+      "36",
+      "36"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "E3": {
+     "right": 0,
+     "confidently_wrong": 3,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "1252448.312611",
+      "1252448.312611",
+      "1252448.312611"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "E4": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "1170",
+      "1170",
+      "1170"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "E5": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "433",
+      "433",
+      "433"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "E6": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "Midvale Transport",
+      "Midvale Transport",
+      "Midvale Transport"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "R1": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "133",
+      "133",
+      "133"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "R2": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "142",
+      "142",
+      "142"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "R3": {
+     "right": 0,
+     "confidently_wrong": 3,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "826718.544054",
+      "826718.544054",
+      "826718.544054"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "R4": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "30",
+      "30",
+      "30"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "R5": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "91.52233363719235",
+      "91.52233363719235",
+      "91.52233363719235"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    },
+    "R6": {
+     "right": 3,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "3050",
+      "3050",
+      "3050"
+     ],
+     "decoys": [
+      "",
+      "",
+      ""
+     ]
+    }
+   }
+  },
+  "after_fix": {
+   "runs": 24,
+   "overall": {
+    "right": 24,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0
+   },
+   "right_share": 1.0,
+   "by_group": {
+    "lookup": {
+     "right": 6,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "metric": {
+     "right": 6,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "entity": {
+     "right": 6,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    },
+    "rule": {
+     "right": 6,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0
+    }
+   },
+   "by_question": {
+    "L1": {
+     "right": 1,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "65"
+     ],
+     "decoys": [
+      ""
+     ]
+    },
+    "L2": {
+     "right": 1,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "11"
+     ],
+     "decoys": [
+      ""
+     ]
+    },
+    "L3": {
+     "right": 1,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "Green Bay"
+     ],
+     "decoys": [
+      ""
+     ]
+    },
+    "L4": {
+     "right": 1,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "BHRI"
+     ],
+     "decoys": [
+      ""
+     ]
+    },
+    "L5": {
+     "right": 1,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "638"
+     ],
+     "decoys": [
+      ""
+     ]
+    },
+    "L6": {
+     "right": 1,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "0.7318"
+     ],
+     "decoys": [
+      ""
+     ]
+    },
+    "M1": {
+     "right": 1,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "87.4409820585458"
+     ],
+     "decoys": [
+      ""
+     ]
+    },
+    "M2": {
+     "right": 1,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "10294019.115413"
+     ],
+     "decoys": [
+      ""
+     ]
+    },
+    "M3": {
+     "right": 1,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "409.186793016"
+     ],
+     "decoys": [
+      ""
+     ]
+    },
+    "M4": {
+     "right": 1,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "13.24468489"
+     ],
+     "decoys": [
+      ""
+     ]
+    },
+    "M5": {
+     "right": 1,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "1097"
+     ],
+     "decoys": [
+      ""
+     ]
+    },
+    "M6": {
+     "right": 1,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "393"
+     ],
+     "decoys": [
+      ""
+     ]
+    },
+    "E1": {
+     "right": 1,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "Northgate Foods Group"
+     ],
+     "decoys": [
+      ""
+     ]
+    },
+    "E2": {
+     "right": 1,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "36"
+     ],
+     "decoys": [
+      ""
+     ]
+    },
+    "E3": {
+     "right": 1,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "1299690.263658"
+     ],
+     "decoys": [
+      ""
+     ]
+    },
+    "E4": {
+     "right": 1,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "1170"
+     ],
+     "decoys": [
+      ""
+     ]
+    },
+    "E5": {
+     "right": 1,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "433"
+     ],
+     "decoys": [
+      ""
+     ]
+    },
+    "E6": {
+     "right": 1,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "Midvale Transport"
+     ],
+     "decoys": [
+      ""
+     ]
+    },
+    "R1": {
+     "right": 1,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "133"
+     ],
+     "decoys": [
+      ""
+     ]
+    },
+    "R2": {
+     "right": 1,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "142"
+     ],
+     "decoys": [
+      ""
+     ]
+    },
+    "R3": {
+     "right": 1,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "986208.765413"
+     ],
+     "decoys": [
+      ""
+     ]
+    },
+    "R4": {
+     "right": 1,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "30"
+     ],
+     "decoys": [
+      ""
+     ]
+    },
+    "R5": {
+     "right": 1,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "91.52233363719235"
+     ],
+     "decoys": [
+      ""
+     ]
+    },
+    "R6": {
+     "right": 1,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "answers": [
+      "3050"
+     ],
+     "decoys": [
+      ""
+     ]
+    }
+   }
+  }
+ },
+ "answers_by_execution": {
+  "baseline": [
+   {
+    "execution": 1,
+    "right": 24,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0
+   },
+   {
+    "execution": 2,
+    "right": 24,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0
+   },
+   {
+    "execution": 3,
+    "right": 24,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0
+   }
+  ],
+  "part3_available": [
+   {
+    "execution": 1,
+    "right": 24,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0
+   },
+   {
+    "execution": 2,
+    "right": 24,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0
+   },
+   {
+    "execution": 3,
+    "right": 24,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0
+   }
+  ],
+  "drift": [
+   {
+    "execution": 1,
+    "right": 20,
+    "confidently_wrong": 4,
+    "declined": 0,
+    "no_answer": 0
+   },
+   {
+    "execution": 2,
+    "right": 20,
+    "confidently_wrong": 4,
+    "declined": 0,
+    "no_answer": 0
+   },
+   {
+    "execution": 3,
+    "right": 20,
+    "confidently_wrong": 4,
+    "declined": 0,
+    "no_answer": 0
+   }
+  ],
+  "after_fix": [
+   {
+    "execution": 1,
+    "right": 24,
+    "confidently_wrong": 0,
+    "declined": 0,
+    "no_answer": 0
+   }
+  ]
+ },
+ "alerts": {
+  "baseline": [
+   {
+    "execution": 1,
+    "fired": false,
+    "groups_below": [],
+    "by_group": {
+     "lookup": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "metric": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "entity": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "rule": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     }
+    },
+    "missed": []
+   },
+   {
+    "execution": 2,
+    "fired": false,
+    "groups_below": [],
+    "by_group": {
+     "lookup": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "metric": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "entity": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "rule": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     }
+    },
+    "missed": []
+   },
+   {
+    "execution": 3,
+    "fired": false,
+    "groups_below": [],
+    "by_group": {
+     "lookup": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "metric": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "entity": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "rule": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     }
+    },
+    "missed": []
+   }
+  ],
+  "part3_available": [
+   {
+    "execution": 1,
+    "fired": false,
+    "groups_below": [],
+    "by_group": {
+     "lookup": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "metric": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "entity": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "rule": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     }
+    },
+    "missed": []
+   },
+   {
+    "execution": 2,
+    "fired": false,
+    "groups_below": [],
+    "by_group": {
+     "lookup": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "metric": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "entity": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "rule": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     }
+    },
+    "missed": []
+   },
+   {
+    "execution": 3,
+    "fired": false,
+    "groups_below": [],
+    "by_group": {
+     "lookup": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "metric": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "entity": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "rule": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     }
+    },
+    "missed": []
+   }
+  ],
+  "drift": [
+   {
+    "execution": 1,
+    "fired": true,
+    "groups_below": [
+     "metric",
+     "entity",
+     "rule"
+    ],
+    "by_group": {
+     "lookup": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "metric": {
+      "runs": 6,
+      "right": 4,
+      "share": 0.6667,
+      "baseline_share": 1.0
+     },
+     "entity": {
+      "runs": 6,
+      "right": 5,
+      "share": 0.8333,
+      "baseline_share": 1.0
+     },
+     "rule": {
+      "runs": 6,
+      "right": 5,
+      "share": 0.8333,
+      "baseline_share": 1.0
+     }
+    },
+    "missed": [
+     "E3/confidently_wrong",
+     "M2/confidently_wrong",
+     "M3/confidently_wrong",
+     "R3/confidently_wrong"
+    ]
+   },
+   {
+    "execution": 2,
+    "fired": true,
+    "groups_below": [
+     "metric",
+     "entity",
+     "rule"
+    ],
+    "by_group": {
+     "lookup": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "metric": {
+      "runs": 6,
+      "right": 4,
+      "share": 0.6667,
+      "baseline_share": 1.0
+     },
+     "entity": {
+      "runs": 6,
+      "right": 5,
+      "share": 0.8333,
+      "baseline_share": 1.0
+     },
+     "rule": {
+      "runs": 6,
+      "right": 5,
+      "share": 0.8333,
+      "baseline_share": 1.0
+     }
+    },
+    "missed": [
+     "E3/confidently_wrong",
+     "M2/confidently_wrong",
+     "M3/confidently_wrong",
+     "R3/confidently_wrong"
+    ]
+   },
+   {
+    "execution": 3,
+    "fired": true,
+    "groups_below": [
+     "metric",
+     "entity",
+     "rule"
+    ],
+    "by_group": {
+     "lookup": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "metric": {
+      "runs": 6,
+      "right": 4,
+      "share": 0.6667,
+      "baseline_share": 1.0
+     },
+     "entity": {
+      "runs": 6,
+      "right": 5,
+      "share": 0.8333,
+      "baseline_share": 1.0
+     },
+     "rule": {
+      "runs": 6,
+      "right": 5,
+      "share": 0.8333,
+      "baseline_share": 1.0
+     }
+    },
+    "missed": [
+     "E3/confidently_wrong",
+     "M2/confidently_wrong",
+     "M3/confidently_wrong",
+     "R3/confidently_wrong"
+    ]
+   }
+  ],
+  "after_fix": [
+   {
+    "execution": 1,
+    "fired": false,
+    "groups_below": [],
+    "by_group": {
+     "lookup": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "metric": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "entity": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "rule": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     }
+    },
+    "missed": []
+   }
+  ]
+ },
+ "alerts_from_the_job": {
+  "drift": [
+   {
+    "fired": true,
+    "groups_below": [
+     "metric",
+     "entity",
+     "rule"
+    ],
+    "by_group": {
+     "lookup": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "metric": {
+      "runs": 6,
+      "right": 4,
+      "share": 0.6667,
+      "baseline_share": 1.0
+     },
+     "entity": {
+      "runs": 6,
+      "right": 5,
+      "share": 0.8333,
+      "baseline_share": 1.0
+     },
+     "rule": {
+      "runs": 6,
+      "right": 5,
+      "share": 0.8333,
+      "baseline_share": 1.0
+     }
+    },
+    "missed": [
+     "E3/confidently_wrong",
+     "M2/confidently_wrong",
+     "M3/confidently_wrong",
+     "R3/confidently_wrong"
+    ],
+    "phase": "drift",
+    "execution": 1,
+    "runs": 24,
+    "right": 20,
+    "rule": "Fire when the share of runs scored right in any question group is lower than that group's share in the baseline (Part 4 available, 72 runs).",
+    "stopped_at_budget": false,
+    "evaluated_at": "2026-10-15T03:35:16+00:00"
+   },
+   {
+    "fired": true,
+    "groups_below": [
+     "metric",
+     "entity",
+     "rule"
+    ],
+    "by_group": {
+     "lookup": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "metric": {
+      "runs": 6,
+      "right": 4,
+      "share": 0.6667,
+      "baseline_share": 1.0
+     },
+     "entity": {
+      "runs": 6,
+      "right": 5,
+      "share": 0.8333,
+      "baseline_share": 1.0
+     },
+     "rule": {
+      "runs": 6,
+      "right": 5,
+      "share": 0.8333,
+      "baseline_share": 1.0
+     }
+    },
+    "missed": [
+     "E3/confidently_wrong",
+     "M2/confidently_wrong",
+     "M3/confidently_wrong",
+     "R3/confidently_wrong"
+    ],
+    "phase": "drift",
+    "execution": 2,
+    "runs": 24,
+    "right": 20,
+    "rule": "Fire when the share of runs scored right in any question group is lower than that group's share in the baseline (Part 4 available, 72 runs).",
+    "stopped_at_budget": false,
+    "evaluated_at": "2026-10-15T03:46:03+00:00"
+   },
+   {
+    "fired": true,
+    "groups_below": [
+     "metric",
+     "entity",
+     "rule"
+    ],
+    "by_group": {
+     "lookup": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "metric": {
+      "runs": 6,
+      "right": 4,
+      "share": 0.6667,
+      "baseline_share": 1.0
+     },
+     "entity": {
+      "runs": 6,
+      "right": 5,
+      "share": 0.8333,
+      "baseline_share": 1.0
+     },
+     "rule": {
+      "runs": 6,
+      "right": 5,
+      "share": 0.8333,
+      "baseline_share": 1.0
+     }
+    },
+    "missed": [
+     "E3/confidently_wrong",
+     "M2/confidently_wrong",
+     "M3/confidently_wrong",
+     "R3/confidently_wrong"
+    ],
+    "phase": "drift",
+    "execution": 3,
+    "runs": 24,
+    "right": 20,
+    "rule": "Fire when the share of runs scored right in any question group is lower than that group's share in the baseline (Part 4 available, 72 runs).",
+    "stopped_at_budget": false,
+    "evaluated_at": "2026-10-15T03:54:09+00:00"
+   }
+  ],
+  "after_fix": [
+   {
+    "fired": false,
+    "groups_below": [],
+    "by_group": {
+     "lookup": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "metric": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "entity": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     },
+     "rule": {
+      "runs": 6,
+      "right": 6,
+      "share": 1.0,
+      "baseline_share": 1.0
+     }
+    },
+    "missed": [],
+    "phase": "after_fix",
+    "execution": 1,
+    "runs": 24,
+    "right": 24,
+    "rule": "Fire when the share of runs scored right in any question group is lower than that group's share in the baseline (Part 4 available, 72 runs).",
+    "stopped_at_budget": false,
+    "evaluated_at": "2026-10-15T04:04:24+00:00"
+   }
+  ]
+ },
+ "alerts_raised": [
+  {
+   "event": "golden_set_alert",
+   "execution": 1,
+   "groups_below": [
+    "rule"
+   ],
+   "message": "golden_set_alert",
+   "missed": [
+    "R3/no_answer"
+   ],
+   "phase": "smoke",
+   "right": 3,
+   "runs": 4,
+   "log_timestamp": "2026-10-15T02:59:31.176242Z",
+   "job_execution": "tessaway-golden-check-nws6l"
+  },
+  {
+   "event": "golden_set_alert",
+   "execution": 2,
+   "groups_below": [
+    "lookup"
+   ],
+   "message": "golden_set_alert",
+   "missed": [
+    "L1/no_answer"
+   ],
+   "phase": "smoke",
+   "right": 0,
+   "runs": 1,
+   "log_timestamp": "2026-10-15T03:07:41.501133Z",
+   "job_execution": "tessaway-golden-check-r87lq"
+  },
+  {
+   "event": "golden_set_alert",
+   "execution": 1,
+   "groups_below": [
+    "lookup",
+    "metric",
+    "entity",
+    "rule"
+   ],
+   "message": "golden_set_alert",
+   "missed": [
+    "E3/confidently_wrong",
+    "L1/no_answer",
+    "L5/no_answer",
+    "M2/confidently_wrong",
+    "M3/confidently_wrong",
+    "M4/no_answer",
+    "R3/confidently_wrong"
+   ],
+   "phase": "drift",
+   "right": 17,
+   "runs": 24,
+   "log_timestamp": "2026-10-15T03:29:05.863013Z",
+   "job_execution": "tessaway-golden-check-ggpgp"
+  },
+  {
+   "event": "golden_set_alert",
+   "execution": 1,
+   "groups_below": [
+    "metric",
+    "entity",
+    "rule"
+   ],
+   "message": "golden_set_alert",
+   "missed": [
+    "E3/confidently_wrong",
+    "M2/confidently_wrong",
+    "M3/confidently_wrong",
+    "R3/confidently_wrong"
+   ],
+   "phase": "drift",
+   "right": 20,
+   "runs": 24,
+   "log_timestamp": "2026-10-15T03:35:16.776643Z",
+   "job_execution": "tessaway-golden-check-lpjfn"
+  },
+  {
+   "event": "golden_set_alert",
+   "execution": 2,
+   "groups_below": [
+    "metric",
+    "entity",
+    "rule"
+   ],
+   "message": "golden_set_alert",
+   "missed": [
+    "E3/confidently_wrong",
+    "M2/confidently_wrong",
+    "M3/confidently_wrong",
+    "R3/confidently_wrong"
+   ],
+   "phase": "drift",
+   "right": 20,
+   "runs": 24,
+   "log_timestamp": "2026-10-15T03:43:39.160732Z",
+   "job_execution": "tessaway-golden-check-n55xs"
+  },
+  {
+   "event": "golden_set_alert",
+   "execution": 2,
+   "groups_below": [
+    "metric",
+    "entity",
+    "rule"
+   ],
+   "message": "golden_set_alert",
+   "missed": [
+    "E3/confidently_wrong",
+    "M2/confidently_wrong",
+    "M3/confidently_wrong",
+    "R3/confidently_wrong"
+   ],
+   "phase": "drift",
+   "right": 20,
+   "runs": 24,
+   "log_timestamp": "2026-10-15T03:46:04.056600Z",
+   "job_execution": "tessaway-golden-check-df8mq"
+  },
+  {
+   "event": "golden_set_alert",
+   "execution": 3,
+   "groups_below": [
+    "metric",
+    "entity",
+    "rule"
+   ],
+   "message": "golden_set_alert",
+   "missed": [
+    "E3/confidently_wrong",
+    "M2/confidently_wrong",
+    "M3/confidently_wrong",
+    "R3/confidently_wrong"
+   ],
+   "phase": "drift",
+   "right": 20,
+   "runs": 24,
+   "log_timestamp": "2026-10-15T03:51:54.519517Z",
+   "job_execution": "tessaway-golden-check-sf7z7"
+  },
+  {
+   "event": "golden_set_alert",
+   "execution": 3,
+   "groups_below": [
+    "metric",
+    "entity",
+    "rule"
+   ],
+   "message": "golden_set_alert",
+   "missed": [
+    "E3/confidently_wrong",
+    "M2/confidently_wrong",
+    "M3/confidently_wrong",
+    "R3/confidently_wrong"
+   ],
+   "phase": "drift",
+   "right": 20,
+   "runs": 24,
+   "log_timestamp": "2026-10-15T03:54:09.592133Z",
+   "job_execution": "tessaway-golden-check-gsrnf"
+  },
+  {
+   "event": "golden_set_quiet",
+   "execution": 1,
+   "groups_below": [],
+   "message": "golden_set_quiet",
+   "missed": [],
+   "phase": "after_fix",
+   "right": 24,
+   "runs": 24,
+   "log_timestamp": "2026-10-15T04:02:17.066949Z",
+   "job_execution": "tessaway-golden-check-sl9v4"
+  },
+  {
+   "event": "golden_set_quiet",
+   "execution": 1,
+   "groups_below": [],
+   "message": "golden_set_quiet",
+   "missed": [],
+   "phase": "after_fix",
+   "right": 24,
+   "runs": 24,
+   "log_timestamp": "2026-10-15T04:04:24.940296Z",
+   "job_execution": "tessaway-golden-check-5b8b6"
+  }
+ ],
+ "time_to_detection": {
+  "first_execution_that_fired": 1,
+  "executions_run": 3
+ },
+ "narrowing": {
+  "runs": 12,
+  "runs_citing_something": 12,
+  "cited": {
+   "revenue@1": 9,
+   "customer@1": 3,
+   "margin@1": 3
+  },
+  "served": {
+   "revenue@1": 12,
+   "currency@1": 7,
+   "customer@1": 7,
+   "billable@1": 6,
+   "margin@1": 5,
+   "load@1": 4,
+   "portal_on_time@1": 3,
+   "delivered_load@1": 3,
+   "on_time@1": 1
+  },
+  "cited_by_every_citing_run": [],
+  "most_cited": "revenue@1",
+  "runs_citing_a_controller_definition": 12,
+  "runs_citing_only_controller_definitions": 9,
+  "runs_citing_currency": 0,
+  "runs_served_currency": 7,
+  "owners_cited": {
+   "VP Account Management": 3,
+   "Controller": 12
+  },
+  "by_question": {
+   "E3": [
+    {
+     "trial": 0,
+     "outcome": "confidently_wrong",
+     "answer": "1252448.312611",
+     "cited": [
+      "customer@1",
+      "revenue@1"
+     ],
+     "served": [
+      "currency@1",
+      "customer@1",
+      "portal_on_time@1",
+      "revenue@1"
+     ]
+    },
+    {
+     "trial": 1,
+     "outcome": "confidently_wrong",
+     "answer": "1252448.312611",
+     "cited": [
+      "customer@1",
+      "revenue@1"
+     ],
+     "served": [
+      "customer@1",
+      "margin@1",
+      "portal_on_time@1",
+      "revenue@1"
+     ]
+    },
+    {
+     "trial": 2,
+     "outcome": "confidently_wrong",
+     "answer": "1252448.312611",
+     "cited": [
+      "customer@1",
+      "revenue@1"
+     ],
+     "served": [
+      "billable@1",
+      "customer@1",
+      "margin@1",
+      "portal_on_time@1",
+      "revenue@1"
+     ]
+    }
+   ],
+   "M2": [
+    {
+     "trial": 0,
+     "outcome": "confidently_wrong",
+     "answer": "10134528.894054",
+     "cited": [
+      "revenue@1"
+     ],
+     "served": [
+      "currency@1",
+      "customer@1",
+      "revenue@1"
+     ]
+    },
+    {
+     "trial": 1,
+     "outcome": "confidently_wrong",
+     "answer": "10134528.894054",
+     "cited": [
+      "revenue@1"
+     ],
+     "served": [
+      "customer@1",
+      "revenue@1"
+     ]
+    },
+    {
+     "trial": 2,
+     "outcome": "confidently_wrong",
+     "answer": "10134528.894054",
+     "cited": [
+      "revenue@1"
+     ],
+     "served": [
+      "currency@1",
+      "customer@1",
+      "revenue@1"
+     ]
+    }
+   ],
+   "M3": [
+    {
+     "trial": 0,
+     "outcome": "confidently_wrong",
+     "answer": "403.112811604",
+     "cited": [
+      "margin@1"
+     ],
+     "served": [
+      "billable@1",
+      "currency@1",
+      "delivered_load@1",
+      "load@1",
+      "margin@1",
+      "revenue@1"
+     ]
+    },
+    {
+     "trial": 1,
+     "outcome": "confidently_wrong",
+     "answer": "403.112811604",
+     "cited": [
+      "margin@1"
+     ],
+     "served": [
+      "billable@1",
+      "margin@1",
+      "on_time@1",
+      "revenue@1"
+     ]
+    },
+    {
+     "trial": 2,
+     "outcome": "confidently_wrong",
+     "answer": "403.112811604",
+     "cited": [
+      "margin@1"
+     ],
+     "served": [
+      "billable@1",
+      "delivered_load@1",
+      "load@1",
+      "margin@1",
+      "revenue@1"
+     ]
+    }
+   ],
+   "R3": [
+    {
+     "trial": 0,
+     "outcome": "confidently_wrong",
+     "answer": "826718.544054",
+     "cited": [
+      "revenue@1"
+     ],
+     "served": [
+      "billable@1",
+      "currency@1",
+      "delivered_load@1",
+      "load@1",
+      "revenue@1"
+     ]
+    },
+    {
+     "trial": 1,
+     "outcome": "confidently_wrong",
+     "answer": "826718.544054",
+     "cited": [
+      "revenue@1"
+     ],
+     "served": [
+      "currency@1",
+      "customer@1",
+      "revenue@1"
+     ]
+    },
+    {
+     "trial": 2,
+     "outcome": "confidently_wrong",
+     "answer": "826718.544054",
+     "cited": [
+      "revenue@1"
+     ],
+     "served": [
+      "billable@1",
+      "currency@1",
+      "load@1",
+      "revenue@1"
+     ]
+    }
+   ]
+  }
+ },
+ "traces": {
+  "drift": {
+   "runs": 72,
+   "traces": 75,
+   "complete": 72,
+   "problems": [],
+   "spans_per_trace": {
+    "n": 72,
+    "mean": 34.6,
+    "sd": 11.9,
+    "median": 33.0,
+    "min": 12.0,
+    "max": 62.0
+   },
+   "adk_span_names": {
+    "call_llm": 570,
+    "generate_content": 570,
+    "execute_tool": 537,
+    "MCP": 526,
+    "invocation": 72,
+    "invoke_agent": 72
+   },
+   "root_duration_ms": {
+    "n": 72,
+    "mean": 62200.6,
+    "sd": 40934.7,
+    "median": 51066.7,
+    "min": 13293.7,
+    "max": 227359.4
+   }
+  },
+  "after_fix": {
+   "runs": 24,
+   "traces": 24,
+   "complete": 24,
+   "problems": [],
+   "spans_per_trace": {
+    "n": 24,
+    "mean": 32.3,
+    "sd": 11.3,
+    "median": 30.5,
+    "min": 12.0,
+    "max": 51.0
+   },
+   "adk_span_names": {
+    "call_llm": 171,
+    "generate_content": 171,
+    "MCP": 170,
+    "execute_tool": 168,
+    "invocation": 24,
+    "invoke_agent": 24
+   },
+   "root_duration_ms": {
+    "n": 24,
+    "mean": 41764.4,
+    "sd": 20614.8,
+    "median": 40780.4,
+    "min": 10394.3,
+    "max": 77695.2
+   }
+  }
+ },
+ "drift_records": {
+  "after_revert": {
+   "name": "after_revert",
+   "written_at": "2026-10-15T03:55:28+00:00",
+   "status": {
+    "dataset": "tessaway_wh_p5",
+    "record": "tessaway_wh",
+    "tables": {
+     "tms_load_hdr": {
+      "rows": 11519,
+      "rows_in_record": 11519,
+      "same_columns_and_types": true
+     },
+     "tms_stop": {
+      "rows": 23966,
+      "rows_in_record": 23966,
+      "same_columns_and_types": true
+     },
+     "tms_stat_evt": {
+      "rows": 78839,
+      "rows_in_record": 78839,
+      "same_columns_and_types": true
+     },
+     "tms_fac": {
+      "rows": 161,
+      "rows_in_record": 161,
+      "same_columns_and_types": true
+     },
+     "tms_carr": {
+      "rows": 65,
+      "rows_in_record": 65,
+      "same_columns_and_types": true
+     },
+     "mdm_cust_acct": {
+      "rows": 142,
+      "rows_in_record": 142,
+      "same_columns_and_types": true
+     },
+     "bil_cust_inv": {
+      "rows": 9593,
+      "rows_in_record": 9593,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 0,
+      "of_which_cad": 0,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "bil_pod_doc": {
+      "rows": 10117,
+      "rows_in_record": 10117,
+      "same_columns_and_types": true
+     },
+     "bil_carr_pay": {
+      "rows": 9981,
+      "rows_in_record": 9981,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 0,
+      "of_which_cad": 0,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "bil_fuel_schg": {
+      "rows": 9981,
+      "rows_in_record": 9981,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 0,
+      "of_which_cad": 0,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "bil_accsrl_chrg": {
+      "rows": 3577,
+      "rows_in_record": 3577,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 0,
+      "of_which_cad": 0,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "bil_cr_memo": {
+      "rows": 443,
+      "rows_in_record": 443,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 0,
+      "of_which_cad": 0,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "bil_canc_fee": {
+      "rows": 81,
+      "rows_in_record": 81,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 0,
+      "of_which_cad": 0,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "ref_fx_rate": {
+      "rows": 20,
+      "rows_in_record": 20,
+      "same_columns_and_types": true
+     },
+     "ptl_shpmt": {
+      "rows": 10567,
+      "rows_in_record": 10567,
+      "same_columns_and_types": true
+     }
+    },
+    "changed_rows": 0,
+    "clean": true
+   },
+   "gold_recomputed_on_copy": {
+    "dataset": "tessaway_wh_p5",
+    "golden_set_version": 1,
+    "questions": {
+     "L1": {
+      "frozen": 65,
+      "recomputed": 65,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "L2": {
+      "frozen": 11,
+      "recomputed": 11,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "L3": {
+      "frozen": "Green Bay",
+      "recomputed": "Green Bay",
+      "within_tolerance": true,
+      "change_pct": null
+     },
+     "L4": {
+      "frozen": "BHRI",
+      "recomputed": "BHRI",
+      "within_tolerance": true,
+      "change_pct": null
+     },
+     "L5": {
+      "frozen": 638,
+      "recomputed": 638,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "L6": {
+      "frozen": 0.7318,
+      "recomputed": 0.7318,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "M1": {
+      "frozen": 87.44,
+      "recomputed": 87.44,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "M2": {
+      "frozen": 10294019.12,
+      "recomputed": 10294019.12,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "M3": {
+      "frozen": 409.19,
+      "recomputed": 409.19,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "M4": {
+      "frozen": 13.24,
+      "recomputed": 13.24,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "M5": {
+      "frozen": 1097,
+      "recomputed": 1097,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "M6": {
+      "frozen": 393,
+      "recomputed": 393,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "E1": {
+      "frozen": "Northgate Foods Group",
+      "recomputed": "Northgate Foods Group",
+      "within_tolerance": true,
+      "change_pct": null
+     },
+     "E2": {
+      "frozen": 36,
+      "recomputed": 36,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "E3": {
+      "frozen": 1299690.26,
+      "recomputed": 1299690.26,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "E4": {
+      "frozen": 1170,
+      "recomputed": 1170,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "E5": {
+      "frozen": 433,
+      "recomputed": 433,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "E6": {
+      "frozen": "Midvale Transport",
+      "recomputed": "Midvale Transport",
+      "within_tolerance": true,
+      "change_pct": null
+     },
+     "R1": {
+      "frozen": 133,
+      "recomputed": 133,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "R2": {
+      "frozen": 142,
+      "recomputed": 142,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "R3": {
+      "frozen": 986208.77,
+      "recomputed": 986208.77,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "R4": {
+      "frozen": 30,
+      "recomputed": 30,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "R5": {
+      "frozen": 91.52,
+      "recomputed": 91.52,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "R6": {
+      "frozen": 3050.0,
+      "recomputed": 3050.0,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     }
+    },
+    "out_of_tolerance": [],
+    "out_of_tolerance_count": 0
+   }
+  },
+  "clean": {
+   "name": "clean",
+   "written_at": "2026-10-15T02:31:34+00:00",
+   "status": {
+    "dataset": "tessaway_wh_p5",
+    "record": "tessaway_wh",
+    "tables": {
+     "tms_load_hdr": {
+      "rows": 11519,
+      "rows_in_record": 11519,
+      "same_columns_and_types": true
+     },
+     "tms_stop": {
+      "rows": 23966,
+      "rows_in_record": 23966,
+      "same_columns_and_types": true
+     },
+     "tms_stat_evt": {
+      "rows": 78839,
+      "rows_in_record": 78839,
+      "same_columns_and_types": true
+     },
+     "tms_fac": {
+      "rows": 161,
+      "rows_in_record": 161,
+      "same_columns_and_types": true
+     },
+     "tms_carr": {
+      "rows": 65,
+      "rows_in_record": 65,
+      "same_columns_and_types": true
+     },
+     "mdm_cust_acct": {
+      "rows": 142,
+      "rows_in_record": 142,
+      "same_columns_and_types": true
+     },
+     "bil_cust_inv": {
+      "rows": 9593,
+      "rows_in_record": 9593,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 0,
+      "of_which_cad": 0,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "bil_pod_doc": {
+      "rows": 10117,
+      "rows_in_record": 10117,
+      "same_columns_and_types": true
+     },
+     "bil_carr_pay": {
+      "rows": 9981,
+      "rows_in_record": 9981,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 0,
+      "of_which_cad": 0,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "bil_fuel_schg": {
+      "rows": 9981,
+      "rows_in_record": 9981,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 0,
+      "of_which_cad": 0,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "bil_accsrl_chrg": {
+      "rows": 3577,
+      "rows_in_record": 3577,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 0,
+      "of_which_cad": 0,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "bil_cr_memo": {
+      "rows": 443,
+      "rows_in_record": 443,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 0,
+      "of_which_cad": 0,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "bil_canc_fee": {
+      "rows": 81,
+      "rows_in_record": 81,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 0,
+      "of_which_cad": 0,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "ref_fx_rate": {
+      "rows": 20,
+      "rows_in_record": 20,
+      "same_columns_and_types": true
+     },
+     "ptl_shpmt": {
+      "rows": 10567,
+      "rows_in_record": 10567,
+      "same_columns_and_types": true
+     }
+    },
+    "changed_rows": 0,
+    "clean": true
+   },
+   "gold_recomputed_on_copy": {
+    "dataset": "tessaway_wh_p5",
+    "golden_set_version": 1,
+    "questions": {
+     "L1": {
+      "frozen": 65,
+      "recomputed": 65,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "L2": {
+      "frozen": 11,
+      "recomputed": 11,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "L3": {
+      "frozen": "Green Bay",
+      "recomputed": "Green Bay",
+      "within_tolerance": true,
+      "change_pct": null
+     },
+     "L4": {
+      "frozen": "BHRI",
+      "recomputed": "BHRI",
+      "within_tolerance": true,
+      "change_pct": null
+     },
+     "L5": {
+      "frozen": 638,
+      "recomputed": 638,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "L6": {
+      "frozen": 0.7318,
+      "recomputed": 0.7318,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "M1": {
+      "frozen": 87.44,
+      "recomputed": 87.44,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "M2": {
+      "frozen": 10294019.12,
+      "recomputed": 10294019.12,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "M3": {
+      "frozen": 409.19,
+      "recomputed": 409.19,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "M4": {
+      "frozen": 13.24,
+      "recomputed": 13.24,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "M5": {
+      "frozen": 1097,
+      "recomputed": 1097,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "M6": {
+      "frozen": 393,
+      "recomputed": 393,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "E1": {
+      "frozen": "Northgate Foods Group",
+      "recomputed": "Northgate Foods Group",
+      "within_tolerance": true,
+      "change_pct": null
+     },
+     "E2": {
+      "frozen": 36,
+      "recomputed": 36,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "E3": {
+      "frozen": 1299690.26,
+      "recomputed": 1299690.26,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "E4": {
+      "frozen": 1170,
+      "recomputed": 1170,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "E5": {
+      "frozen": 433,
+      "recomputed": 433,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "E6": {
+      "frozen": "Midvale Transport",
+      "recomputed": "Midvale Transport",
+      "within_tolerance": true,
+      "change_pct": null
+     },
+     "R1": {
+      "frozen": 133,
+      "recomputed": 133,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "R2": {
+      "frozen": 142,
+      "recomputed": 142,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "R3": {
+      "frozen": 986208.77,
+      "recomputed": 986208.77,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "R4": {
+      "frozen": 30,
+      "recomputed": 30,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "R5": {
+      "frozen": 91.52,
+      "recomputed": 91.52,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "R6": {
+      "frozen": 3050.0,
+      "recomputed": 3050.0,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     }
+    },
+    "out_of_tolerance": [],
+    "out_of_tolerance_count": 0
+   }
+  },
+  "clean_after_revert": {
+   "name": "clean_after_revert",
+   "written_at": "2026-10-15T02:34:31+00:00",
+   "status": {
+    "dataset": "tessaway_wh_p5",
+    "record": "tessaway_wh",
+    "tables": {
+     "tms_load_hdr": {
+      "rows": 11519,
+      "rows_in_record": 11519,
+      "same_columns_and_types": true
+     },
+     "tms_stop": {
+      "rows": 23966,
+      "rows_in_record": 23966,
+      "same_columns_and_types": true
+     },
+     "tms_stat_evt": {
+      "rows": 78839,
+      "rows_in_record": 78839,
+      "same_columns_and_types": true
+     },
+     "tms_fac": {
+      "rows": 161,
+      "rows_in_record": 161,
+      "same_columns_and_types": true
+     },
+     "tms_carr": {
+      "rows": 65,
+      "rows_in_record": 65,
+      "same_columns_and_types": true
+     },
+     "mdm_cust_acct": {
+      "rows": 142,
+      "rows_in_record": 142,
+      "same_columns_and_types": true
+     },
+     "bil_cust_inv": {
+      "rows": 9593,
+      "rows_in_record": 9593,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 0,
+      "of_which_cad": 0,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "bil_pod_doc": {
+      "rows": 10117,
+      "rows_in_record": 10117,
+      "same_columns_and_types": true
+     },
+     "bil_carr_pay": {
+      "rows": 9981,
+      "rows_in_record": 9981,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 0,
+      "of_which_cad": 0,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "bil_fuel_schg": {
+      "rows": 9981,
+      "rows_in_record": 9981,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 0,
+      "of_which_cad": 0,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "bil_accsrl_chrg": {
+      "rows": 3577,
+      "rows_in_record": 3577,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 0,
+      "of_which_cad": 0,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "bil_cr_memo": {
+      "rows": 443,
+      "rows_in_record": 443,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 0,
+      "of_which_cad": 0,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "bil_canc_fee": {
+      "rows": 81,
+      "rows_in_record": 81,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 0,
+      "of_which_cad": 0,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "ref_fx_rate": {
+      "rows": 20,
+      "rows_in_record": 20,
+      "same_columns_and_types": true
+     },
+     "ptl_shpmt": {
+      "rows": 10567,
+      "rows_in_record": 10567,
+      "same_columns_and_types": true
+     }
+    },
+    "changed_rows": 0,
+    "clean": true
+   },
+   "gold_recomputed_on_copy": {
+    "dataset": "tessaway_wh_p5",
+    "golden_set_version": 1,
+    "questions": {
+     "L1": {
+      "frozen": 65,
+      "recomputed": 65,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "L2": {
+      "frozen": 11,
+      "recomputed": 11,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "L3": {
+      "frozen": "Green Bay",
+      "recomputed": "Green Bay",
+      "within_tolerance": true,
+      "change_pct": null
+     },
+     "L4": {
+      "frozen": "BHRI",
+      "recomputed": "BHRI",
+      "within_tolerance": true,
+      "change_pct": null
+     },
+     "L5": {
+      "frozen": 638,
+      "recomputed": 638,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "L6": {
+      "frozen": 0.7318,
+      "recomputed": 0.7318,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "M1": {
+      "frozen": 87.44,
+      "recomputed": 87.44,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "M2": {
+      "frozen": 10294019.12,
+      "recomputed": 10294019.12,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "M3": {
+      "frozen": 409.19,
+      "recomputed": 409.19,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "M4": {
+      "frozen": 13.24,
+      "recomputed": 13.24,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "M5": {
+      "frozen": 1097,
+      "recomputed": 1097,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "M6": {
+      "frozen": 393,
+      "recomputed": 393,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "E1": {
+      "frozen": "Northgate Foods Group",
+      "recomputed": "Northgate Foods Group",
+      "within_tolerance": true,
+      "change_pct": null
+     },
+     "E2": {
+      "frozen": 36,
+      "recomputed": 36,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "E3": {
+      "frozen": 1299690.26,
+      "recomputed": 1299690.26,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "E4": {
+      "frozen": 1170,
+      "recomputed": 1170,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "E5": {
+      "frozen": 433,
+      "recomputed": 433,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "E6": {
+      "frozen": "Midvale Transport",
+      "recomputed": "Midvale Transport",
+      "within_tolerance": true,
+      "change_pct": null
+     },
+     "R1": {
+      "frozen": 133,
+      "recomputed": 133,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "R2": {
+      "frozen": 142,
+      "recomputed": 142,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "R3": {
+      "frozen": 986208.77,
+      "recomputed": 986208.77,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "R4": {
+      "frozen": 30,
+      "recomputed": 30,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "R5": {
+      "frozen": 91.52,
+      "recomputed": 91.52,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "R6": {
+      "frozen": 3050.0,
+      "recomputed": 3050.0,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     }
+    },
+    "out_of_tolerance": [],
+    "out_of_tolerance_count": 0
+   }
+  },
+  "forward_from_oct1": {
+   "name": "forward_from_oct1",
+   "written_at": "2026-10-15T02:32:26+00:00",
+   "status": {
+    "dataset": "tessaway_wh_p5",
+    "record": "tessaway_wh",
+    "tables": {
+     "tms_load_hdr": {
+      "rows": 11519,
+      "rows_in_record": 11519,
+      "same_columns_and_types": true
+     },
+     "tms_stop": {
+      "rows": 23966,
+      "rows_in_record": 23966,
+      "same_columns_and_types": true
+     },
+     "tms_stat_evt": {
+      "rows": 78839,
+      "rows_in_record": 78839,
+      "same_columns_and_types": true
+     },
+     "tms_fac": {
+      "rows": 161,
+      "rows_in_record": 161,
+      "same_columns_and_types": true
+     },
+     "tms_carr": {
+      "rows": 65,
+      "rows_in_record": 65,
+      "same_columns_and_types": true
+     },
+     "mdm_cust_acct": {
+      "rows": 142,
+      "rows_in_record": 142,
+      "same_columns_and_types": true
+     },
+     "bil_cust_inv": {
+      "rows": 9593,
+      "rows_in_record": 9593,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 0,
+      "of_which_cad": 0,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "bil_pod_doc": {
+      "rows": 10117,
+      "rows_in_record": 10117,
+      "same_columns_and_types": true
+     },
+     "bil_carr_pay": {
+      "rows": 9981,
+      "rows_in_record": 9981,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 9,
+      "of_which_cad": 9,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "bil_fuel_schg": {
+      "rows": 9981,
+      "rows_in_record": 9981,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 19,
+      "of_which_cad": 19,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "bil_accsrl_chrg": {
+      "rows": 3577,
+      "rows_in_record": 3577,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 0,
+      "of_which_cad": 0,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "bil_cr_memo": {
+      "rows": 443,
+      "rows_in_record": 443,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 0,
+      "of_which_cad": 0,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "bil_canc_fee": {
+      "rows": 81,
+      "rows_in_record": 81,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 0,
+      "of_which_cad": 0,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "ref_fx_rate": {
+      "rows": 20,
+      "rows_in_record": 20,
+      "same_columns_and_types": true
+     },
+     "ptl_shpmt": {
+      "rows": 10567,
+      "rows_in_record": 10567,
+      "same_columns_and_types": true
+     }
+    },
+    "changed_rows": 28,
+    "clean": false
+   },
+   "gold_recomputed_on_copy": {
+    "dataset": "tessaway_wh_p5",
+    "golden_set_version": 1,
+    "questions": {
+     "L1": {
+      "frozen": 65,
+      "recomputed": 65,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "L2": {
+      "frozen": 11,
+      "recomputed": 11,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "L3": {
+      "frozen": "Green Bay",
+      "recomputed": "Green Bay",
+      "within_tolerance": true,
+      "change_pct": null
+     },
+     "L4": {
+      "frozen": "BHRI",
+      "recomputed": "BHRI",
+      "within_tolerance": true,
+      "change_pct": null
+     },
+     "L5": {
+      "frozen": 638,
+      "recomputed": 638,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "L6": {
+      "frozen": 0.7318,
+      "recomputed": 0.7318,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "M1": {
+      "frozen": 87.44,
+      "recomputed": 87.44,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "M2": {
+      "frozen": 10294019.12,
+      "recomputed": 10294019.12,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "M3": {
+      "frozen": 409.19,
+      "recomputed": 409.19,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "M4": {
+      "frozen": 13.24,
+      "recomputed": 13.24,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "M5": {
+      "frozen": 1097,
+      "recomputed": 1097,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "M6": {
+      "frozen": 393,
+      "recomputed": 393,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "E1": {
+      "frozen": "Northgate Foods Group",
+      "recomputed": "Northgate Foods Group",
+      "within_tolerance": true,
+      "change_pct": null
+     },
+     "E2": {
+      "frozen": 36,
+      "recomputed": 36,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "E3": {
+      "frozen": 1299690.26,
+      "recomputed": 1299690.26,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "E4": {
+      "frozen": 1170,
+      "recomputed": 1170,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "E5": {
+      "frozen": 433,
+      "recomputed": 433,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "E6": {
+      "frozen": "Midvale Transport",
+      "recomputed": "Midvale Transport",
+      "within_tolerance": true,
+      "change_pct": null
+     },
+     "R1": {
+      "frozen": 133,
+      "recomputed": 133,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "R2": {
+      "frozen": 142,
+      "recomputed": 142,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "R3": {
+      "frozen": 986208.77,
+      "recomputed": 986208.77,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "R4": {
+      "frozen": 30,
+      "recomputed": 30,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "R5": {
+      "frozen": 91.52,
+      "recomputed": 91.52,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "R6": {
+      "frozen": 3050.0,
+      "recomputed": 3050.0,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     }
+    },
+    "out_of_tolerance": [],
+    "out_of_tolerance_count": 0
+   }
+  },
+  "from_sep1": {
+   "name": "from_sep1",
+   "written_at": "2026-10-15T02:33:34+00:00",
+   "status": {
+    "dataset": "tessaway_wh_p5",
+    "record": "tessaway_wh",
+    "tables": {
+     "tms_load_hdr": {
+      "rows": 11519,
+      "rows_in_record": 11519,
+      "same_columns_and_types": true
+     },
+     "tms_stop": {
+      "rows": 23966,
+      "rows_in_record": 23966,
+      "same_columns_and_types": true
+     },
+     "tms_stat_evt": {
+      "rows": 78839,
+      "rows_in_record": 78839,
+      "same_columns_and_types": true
+     },
+     "tms_fac": {
+      "rows": 161,
+      "rows_in_record": 161,
+      "same_columns_and_types": true
+     },
+     "tms_carr": {
+      "rows": 65,
+      "rows_in_record": 65,
+      "same_columns_and_types": true
+     },
+     "mdm_cust_acct": {
+      "rows": 142,
+      "rows_in_record": 142,
+      "same_columns_and_types": true
+     },
+     "bil_cust_inv": {
+      "rows": 9593,
+      "rows_in_record": 9593,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 45,
+      "of_which_cad": 45,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "bil_pod_doc": {
+      "rows": 10117,
+      "rows_in_record": 10117,
+      "same_columns_and_types": true
+     },
+     "bil_carr_pay": {
+      "rows": 9981,
+      "rows_in_record": 9981,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 56,
+      "of_which_cad": 56,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "bil_fuel_schg": {
+      "rows": 9981,
+      "rows_in_record": 9981,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 64,
+      "of_which_cad": 64,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "bil_accsrl_chrg": {
+      "rows": 3577,
+      "rows_in_record": 3577,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 11,
+      "of_which_cad": 11,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "bil_cr_memo": {
+      "rows": 443,
+      "rows_in_record": 443,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 3,
+      "of_which_cad": 3,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "bil_canc_fee": {
+      "rows": 81,
+      "rows_in_record": 81,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 0,
+      "of_which_cad": 0,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "ref_fx_rate": {
+      "rows": 20,
+      "rows_in_record": 20,
+      "same_columns_and_types": true
+     },
+     "ptl_shpmt": {
+      "rows": 10567,
+      "rows_in_record": 10567,
+      "same_columns_and_types": true
+     }
+    },
+    "changed_rows": 179,
+    "clean": false
+   },
+   "gold_recomputed_on_copy": {
+    "dataset": "tessaway_wh_p5",
+    "golden_set_version": 1,
+    "questions": {
+     "L1": {
+      "frozen": 65,
+      "recomputed": 65,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "L2": {
+      "frozen": 11,
+      "recomputed": 11,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "L3": {
+      "frozen": "Green Bay",
+      "recomputed": "Green Bay",
+      "within_tolerance": true,
+      "change_pct": null
+     },
+     "L4": {
+      "frozen": "BHRI",
+      "recomputed": "BHRI",
+      "within_tolerance": true,
+      "change_pct": null
+     },
+     "L5": {
+      "frozen": 638,
+      "recomputed": 638,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "L6": {
+      "frozen": 0.7318,
+      "recomputed": 0.7318,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "M1": {
+      "frozen": 87.44,
+      "recomputed": 87.44,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "M2": {
+      "frozen": 10294019.12,
+      "recomputed": 10248876.91,
+      "within_tolerance": true,
+      "change_pct": -0.44
+     },
+     "M3": {
+      "frozen": 409.19,
+      "recomputed": 407.56,
+      "within_tolerance": true,
+      "change_pct": -0.4
+     },
+     "M4": {
+      "frozen": 13.24,
+      "recomputed": 13.25,
+      "within_tolerance": true,
+      "change_pct": 0.08
+     },
+     "M5": {
+      "frozen": 1097,
+      "recomputed": 1097,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "M6": {
+      "frozen": 393,
+      "recomputed": 393,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "E1": {
+      "frozen": "Northgate Foods Group",
+      "recomputed": "Northgate Foods Group",
+      "within_tolerance": true,
+      "change_pct": null
+     },
+     "E2": {
+      "frozen": 36,
+      "recomputed": 36,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "E3": {
+      "frozen": 1299690.26,
+      "recomputed": 1289937.62,
+      "within_tolerance": true,
+      "change_pct": -0.75
+     },
+     "E4": {
+      "frozen": 1170,
+      "recomputed": 1170,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "E5": {
+      "frozen": 433,
+      "recomputed": 433,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "E6": {
+      "frozen": "Midvale Transport",
+      "recomputed": "Midvale Transport",
+      "within_tolerance": true,
+      "change_pct": null
+     },
+     "R1": {
+      "frozen": 133,
+      "recomputed": 133,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "R2": {
+      "frozen": 142,
+      "recomputed": 142,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "R3": {
+      "frozen": 986208.77,
+      "recomputed": 941066.56,
+      "within_tolerance": false,
+      "change_pct": -4.58
+     },
+     "R4": {
+      "frozen": 30,
+      "recomputed": 30,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "R5": {
+      "frozen": 91.52,
+      "recomputed": 91.52,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "R6": {
+      "frozen": 3050.0,
+      "recomputed": 3050.0,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     }
+    },
+    "out_of_tolerance": [
+     "R3"
+    ],
+    "out_of_tolerance_count": 1
+   }
+  },
+  "restated": {
+   "name": "restated",
+   "written_at": "2026-10-15T03:11:46+00:00",
+   "status": {
+    "dataset": "tessaway_wh_p5",
+    "record": "tessaway_wh",
+    "tables": {
+     "tms_load_hdr": {
+      "rows": 11519,
+      "rows_in_record": 11519,
+      "same_columns_and_types": true
+     },
+     "tms_stop": {
+      "rows": 23966,
+      "rows_in_record": 23966,
+      "same_columns_and_types": true
+     },
+     "tms_stat_evt": {
+      "rows": 78839,
+      "rows_in_record": 78839,
+      "same_columns_and_types": true
+     },
+     "tms_fac": {
+      "rows": 161,
+      "rows_in_record": 161,
+      "same_columns_and_types": true
+     },
+     "tms_carr": {
+      "rows": 65,
+      "rows_in_record": 65,
+      "same_columns_and_types": true
+     },
+     "mdm_cust_acct": {
+      "rows": 142,
+      "rows_in_record": 142,
+      "same_columns_and_types": true
+     },
+     "bil_cust_inv": {
+      "rows": 9593,
+      "rows_in_record": 9593,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 465,
+      "of_which_cad": 465,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "bil_pod_doc": {
+      "rows": 10117,
+      "rows_in_record": 10117,
+      "same_columns_and_types": true
+     },
+     "bil_carr_pay": {
+      "rows": 9981,
+      "rows_in_record": 9981,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 484,
+      "of_which_cad": 484,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "bil_fuel_schg": {
+      "rows": 9981,
+      "rows_in_record": 9981,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 484,
+      "of_which_cad": 484,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "bil_accsrl_chrg": {
+      "rows": 3577,
+      "rows_in_record": 3577,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 159,
+      "of_which_cad": 159,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "bil_cr_memo": {
+      "rows": 443,
+      "rows_in_record": 443,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 17,
+      "of_which_cad": 17,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "bil_canc_fee": {
+      "rows": 81,
+      "rows_in_record": 81,
+      "same_columns_and_types": true,
+      "rows_with_a_changed_amount": 1,
+      "of_which_cad": 1,
+      "rows_with_a_changed_currency_code": 0
+     },
+     "ref_fx_rate": {
+      "rows": 20,
+      "rows_in_record": 20,
+      "same_columns_and_types": true
+     },
+     "ptl_shpmt": {
+      "rows": 10567,
+      "rows_in_record": 10567,
+      "same_columns_and_types": true
+     }
+    },
+    "changed_rows": 1610,
+    "clean": false
+   },
+   "gold_recomputed_on_copy": {
+    "dataset": "tessaway_wh_p5",
+    "golden_set_version": 1,
+    "questions": {
+     "L1": {
+      "frozen": 65,
+      "recomputed": 65,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "L2": {
+      "frozen": 11,
+      "recomputed": 11,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "L3": {
+      "frozen": "Green Bay",
+      "recomputed": "Green Bay",
+      "within_tolerance": true,
+      "change_pct": null
+     },
+     "L4": {
+      "frozen": "BHRI",
+      "recomputed": "BHRI",
+      "within_tolerance": true,
+      "change_pct": null
+     },
+     "L5": {
+      "frozen": 638,
+      "recomputed": 638,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "L6": {
+      "frozen": 0.7318,
+      "recomputed": 0.7318,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "M1": {
+      "frozen": 87.44,
+      "recomputed": 87.44,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "M2": {
+      "frozen": 10294019.12,
+      "recomputed": 10134528.89,
+      "within_tolerance": false,
+      "change_pct": -1.55
+     },
+     "M3": {
+      "frozen": 409.19,
+      "recomputed": 403.11,
+      "within_tolerance": false,
+      "change_pct": -1.49
+     },
+     "M4": {
+      "frozen": 13.24,
+      "recomputed": 13.25,
+      "within_tolerance": true,
+      "change_pct": 0.08
+     },
+     "M5": {
+      "frozen": 1097,
+      "recomputed": 1097,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "M6": {
+      "frozen": 393,
+      "recomputed": 393,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "E1": {
+      "frozen": "Northgate Foods Group",
+      "recomputed": "Northgate Foods Group",
+      "within_tolerance": true,
+      "change_pct": null
+     },
+     "E2": {
+      "frozen": 36,
+      "recomputed": 36,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "E3": {
+      "frozen": 1299690.26,
+      "recomputed": 1252448.31,
+      "within_tolerance": false,
+      "change_pct": -3.63
+     },
+     "E4": {
+      "frozen": 1170,
+      "recomputed": 1170,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "E5": {
+      "frozen": 433,
+      "recomputed": 433,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "E6": {
+      "frozen": "Midvale Transport",
+      "recomputed": "Midvale Transport",
+      "within_tolerance": true,
+      "change_pct": null
+     },
+     "R1": {
+      "frozen": 133,
+      "recomputed": 133,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "R2": {
+      "frozen": 142,
+      "recomputed": 142,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "R3": {
+      "frozen": 986208.77,
+      "recomputed": 826718.54,
+      "within_tolerance": false,
+      "change_pct": -16.17
+     },
+     "R4": {
+      "frozen": 30,
+      "recomputed": 30,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "R5": {
+      "frozen": 91.52,
+      "recomputed": 91.52,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     },
+     "R6": {
+      "frozen": 3050.0,
+      "recomputed": 3050.0,
+      "within_tolerance": true,
+      "change_pct": 0.0
+     }
+    },
+    "out_of_tolerance": [
+     "M2",
+     "M3",
+     "E3",
+     "R3"
+    ],
+    "out_of_tolerance_count": 4
+   }
+  }
+ },
+ "server_log_check": {
+  "runs": 96,
+  "runs_agreeing": 96,
+  "agent_calls": 402,
+  "server_lines": 402,
+  "agreeing_calls": 402,
+  "agent_calls_missing_from_server_log": 0,
+  "agent_calls_without_response": 0,
+  "calls_refused_before_the_contract_ran": 0,
+  "server_lines_missing_from_agent_record": 0,
+  "calls_that_differ": 0,
+  "runs_with_a_problem": 0,
+  "runs_cut_off_with_a_problem": 0,
+  "callers_in_log": {
+   "tw-p5-check": 402
+  },
+  "problems": []
+ },
+ "predictions": [
+  {
+   "prediction": "P1",
+   "held": false,
+   "numbers": "e1: seconds 89.4833, cost_usd 0.0401, input_tokens_total 50276.4583, query_count 2.9583, failed_runs 3 OUT; e2: seconds 56.1375, cost_usd 0.0381, input_tokens_total 46548.0833, query_count 2.5833, failed_runs 0; e3: seconds 40.9625, cost_usd 0.0395, input_tokens_total 51647.25, query_count 3.3333, failed_runs 0"
+  },
+  {
+   "prediction": "P2",
+   "held": true,
+   "numbers": "right 60 of 72; not right on M2, M3, E3, R3: 12 of 12"
+  },
+  {
+   "prediction": "P3",
+   "held": true,
+   "numbers": "lookups right 18 of 18; the other 20 questions right 60 of 60 (missed: [])"
+  },
+  {
+   "prediction": "P4",
+   "held": true,
+   "numbers": "confidently wrong 12 of 12 not-right runs on the four; matching a decoy 0"
+  },
+  {
+   "prediction": "P5",
+   "held": false,
+   "numbers": "fired on executions [1, 2, 3] of [1, 2, 3]; groups below: [['lookup', 'metric', 'entity', 'rule'], ['metric', 'entity', 'rule'], ['metric', 'entity', 'rule']]"
+  },
+  {
+   "prediction": "P6",
+   "held": true,
+   "numbers": "baseline executions fired 0 of 6; after the fix fired 0 of 1"
+  },
+  {
+   "prediction": "P7",
+   "held": true,
+   "numbers": "right 24 of 24"
+  },
+  {
+   "prediction": "P8",
+   "held": true,
+   "numbers": "12 newly wrong runs, 12 citing; 12 cite a Controller definition; most cited revenue@1; citing currency@1 0; cited {'revenue@1': 9, 'customer@1': 3, 'margin@1': 3}"
+  },
+  {
+   "prediction": "P9",
+   "held": true,
+   "numbers": "96 of 96 runs with a complete, agreeing trace; problems []"
+  },
+  {
+   "prediction": "P10",
+   "held": true,
+   "numbers": "mean model cost per run $0.0393 (baseline $0.0376; the line is $0.0451)"
+  },
+  {
+   "prediction": "P11",
+   "held": true,
+   "numbers": "402 of 402 calls agree (0 refused before the contract ran); 0 server lines not in a record"
+  }
+ ],
+ "spend": {
+  "note": "Estimated from token counts and list prices in tessaway/config.py, and BigQuery bytes billed at the on-demand rate (the SQL tool's from each run, the contract's from the server log). Every run ever saved under results/part3 is counted. The invoices are the authority.",
+  "prices_checked_on": "2026-10-09",
+  "gemini_by_folder": {
+   "full run": {
+    "runs": 99,
+    "model_usd": 3.7781,
+    "bigquery_usd": 0.0243
+   },
+   "smoke": {
+    "runs": 5,
+    "model_usd": 0.1786,
+    "bigquery_usd": 0.0015
+   }
+  },
+  "gemini_model_usd": 3.9567,
+  "bigquery_usd": 0.0545,
+  "contract_bigquery_usd": 0.02867,
+  "gemini_total_usd": 4.0112,
+  "anthropic": {
+   "runs": 0,
+   "usd": 0.0
+  }
+ }
+}

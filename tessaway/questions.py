@@ -145,8 +145,11 @@ def load_gold(path: Path = GOLD_PATH) -> dict[str, dict[str, Any]]:
 
 def main() -> None:
     """Compute and save the gold answers, and print them beside the decoys."""
+    from tessaway import golden_set
     from tessaway.warehouse import generate
 
+    # Part 5: the saved answers are frozen as golden set v1 and are not rewritten.
+    golden_set.refuse_recompute()
     questions = load()
     answers = compute_gold(questions)
     GOLD_PATH.parent.mkdir(parents=True, exist_ok=True)

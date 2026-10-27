@@ -1,0 +1,27 @@
+{
+ "source": "results/part4/runs/available.jsonl",
+ "runs": 72,
+ "rule": "Fire when the share of runs scored right in any question group is lower than that group's share in the baseline (Part 4 available, 72 runs).",
+ "groups": {
+  "lookup": {
+   "runs": 18,
+   "right": 18,
+   "share": 1.0
+  },
+  "metric": {
+   "runs": 18,
+   "right": 18,
+   "share": 1.0
+  },
+  "entity": {
+   "runs": 18,
+   "right": 18,
+   "share": 1.0
+  },
+  "rule": {
+   "runs": 18,
+   "right": 18,
+   "share": 1.0
+  }
+ }
+}

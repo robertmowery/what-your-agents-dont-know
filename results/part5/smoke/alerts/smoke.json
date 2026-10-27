@@ -1,0 +1,62 @@
+[
+ {
+  "fired": true,
+  "groups_below": [
+   "rule"
+  ],
+  "by_group": {
+   "lookup": {
+    "runs": 1,
+    "right": 1,
+    "share": 1.0,
+    "baseline_share": 1.0
+   },
+   "metric": {
+    "runs": 2,
+    "right": 2,
+    "share": 1.0,
+    "baseline_share": 1.0
+   },
+   "rule": {
+    "runs": 1,
+    "right": 0,
+    "share": 0.0,
+    "baseline_share": 1.0
+   }
+  },
+  "missed": [
+   "R3/no_answer"
+  ],
+  "phase": "smoke",
+  "execution": 1,
+  "runs": 4,
+  "right": 3,
+  "rule": "Fire when the share of runs scored right in any question group is lower than that group's share in the baseline (Part 4 available, 72 runs).",
+  "stopped_at_budget": false,
+  "evaluated_at": "2026-10-15T02:59:31+00:00"
+ },
+ {
+  "fired": true,
+  "groups_below": [
+   "lookup"
+  ],
+  "by_group": {
+   "lookup": {
+    "runs": 1,
+    "right": 0,
+    "share": 0.0,
+    "baseline_share": 1.0
+   }
+  },
+  "missed": [
+   "L1/no_answer"
+  ],
+  "phase": "smoke",
+  "execution": 2,
+  "runs": 1,
+  "right": 0,
+  "rule": "Fire when the share of runs scored right in any question group is lower than that group's share in the baseline (Part 4 available, 72 runs).",
+  "stopped_at_budget": false,
+  "evaluated_at": "2026-10-15T03:07:41+00:00"
+ }
+]
