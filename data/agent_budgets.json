@@ -1,0 +1,14 @@
+{
+  "about": "Tessaway Freight's agent budgets, added in Part 6. Tessaway Freight is a fictional company and every owner is a fictional role there, not a real person. Each agent has one named owner, a limit per task (one question answered) and a limit per day, in US dollars estimated from tokens at the list prices in tessaway/config.py plus BigQuery bytes billed. The limits were set before any run was checked against them: the per-task limit is about two and a half times what an average run of the Part 4 configuration cost (3.79 cents, model and BigQuery), and the per-day limit covers about 130 such runs, room for an executive team's questions on a normal day. tessaway/budget.py checks recorded runs against this file.",
+  "set_on": "2026-10-27",
+  "agents": [
+    {
+      "agent": "executive-questions",
+      "description": "Answers Tessaway executives' questions about loads, revenue, margin and on-time performance from the warehouse and the context contract. Every configuration in Parts 1 to 5 is this agent with different context.",
+      "owner": "Director of Business Intelligence",
+      "limit_per_task_usd": 0.10,
+      "limit_per_day_usd": 5.00,
+      "at_limit": "Per task: stop the run and answer that the budget was reached, and record it for the owner. Per day: refuse new questions until midnight UTC and notify the owner."
+    }
+  ]
+}
