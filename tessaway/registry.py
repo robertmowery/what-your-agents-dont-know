@@ -100,7 +100,24 @@ def served_by(kind: str, names: list[str], data: dict[str, Any] | None = None) -
     return list(dict.fromkeys(ids))
 
 
-def stamps(ids: list[str], data: dict[str, Any] | None = None) -> list[dict[str, Any]]:
-    """Return the id, version and owner of each definition id, sorted by id."""
+def stamps(
+    ids: list[str], data: dict[str, Any] | None = None, versions: dict[str, int] | None = None
+) -> list[dict[str, Any]]:
+    """Return the id, version and owner of each definition id, sorted by id.
+
+    ``versions`` (Part 7) names the version a response served for a definition
+    when it was not the current one; the version must be in the history.
+    """
     current = definitions(data)
-    return [current[i].stamp() for i in sorted(set(ids)) if i in current]
+    out = []
+    for i in sorted(set(ids)):
+        if i not in current:
+            continue
+        stamp = current[i].stamp()
+        wanted = (versions or {}).get(i)
+        if wanted is not None and int(wanted) != stamp["version"]:
+            if not owner_of(i, int(wanted), data):
+                raise ValueError(f"{i} has no version {wanted} in the registry")
+            stamp["version"] = int(wanted)
+        out.append(stamp)
+    return out

@@ -30,6 +30,7 @@ from typing import Any
 
 import pytest
 
+from context_server import contract
 from golden_check import job
 from tessaway import tracing
 from tessaway.agents import adk_contract_agent
@@ -102,7 +103,10 @@ def test_one_execution_writes_records_traces_and_the_alert(store: job.DirStore) 
     a = root["attributes"]
     assert a[tracing.DEFINITIONS_CITED] == ["revenue@1"]
     assert a[tracing.OUTCOME] == "confidently_wrong"
-    assert a[tracing.CONTRACT_VERSION] == "2.0.0" and a[tracing.GOLDEN_SET_VERSION] == 1
+    assert (
+        a[tracing.CONTRACT_VERSION] == contract.CONTRACT_VERSION
+        and a[tracing.GOLDEN_SET_VERSION] == 1
+    )
     assert a[tracing.DEFINITION_OWNERS] == ["Controller"]
     assert verdict["fired"] and verdict["groups_below"] == ["metric"]
     assert json.loads(store.get("part5/drift/e1/alert.json") or "")["fired"]

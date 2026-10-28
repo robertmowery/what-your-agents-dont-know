@@ -191,6 +191,24 @@ UNSCORED: tuple[Configuration, ...] = (
     ),
 )
 
+# Part 7: the definition change, each run scored against the answer key for the
+# version its phase routed it to (golden set v1 or v2). Kept apart from SERIES so
+# Part 6's figures, computed from SERIES, do not move.
+PART7: tuple[Configuration, ...] = (
+    Configuration(
+        "p7_canary", 7, "Canary: one repeat in three on revenue version 2",
+        "part7/runs/canary.jsonl", "part1", "contract 2.1.0 and SQL, cited answers, canary routing",
+    ),
+    Configuration(
+        "p7_rollback", 7, "After the rollback: everyone on version 1",
+        "part7/runs/rollback.jsonl", "part1", "contract 2.1.0 and SQL, cited answers, version 1",
+    ),
+    Configuration(
+        "p7_rollout", 7, "Rollout: revenue and margin version 2",
+        "part7/runs/rollout.jsonl", "part1", "contract 2.1.0 and SQL, cited answers, version 2",
+    ),
+)  # fmt: skip
+
 
 def configuration(key: str) -> Configuration:
     """Return the configuration with this key."""

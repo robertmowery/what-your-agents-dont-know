@@ -37,7 +37,7 @@ def test_the_log_line_names_the_definitions_each_response_served(
     logged = [line for line in lines if line["event"] == server.LOG_EVENT]
     assert len(logged) == len(replies)
     for line, reply in zip(logged, replies, strict=True):
-        assert reply["contract_version"] == "2.0.0"
+        assert reply["contract_version"] == contract.CONTRACT_VERSION
         assert line["definitions"] == [f"{d['id']}@{d['version']}" for d in reply["definitions"]]
         for d in reply["definitions"]:
             assert d["owner"]

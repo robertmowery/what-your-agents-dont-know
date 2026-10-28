@@ -27,6 +27,8 @@ COPY semantic_layer /app/semantic_layer
 COPY context_server /app/context_server
 # Part 4: the definition registry the contract stamps on every response.
 COPY data/definition_registry.json /app/data/definition_registry.json
+# Part 7: the version 2 wording lookup_definition serves.
+COPY data/definition_versions.json /app/data/definition_versions.json
 
 RUN useradd --uid 10001 --no-create-home server && chown -R server /app/semantic_layer
 USER server

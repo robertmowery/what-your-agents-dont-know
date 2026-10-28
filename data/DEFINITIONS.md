@@ -70,6 +70,18 @@ Revenue is recognized when it is invoiced, in the period of the invoice date.
 
 `tms_load_hdr.lh_rev_amt` is the rated linehaul on a tender. It is not revenue: it leaves out fuel and accessorials, and it sits on canceled, test, voided and re-tendered rows that were never billed.
 
+### `revenue`, version 2 (Part 7)
+
+Written by the Controller for Part 7, before any Part 7 agent ran. Version 1 above stays as it was; the contract serves both while version 2 rolls out.
+
+Revenue is recognized when the load is delivered, in the period of the delivery date: the arrival at the final delivery stop, on the local clock at that stop (see `delivered_load` and `local_time`).
+
+- The invoice total (`bil_cust_inv.inv_tot_amt`) belongs to the period its load was delivered, not the period of the invoice date.
+- A credit memo (`bil_cr_memo`) corrects its load's revenue, so it belongs to the period that load was delivered.
+- Canceled-load fees billed to the customer (`bil_canc_fee.cust_fee_amt`) have no delivery and stay in the period of the fee date.
+- A delivered load counts in its delivery period whether or not its signed proof of delivery is in. Revenue is still an amount on a billing document: a delivered load with no invoice yet has no revenue in either version.
+- Amounts and currency are unchanged from version 1: Canadian amounts convert at the monthly rate for the month of the document date (see `currency`).
+
 ## `margin`
 
 Margin is revenue less what was paid to carriers for the same loads.
@@ -79,6 +91,14 @@ Margin is revenue less what was paid to carriers for the same loads.
 - Margin per load is margin for the period divided by the number of loads invoiced in the period.
 - Margin percentage is margin divided by revenue.
 - Loads hauled by Tessaway's own fleet are settled through the same tables and are treated the same way.
+
+### `margin`, version 2 (Part 7)
+
+Written by the Controller for Part 7, before any Part 7 agent ran, to go with revenue version 2.
+
+- Carrier cost for an invoiced load follows the load into the period it was delivered, the same period as its revenue under revenue version 2.
+- Margin per load is margin for the period divided by the number of invoiced loads delivered in the period.
+- Everything else is unchanged from version 1: the cost components, canceled-load fees in the period of the fee date, margin percentage as margin divided by revenue, and currency.
 
 ## `currency`
 

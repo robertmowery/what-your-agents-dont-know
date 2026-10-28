@@ -47,6 +47,7 @@ from mcp.server.transport_security import TransportSecuritySettings
 from starlette.types import ASGIApp, Receive, Scope, Send
 
 from context_server import contract
+from context_server import versions as versions_mod
 
 RUN_HEADER = "x-tessaway-run"
 LOG_EVENT = "contract_call"
@@ -111,7 +112,11 @@ class RequireCaller:
                 return
         if scope["type"] == "http" and scope.get("path") == "/healthz":
             body = json.dumps(
-                {"contract": contract.CONTRACT_NAME, "version": contract.CONTRACT_VERSION}
+                {
+                    "contract": contract.CONTRACT_NAME,
+                    "version": contract.CONTRACT_VERSION,
+                    "routing": versions_mod.routing(),
+                }
             ).encode()
             await send(
                 {
@@ -125,11 +130,29 @@ class RequireCaller:
         await self.app(scope, receive, send)
 
 
+def _headers(ctx: Context | None) -> dict[str, Any] | None:
+    if ctx is None:
+        return None
+    try:
+        return ctx.headers
+    except (ValueError, AttributeError):
+        return None
+
+
+def _route(ctx: Context | None, asked: dict[str, Any] | None) -> tuple[str, dict[str, int], str]:
+    """Return the state, the versions and the cohort for one request (Part 7)."""
+    headers = _headers(ctx) or {}
+    cohort = headers.get(versions_mod.COHORT_HEADER)
+    state, served = versions_mod.resolve(cohort, asked)
+    return state, served, cohort or ""
+
+
 def _respond(
     ctx: Context | None,
     operation: str,
     work: Callable[[dict[str, Any]], dict[str, Any]],
     arguments: dict[str, Any] | None = None,
+    route: tuple[str, dict[str, int], str] | None = None,
 ) -> str:
     """Run one operation, stamp the response, and write the log line.
 
@@ -142,13 +165,9 @@ def _respond(
         result = work(record)
     except Exception as exc:  # noqa: BLE001 - an operation's failure is returned to the caller
         result = {"error": f"{type(exc).__name__}: {exc}"[:1500]}
-    reply = contract.envelope(operation, result, arguments)
-    headers = None
-    if ctx is not None:
-        try:
-            headers = ctx.headers
-        except (ValueError, AttributeError):
-            headers = None
+    state, served, cohort = route or ("v1", dict(versions_mod.STATES["v1"]), "")
+    reply = contract.envelope(operation, result, arguments, served)
+    headers = _headers(ctx)
     emit(
         {
             "severity": "INFO",
@@ -164,6 +183,9 @@ def _respond(
             "ok": "error" not in result,
             "ms": round((time.perf_counter() - started) * 1000),
             "bytes_billed": int(record.get("bytes_billed") or 0),
+            "cohort": cohort,
+            "state": state,
+            "metrics_served": record.get("metrics_served", []),
         }
     )
     return json.dumps(reply, default=str)
@@ -180,9 +202,20 @@ def build_server(state: contract.State) -> MCPServer:
         ),
     )
 
-    async def lookup_definition(ctx: Context, term: str = "") -> str:
+    async def lookup_definition(
+        ctx: Context, term: str = "", definition_versions: dict[str, int] | None = None
+    ) -> str:
+        try:
+            route = _route(ctx, definition_versions)
+        except ValueError as exc:
+            return json.dumps({"error": str(exc)})
         return await anyio.to_thread.run_sync(
-            _respond, ctx, contract.LOOKUP_DEFINITION, lambda _: contract.lookup_definition(term)
+            _respond,
+            ctx,
+            contract.LOOKUP_DEFINITION,
+            lambda _: contract.lookup_definition(term, route[1]),
+            None,
+            route,
         )
 
     async def compute_metric(
@@ -194,19 +227,30 @@ def build_server(state: contract.State) -> MCPServer:
         end_date: str = "",
         order_by: list[str] | None = None,
         limit: int = 50,
+        definition_versions: dict[str, int] | None = None,
     ) -> str:
+        try:
+            route = _route(ctx, definition_versions)
+        except ValueError as exc:
+            return json.dumps({"error": str(exc)})
+
         def work(record: dict[str, Any]) -> dict[str, Any]:
             return contract.compute_metric(
-                metrics, group_by, where, start_date, end_date, order_by, limit, record
+                metrics, group_by, where, start_date, end_date, order_by, limit, record, route[1]
             )
 
         return await anyio.to_thread.run_sync(
-            _respond, ctx, contract.COMPUTE_METRIC, work, {"metrics": list(metrics or [])}
+            _respond, ctx, contract.COMPUTE_METRIC, work, {"metrics": list(metrics or [])}, route
         )
 
     async def check_rule(ctx: Context, rule: str = "") -> str:
         return await anyio.to_thread.run_sync(
-            _respond, ctx, contract.CHECK_RULE, lambda _: contract.check_rule(state, rule)
+            _respond,
+            ctx,
+            contract.CHECK_RULE,
+            lambda _: contract.check_rule(state, rule),
+            None,
+            _route(ctx, None),
         )
 
     async def resolve_entity(ctx: Context, name_or_id: str) -> str:
@@ -215,6 +259,8 @@ def build_server(state: contract.State) -> MCPServer:
             ctx,
             contract.RESOLVE_ENTITY,
             lambda _: contract.resolve_entity(state, name_or_id),
+            None,
+            _route(ctx, None),
         )
 
     for operation, fn in (

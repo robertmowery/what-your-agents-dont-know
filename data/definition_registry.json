@@ -94,7 +94,7 @@
   "revenue": {
    "title": "Revenue",
    "owner": "Controller",
-   "version": 1,
+   "version": 2,
    "where": "data/DEFINITIONS.md#revenue",
    "serves": {
     "terms": ["tw:Revenue", "tw:CreditMemo", "tw:CanceledLoadFee"],
@@ -102,13 +102,14 @@
     "rules": []
    },
    "history": [
-    {"version": 1, "effective": "2026-10-09", "written_by": "Controller", "change": "First version: invoice totals less credit memos plus customer cancel fees, in US dollars, by document date.", "source_commit": "dea695c"}
+    {"version": 1, "effective": "2026-10-09", "written_by": "Controller", "change": "First version: invoice totals less credit memos plus customer cancel fees, in US dollars, by document date.", "source_commit": "dea695c"},
+    {"version": 2, "effective": "2026-10-27", "written_by": "Controller", "change": "Part 7: invoices and credit memos belong to the period the load was delivered (final stop, local clock), not the invoice or credit date; canceled-load fees keep the fee date; amounts and currency unchanged.", "released": true, "status": "canary from 2026-10-27 19:52 UTC; rolled back 20:44; released to everyone at 21:08 with margin version 2"}
    ]
   },
   "margin": {
    "title": "Margin",
    "owner": "Controller",
-   "version": 1,
+   "version": 2,
    "where": "data/DEFINITIONS.md#margin",
    "serves": {
     "terms": ["tw:Margin"],
@@ -116,7 +117,8 @@
     "rules": []
    },
    "history": [
-    {"version": 1, "effective": "2026-10-09", "written_by": "Controller", "change": "First version: revenue less carrier linehaul, fuel and accessorial pay for the same invoiced loads, plus the carrier's share of cancel fees.", "source_commit": "dea695c"}
+    {"version": 1, "effective": "2026-10-09", "written_by": "Controller", "change": "First version: revenue less carrier linehaul, fuel and accessorial pay for the same invoiced loads, plus the carrier's share of cancel fees.", "source_commit": "dea695c"},
+    {"version": 2, "effective": "2026-10-27", "written_by": "Controller", "change": "Part 7, to go with revenue version 2: carrier cost follows the load into the period it was delivered; margin per load divides by invoiced loads delivered in the period.", "released": true, "status": "released to everyone at 2026-10-27 21:08 UTC with revenue version 2"}
    ]
   },
   "currency": {

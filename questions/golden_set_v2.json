@@ -1,0 +1,21 @@
+{
+ "name": "Tessaway Freight golden set",
+ "version": 2,
+ "about": "The same 24 Part 1 questions, with the correct answers under revenue version 2 and margin version 2 (data/DEFINITIONS.md), frozen before any Part 7 agent run. Six answers differ from version 1 (M2, M3, M4, E1, E3, R3 were recomputed; E1's name is unchanged); the other 18 are version 1's answers. Version 1 stays as it was. Tessaway Freight is a fictional company and the owner is a fictional role.",
+ "owner": "Head of Data",
+ "frozen_on": "2026-10-27",
+ "questions_file": "questions/part1.yaml",
+ "questions_sha256": "eae3cc25520a1383f72d803bc21d47b2873d2bb7dcb00081d96a95a4f4cee03a",
+ "answers_file": "results/part7/gold_answers_v2.json",
+ "answers_sha256": "9cacbd7aa0b895e4518c7ffd22ea408077031b87968abf4f1b6a3595f1fa0e0e",
+ "gold_sql_file": "questions/part7_revenue_v2.yaml",
+ "gold_sql_sha256": "e646451f63907133257e95daee0d6ddf5b598d826ab3c0549fc271d3a3c66f9b",
+ "warehouse_seed": 20261009,
+ "change_log": [
+  {
+   "version": 2,
+   "date": "2026-10-27",
+   "change": "Revenue moves from the invoice date to the delivery date, and carrier cost moves with it (revenue version 2, margin version 2). Gold SQL reviewed against data/DEFINITIONS.md and run once on the warehouse of record; answers pinned by hash."
+  }
+ ]
+}

@@ -42,6 +42,7 @@ import pyoxigraph as ox
 import rdflib
 from rdflib.namespace import RDF, SH
 
+from context_server import versions as versions_mod
 from tessaway import registry
 from tessaway.agents import layer_prompt
 from tessaway.layers import graph, ontology, semantic
@@ -53,7 +54,10 @@ CONTRACT_NAME = "tessaway-context"
 #   2.0.0  Part 4: every response also lists the definitions it served, each with its
 #          id, version and owner from the definition registry (tessaway/registry.py),
 #          and each definition or rule a lookup returns carries the same three fields.
-CONTRACT_VERSION = "2.0.0"
+#  2.1.0  Part 7: lookup_definition and compute_metric take an optional
+#         definition_versions; the server routes a canary by the caller's cohort
+#         (context_server/versions.py) and stamps each definition with the version served.
+CONTRACT_VERSION = "2.1.0"
 
 LOOKUP_DEFINITION = "lookup_definition"
 COMPUTE_METRIC = "compute_metric"
@@ -127,7 +131,9 @@ def served_definitions(
     return []
 
 
-def stamp_matches(operation: str, result: dict[str, Any]) -> dict[str, Any]:
+def stamp_matches(
+    operation: str, result: dict[str, Any], versions: dict[str, int] | None = None
+) -> dict[str, Any]:
     """Put the id, version and owner beside each definition or rule a lookup returned."""
     if not isinstance(result, dict) or operation not in (LOOKUP_DEFINITION, CHECK_RULE):
         return result
@@ -137,25 +143,30 @@ def stamp_matches(operation: str, result: dict[str, Any]) -> dict[str, Any]:
     for match in result.get("matches") or []:
         ident = lookup.get((kind, str(match.get(key, ""))))
         if ident and ident in current:
-            match["definition"] = current[ident].stamp()
+            match["definition"] = registry.stamps([ident], versions=versions)[0]
     return result
 
 
 def envelope(
-    operation: str, result: dict[str, Any], arguments: dict[str, Any] | None = None
+    operation: str,
+    result: dict[str, Any],
+    arguments: dict[str, Any] | None = None,
+    versions: dict[str, int] | None = None,
 ) -> dict[str, Any]:
     """Wrap one operation's result with the contract name, version and a new response ID.
 
     From 2.0.0 the envelope also lists the definitions the response served,
     each with id, version and owner.
     """
-    result = stamp_matches(operation, result)
+    result = stamp_matches(operation, result, versions)
     return {
         "contract": CONTRACT_NAME,
         "contract_version": CONTRACT_VERSION,
         "operation": operation,
         "response_id": str(uuid.uuid4()),
-        "definitions": registry.stamps(served_definitions(operation, arguments, result)),
+        "definitions": registry.stamps(
+            served_definitions(operation, arguments, result), versions=versions
+        ),
         "result": result,
     }
 
@@ -200,9 +211,12 @@ def build_state(rows: graph.Rows) -> State:
 # --- the four operations -------------------------------------------------------------
 
 
-def lookup_definition(term: str = "") -> dict[str, Any]:
-    """Look a term up in the ontology."""
-    return ontology.lookup(term)
+def lookup_definition(term: str = "", versions: dict[str, int] | None = None) -> dict[str, Any]:
+    """Look a term up in the ontology, worded for the versions served (Part 7)."""
+    result = ontology.lookup(term)
+    if versions:
+        result = versions_mod.reword_matches(result, versions)
+    return result
 
 
 def compute_metric(
@@ -214,16 +228,30 @@ def compute_metric(
     order_by: list[str] | None = None,
     limit: int = 50,
     record: dict[str, Any] | None = None,
+    versions: dict[str, int] | None = None,
 ) -> dict[str, Any]:
     """Compute named metrics through the semantic layer.
 
     ``record`` receives the generated SQL and the bytes billed, for the server
-    log. Neither is returned to the caller.
+    log. Neither is returned to the caller. ``versions`` (Part 7) picks the
+    semantic layer's metrics for the definition versions served; the columns
+    come back under the names asked for.
     """
     entry: dict[str, Any] = {} if record is None else record
-    return semantic.run_metrics(
-        list(metrics or []), group_by, where, start_date, end_date, order_by, limit, entry
+    asked, group_by, where, back = versions_mod.rewrite_request(
+        list(metrics or []), group_by, where, versions or versions_mod.STATES["v1"]
     )
+    if back:
+        order_by = [
+            ("-" if o.startswith("-") else "")
+            + {v: k for k, v in back.items()}.get(o.lstrip("-"), o.lstrip("-"))
+            for o in (order_by or [])
+        ] or order_by
+        entry["metrics_served"] = asked
+    result = semantic.run_metrics(
+        asked, group_by, where, start_date, end_date, order_by, limit, entry
+    )
+    return versions_mod.rename_columns(result, back)
 
 
 def check_rule(state: State, rule: str = "") -> dict[str, Any]:

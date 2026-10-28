@@ -28,7 +28,14 @@ SEMANTIC_YML = semantic.PROJECT_DIR / "models" / "semantic.yml"
 
 
 def defined() -> dict[str, dict[str, str]]:
-    return {m["name"]: m for m in yaml.safe_load(SEMANTIC_YML.read_text())["metrics"]}
+    """The metrics an agent can ask for by name.
+
+    Part 7's version 2 metrics (names ending ``_v2`` or ``_r2``) are served by the
+    contract under the version 1 names and are not in the catalog;
+    tests/test_part7_versions.py covers them.
+    """
+    every = yaml.safe_load(SEMANTIC_YML.read_text())["metrics"]
+    return {m["name"]: m for m in every if not m["name"].endswith(("_v2", "_r2"))}
 
 
 def test_the_catalog_lists_exactly_the_metrics_the_yaml_defines() -> None:

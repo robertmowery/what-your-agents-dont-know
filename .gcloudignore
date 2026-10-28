@@ -10,6 +10,7 @@
 !/data/
 /data/*
 !/data/definition_registry.json
+!/data/definition_versions.json
 __pycache__/
 *.pyc
 .env

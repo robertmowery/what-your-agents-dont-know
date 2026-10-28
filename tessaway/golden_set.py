@@ -79,7 +79,9 @@ def sha256(path: Path) -> str:
 def verify(version: int = CURRENT_VERSION, root: Path = ROOT) -> dict[str, Any]:
     """Check both pinned files against the manifest and raise if either moved."""
     m = manifest(version)
-    for key in ("questions", "answers"):
+    for key in ("questions", "answers", "gold_sql"):
+        if f"{key}_file" not in m:  # version 1 pins two files; version 2 also pins its gold SQL
+            continue
         path = root / m[f"{key}_file"]
         found = sha256(path)
         if found != m[f"{key}_sha256"]:

@@ -1,0 +1,383 @@
+about: 'Part 7: the reviewed gold SQL for revenue version 2, for the six Part 1 questions that depend on revenue. Version 2 dates invoices and credit memos by the load''s delivery date at the final stop, on the local clock; canceled-load fees keep the fee date; every amount and every currency rule is unchanged from version 1. Margin version 2 moves carrier cost with the load into the same period. mixed_sql is the figure a margin question gets when revenue moves to version 2 and carrier cost stays on version 1''s invoice dates; it is a known wrong answer, kept as a decoy. Written before any Part 7 agent run. The other 18 questions keep their version 1 answers.'
+questions:
+- id: M2
+  question: What was our total revenue in Q3 2026?
+  gold_sql_v2: |
+    WITH fx AS (
+      SELECT eff_mo_dt, fx_rt FROM ref_fx_rate
+      WHERE from_curr_cd = 'CAD' AND to_curr_cd = 'USD'
+    ),
+    dlv AS (
+      -- revenue version 2: each load's delivery date, at the final delivery stop on the local clock
+      SELECT load_id, DATE(arr_ts, tz_nm) AS dlvr_dt
+      FROM tms_stop
+      WHERE stop_typ_cd = 'DL'
+      QUALIFY ROW_NUMBER() OVER (PARTITION BY load_id ORDER BY stop_seq DESC) = 1
+    ),
+    rev_doc AS (
+      -- invoices and credit memos in the period their load was delivered (version 2);
+      -- canceled-load fees in the period of the fee date; amounts in US dollars at the
+      -- rate for the month of the document, as in version 1
+      SELECT i.load_id, d.dlvr_dt AS doc_dt,
+             i.inv_tot_amt * IF(i.curr_cd = 'CAD', fx.fx_rt, 1) AS amt_usd
+      FROM bil_cust_inv i
+      JOIN dlv d USING (load_id)
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(i.inv_dt, MONTH)
+      UNION ALL
+      SELECT c.load_id, d.dlvr_dt, -c.cr_amt * IF(c.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_cr_memo c
+      JOIN dlv d USING (load_id)
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(c.cr_dt, MONTH)
+      UNION ALL
+      SELECT f.load_id, f.fee_dt, f.cust_fee_amt * IF(f.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_canc_fee f
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(f.fee_dt, MONTH)
+    )
+    SELECT ROUND(SUM(amt_usd), 2) FROM rev_doc WHERE doc_dt BETWEEN '2026-07-01' AND '2026-09-30'
+- id: M3
+  question: What was our average margin per load in Q3 2026?
+  gold_sql_v2: |
+    WITH fx AS (
+      SELECT eff_mo_dt, fx_rt FROM ref_fx_rate
+      WHERE from_curr_cd = 'CAD' AND to_curr_cd = 'USD'
+    ),
+    dlv AS (
+      -- revenue version 2: each load's delivery date, at the final delivery stop on the local clock
+      SELECT load_id, DATE(arr_ts, tz_nm) AS dlvr_dt
+      FROM tms_stop
+      WHERE stop_typ_cd = 'DL'
+      QUALIFY ROW_NUMBER() OVER (PARTITION BY load_id ORDER BY stop_seq DESC) = 1
+    ),
+    rev_doc AS (
+      -- invoices and credit memos in the period their load was delivered (version 2);
+      -- canceled-load fees in the period of the fee date; amounts in US dollars at the
+      -- rate for the month of the document, as in version 1
+      SELECT i.load_id, d.dlvr_dt AS doc_dt,
+             i.inv_tot_amt * IF(i.curr_cd = 'CAD', fx.fx_rt, 1) AS amt_usd
+      FROM bil_cust_inv i
+      JOIN dlv d USING (load_id)
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(i.inv_dt, MONTH)
+      UNION ALL
+      SELECT c.load_id, d.dlvr_dt, -c.cr_amt * IF(c.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_cr_memo c
+      JOIN dlv d USING (load_id)
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(c.cr_dt, MONTH)
+      UNION ALL
+      SELECT f.load_id, f.fee_dt, f.cust_fee_amt * IF(f.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_canc_fee f
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(f.fee_dt, MONTH)
+    ),
+    cost_doc AS (
+      -- what the carrier was paid for each invoiced load: linehaul, fuel and
+      -- accessorials, plus the carrier's share of canceled-load fees
+      SELECT i.load_id, d.dlvr_dt AS doc_dt,
+             (p.lh_pay_amt + s.carr_fsc_amt + IFNULL(a.carr_accsrl_amt, 0))
+               * IF(i.curr_cd = 'CAD', fx.fx_rt, 1) AS amt_usd
+      FROM bil_cust_inv i
+      JOIN bil_carr_pay p USING (load_id)
+      JOIN bil_fuel_schg s USING (load_id)
+      LEFT JOIN (
+        SELECT load_id, SUM(carr_pay_amt) AS carr_accsrl_amt
+        FROM bil_accsrl_chrg GROUP BY load_id
+      ) a USING (load_id)
+      JOIN dlv d USING (load_id)
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(i.inv_dt, MONTH)
+      UNION ALL
+      SELECT f.load_id, f.fee_dt, f.carr_fee_amt * IF(f.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_canc_fee f
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(f.fee_dt, MONTH)
+    )
+    SELECT ROUND(
+      ((SELECT SUM(amt_usd) FROM rev_doc WHERE doc_dt BETWEEN '2026-07-01' AND '2026-09-30')
+       - (SELECT SUM(amt_usd) FROM cost_doc WHERE doc_dt BETWEEN '2026-07-01' AND '2026-09-30'))
+      / (SELECT COUNT(*) FROM bil_cust_inv JOIN dlv USING (load_id) WHERE dlvr_dt BETWEEN '2026-07-01' AND '2026-09-30'), 2)
+  mixed_sql: |
+    WITH fx AS (
+      SELECT eff_mo_dt, fx_rt FROM ref_fx_rate
+      WHERE from_curr_cd = 'CAD' AND to_curr_cd = 'USD'
+    ),
+    dlv AS (
+      -- revenue version 2: each load's delivery date, at the final delivery stop on the local clock
+      SELECT load_id, DATE(arr_ts, tz_nm) AS dlvr_dt
+      FROM tms_stop
+      WHERE stop_typ_cd = 'DL'
+      QUALIFY ROW_NUMBER() OVER (PARTITION BY load_id ORDER BY stop_seq DESC) = 1
+    ),
+    rev_doc AS (
+      -- invoices and credit memos in the period their load was delivered (version 2);
+      -- canceled-load fees in the period of the fee date; amounts in US dollars at the
+      -- rate for the month of the document, as in version 1
+      SELECT i.load_id, d.dlvr_dt AS doc_dt,
+             i.inv_tot_amt * IF(i.curr_cd = 'CAD', fx.fx_rt, 1) AS amt_usd
+      FROM bil_cust_inv i
+      JOIN dlv d USING (load_id)
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(i.inv_dt, MONTH)
+      UNION ALL
+      SELECT c.load_id, d.dlvr_dt, -c.cr_amt * IF(c.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_cr_memo c
+      JOIN dlv d USING (load_id)
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(c.cr_dt, MONTH)
+      UNION ALL
+      SELECT f.load_id, f.fee_dt, f.cust_fee_amt * IF(f.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_canc_fee f
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(f.fee_dt, MONTH)
+    ),
+    cost_doc AS (
+      -- what the carrier was paid for each invoiced load: linehaul, fuel and
+      -- accessorials, plus the carrier's share of canceled-load fees
+      SELECT i.load_id, i.inv_dt AS doc_dt,
+             (p.lh_pay_amt + s.carr_fsc_amt + IFNULL(a.carr_accsrl_amt, 0))
+               * IF(i.curr_cd = 'CAD', fx.fx_rt, 1) AS amt_usd
+      FROM bil_cust_inv i
+      JOIN bil_carr_pay p USING (load_id)
+      JOIN bil_fuel_schg s USING (load_id)
+      LEFT JOIN (
+        SELECT load_id, SUM(carr_pay_amt) AS carr_accsrl_amt
+        FROM bil_accsrl_chrg GROUP BY load_id
+      ) a USING (load_id)
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(i.inv_dt, MONTH)
+      UNION ALL
+      SELECT f.load_id, f.fee_dt, f.carr_fee_amt * IF(f.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_canc_fee f
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(f.fee_dt, MONTH)
+    )
+    SELECT ROUND(
+      ((SELECT SUM(amt_usd) FROM rev_doc WHERE doc_dt BETWEEN '2026-07-01' AND '2026-09-30')
+       - (SELECT SUM(amt_usd) FROM cost_doc WHERE doc_dt BETWEEN '2026-07-01' AND '2026-09-30'))
+      / (SELECT COUNT(*) FROM bil_cust_inv WHERE inv_dt BETWEEN '2026-07-01' AND '2026-09-30'), 2)
+- id: M4
+  question: What was our margin percentage in Q3 2026?
+  gold_sql_v2: |
+    WITH fx AS (
+      SELECT eff_mo_dt, fx_rt FROM ref_fx_rate
+      WHERE from_curr_cd = 'CAD' AND to_curr_cd = 'USD'
+    ),
+    dlv AS (
+      -- revenue version 2: each load's delivery date, at the final delivery stop on the local clock
+      SELECT load_id, DATE(arr_ts, tz_nm) AS dlvr_dt
+      FROM tms_stop
+      WHERE stop_typ_cd = 'DL'
+      QUALIFY ROW_NUMBER() OVER (PARTITION BY load_id ORDER BY stop_seq DESC) = 1
+    ),
+    rev_doc AS (
+      -- invoices and credit memos in the period their load was delivered (version 2);
+      -- canceled-load fees in the period of the fee date; amounts in US dollars at the
+      -- rate for the month of the document, as in version 1
+      SELECT i.load_id, d.dlvr_dt AS doc_dt,
+             i.inv_tot_amt * IF(i.curr_cd = 'CAD', fx.fx_rt, 1) AS amt_usd
+      FROM bil_cust_inv i
+      JOIN dlv d USING (load_id)
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(i.inv_dt, MONTH)
+      UNION ALL
+      SELECT c.load_id, d.dlvr_dt, -c.cr_amt * IF(c.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_cr_memo c
+      JOIN dlv d USING (load_id)
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(c.cr_dt, MONTH)
+      UNION ALL
+      SELECT f.load_id, f.fee_dt, f.cust_fee_amt * IF(f.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_canc_fee f
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(f.fee_dt, MONTH)
+    ),
+    cost_doc AS (
+      -- what the carrier was paid for each invoiced load: linehaul, fuel and
+      -- accessorials, plus the carrier's share of canceled-load fees
+      SELECT i.load_id, d.dlvr_dt AS doc_dt,
+             (p.lh_pay_amt + s.carr_fsc_amt + IFNULL(a.carr_accsrl_amt, 0))
+               * IF(i.curr_cd = 'CAD', fx.fx_rt, 1) AS amt_usd
+      FROM bil_cust_inv i
+      JOIN bil_carr_pay p USING (load_id)
+      JOIN bil_fuel_schg s USING (load_id)
+      LEFT JOIN (
+        SELECT load_id, SUM(carr_pay_amt) AS carr_accsrl_amt
+        FROM bil_accsrl_chrg GROUP BY load_id
+      ) a USING (load_id)
+      JOIN dlv d USING (load_id)
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(i.inv_dt, MONTH)
+      UNION ALL
+      SELECT f.load_id, f.fee_dt, f.carr_fee_amt * IF(f.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_canc_fee f
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(f.fee_dt, MONTH)
+    )
+    SELECT ROUND(100 *
+      ((SELECT SUM(amt_usd) FROM rev_doc WHERE doc_dt BETWEEN '2026-07-01' AND '2026-09-30')
+       - (SELECT SUM(amt_usd) FROM cost_doc WHERE doc_dt BETWEEN '2026-07-01' AND '2026-09-30'))
+      / (SELECT SUM(amt_usd) FROM rev_doc WHERE doc_dt BETWEEN '2026-07-01' AND '2026-09-30'), 2)
+  mixed_sql: |
+    WITH fx AS (
+      SELECT eff_mo_dt, fx_rt FROM ref_fx_rate
+      WHERE from_curr_cd = 'CAD' AND to_curr_cd = 'USD'
+    ),
+    dlv AS (
+      -- revenue version 2: each load's delivery date, at the final delivery stop on the local clock
+      SELECT load_id, DATE(arr_ts, tz_nm) AS dlvr_dt
+      FROM tms_stop
+      WHERE stop_typ_cd = 'DL'
+      QUALIFY ROW_NUMBER() OVER (PARTITION BY load_id ORDER BY stop_seq DESC) = 1
+    ),
+    rev_doc AS (
+      -- invoices and credit memos in the period their load was delivered (version 2);
+      -- canceled-load fees in the period of the fee date; amounts in US dollars at the
+      -- rate for the month of the document, as in version 1
+      SELECT i.load_id, d.dlvr_dt AS doc_dt,
+             i.inv_tot_amt * IF(i.curr_cd = 'CAD', fx.fx_rt, 1) AS amt_usd
+      FROM bil_cust_inv i
+      JOIN dlv d USING (load_id)
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(i.inv_dt, MONTH)
+      UNION ALL
+      SELECT c.load_id, d.dlvr_dt, -c.cr_amt * IF(c.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_cr_memo c
+      JOIN dlv d USING (load_id)
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(c.cr_dt, MONTH)
+      UNION ALL
+      SELECT f.load_id, f.fee_dt, f.cust_fee_amt * IF(f.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_canc_fee f
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(f.fee_dt, MONTH)
+    ),
+    cost_doc AS (
+      -- what the carrier was paid for each invoiced load: linehaul, fuel and
+      -- accessorials, plus the carrier's share of canceled-load fees
+      SELECT i.load_id, i.inv_dt AS doc_dt,
+             (p.lh_pay_amt + s.carr_fsc_amt + IFNULL(a.carr_accsrl_amt, 0))
+               * IF(i.curr_cd = 'CAD', fx.fx_rt, 1) AS amt_usd
+      FROM bil_cust_inv i
+      JOIN bil_carr_pay p USING (load_id)
+      JOIN bil_fuel_schg s USING (load_id)
+      LEFT JOIN (
+        SELECT load_id, SUM(carr_pay_amt) AS carr_accsrl_amt
+        FROM bil_accsrl_chrg GROUP BY load_id
+      ) a USING (load_id)
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(i.inv_dt, MONTH)
+      UNION ALL
+      SELECT f.load_id, f.fee_dt, f.carr_fee_amt * IF(f.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_canc_fee f
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(f.fee_dt, MONTH)
+    )
+    SELECT ROUND(100 *
+      ((SELECT SUM(amt_usd) FROM rev_doc WHERE doc_dt BETWEEN '2026-07-01' AND '2026-09-30')
+       - (SELECT SUM(amt_usd) FROM cost_doc WHERE doc_dt BETWEEN '2026-07-01' AND '2026-09-30'))
+      / (SELECT SUM(amt_usd) FROM rev_doc WHERE doc_dt BETWEEN '2026-07-01' AND '2026-09-30'), 2)
+- id: E1
+  question: Who was our largest customer by revenue in Q3 2026?
+  gold_sql_v2: |
+    WITH fx AS (
+      SELECT eff_mo_dt, fx_rt FROM ref_fx_rate
+      WHERE from_curr_cd = 'CAD' AND to_curr_cd = 'USD'
+    ),
+    dlv AS (
+      -- revenue version 2: each load's delivery date, at the final delivery stop on the local clock
+      SELECT load_id, DATE(arr_ts, tz_nm) AS dlvr_dt
+      FROM tms_stop
+      WHERE stop_typ_cd = 'DL'
+      QUALIFY ROW_NUMBER() OVER (PARTITION BY load_id ORDER BY stop_seq DESC) = 1
+    ),
+    rev_doc AS (
+      -- invoices and credit memos in the period their load was delivered (version 2);
+      -- canceled-load fees in the period of the fee date; amounts in US dollars at the
+      -- rate for the month of the document, as in version 1
+      SELECT i.load_id, d.dlvr_dt AS doc_dt,
+             i.inv_tot_amt * IF(i.curr_cd = 'CAD', fx.fx_rt, 1) AS amt_usd
+      FROM bil_cust_inv i
+      JOIN dlv d USING (load_id)
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(i.inv_dt, MONTH)
+      UNION ALL
+      SELECT c.load_id, d.dlvr_dt, -c.cr_amt * IF(c.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_cr_memo c
+      JOIN dlv d USING (load_id)
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(c.cr_dt, MONTH)
+      UNION ALL
+      SELECT f.load_id, f.fee_dt, f.cust_fee_amt * IF(f.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_canc_fee f
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(f.fee_dt, MONTH)
+    ),
+    cust AS (
+      -- the customer is the parent account of the site that shipped
+      SELECT h.load_id, p.acct_id AS cust_id, p.acct_nm AS cust_nm
+      FROM tms_load_hdr h
+      JOIN mdm_cust_acct s ON s.acct_id = h.shpr_acct_id
+      JOIN mdm_cust_acct p ON p.acct_id = s.prnt_acct_id
+    )
+    SELECT c.cust_nm
+    FROM rev_doc r JOIN cust c USING (load_id)
+    WHERE r.doc_dt BETWEEN '2026-07-01' AND '2026-09-30'
+    GROUP BY c.cust_nm
+    ORDER BY SUM(r.amt_usd) DESC
+    LIMIT 1
+- id: E3
+  question: How much revenue did Northgate Foods bring in during Q3 2026?
+  gold_sql_v2: |
+    WITH fx AS (
+      SELECT eff_mo_dt, fx_rt FROM ref_fx_rate
+      WHERE from_curr_cd = 'CAD' AND to_curr_cd = 'USD'
+    ),
+    dlv AS (
+      -- revenue version 2: each load's delivery date, at the final delivery stop on the local clock
+      SELECT load_id, DATE(arr_ts, tz_nm) AS dlvr_dt
+      FROM tms_stop
+      WHERE stop_typ_cd = 'DL'
+      QUALIFY ROW_NUMBER() OVER (PARTITION BY load_id ORDER BY stop_seq DESC) = 1
+    ),
+    rev_doc AS (
+      -- invoices and credit memos in the period their load was delivered (version 2);
+      -- canceled-load fees in the period of the fee date; amounts in US dollars at the
+      -- rate for the month of the document, as in version 1
+      SELECT i.load_id, d.dlvr_dt AS doc_dt,
+             i.inv_tot_amt * IF(i.curr_cd = 'CAD', fx.fx_rt, 1) AS amt_usd
+      FROM bil_cust_inv i
+      JOIN dlv d USING (load_id)
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(i.inv_dt, MONTH)
+      UNION ALL
+      SELECT c.load_id, d.dlvr_dt, -c.cr_amt * IF(c.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_cr_memo c
+      JOIN dlv d USING (load_id)
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(c.cr_dt, MONTH)
+      UNION ALL
+      SELECT f.load_id, f.fee_dt, f.cust_fee_amt * IF(f.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_canc_fee f
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(f.fee_dt, MONTH)
+    ),
+    cust AS (
+      -- the customer is the parent account of the site that shipped
+      SELECT h.load_id, p.acct_id AS cust_id, p.acct_nm AS cust_nm
+      FROM tms_load_hdr h
+      JOIN mdm_cust_acct s ON s.acct_id = h.shpr_acct_id
+      JOIN mdm_cust_acct p ON p.acct_id = s.prnt_acct_id
+    )
+    SELECT ROUND(SUM(r.amt_usd), 2)
+    FROM rev_doc r JOIN cust c USING (load_id)
+    WHERE c.cust_nm = 'Northgate Foods Group' AND r.doc_dt BETWEEN '2026-07-01' AND '2026-09-30'
+- id: R3
+  question: How much revenue came from cross-border loads in Q3 2026?
+  gold_sql_v2: |
+    WITH fx AS (
+      SELECT eff_mo_dt, fx_rt FROM ref_fx_rate
+      WHERE from_curr_cd = 'CAD' AND to_curr_cd = 'USD'
+    ),
+    dlv AS (
+      -- revenue version 2: each load's delivery date, at the final delivery stop on the local clock
+      SELECT load_id, DATE(arr_ts, tz_nm) AS dlvr_dt
+      FROM tms_stop
+      WHERE stop_typ_cd = 'DL'
+      QUALIFY ROW_NUMBER() OVER (PARTITION BY load_id ORDER BY stop_seq DESC) = 1
+    ),
+    rev_doc AS (
+      -- invoices and credit memos in the period their load was delivered (version 2);
+      -- canceled-load fees in the period of the fee date; amounts in US dollars at the
+      -- rate for the month of the document, as in version 1
+      SELECT i.load_id, d.dlvr_dt AS doc_dt,
+             i.inv_tot_amt * IF(i.curr_cd = 'CAD', fx.fx_rt, 1) AS amt_usd
+      FROM bil_cust_inv i
+      JOIN dlv d USING (load_id)
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(i.inv_dt, MONTH)
+      UNION ALL
+      SELECT c.load_id, d.dlvr_dt, -c.cr_amt * IF(c.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_cr_memo c
+      JOIN dlv d USING (load_id)
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(c.cr_dt, MONTH)
+      UNION ALL
+      SELECT f.load_id, f.fee_dt, f.cust_fee_amt * IF(f.curr_cd = 'CAD', fx.fx_rt, 1)
+      FROM bil_canc_fee f
+      LEFT JOIN fx ON fx.eff_mo_dt = DATE_TRUNC(f.fee_dt, MONTH)
+    )
+    SELECT ROUND(SUM(r.amt_usd), 2)
+    FROM rev_doc r JOIN tms_load_hdr h USING (load_id)
+    WHERE h.xbrdr_flg AND r.doc_dt BETWEEN '2026-07-01' AND '2026-09-30'

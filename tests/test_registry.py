@@ -34,7 +34,8 @@ def test_every_definition_has_an_owner_a_version_and_that_version_in_its_history
     for ident, entry in data["definitions"].items():
         assert entry.get("owner"), f"{ident} has no owner"
         assert entry["owner"] in data["owners"], f"{ident}'s owner is not a listed role"
-        versions = [int(h["version"]) for h in entry["history"]]
+        # Part 7: a version written but not yet released is in the history, not current.
+        versions = [int(h["version"]) for h in entry["history"] if h.get("released", True)]
         assert int(entry["version"]) == max(versions), ident
         assert registry.owner_of(ident, entry["version"]) == entry["owner"]
 
@@ -71,7 +72,9 @@ def test_everything_the_contract_can_serve_belongs_to_exactly_one_definition() -
                 listed[(kind, name)] += 1
     for kind, names in served.items():
         for name in names:
-            assert listed[(kind, name)] == 1, f"{kind} {name} is listed {listed[(kind, name)]} times"
+            assert listed[(kind, name)] == 1, (
+                f"{kind} {name} is listed {listed[(kind, name)]} times"
+            )
     # And nothing in the registry names a term, metric or rule that does not exist.
     for kind, name in listed:
         assert name in served[kind], f"{kind} {name} is not served by any layer"

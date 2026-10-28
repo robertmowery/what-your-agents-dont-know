@@ -53,6 +53,8 @@ from tessaway.layers import LAYER_LIMIT_MESSAGE, MAX_LAYER_CALLS, ToolLog
 from tessaway.warehouse import query
 
 RUN_HEADER = "X-Tessaway-Run"
+# Part 7: the cohort the server routes a canary by. The server decides the version.
+COHORT_HEADER = "X-Tessaway-Cohort"
 
 
 @dataclass
@@ -163,12 +165,15 @@ def build(
     )
 
 
-def toolset_for(endpoint: str, token: str, run_id: str) -> McpToolset:
+def toolset_for(endpoint: str, token: str, run_id: str, cohort: str | None = None) -> McpToolset:
     """Return ADK's MCP toolset for the contract, signed as one agent, for one run."""
+    headers = {"Authorization": f"Bearer {token}", RUN_HEADER: run_id}
+    if cohort is not None:
+        headers[COHORT_HEADER] = cohort
     return McpToolset(
         connection_params=StreamableHTTPConnectionParams(
             url=endpoint,
-            headers={"Authorization": f"Bearer {token}", RUN_HEADER: run_id},
+            headers=headers,
             timeout=30.0,
             sse_read_timeout=300.0,
         ),
@@ -183,14 +188,18 @@ async def ask(
     endpoint: str,
     token: str,
     instruction: str | None = None,
+    cohort: str | None = None,
 ) -> ContractAgentRun:
-    """Ask one question in a fresh session and record what happened."""
+    """Ask one question in a fresh session and record what happened.
+
+    ``cohort`` (Part 7) is sent to the contract, which routes on it.
+    """
     config.project()
     run_id = str(uuid.uuid4())
     log = query.QueryLog()
     tools = ToolLog()
     run = ContractAgentRun(run_id=run_id, configuration=configuration)
-    toolset = toolset_for(endpoint, token, run_id)
+    toolset = toolset_for(endpoint, token, run_id, cohort)
     agent = build(model, configuration, log, tools, toolset, instruction)
     runner = InMemoryRunner(agent=agent, app_name="tessaway_part3")
     session = await runner.session_service.create_session(

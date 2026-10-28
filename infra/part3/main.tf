@@ -187,6 +187,12 @@ resource "google_cloud_run_v2_service" "contract" {
         name  = "BQ_LOCATION"
         value = "US"
       }
+      # Part 7: which version of a changed definition each request gets
+      # (context_server/versions.py). Rolling back is a new revision with this changed.
+      env {
+        name  = "TESSAWAY_ROUTING"
+        value = var.routing
+      }
 
       # The layers load before the server listens: the graph, the rule check and MetricFlow.
       startup_probe {

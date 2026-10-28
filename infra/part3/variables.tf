@@ -43,3 +43,9 @@ variable "semantic_dataset" {
   type        = string
   default     = "tessaway_sem"
 }
+
+variable "routing" {
+  description = "Part 7: the contract's routing table, JSON (context_server/versions.py). Default: everyone on version 1."
+  type        = string
+  default     = "{\"default\": \"v1\", \"cohorts\": {}}"
+}

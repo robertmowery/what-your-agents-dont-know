@@ -1,0 +1,1311 @@
+{
+ "written_by": "analysis/part7_article_numbers.py",
+ "phases": {
+  "canary": {
+   "right": 70,
+   "confidently_wrong": 2,
+   "declined": 0,
+   "no_answer": 0,
+   "runs": 72,
+   "cost_per_run_usd": 0.041964875,
+   "cost_per_correct_usd": 0.04316387142857143,
+   "spend_usd": 3.021471,
+   "input_tokens_per_run": 51993.083333333336,
+   "model_calls_per_run": 8.180555555555555,
+   "by_state": {
+    "revenue_v2": {
+     "right": 22,
+     "confidently_wrong": 2,
+     "declined": 0,
+     "no_answer": 0,
+     "runs": 24
+    },
+    "v1": {
+     "right": 48,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "runs": 48
+    }
+   },
+   "served_mismatch": 0,
+   "served_v2_runs": 9,
+   "mixed": 2,
+   "runs_that_asked_for_a_version": 3,
+   "runs_asking": [
+    {
+     "question_id": "M4",
+     "trial": 2,
+     "state": "revenue_v2",
+     "outcome": "confidently_wrong",
+     "asked": [
+      {
+       "tool": "compute_metric",
+       "definition_versions": {
+        "revenue": 1,
+        "margin": 1
+       }
+      },
+      {
+       "tool": "lookup_definition",
+       "definition_versions": {
+        "revenue": 1
+       }
+      }
+     ]
+    },
+    {
+     "question_id": "E1",
+     "trial": 2,
+     "state": "revenue_v2",
+     "outcome": "right",
+     "asked": [
+      {
+       "tool": "lookup_definition",
+       "definition_versions": {
+        "revenue": 1
+       }
+      },
+      {
+       "tool": "compute_metric",
+       "definition_versions": {
+        "revenue": 1
+       }
+      }
+     ]
+    },
+    {
+     "question_id": "R3",
+     "trial": 2,
+     "state": "revenue_v2",
+     "outcome": "right",
+     "asked": [
+      {
+       "tool": "lookup_definition",
+       "definition_versions": {
+        "revenue": 1
+       }
+      }
+     ]
+    }
+   ],
+   "replaced_attempts": 2,
+   "by_question": {
+    "M2": {
+     "right": 3,
+     "runs": 3
+    },
+    "M3": {
+     "right": 2,
+     "runs": 3
+    },
+    "M4": {
+     "right": 2,
+     "runs": 3
+    },
+    "E1": {
+     "right": 3,
+     "runs": 3
+    },
+    "E3": {
+     "right": 3,
+     "runs": 3
+    },
+    "R3": {
+     "right": 3,
+     "runs": 3
+    }
+   },
+   "revenue_questions_right": 16,
+   "revenue_questions_runs": 18,
+   "sql_dating_on_revenue_questions": {
+    "invoice date": 9,
+    "other": 2,
+    "no SQL": 4,
+    "delivery date": 3
+   },
+   "version2_by_question": {
+    "E1": {
+     "outcome": "right",
+     "extracted": "Northgate Foods Group",
+     "gold_v2": "Northgate Foods Group",
+     "gold_v1": "Northgate Foods Group",
+     "mixed": false,
+     "matched_decoy": "",
+     "served": {
+      "revenue": [
+       1,
+       2
+      ],
+      "margin": []
+     },
+     "asked_for_versions": [
+      {
+       "tool": "lookup_definition",
+       "definition_versions": {
+        "revenue": 1
+       }
+      },
+      {
+       "tool": "compute_metric",
+       "definition_versions": {
+        "revenue": 1
+       }
+      }
+     ],
+     "cited": [
+      "revenue@2"
+     ],
+     "answer_source": "contract",
+     "sql_dating": "no SQL"
+    },
+    "E2": {
+     "outcome": "right",
+     "extracted": "36",
+     "gold_v2": 36,
+     "gold_v1": 36,
+     "mixed": false,
+     "matched_decoy": "",
+     "served": {
+      "revenue": [],
+      "margin": []
+     },
+     "asked_for_versions": [],
+     "cited": [],
+     "answer_source": "both",
+     "sql_dating": "other"
+    },
+    "E3": {
+     "outcome": "right",
+     "extracted": "1264316.46509",
+     "gold_v2": 1264316.47,
+     "gold_v1": 1299690.26,
+     "mixed": false,
+     "matched_decoy": "",
+     "served": {
+      "revenue": [
+       2
+      ],
+      "margin": [
+       1
+      ]
+     },
+     "asked_for_versions": [],
+     "cited": [
+      "revenue@2"
+     ],
+     "answer_source": "contract",
+     "sql_dating": "delivery date"
+    },
+    "E4": {
+     "outcome": "right",
+     "extracted": "1170",
+     "gold_v2": 1170,
+     "gold_v1": 1170,
+     "mixed": false,
+     "matched_decoy": "",
+     "served": {
+      "revenue": [],
+      "margin": []
+     },
+     "asked_for_versions": [],
+     "cited": [],
+     "answer_source": "both",
+     "sql_dating": "other"
+    },
+    "E5": {
+     "outcome": "right",
+     "extracted": "433",
+     "gold_v2": 433,
+     "gold_v1": 433,
+     "mixed": false,
+     "matched_decoy": "",
+     "served": {
+      "revenue": [],
+      "margin": []
+     },
+     "asked_for_versions": [],
+     "cited": [],
+     "answer_source": "both",
+     "sql_dating": "other"
+    },
+    "E6": {
+     "outcome": "right",
+     "extracted": "Midvale Transport",
+     "gold_v2": "Midvale Transport",
+     "gold_v1": "Midvale Transport",
+     "mixed": false,
+     "matched_decoy": "",
+     "served": {
+      "revenue": [],
+      "margin": [
+       1
+      ]
+     },
+     "asked_for_versions": [],
+     "cited": [],
+     "answer_source": "both",
+     "sql_dating": "other"
+    },
+    "L1": {
+     "outcome": "right",
+     "extracted": "65",
+     "gold_v2": 65,
+     "gold_v1": 65,
+     "mixed": false,
+     "matched_decoy": "",
+     "served": {
+      "revenue": [],
+      "margin": [
+       1
+      ]
+     },
+     "asked_for_versions": [],
+     "cited": [],
+     "answer_source": "sql",
+     "sql_dating": "other"
+    },
+    "L2": {
+     "outcome": "right",
+     "extracted": "11",
+     "gold_v2": 11,
+     "gold_v1": 11,
+     "mixed": false,
+     "matched_decoy": "",
+     "served": {
+      "revenue": [],
+      "margin": []
+     },
+     "asked_for_versions": [],
+     "cited": [],
+     "answer_source": "sql",
+     "sql_dating": "other"
+    },
+    "L3": {
+     "outcome": "right",
+     "extracted": "Green Bay",
+     "gold_v2": "Green Bay",
+     "gold_v1": "Green Bay",
+     "mixed": false,
+     "matched_decoy": "",
+     "served": {
+      "revenue": [],
+      "margin": []
+     },
+     "asked_for_versions": [],
+     "cited": [],
+     "answer_source": "sql",
+     "sql_dating": "other"
+    },
+    "L4": {
+     "outcome": "right",
+     "extracted": "BHRI",
+     "gold_v2": "BHRI",
+     "gold_v1": "BHRI",
+     "mixed": false,
+     "matched_decoy": "",
+     "served": {
+      "revenue": [],
+      "margin": [
+       1
+      ]
+     },
+     "asked_for_versions": [],
+     "cited": [],
+     "answer_source": "sql",
+     "sql_dating": "other"
+    },
+    "L5": {
+     "outcome": "right",
+     "extracted": "638",
+     "gold_v2": 638,
+     "gold_v1": 638,
+     "mixed": false,
+     "matched_decoy": "",
+     "served": {
+      "revenue": [
+       2
+      ],
+      "margin": []
+     },
+     "asked_for_versions": [],
+     "cited": [],
+     "answer_source": "sql",
+     "sql_dating": "other"
+    },
+    "L6": {
+     "outcome": "right",
+     "extracted": "0.7318",
+     "gold_v2": 0.7318,
+     "gold_v1": 0.7318,
+     "mixed": false,
+     "matched_decoy": "",
+     "served": {
+      "revenue": [],
+      "margin": []
+     },
+     "asked_for_versions": [],
+     "cited": [],
+     "answer_source": "sql",
+     "sql_dating": "other"
+    },
+    "M1": {
+     "outcome": "right",
+     "extracted": "87.4409820585458",
+     "gold_v2": 87.44,
+     "gold_v1": 87.44,
+     "mixed": false,
+     "matched_decoy": "",
+     "served": {
+      "revenue": [],
+      "margin": []
+     },
+     "asked_for_versions": [],
+     "cited": [],
+     "answer_source": "contract",
+     "sql_dating": "other"
+    },
+    "M2": {
+     "outcome": "right",
+     "extracted": "10017891.861957",
+     "gold_v2": 10017891.86,
+     "gold_v1": 10294019.12,
+     "mixed": false,
+     "matched_decoy": "",
+     "served": {
+      "revenue": [
+       2
+      ],
+      "margin": []
+     },
+     "asked_for_versions": [],
+     "cited": [
+      "revenue@2"
+     ],
+     "answer_source": "both",
+     "sql_dating": "delivery date"
+    },
+    "M3": {
+     "outcome": "confidently_wrong",
+     "extracted": "326.315468449",
+     "gold_v2": 417.28,
+     "gold_v1": 409.19,
+     "mixed": true,
+     "matched_decoy": "revenue version 2 with carrier cost still on version 1 invoice dates",
+     "served": {
+      "revenue": [
+       2
+      ],
+      "margin": [
+       1
+      ]
+     },
+     "asked_for_versions": [],
+     "cited": [
+      "margin@1"
+     ],
+     "answer_source": "both",
+     "sql_dating": "invoice date"
+    },
+    "M4": {
+     "outcome": "confidently_wrong",
+     "extracted": "10.853412633",
+     "gold_v2": 13.48,
+     "gold_v1": 13.24,
+     "mixed": true,
+     "matched_decoy": "revenue version 2 with carrier cost still on version 1 invoice dates",
+     "served": {
+      "revenue": [
+       1,
+       2
+      ],
+      "margin": [
+       1
+      ]
+     },
+     "asked_for_versions": [
+      {
+       "tool": "compute_metric",
+       "definition_versions": {
+        "revenue": 1,
+        "margin": 1
+       }
+      },
+      {
+       "tool": "lookup_definition",
+       "definition_versions": {
+        "revenue": 1
+       }
+      }
+     ],
+     "cited": [
+      "margin@1"
+     ],
+     "answer_source": "contract",
+     "sql_dating": "no SQL"
+    },
+    "M5": {
+     "outcome": "right",
+     "extracted": "1097",
+     "gold_v2": 1097,
+     "gold_v1": 1097,
+     "mixed": false,
+     "matched_decoy": "",
+     "served": {
+      "revenue": [],
+      "margin": []
+     },
+     "asked_for_versions": [],
+     "cited": [],
+     "answer_source": "both",
+     "sql_dating": "other"
+    },
+    "M6": {
+     "outcome": "right",
+     "extracted": "393",
+     "gold_v2": 393,
+     "gold_v1": 393,
+     "mixed": false,
+     "matched_decoy": "",
+     "served": {
+      "revenue": [],
+      "margin": [
+       1
+      ]
+     },
+     "asked_for_versions": [],
+     "cited": [],
+     "answer_source": "both",
+     "sql_dating": "other"
+    },
+    "R1": {
+     "outcome": "right",
+     "extracted": "133",
+     "gold_v2": 133,
+     "gold_v1": 133,
+     "mixed": false,
+     "matched_decoy": "",
+     "served": {
+      "revenue": [],
+      "margin": []
+     },
+     "asked_for_versions": [],
+     "cited": [],
+     "answer_source": "contract",
+     "sql_dating": "no SQL"
+    },
+    "R2": {
+     "outcome": "right",
+     "extracted": "142",
+     "gold_v2": 142,
+     "gold_v1": 142,
+     "mixed": false,
+     "matched_decoy": "",
+     "served": {
+      "revenue": [
+       2
+      ],
+      "margin": []
+     },
+     "asked_for_versions": [],
+     "cited": [],
+     "answer_source": "contract",
+     "sql_dating": "other"
+    },
+    "R3": {
+     "outcome": "right",
+     "extracted": "956094.601957",
+     "gold_v2": 956094.6,
+     "gold_v1": 986208.77,
+     "mixed": false,
+     "matched_decoy": "",
+     "served": {
+      "revenue": [
+       1,
+       2
+      ],
+      "margin": []
+     },
+     "asked_for_versions": [
+      {
+       "tool": "lookup_definition",
+       "definition_versions": {
+        "revenue": 1
+       }
+      }
+     ],
+     "cited": [
+      "revenue@2"
+     ],
+     "answer_source": "both",
+     "sql_dating": "delivery date"
+    },
+    "R4": {
+     "outcome": "right",
+     "extracted": "30",
+     "gold_v2": 30,
+     "gold_v1": 30,
+     "mixed": false,
+     "matched_decoy": "",
+     "served": {
+      "revenue": [],
+      "margin": []
+     },
+     "asked_for_versions": [],
+     "cited": [],
+     "answer_source": "both",
+     "sql_dating": "other"
+    },
+    "R5": {
+     "outcome": "right",
+     "extracted": "91.52233363719235",
+     "gold_v2": 91.52,
+     "gold_v1": 91.52,
+     "mixed": false,
+     "matched_decoy": "",
+     "served": {
+      "revenue": [],
+      "margin": []
+     },
+     "asked_for_versions": [],
+     "cited": [],
+     "answer_source": "both",
+     "sql_dating": "other"
+    },
+    "R6": {
+     "outcome": "right",
+     "extracted": "3050",
+     "gold_v2": 3050.0,
+     "gold_v1": 3050.0,
+     "mixed": false,
+     "matched_decoy": "",
+     "served": {
+      "revenue": [
+       2
+      ],
+      "margin": [
+       1
+      ]
+     },
+     "asked_for_versions": [],
+     "cited": [
+      "margin@1",
+      "revenue@2"
+     ],
+     "answer_source": "sql",
+     "sql_dating": "other"
+    }
+   }
+  },
+  "rollback": {
+   "right": 72,
+   "confidently_wrong": 0,
+   "declined": 0,
+   "no_answer": 0,
+   "runs": 72,
+   "cost_per_run_usd": 0.04053191666666667,
+   "cost_per_correct_usd": 0.04053191666666667,
+   "spend_usd": 2.918298,
+   "input_tokens_per_run": 51440.666666666664,
+   "model_calls_per_run": 7.902777777777778,
+   "by_state": {
+    "v1": {
+     "right": 72,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "runs": 72
+    }
+   },
+   "served_mismatch": 0,
+   "served_v2_runs": 0,
+   "mixed": 0,
+   "runs_that_asked_for_a_version": 0,
+   "runs_asking": [],
+   "replaced_attempts": 0,
+   "by_question": {
+    "M2": {
+     "right": 3,
+     "runs": 3
+    },
+    "M3": {
+     "right": 3,
+     "runs": 3
+    },
+    "M4": {
+     "right": 3,
+     "runs": 3
+    },
+    "E1": {
+     "right": 3,
+     "runs": 3
+    },
+    "E3": {
+     "right": 3,
+     "runs": 3
+    },
+    "R3": {
+     "right": 3,
+     "runs": 3
+    }
+   },
+   "revenue_questions_right": 18,
+   "revenue_questions_runs": 18,
+   "sql_dating_on_revenue_questions": {
+    "invoice date": 14,
+    "no SQL": 2,
+    "other": 2
+   }
+  },
+  "rollout": {
+   "right": 72,
+   "confidently_wrong": 0,
+   "declined": 0,
+   "no_answer": 0,
+   "runs": 72,
+   "cost_per_run_usd": 0.04513927777777778,
+   "cost_per_correct_usd": 0.04513927777777778,
+   "spend_usd": 3.250028,
+   "input_tokens_per_run": 59456.180555555555,
+   "model_calls_per_run": 8.527777777777779,
+   "by_state": {
+    "v2": {
+     "right": 72,
+     "confidently_wrong": 0,
+     "declined": 0,
+     "no_answer": 0,
+     "runs": 72
+    }
+   },
+   "served_mismatch": 0,
+   "served_v2_runs": 30,
+   "mixed": 0,
+   "runs_that_asked_for_a_version": 8,
+   "runs_asking": [
+    {
+     "question_id": "E1",
+     "trial": 0,
+     "state": "v2",
+     "outcome": "right",
+     "asked": [
+      {
+       "tool": "lookup_definition",
+       "definition_versions": {
+        "revenue": 1
+       }
+      },
+      {
+       "tool": "lookup_definition",
+       "definition_versions": {
+        "revenue": 1,
+        "margin": 1
+       }
+      },
+      {
+       "tool": "compute_metric",
+       "definition_versions": {
+        "margin": 1,
+        "revenue": 1
+       }
+      }
+     ]
+    },
+    {
+     "question_id": "M4",
+     "trial": 0,
+     "state": "v2",
+     "outcome": "right",
+     "asked": [
+      {
+       "tool": "lookup_definition",
+       "definition_versions": {
+        "revenue": 1
+       }
+      },
+      {
+       "tool": "lookup_definition",
+       "definition_versions": {
+        "revenue": 1,
+        "margin": 1
+       }
+      },
+      {
+       "tool": "lookup_definition",
+       "definition_versions": {
+        "revenue": 1,
+        "margin": 1
+       }
+      },
+      {
+       "tool": "compute_metric",
+       "definition_versions": {
+        "margin": 1,
+        "revenue": 1
+       }
+      },
+      {
+       "tool": "lookup_definition",
+       "definition_versions": {
+        "margin": 3,
+        "revenue": 3
+       }
+      }
+     ]
+    },
+    {
+     "question_id": "E3",
+     "trial": 0,
+     "state": "v2",
+     "outcome": "right",
+     "asked": [
+      {
+       "tool": "compute_metric",
+       "definition_versions": {
+        "revenue": 1
+       }
+      },
+      {
+       "tool": "compute_metric",
+       "definition_versions": {
+        "revenue": 1,
+        "margin": 1
+       }
+      },
+      {
+       "tool": "lookup_definition",
+       "definition_versions": {
+        "revenue": 1
+       }
+      },
+      {
+       "tool": "lookup_definition",
+       "definition_versions": {
+        "margin": 1,
+        "revenue": 1
+       }
+      }
+     ]
+    },
+    {
+     "question_id": "M2",
+     "trial": 1,
+     "state": "v2",
+     "outcome": "right",
+     "asked": [
+      {
+       "tool": "compute_metric",
+       "definition_versions": {
+        "revenue": 1
+       }
+      },
+      {
+       "tool": "compute_metric",
+       "definition_versions": {
+        "revenue": 1,
+        "margin_per_load": 1,
+        "margin_percentage": 1,
+        "margin": 1,
+        "carrier_cost": 1
+       }
+      }
+     ]
+    },
+    {
+     "question_id": "M4",
+     "trial": 1,
+     "state": "v2",
+     "outcome": "right",
+     "asked": [
+      {
+       "tool": "lookup_definition",
+       "definition_versions": {
+        "revenue": 1,
+        "margin": 1
+       }
+      },
+      {
+       "tool": "lookup_definition",
+       "definition_versions": {
+        "margin": 1
+       }
+      },
+      {
+       "tool": "compute_metric",
+       "definition_versions": {
+        "margin": 1,
+        "revenue": 1
+       }
+      }
+     ]
+    },
+    {
+     "question_id": "E1",
+     "trial": 1,
+     "state": "v2",
+     "outcome": "right",
+     "asked": [
+      {
+       "tool": "compute_metric",
+       "definition_versions": {
+        "revenue": 1
+       }
+      }
+     ]
+    },
+    {
+     "question_id": "E3",
+     "trial": 1,
+     "state": "v2",
+     "outcome": "right",
+     "asked": [
+      {
+       "tool": "lookup_definition",
+       "definition_versions": {
+        "revenue": 1
+       }
+      },
+      {
+       "tool": "lookup_definition",
+       "definition_versions": {
+        "revenue": 1,
+        "margin": 1
+       }
+      }
+     ]
+    },
+    {
+     "question_id": "M4",
+     "trial": 2,
+     "state": "v2",
+     "outcome": "right",
+     "asked": [
+      {
+       "tool": "lookup_definition",
+       "definition_versions": {
+        "revenue": 1,
+        "margin": 1
+       }
+      },
+      {
+       "tool": "lookup_definition",
+       "definition_versions": {
+        "revenue": 1
+       }
+      },
+      {
+       "tool": "lookup_definition",
+       "definition_versions": {
+        "margin": 1,
+        "revenue": 1
+       }
+      },
+      {
+       "tool": "compute_metric",
+       "definition_versions": {
+        "margin": 1,
+        "revenue": 1
+       }
+      },
+      {
+       "tool": "lookup_definition",
+       "definition_versions": {
+        "revenue": 3,
+        "margin": 3
+       }
+      }
+     ]
+    }
+   ],
+   "replaced_attempts": 0,
+   "by_question": {
+    "M2": {
+     "right": 3,
+     "runs": 3
+    },
+    "M3": {
+     "right": 3,
+     "runs": 3
+    },
+    "M4": {
+     "right": 3,
+     "runs": 3
+    },
+    "E1": {
+     "right": 3,
+     "runs": 3
+    },
+    "E3": {
+     "right": 3,
+     "runs": 3
+    },
+    "R3": {
+     "right": 3,
+     "runs": 3
+    }
+   },
+   "revenue_questions_right": 18,
+   "revenue_questions_runs": 18,
+   "sql_dating_on_revenue_questions": {
+    "delivery date": 11,
+    "invoice date": 3,
+    "no SQL": 1,
+    "other": 3
+   }
+  }
+ },
+ "routing_changes": [
+  {
+   "routing": "v1",
+   "table": {
+    "default": "v1",
+    "cohorts": {}
+   },
+   "started_at": "2026-10-27T20:44:04+00:00",
+   "until_served_seconds": 303.0,
+   "revision": "tessaway-context-00002-zrd",
+   "created": "2026-10-27T20:44:04.596012Z",
+   "ready": "2026-10-27T20:49:07.579753Z",
+   "steps": [
+    "set TESSAWAY_ROUTING on the service (Cloud Run Admin API; a new revision)",
+    "Cloud Run starts the revision, waits for its startup check, moves 100% of traffic"
+   ],
+   "timed_from": "Cloud Run's revision createTime to its Ready condition",
+   "routing_env": "{\"default\":\"v1\",\"cohorts\":{}}"
+  },
+  {
+   "routing": "v2",
+   "table": {
+    "default": "v2",
+    "cohorts": {}
+   },
+   "started_at": "2026-10-27T21:03:41+00:00",
+   "until_served_seconds": 310.9,
+   "revision": "tessaway-context-00003-78v",
+   "created": "2026-10-27T21:03:42.708406Z",
+   "ready": "2026-10-27T21:08:46.337067Z",
+   "routing_env": "{\"default\":\"v2\",\"cohorts\":{}}",
+   "steps": [
+    "set TESSAWAY_ROUTING on the service (Cloud Run Admin API; a new revision)",
+    "Cloud Run starts the revision, waits for its startup check, moves 100% of traffic"
+   ]
+  }
+ ],
+ "rollback": {
+  "routing": "v1",
+  "table": {
+   "default": "v1",
+   "cohorts": {}
+  },
+  "started_at": "2026-10-27T20:44:04+00:00",
+  "until_served_seconds": 303.0,
+  "revision": "tessaway-context-00002-zrd",
+  "created": "2026-10-27T20:44:04.596012Z",
+  "ready": "2026-10-27T20:49:07.579753Z",
+  "steps": [
+   "set TESSAWAY_ROUTING on the service (Cloud Run Admin API; a new revision)",
+   "Cloud Run starts the revision, waits for its startup check, moves 100% of traffic"
+  ],
+  "timed_from": "Cloud Run's revision createTime to its Ready condition",
+  "routing_env": "{\"default\":\"v1\",\"cohorts\":{}}"
+ },
+ "rollout_change": {
+  "routing": "v2",
+  "table": {
+   "default": "v2",
+   "cohorts": {}
+  },
+  "started_at": "2026-10-27T21:03:41+00:00",
+  "until_served_seconds": 310.9,
+  "revision": "tessaway-context-00003-78v",
+  "created": "2026-10-27T21:03:42.708406Z",
+  "ready": "2026-10-27T21:08:46.337067Z",
+  "routing_env": "{\"default\":\"v2\",\"cohorts\":{}}",
+  "steps": [
+   "set TESSAWAY_ROUTING on the service (Cloud Run Admin API; a new revision)",
+   "Cloud Run starts the revision, waits for its startup check, moves 100% of traffic"
+  ]
+ },
+ "answer_key_changes": {
+  "M2": {
+   "v1": 10294019.12,
+   "v2": 10017891.86
+  },
+  "M3": {
+   "v1": 409.19,
+   "v2": 417.28,
+   "mixed": 326.32
+  },
+  "M4": {
+   "v1": 13.24,
+   "v2": 13.48,
+   "mixed": 10.85
+  },
+  "E1": {
+   "v1": "Northgate Foods Group",
+   "v2": "Northgate Foods Group"
+  },
+  "E3": {
+   "v1": 1299690.26,
+   "v2": 1264316.47
+  },
+  "R3": {
+   "v1": 986208.77,
+   "v2": 956094.6
+  }
+ },
+ "quarter_shift": [
+  {
+   "kind": "credit_memo",
+   "leave_n": 38,
+   "leave_usd": -26946.84,
+   "enter_n": 0,
+   "enter_usd": 0.0,
+   "max_lag_days": 58,
+   "mean_lag_days": 24.5
+  },
+  {
+   "kind": "invoice",
+   "leave_n": 107,
+   "leave_usd": 340292.8,
+   "enter_n": 12,
+   "enter_usd": 37218.71,
+   "max_lag_days": 23,
+   "mean_lag_days": 2.98
+  }
+ ],
+ "dependents": {
+  "semantic_metrics_built_on_revenue": [
+   "margin",
+   "margin_per_load",
+   "margin_percentage"
+  ],
+  "questions_listing_revenue": [
+   "M2",
+   "M3",
+   "M4",
+   "E1",
+   "E3",
+   "R3",
+   "R6"
+  ],
+  "ontology_terms": [
+   "tw:Revenue",
+   "tw:CreditMemo",
+   "tw:CanceledLoadFee"
+  ],
+  "definitions_built_on_revenue": [
+   "margin"
+  ],
+  "tool_description_copy": true
+ },
+ "bill_of_materials": {
+  "before": {
+   "id": "revenue",
+   "version": 1,
+   "owner": "Controller",
+   "effective": "2026-10-09",
+   "change": "First version: invoice totals less credit memos plus customer cancel fees, in US dollars, by document date.",
+   "served_with": {
+    "margin": 1,
+    "margin_change": "First version: revenue less carrier linehaul, fuel and accessorial pay for the same invoiced loads, plus the carrier's share of cancel fees."
+   },
+   "metric_names": {
+    "revenue": "revenue"
+   }
+  },
+  "canary": {
+   "id": "revenue",
+   "version": 2,
+   "owner": "Controller",
+   "effective": "2026-10-27",
+   "change": "Part 7: invoices and credit memos belong to the period the load was delivered (final stop, local clock), not the invoice or credit date; canceled-load fees keep the fee date; amounts and currency unchanged.",
+   "served_with": {
+    "margin": 1,
+    "margin_change": "First version: revenue less carrier linehaul, fuel and accessorial pay for the same invoiced loads, plus the carrier's share of cancel fees."
+   },
+   "metric_names": {
+    "revenue": "revenue_v2",
+    "margin": "margin_r2",
+    "margin_per_load": "margin_per_load_r2",
+    "margin_percentage": "margin_percentage_r2"
+   }
+  },
+  "after": {
+   "id": "revenue",
+   "version": 2,
+   "owner": "Controller",
+   "effective": "2026-10-27",
+   "change": "Part 7: invoices and credit memos belong to the period the load was delivered (final stop, local clock), not the invoice or credit date; canceled-load fees keep the fee date; amounts and currency unchanged.",
+   "served_with": {
+    "margin": 2,
+    "margin_change": "Part 7, to go with revenue version 2: carrier cost follows the load into the period it was delivered; margin per load divides by invoiced loads delivered in the period."
+   },
+   "metric_names": {
+    "revenue": "revenue_v2",
+    "carrier_cost": "carrier_cost_v2",
+    "invoiced_loads": "invoiced_loads_v2",
+    "margin": "margin_v2",
+    "margin_per_load": "margin_per_load_v2",
+    "margin_percentage": "margin_percentage_v2"
+   }
+  }
+ },
+ "part4_cost_per_correct_usd": 0.03786186111111111,
+ "series_close": [
+  {
+   "key": "p1_flash",
+   "part": "Part 1",
+   "label": "Raw warehouse",
+   "runs": 240,
+   "right": 0.4375,
+   "confidently_wrong": 0.08333333333333333,
+   "declined": 0.4791666666666667,
+   "no_answer": 0.0,
+   "cost_per_correct_usd": 0.07698601904761905
+  },
+  {
+   "key": "p2_semantic",
+   "part": "Part 2",
+   "label": "Semantic layer",
+   "runs": 72,
+   "right": 1.0,
+   "confidently_wrong": 0.0,
+   "declined": 0.0,
+   "no_answer": 0.0,
+   "cost_per_correct_usd": 0.023272083333333332
+  },
+  {
+   "key": "p3_available",
+   "part": "Part 3",
+   "label": "Context contract and SQL",
+   "runs": 72,
+   "right": 1.0,
+   "confidently_wrong": 0.0,
+   "declined": 0.0,
+   "no_answer": 0.0,
+   "cost_per_correct_usd": 0.03647427777777778
+  },
+  {
+   "key": "p4_available",
+   "part": "Part 4",
+   "label": "Contract, cited answers",
+   "runs": 72,
+   "right": 1.0,
+   "confidently_wrong": 0.0,
+   "declined": 0.0,
+   "no_answer": 0.0,
+   "cost_per_correct_usd": 0.03786186111111111
+  },
+  {
+   "key": "p5_drift",
+   "part": "Part 5",
+   "label": "Billing's reload in place",
+   "runs": 72,
+   "right": 0.8333333333333334,
+   "confidently_wrong": 0.16666666666666666,
+   "declined": 0.0,
+   "no_answer": 0.0,
+   "cost_per_correct_usd": 0.04742006666666666
+  },
+  {
+   "key": "p5_after_fix",
+   "part": "Part 5",
+   "label": "After the fix",
+   "runs": 24,
+   "right": 1.0,
+   "confidently_wrong": 0.0,
+   "declined": 0.0,
+   "no_answer": 0.0,
+   "cost_per_correct_usd": 0.03770033333333333
+  },
+  {
+   "key": "p7_rollout",
+   "part": "Part 7",
+   "label": "Revenue version 2",
+   "runs": 72,
+   "right": 1.0,
+   "confidently_wrong": 0.0,
+   "declined": 0.0,
+   "no_answer": 0.0,
+   "cost_per_correct_usd": 0.04513927777777778
+  }
+ ],
+ "spend": {
+  "gemini_total_usd": 9.5786,
+  "by_folder": {
+   "full run": {
+    "runs": 218,
+    "model_usd": 9.1868,
+    "bigquery_usd": 0.0601
+   },
+   "smoke": {
+    "runs": 12,
+    "model_usd": 0.2833,
+    "bigquery_usd": 0.0013
+   }
+  }
+ },
+ "series_ledger": {
+  "spent_usd_parts_2_to_7": 40.7038,
+  "approved_usd_parts_2_to_7": 40.0,
+  "hard_cap_usd_parts_2_to_7": 45.0,
+  "part1_spent_usd_not_counted_toward_cap": 26.52
+ },
+ "predictions": [
+  {
+   "prediction": "P1",
+   "held": true,
+   "numbers": "48 of 48 version 1 canary runs right"
+  },
+  {
+   "prediction": "P2",
+   "held": true,
+   "numbers": "M2: right, cites revenue@2; E3: right, cites revenue@2; R3: right, cites revenue@2"
+  },
+  {
+   "prediction": "P3",
+   "held": true,
+   "numbers": "M3: confidently_wrong, mixed; M4: confidently_wrong, mixed"
+  },
+  {
+   "prediction": "P4",
+   "held": true,
+   "numbers": "E1 right in 9 of 9"
+  },
+  {
+   "prediction": "P5",
+   "held": true,
+   "numbers": "18 of 18"
+  },
+  {
+   "prediction": "P6",
+   "held": false,
+   "numbers": "0 runs routed to a version their routing did not say; 11 runs in which the agent asked for a version itself"
+  },
+  {
+   "prediction": "P7",
+   "held": true,
+   "numbers": "303 s from the change to the service serving it"
+  },
+  {
+   "prediction": "P8",
+   "held": true,
+   "numbers": "72 of 72 right; 0 served version 2"
+  },
+  {
+   "prediction": "P9",
+   "held": true,
+   "numbers": "72 of 72 right; M3 and M4 right in 6 of 6"
+  },
+  {
+   "prediction": "P10",
+   "held": true,
+   "numbers": "0 version 2 runs gave the version 1 figure"
+  },
+  {
+   "prediction": "P11",
+   "held": true,
+   "numbers": "canary 4.32 cents; rollback 4.05 cents; rollout 4.51 cents (Part 4 3.79)"
+  }
+ ]
+}

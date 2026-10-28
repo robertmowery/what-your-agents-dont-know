@@ -1,0 +1,39 @@
+{
+ "about": "Part 7: the wording lookup_definition returns for a term when the contract serves version 2 of the definition behind it. Version 1's wording is the ontology's (ontology/tessaway.ttl), unchanged. Written with data/DEFINITIONS.md before any Part 7 agent ran.",
+ "terms": {
+  "tw:Revenue": {
+   "definition": "revenue",
+   "2": {
+    "definition": "Revenue is recognized when the load is delivered, in the period of the delivery date: the arrival at the final delivery stop, on the local clock at that stop.",
+    "rules": [
+     "Revenue is the invoice total, which already includes linehaul, fuel surcharge and accessorial charges billed to the customer, in the period its load was delivered; less credit memos, in the period their load was delivered; plus canceled-load fees billed to the customer, in the period of the fee date; all in US dollars, converted at the rate for the month of the document date.",
+     "A delivered load counts in its delivery period whether or not its signed proof of delivery is in. A delivered load with no invoice yet has no revenue.",
+     "The rated linehaul on a tender (tms_load_hdr.lh_rev_amt) is not revenue: it leaves out fuel and accessorials, and it sits on canceled, test, voided and re-tendered rows that were never billed.",
+     "Revenue belongs to the customer: the parent of the site that shipped."
+    ],
+    "warehouse_source": [
+     "bil_cust_inv.inv_tot_amt and bil_cr_memo.cr_amt by the delivery date of their load (the last tms_stop with stop_typ_cd = 'DL': DATE(arr_ts, tz_nm)); bil_canc_fee.cust_fee_amt by fee_dt"
+    ]
+   }
+  },
+  "tw:CreditMemo": {
+   "definition": "revenue",
+   "2": {
+    "definition": "A credit that comes off revenue, in the period its load was delivered."
+   }
+  },
+  "tw:Margin": {
+   "definition": "margin",
+   "2": {
+    "definition": "Margin is revenue less what was paid to carriers for the same loads.",
+    "rules": [
+     "Carrier cost for an invoiced load is linehaul pay plus the carrier's fuel surcharge plus accessorials paid to the carrier. Cost follows the load into the period it was delivered, the same period as its revenue.",
+     "The carrier's share of a canceled-load fee is a cost in the period of the fee date.",
+     "Margin per load is margin for the period divided by the number of invoiced loads delivered in the period.",
+     "Margin percentage is margin divided by revenue.",
+     "Loads hauled by Tessaway's own fleet are settled through the same tables and are treated the same way."
+    ]
+   }
+  }
+ }
+}

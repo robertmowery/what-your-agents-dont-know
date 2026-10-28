@@ -94,7 +94,7 @@ def test_the_envelope_names_the_definitions_served() -> None:
     reply_ = contract.envelope(
         contract.COMPUTE_METRIC, {"rows": [[0]]}, {"metrics": ["late_deliveries"]}
     )
-    assert reply_["contract_version"] == "2.0.0"
+    assert reply_["contract_version"] == contract.CONTRACT_VERSION
     assert reply_["definitions"] == [{"id": "on_time", "version": 1, "owner": "VP Operations"}]
     # A failed call serves nothing; a lookup that matches nothing serves nothing.
     assert contract.envelope(contract.COMPUTE_METRIC, {"error": "x"}, {"metrics": ["revenue"]})[

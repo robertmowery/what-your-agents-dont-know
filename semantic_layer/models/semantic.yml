@@ -185,6 +185,52 @@ semantic_models:
         agg: sum
         expr: "case when document_type = 'invoice' then 1 else 0 end"
 
+  # Part 7: the same documents dated by revenue version 2 and margin version 2.
+  # The contract serves these metrics under the version 1 names when a request
+  # is routed to version 2 (context_server/versions.py); agents never see these names.
+  - name: financial_documents_v2
+    description: >
+      One row per invoice, credit memo or canceled-load fee, in US dollars,
+      dated as revenue version 2 says: invoices and credit memos by the
+      delivery date of their load, canceled-load fees by the fee date.
+    model: ref('financial_documents_v2')
+    defaults:
+      agg_time_dimension: recognition_date
+    entities:
+      - name: document_v2
+        type: primary
+        expr: document_id
+      - name: tender
+        type: foreign
+        expr: tender_id
+    dimensions:
+      - name: recognition_date
+        description: The delivery date of the load for invoices and credit memos; the fee date for canceled-load fees.
+        type: time
+        type_params:
+          time_granularity: day
+      - name: document_date
+        description: The invoice date, the credit date or the fee date.
+        type: time
+        type_params:
+          time_granularity: day
+      - name: document_type
+        description: "One of: invoice, credit_memo, canceled_load_fee."
+        type: categorical
+      - name: document_currency
+        description: The currency code the document was issued in.
+        type: categorical
+    measures:
+      - name: revenue_usd_sum_v2
+        agg: sum
+        expr: revenue_usd
+      - name: carrier_cost_usd_sum_v2
+        agg: sum
+        expr: carrier_cost_usd
+      - name: invoiced_load_count_v2
+        agg: sum
+        expr: "case when document_type = 'invoice' then 1 else 0 end"
+
   - name: portal_shipments
     description: >
       One row per shipment the customer portal shows as delivered, dated by
@@ -417,3 +463,85 @@ metrics:
       metrics:
         - name: revenue
         - name: carrier_cost
+
+  # --- Part 7: version 2 (served by the contract under the version 1 names) ---
+
+  - name: revenue_v2
+    label: Revenue (US dollars), version 2
+    description: Revenue version 2, in the period the load was delivered.
+    type: simple
+    type_params:
+      measure: revenue_usd_sum_v2
+
+  - name: carrier_cost_v2
+    label: Carrier cost (US dollars), margin version 2
+    description: Carrier cost in the period the load was delivered.
+    type: simple
+    type_params:
+      measure: carrier_cost_usd_sum_v2
+
+  - name: invoiced_loads_v2
+    label: Invoiced loads delivered in the period
+    description: Invoiced loads, counted in the period they were delivered.
+    type: simple
+    type_params:
+      measure: invoiced_load_count_v2
+
+  # What the margin metrics compute when only revenue moves to version 2:
+  # margin's own definition still dates carrier cost by the invoice.
+  - name: margin_r2
+    label: Margin on revenue version 2, cost on margin version 1
+    type: derived
+    type_params:
+      expr: revenue_v2 - carrier_cost
+      metrics:
+        - name: revenue_v2
+        - name: carrier_cost
+
+  - name: margin_per_load_r2
+    label: Margin per load on revenue version 2, margin version 1
+    type: derived
+    type_params:
+      expr: (revenue_v2 - carrier_cost) / nullif(invoiced_loads, 0)
+      metrics:
+        - name: revenue_v2
+        - name: carrier_cost
+        - name: invoiced_loads
+
+  - name: margin_percentage_r2
+    label: Margin percentage on revenue version 2, margin version 1
+    type: derived
+    type_params:
+      expr: 100 * (revenue_v2 - carrier_cost) / nullif(revenue_v2, 0)
+      metrics:
+        - name: revenue_v2
+        - name: carrier_cost
+
+  # Margin version 2: cost moves with the load into its delivery period.
+  - name: margin_v2
+    label: Margin (US dollars), version 2
+    type: derived
+    type_params:
+      expr: revenue_v2 - carrier_cost_v2
+      metrics:
+        - name: revenue_v2
+        - name: carrier_cost_v2
+
+  - name: margin_per_load_v2
+    label: Margin per load (US dollars), version 2
+    type: derived
+    type_params:
+      expr: (revenue_v2 - carrier_cost_v2) / nullif(invoiced_loads_v2, 0)
+      metrics:
+        - name: revenue_v2
+        - name: carrier_cost_v2
+        - name: invoiced_loads_v2
+
+  - name: margin_percentage_v2
+    label: Margin percentage, version 2
+    type: derived
+    type_params:
+      expr: 100 * (revenue_v2 - carrier_cost_v2) / nullif(revenue_v2, 0)
+      metrics:
+        - name: revenue_v2
+        - name: carrier_cost_v2

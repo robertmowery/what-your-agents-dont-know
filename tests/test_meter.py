@@ -110,7 +110,7 @@ def test_reprice_uses_other_prices_and_keeps_bigquery():
 def test_every_saved_record_matches_its_tokens():
     """The cost each run recorded is what its tokens cost at the pinned prices."""
     checked = 0
-    for cfg in meter.SERIES + meter.UNSCORED:
+    for cfg in meter.SERIES + meter.UNSCORED + meter.PART7:
         for r in meter.load(cfg.path):
             assert meter.model_cost(r) == pytest.approx(float(r["cost_usd"]), abs=1e-6), (
                 cfg.key,
@@ -127,7 +127,7 @@ def test_every_saved_record_matches_its_tokens():
 def test_series_covers_every_scored_runs_file():
     import glob
 
-    listed = {cfg.path for cfg in meter.SERIES + meter.UNSCORED}
+    listed = {cfg.path for cfg in meter.SERIES + meter.UNSCORED + meter.PART7}
     found = {
         str(p).split("results/", 1)[1]
         for p in map(str, sorted(glob.glob(str(meter.RESULTS / "*" / "runs" / "*.jsonl"))))
